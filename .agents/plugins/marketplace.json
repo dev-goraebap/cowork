@@ -1,0 +1,12 @@
+{
+  "name": "cowork",
+  "interface": { "displayName": "cowork" },
+  "plugins": [
+    {
+      "name": "cowork",
+      "source": { "source": "local", "path": "./plugins/cowork/dist/codex" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity"
+    }
+  ]
+}

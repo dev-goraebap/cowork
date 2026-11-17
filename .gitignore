@@ -1,0 +1,25 @@
+**/.env
+**/.env.*
+!**/.env.example
+**/.gradle/
+**/build/
+**/node_modules/
+**/dist/
+**/coverage/
+*.log
+.idea/
+.vscode/
+.tmp
+
+.agents/skills/pg-query
+.claude/*
+!.claude/settings.json
+skills-lock.json
+.local/
+*.tsbuildinfo
+
+# The local SQLite database (server/data/cowork.db and its WAL files).
+server/data/
+
+# IDE build output (Eclipse / VS Code Java).
+server/bin/

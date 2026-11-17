@@ -1,0 +1,19 @@
+import {Input} from '@/shared/ui/input';
+import {useEffect,useState} from 'react';
+import {History,X,RotateCw,Clock3,Bookmark,ShieldCheck,ArrowLeft,ArrowRight,Plus,Minus,Pencil,MoveRight,FileText,LoaderCircle} from './icons';
+import {Button} from './Button';
+import {nodeText,type JSONNode,type VersionRecord} from './model';
+import {blockNames,textParts,type Change,type ChangeKind} from './version-diff';
+import {reasonNames,date,time,kinds,labels,icons} from './VersionViews';
+export function VersionPanel({versions,title,name,onName,onSave,onClose,onRefresh,onSelect,onCurrent,selected,preview,loading,busy,error}:{versions:VersionRecord[];title:string;name:string;onName:(s:string)=>void;onSave:()=>void;onClose:()=>void;onRefresh:()=>void;onSelect:(v:VersionRecord)=>void;onCurrent:()=>void;selected?:string;preview:boolean;loading:boolean;busy:boolean;error:string}){
+ const [query,setQuery]=useState('');const filtered=versions.filter(v=>(v.label+' '+v.title+' '+reasonNames[v.reason]+' '+date(v.created)).toLowerCase().includes(query.toLowerCase()));
+ return <aside className="version-panel history-panel" aria-label="버전 목록" onKeyDown={e=>{if(e.key==='Escape'&&!busy){e.stopPropagation();onClose();}}}>
+  <div className="history-panel-heading"><span><History size={16}/><strong>버전 기록</strong><small>{versions.length}</small></span><div><Button aria-label="버전 기록 새로고침" disabled={loading||busy} onClick={onRefresh}><RotateCw size={14}/></Button><Button aria-label="버전 기록 닫기" disabled={busy} onClick={onClose}><X size={16}/></Button></div></div>
+  <button className={`history-current ${!preview&&!selected?'active':''}`} onClick={onCurrent} disabled={busy}><span className="history-current-icon"><FileText size={16}/></span><span><strong>현재 문서</strong><small>{title||'제목 없음'}</small></span><span className="history-current-tag">작업본</span></button>
+  <div className="history-composer"><label htmlFor="history-version-name">저장 지점 남기기</label><div><Input id="history-version-name" aria-label="버전 이름" className="h-8 min-w-0 flex-1" placeholder="버전 이름 (선택)" value={name} onChange={event=>onName(event.target.value)} disabled={busy||preview} onKeyDown={e=>{if(e.key==='Enter'&&!e.nativeEvent.isComposing&&!busy&&!preview)onSave();}}/><Button primary aria-label="현재 버전 저장" disabled={busy||preview} onClick={onSave}><Bookmark size={14}/><span>저장</span></Button></div></div>
+  {error&&<div className="history-error" role="alert">{error}</div>}
+  <div className="history-search"><Input type="search" aria-label="버전 검색" className="h-8" placeholder="기록 검색…" value={query} onChange={event=>setQuery(event.target.value)}/></div>
+  <div className="history-records">{loading&&<div className="history-loading" role="status"><LoaderCircle size={15}/>기록을 불러오는 중…</div>}{!loading&&filtered.length===0&&<div className="history-empty"><Clock3 size={22}/><strong>{query?'일치하는 기록이 없습니다':'아직 저장한 기록이 없습니다'}</strong><span>{query?'다른 이름이나 날짜로 찾아보세요.':'현재 문서를 저장 지점으로 남겨 보세요.'}</span></div>}{filtered.map((v,i)=><div className="history-record" key={v.id}>{(i===0||date(filtered[i-1].created)!==date(v.created))&&<div className="history-day">{date(v.created)}</div>}<button className={`version-item history-item ${selected===v.id?'active':''}`} aria-pressed={selected===v.id} disabled={busy} onClick={()=>onSelect(v)}><span className={`history-node reason-${v.reason}`}>{v.reason==='before-restore'?<ShieldCheck size={14}/>:v.reason==='restored'?<RotateCw size={13}/>:v.reason==='manual'?<Bookmark size={13}/>:<Clock3 size={13}/>}</span><span className="history-item-body"><strong>{v.label}</strong><span><time dateTime={v.created}>{time(v.created)}</time><small>{reasonNames[v.reason]??v.reason}</small></span></span>{selected===v.id&&<span className="history-selected-dot"/>}</button></div>)}</div>
+  <div className="history-safety"><ShieldCheck size={14}/><span>복원 직전 내용은 자동으로 보관합니다.</span></div>
+ </aside>;
+}

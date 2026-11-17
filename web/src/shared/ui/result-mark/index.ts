@@ -1,0 +1,1 @@
+export { ResultMark } from './ResultMark';

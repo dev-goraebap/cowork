@@ -1,0 +1,14 @@
+{
+  "name": "cowork",
+  "description": "cowork 사용자 플러그인",
+  "owner": {
+    "name": "cowork"
+  },
+  "plugins": [
+    {
+      "name": "cowork",
+      "source": "./plugins/cowork/dist/claude",
+      "description": "cowork MCP 서버 연결(내 계정 › 에이전트 토큰)과 이슈 · 문서 · 일정 · 회의록을 다루는 스킬 · 명령"
+    }
+  ]
+}

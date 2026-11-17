@@ -1,0 +1,14 @@
+# Only what the image builds from; never local data, secrets or build output.
+*
+!web/
+!server/
+web/**/node_modules
+web/**/dist
+web/**/*.tsbuildinfo
+web/**/.env*
+server/build/
+server/.gradle/
+server/data/
+server/.env
+server/bin/
+server/out/
