@@ -38,7 +38,8 @@ public class MemberController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public RoleViews.RoleMember invite(@AuthenticationPrincipal CurrentUser user, @Valid @RequestBody Invite request) {
-        var member = userFacade.checked(new NewUser(UUID.randomUUID(), request.name(), request.email(), null, UserStatus.ACTIVE));
+        var member = userFacade.checked(
+                new NewUser(UUID.randomUUID(), request.name(), request.email(), null, UserStatus.ACTIVE));
         userFacade.registerAll(user.id(), java.util.List.of(member));
         return new RoleViews.RoleMember(member.id(), member.name(), member.email(), Set.of());
     }

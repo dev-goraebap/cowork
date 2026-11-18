@@ -14,24 +14,20 @@ type Required<T, K extends keyof T> = T & { [P in K]-?: NonNullable<T[P]> };
 
 /** How far one may go with a folder or document. */
 export type AccessLevel = 'NONE' | 'READ' | 'WRITE' | 'MANAGE';
-/** Who a grant is for: the item's maker, a member, a department (with those under it) or a project's members. */
-export type GrantSubject = 'OWNER' | 'USER' | 'DEPARTMENT' | 'PROJECT';
+/** Who a grant is for: the item's maker, a member or a project's members. */
+export type GrantSubject = 'OWNER' | 'USER' | 'PROJECT';
 export type Grant = { subject: GrantSubject; subjectId?: string; name?: string; level: Exclude<AccessLevel, 'NONE'> };
 /** A folder's or document's permissions: its own grants, the closed folders above it, the reader's level and say. */
 export type Access = {
   grants: Grant[]; inherited: { folderId: string; folderName: string; grants: Grant[] }[]; level: AccessLevel; canManage: boolean;
 };
 export type Mark = { icon: string | null; color: string | null };
-/** A system folder's kind: 회의록 (narrowed by project) or 주간보고 (by department), kept by their own pages. */
-export type SystemKind = 'MEETING' | 'WEEKLY_REPORT';
 const idOf = (location: string) => location.split('/').pop() ?? '';
 
 export const boxKeys = {
   projects: ['documents', 'box', 'projects'] as const,
   chapters: (documentId: string) => ['documents', 'chapters', documentId] as const,
   access: (target: 'documents' | 'document-folders', id: string) => ['documents', 'access', target, id] as const,
-  systems: (projectId?: string) => ['documents', 'systems', projectId ?? '-'] as const,
-  systemItems: (kind: SystemKind, projectId?: string, facet?: string) => ['documents', 'systems', kind, projectId ?? '-', facet ?? '-'] as const,
 };
 
 /** A folder's or document's permissions. */

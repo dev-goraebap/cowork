@@ -61,7 +61,7 @@ public class DocumentService {
         if (request.parentId() != null) {
             var parent = documentRepository
                     .findById(request.parentId())
-                    .filter(d -> !d.isDeleted() && d.isWritten())
+                    .filter(d -> !d.isDeleted())
                     .orElseThrow(DocumentErrorCode.DOCUMENT_NOT_FOUND::raise);
             documentAccess.requireDocument(user, parent, Grant.Level.WRITE);
         }
@@ -80,8 +80,7 @@ public class DocumentService {
         if (request.parentId() != null) {
             var parent = documentRepository
                     .findById(request.parentId())
-                    .filter(d ->
-                            !d.isDeleted() && d.isWritten() && space.projectId().equals(d.projectId()))
+                    .filter(d -> !d.isDeleted() && space.projectId().equals(d.projectId()))
                     .orElseThrow(DocumentErrorCode.DOCUMENT_NOT_FOUND::raise);
             if (!request.labelIds().isEmpty())
                 throw new xyz.goraebap.cowork.shared.error.DomainRuleViolation("하위 페이지는 별도 라벨을 갖지 않습니다");
@@ -210,7 +209,7 @@ public class DocumentService {
     private Document writable(CurrentUser user, UUID id, long expectedVersion) {
         var document = documentRepository
                 .findById(id)
-                .filter(found -> !found.isDeleted() && found.isWritten())
+                .filter(found -> !found.isDeleted())
                 .orElseThrow(DocumentErrorCode.DOCUMENT_NOT_FOUND::raise);
         documentSpaces.writableOf(user, document.projectId(), DocumentErrorCode.DOCUMENT_NOT_FOUND);
         documentAccess.requireDocument(user, document, Grant.Level.WRITE);

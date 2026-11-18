@@ -17,11 +17,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import xyz.goraebap.cowork.module.seed.SeedFormatSpi;
-import xyz.goraebap.cowork.module.user.UserFacade;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
+import xyz.goraebap.cowork.module.seed.SeedFormatSpi;
+import xyz.goraebap.cowork.module.user.UserFacade;
 
 /**
  * Fills a server nobody can call the API for, such as the dev server, from JSON files put in its seed folder

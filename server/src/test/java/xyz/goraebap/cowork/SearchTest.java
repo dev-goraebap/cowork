@@ -7,7 +7,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import jakarta.servlet.http.Cookie;
-import java.time.LocalDate;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -49,7 +48,7 @@ class SearchTest {
     @BeforeEach
     void prepare() throws Exception {
         TestDatabase.clear(jdbc);
-        member(ADMIN, "가관리", "admin@example.test", Role.WORKSPACE_ADMIN, Role.OFFICE_ADMIN);
+        member(ADMIN, "가관리", "admin@example.test", Role.WORKSPACE_ADMIN);
         member(MEMBER, "나구성원", "member@example.test");
         project("SAFE", "안전관리");
         project("FIS", "재무");
@@ -112,7 +111,7 @@ class SearchTest {
 
     private void member(UUID id, String name, String email, Role... roles) {
         Accounts.upsert(jdbc, id, email, true, roles);
-        Members.insert(jdbc, Members.member(id, name, email).status("ACTIVE").hired(LocalDate.parse("2020-01-01")));
+        Members.insert(jdbc, Members.member(id, name, email).status("ACTIVE"));
     }
 
     private Cookie cookie(UUID user) {

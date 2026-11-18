@@ -187,7 +187,7 @@ public class DocumentBodyService {
     private Document live(UUID id) {
         return documentRepository
                 .findById(id)
-                .filter(document -> !document.isDeleted() && document.isWritten())
+                .filter(document -> !document.isDeleted())
                 .orElseThrow(DocumentErrorCode.DOCUMENT_NOT_FOUND::raise);
     }
 

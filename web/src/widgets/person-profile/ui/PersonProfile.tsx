@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
-import { directoryAgentsOptions, orgChartOptions, treeRows } from '@/entities/organization';
+import { directoryAgentsOptions, orgChartOptions } from '@/entities/organization';
 import { sessionOptions } from '@/shared/auth';
 import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';
@@ -9,37 +9,28 @@ import { Mark } from '@/shared/ui/mark-picker';
 import { PersonAvatar } from '@/shared/ui/person';
 
 /**
- * A person's profile, laid out as 내 정보 is: their picture, name, where they sit and what they lead, then their work
- * facts and their active agent identities. Someone not working any more shows by name alone. One's own profile leads to
- * 내 정보, and an office administrator's to the employee's page.
+ * A person's profile, laid out as 내 정보 is: their picture and name, their work email and their active agent
+ * identities. Someone not working any more shows by name alone. One's own profile leads to 내 정보.
  */
 export function PersonProfile({ employeeId, name }: { employeeId: string; name?: string }) {
   const chart = useQuery(orgChartOptions());
   const session = useQuery(sessionOptions());
-  const departments = chart.data?.departments ?? [];
   const people = chart.data?.people ?? [];
   const person = people.find(item => item.id === employeeId);
   const agents = useQuery({ ...directoryAgentsOptions(employeeId), enabled: !!person });
-  const department = departments.find(item => item.id === person?.departmentId);
-  const path = treeRows(departments).find(row => row.item.id === department?.id)?.path;
-  const leads = departments.filter(item => item.leadEmployeeId === employeeId);
   const isSelf = session.data?.id === employeeId;
   if (chart.isPending) return null;
   if (!person) return <div className="flex flex-col gap-1 p-4">
     <h2 className="text-base font-semibold">{name ?? '구성원'}</h2>
     <p className="text-muted-foreground">{chart.isError ? '프로필을 불러오지 못했습니다.' : '재직 중인 구성원만 프로필을 볼 수 있습니다.'}</p>
   </div>;
-  const facts = [['업무 이메일', person.workEmail], ['소속', path?.join(' › ')], ['직급', person.positionName], ['직위', person.titleName]] as const;
+  const facts = [['업무 이메일', person.workEmail]] as const;
   return <div className="flex flex-col gap-6">
     <section className="flex items-center gap-4 rounded-xl bg-muted p-4">
       <PersonAvatar id={person.id} name={person.name} size={72} isStatic />
       <div className="flex min-w-0 flex-col gap-1">
         <h2 className="truncate text-base font-semibold">{person.name}</h2>
-        <p className="truncate text-muted-foreground">{[department?.name, person.titleName ?? person.positionName].filter(Boolean).join(' · ') || '소속 없음'}</p>
-        {isSelf || leads.length > 0 ? <div className="flex flex-wrap gap-1">
-          {isSelf ? <Badge variant="label">나</Badge> : null}
-          {leads.map(item => <Badge key={item.id} variant="label">{item.name} 부서장</Badge>)}
-        </div> : null}
+        {isSelf ? <div className="flex flex-wrap gap-1"><Badge variant="label">나</Badge></div> : null}
       </div>
     </section>
     <dl className="flex flex-col text-sm">

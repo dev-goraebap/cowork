@@ -33,6 +33,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.user.UserFacade;
 import xyz.goraebap.cowork.module.user.application.AuthSecrets;
 import xyz.goraebap.cowork.module.user.application.auth.SessionService;
@@ -42,8 +44,6 @@ import xyz.goraebap.cowork.support.Accounts;
 import xyz.goraebap.cowork.support.Members;
 import xyz.goraebap.cowork.support.ProjectMembers;
 import xyz.goraebap.cowork.support.TestDatabase;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Agent access (cowork-guide-agent-access): a member makes an agent token in their own session shortly after signing
@@ -84,7 +84,7 @@ class AgentAccessTest {
     @BeforeEach
     void prepare() throws Exception {
         TestDatabase.clear(jdbc);
-        member(ADMIN, "가관리", "admin@example.test", Role.WORKSPACE_ADMIN, Role.OFFICE_ADMIN, Role.INSTANCE_ADMIN);
+        member(ADMIN, "가관리", "admin@example.test", Role.WORKSPACE_ADMIN, Role.INSTANCE_ADMIN);
         member(MEMBER, "나구성원", "member@example.test");
         mvc.perform(write(post("/api/v1/workspace/projects"))
                         .cookie(cookie(ADMIN))
@@ -1716,7 +1716,7 @@ class AgentAccessTest {
 
     private void member(UUID id, String name, String email, Role... roles) {
         Accounts.upsert(jdbc, id, email, true, roles);
-        Members.insert(jdbc, Members.member(id, name, email).hired(LocalDate.parse("2020-01-01")));
+        Members.insert(jdbc, Members.member(id, name, email));
     }
 
     private Cookie cookie(UUID user) {

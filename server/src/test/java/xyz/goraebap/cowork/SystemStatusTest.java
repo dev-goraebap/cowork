@@ -29,6 +29,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.system.infrastructure.LogDatabase;
 import xyz.goraebap.cowork.module.system.infrastructure.LogMaintenance;
 import xyz.goraebap.cowork.module.system.infrastructure.LogWriter;
@@ -37,7 +38,6 @@ import xyz.goraebap.cowork.shared.storage.ObjectStorage;
 import xyz.goraebap.cowork.support.Accounts;
 import xyz.goraebap.cowork.support.Members;
 import xyz.goraebap.cowork.support.TestDatabase;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * The system status page end to end: what a request leaves (a change or a marked read as an activity with its member

@@ -15,9 +15,9 @@ import java.util.Locale;
 import java.util.Map;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import xyz.goraebap.cowork.module.workspace.issue.domain.code.GitHostException;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
+import xyz.goraebap.cowork.module.workspace.issue.domain.code.GitHostException;
 
 /**
  * JSON over HTTP for the host adapters (BIT's HostHttp): a short timeout, the host's message kept when it refuses, and

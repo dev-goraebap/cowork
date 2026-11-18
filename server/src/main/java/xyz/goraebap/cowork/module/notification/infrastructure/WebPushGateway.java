@@ -18,9 +18,9 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.notification.application.PushGateway;
 import xyz.goraebap.cowork.module.notification.domain.push.PushSubscription;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Web Push over HTTP: the message encrypted for the browser (RFC 8291) and posted to its push service with a VAPID

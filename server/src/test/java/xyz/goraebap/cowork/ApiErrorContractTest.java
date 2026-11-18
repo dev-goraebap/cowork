@@ -64,9 +64,6 @@ class ApiErrorContractTest {
         employee(ADMIN, "관리자", true);
         employee(MEMBER, "구성원", false);
         employee(CHIEF, "대표", false);
-        UUID executive = UUID.randomUUID();
-        jdbc.update("INSERT INTO title(title_id,name,\"group\",\"order\") VALUES (?,'대표','임원',1)", executive);
-        jdbc.update("UPDATE employee SET title_id=? WHERE employee_id=?", executive, CHIEF);
     }
 
     @org.junit.jupiter.api.Disabled("오피스를 뺀 뒤 깨짐: 오피스 주소나 도구를 썼다. 워크스페이스 기준으로 다시 쓴다.")
@@ -250,7 +247,7 @@ class ApiErrorContractTest {
     }
 
     private void employee(UUID id, String name, boolean admin) {
-        Accounts.upsert(jdbc, id, id + "@example.test", true, Accounts.when(admin, Role.OFFICE_ADMIN));
+        Accounts.upsert(jdbc, id, id + "@example.test", true, Accounts.when(admin, Role.WORKSPACE_ADMIN));
         Members.insert(jdbc, Members.member(id, name, id + "@example.test"));
     }
 

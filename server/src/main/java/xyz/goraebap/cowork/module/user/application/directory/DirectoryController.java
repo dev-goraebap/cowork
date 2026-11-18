@@ -16,7 +16,7 @@ import xyz.goraebap.cowork.shared.web.AgentActor;
 
 /**
  * The members everyone may see, for picking people (assignees, readers, project members) and drawing them: who may sign
- * in, by name. An install keeps no organization, so departments are none.
+ * in, by name.
  */
 @RestController
 @RequestMapping("/api/v1/directory")
@@ -27,16 +27,18 @@ public class DirectoryController {
 
     public record Person(UUID id, String name, String workEmail) {}
 
-    public record Department(UUID id, String name) {}
-
-    public record Directory(List<Department> departments, List<Person> people) {}
+    public record Directory(List<Person> people) {
+        public Directory {
+            people = List.copyOf(people);
+        }
+    }
 
     public record Found(UUID id, String name) {}
 
     @GetMapping("/org-chart")
     @Transactional(readOnly = true)
     public Directory directory() {
-        return new Directory(List.of(), people());
+        return new Directory(people());
     }
 
     /** Members whose name or e-mail holds the words, by name. */

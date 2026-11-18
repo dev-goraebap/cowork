@@ -124,7 +124,8 @@ public class UserService implements UserFacade {
         Map<UUID, UserSummary> summaries = new HashMap<>();
         if (userIds.isEmpty()) return summaries;
         var names = userQuery.namesOf(userIds);
-        var departments = affiliation.map(each -> each.departmentNamesOf(names.keySet())).orElse(Map.of());
+        var departments =
+                affiliation.map(each -> each.departmentNamesOf(names.keySet())).orElse(Map.of());
         names.forEach((id, name) -> summaries.put(id, new UserSummary(id, name, departments.get(id))));
         return summaries;
     }

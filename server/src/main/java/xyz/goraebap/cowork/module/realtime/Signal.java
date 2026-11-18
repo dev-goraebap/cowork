@@ -16,16 +16,8 @@ public record Signal(Topic topic, UUID id, Set<UUID> recipients, boolean everyon
     public enum Topic {
         /** A notice was left for the recipients. */
         NOTIFICATION,
-        /** A request was submitted, decided or cancelled; for its requester, its approvers and those copied. */
-        APPROVAL,
-        /** A notice to everyone was published. */
-        ANNOUNCEMENT,
-        /** A meeting's minutes moved on: uploaded, transcribed, summarized or failed. */
-        MEETING,
         /** Pushes to a member were queued, sent or failed; for that member and every administrator. */
         PUSH,
-        /** A calendar event was added, changed or removed; for everyone, or the organizer of a personal one. */
-        CALENDAR,
         /** A project or its members changed; for who sees the project (the projects' order: everyone). */
         PROJECTS,
         /** An issue, its body or discussion, or a project's board columns changed; for who sees the project (labels: everyone). */

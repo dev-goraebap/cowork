@@ -31,13 +31,13 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.user.application.auth.SessionService;
 import xyz.goraebap.cowork.support.Accounts;
 import xyz.goraebap.cowork.support.Members;
 import xyz.goraebap.cowork.support.StoredFiles;
 import xyz.goraebap.cowork.support.TestDatabase;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.json.JsonMapper;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -107,15 +107,13 @@ class AvatarTest {
                 .andExpect(status().isNotFound())
                 .andExpect(header().string("Content-Type", "application/problem+json"))
                 .andExpect(jsonPath("$.code").value("AUTH_NOT_FOUND"));
-        mvc.perform(get("/api/v1/directory/avatars/" + COLLEAGUE + "/" + second)
-                        .cookie(cookie(COLLEAGUE)))
+        mvc.perform(get("/api/v1/directory/avatars/" + COLLEAGUE + "/" + second).cookie(cookie(COLLEAGUE)))
                 .andExpect(status().isNotFound());
         assertThat(jdbc.queryForObject("SELECT count(*) FROM blob WHERE deleted_at IS NOT NULL", Integer.class))
                 .isEqualTo(1);
 
         change(MEMBER, "{\"preset\":2}").andExpect(status().isNoContent());
-        mvc.perform(get("/api/v1/directory/avatars/" + MEMBER + "/" + second)
-                        .cookie(cookie(COLLEAGUE)))
+        mvc.perform(get("/api/v1/directory/avatars/" + MEMBER + "/" + second).cookie(cookie(COLLEAGUE)))
                 .andExpect(status().isNotFound());
         mvc.perform(get("/api/v1/directory/avatars").cookie(cookie(COLLEAGUE)))
                 .andExpect(jsonPath("$[0].preset").value(2))

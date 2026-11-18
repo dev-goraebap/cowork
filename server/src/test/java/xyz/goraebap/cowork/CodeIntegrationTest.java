@@ -16,7 +16,6 @@ import com.sun.net.httpserver.HttpServer;
 import jakarta.servlet.http.Cookie;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
 import java.util.HexFormat;
 import java.util.UUID;
 import javax.crypto.Mac;
@@ -33,14 +32,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.user.application.auth.SessionService;
 import xyz.goraebap.cowork.shared.web.Role;
 import xyz.goraebap.cowork.support.Accounts;
 import xyz.goraebap.cowork.support.Members;
 import xyz.goraebap.cowork.support.ProjectMembers;
 import xyz.goraebap.cowork.support.TestDatabase;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * 저장소 연동 (BIT's Git 연동): a Workspace administrator connects a repository (here without a token, registered by hand),
@@ -457,7 +456,7 @@ class CodeIntegrationTest {
 
     private void member(UUID id, String name, String email, Role... roles) {
         Accounts.upsert(jdbc, id, email, true, roles);
-        Members.insert(jdbc, Members.member(id, name, email).hired(LocalDate.parse("2020-01-01")));
+        Members.insert(jdbc, Members.member(id, name, email));
     }
 
     private Cookie cookie(UUID user) {

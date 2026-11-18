@@ -1,20 +1,17 @@
 package xyz.goraebap.cowork.module.workspace.document.application.access;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import xyz.goraebap.cowork.module.workspace.document.domain.access.Grant;
 import xyz.goraebap.cowork.module.workspace.document.domain.access.Grant.Level;
 import xyz.goraebap.cowork.module.workspace.project.ProjectRole;
 
 /**
- * Who reads 문서함, as its grants see them: the member, whether they administer Projects (they see everything), the
- * departments they are in with those above them (a department's grant reaches the departments under it), and their role
- * in each project they are a member of (a project grant reaches its members).
+ * Who reads 문서함, as its grants see them: the member, whether they administer Projects (they see everything), and their
+ * role in each project they are a member of (a project grant reaches its members).
  */
-public record Reader(UUID userId, boolean admin, Set<UUID> departments, Map<UUID, ProjectRole> roles) {
+public record Reader(UUID userId, boolean admin, Map<UUID, ProjectRole> roles) {
     public Reader {
-        departments = Set.copyOf(departments);
         roles = Map.copyOf(roles);
     }
 
@@ -23,7 +20,6 @@ public record Reader(UUID userId, boolean admin, Set<UUID> departments, Map<UUID
         return switch (grant.subject()) {
             case OWNER -> userId.equals(maker);
             case USER -> userId.equals(grant.subjectId());
-            case DEPARTMENT -> departments.contains(grant.subjectId());
             case PROJECT -> roles.containsKey(grant.subjectId());
         };
     }

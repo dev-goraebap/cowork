@@ -191,7 +191,7 @@ public class ChapterService {
     private Document liveManual(UUID documentId) {
         var document = documentRepository
                 .findById(documentId)
-                .filter(found -> !found.isDeleted() && found.isWritten())
+                .filter(found -> !found.isDeleted())
                 .orElseThrow(DocumentErrorCode.DOCUMENT_NOT_FOUND::raise);
         if (!document.isManual()) throw DocumentErrorCode.DOCUMENT_NOT_MANUAL.raise();
         return document;

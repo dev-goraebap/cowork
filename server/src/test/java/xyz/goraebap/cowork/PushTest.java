@@ -37,6 +37,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.transaction.support.TransactionTemplate;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.notification.Notice;
 import xyz.goraebap.cowork.module.notification.NotificationFacade;
 import xyz.goraebap.cowork.module.notification.Subject;
@@ -46,7 +47,6 @@ import xyz.goraebap.cowork.shared.web.Role;
 import xyz.goraebap.cowork.support.Accounts;
 import xyz.goraebap.cowork.support.Members;
 import xyz.goraebap.cowork.support.TestDatabase;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Browser push end to end but for the push service itself, which the gateway stands in for: devices subscribe and end,
@@ -180,26 +180,25 @@ class PushTest {
         when(pushGateway.send(
                         argThat(device -> device != null && device.endpoint().endsWith("/gone")), any()))
                 .thenReturn(new PushGateway.PushAnswer(410, "expired", false));
-        mvc.perform(write(put("/api/v1/push/preferences")).cookie(member).content("{\"mutedTopics\":[\"COPY\"]}"))
-                .andExpect(jsonPath("$.topics[?(@.topic=='COPY')].enabled").value(false))
-                .andExpect(jsonPath("$.topics[?(@.topic=='APPROVAL_RESULT')].enabled")
-                        .value(true));
+        mvc.perform(write(put("/api/v1/push/preferences")).cookie(member).content("{\"mutedTopics\":[\"WORK_ITEM\"]}"))
+                .andExpect(jsonPath("$.topics[?(@.topic=='WORK_ITEM')].enabled").value(false));
 
+        // 주제에 들지 않는 알림은 늘 보내고, 꺼 둔 주제(업무)의 알림은 보내지 않는다.
         send(Notice.toSee(
-                Subject.approvalRequest(UUID.randomUUID()),
-                "LEAVE_APPROVED",
+                Subject.issue(UUID.randomUUID()),
+                "COMMENT_MENTIONED",
                 ADMIN,
-                "휴가 신청이 승인되었어요",
-                "연차 1일",
-                "/me/leaves",
+                "댓글에서 나를 불렀어요",
+                "DEMO-1",
+                "/workspace/projects/DEMO/work-items/1",
                 List.of(MEMBER, OTHER)));
         send(Notice.toSee(
-                Subject.approvalRequest(UUID.randomUUID()),
-                "LEAVE_CC",
+                Subject.issue(UUID.randomUUID()),
+                "ISSUE_ASSIGNED",
                 ADMIN,
-                "수신참조: 새 휴가 신청",
-                "연차 1일",
-                "/approvals",
+                "업무가 배정되었어요",
+                "DEMO-2",
+                "/workspace/projects/DEMO/work-items/2",
                 List.of(MEMBER)));
         awaitCount("SELECT count(*) FROM push_delivery WHERE status IN ('SENT','GONE')", 2);
         // A notice is not a test: on screen it shows as a toast instead.
@@ -248,11 +247,13 @@ class PushTest {
         mvc.perform(get("/api/v1/push-deliveries/kinds").cookie(member)).andExpect(status().isForbidden());
         mvc.perform(get("/api/v1/push-deliveries/kinds").cookie(admin))
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[?(@.kind=='LEAVE_APPROVED')].notices").value(1))
-                .andExpect(jsonPath("$[?(@.kind=='LEAVE_APPROVED')].recipients").value(2))
-                .andExpect(jsonPath("$[?(@.kind=='LEAVE_APPROVED')].pushed").value(1))
-                .andExpect(jsonPath("$[?(@.kind=='LEAVE_CC')].exampleTitle").value("수신참조: 새 휴가 신청"))
-                .andExpect(jsonPath("$[?(@.kind=='LEAVE_CC')].pushed").value(0));
+                .andExpect(jsonPath("$[?(@.kind=='COMMENT_MENTIONED')].notices").value(1))
+                .andExpect(
+                        jsonPath("$[?(@.kind=='COMMENT_MENTIONED')].recipients").value(2))
+                .andExpect(jsonPath("$[?(@.kind=='COMMENT_MENTIONED')].pushed").value(1))
+                .andExpect(
+                        jsonPath("$[?(@.kind=='ISSUE_ASSIGNED')].exampleTitle").value("업무가 배정되었어요"))
+                .andExpect(jsonPath("$[?(@.kind=='ISSUE_ASSIGNED')].pushed").value(0));
     }
 
     private void send(Notice notice) {

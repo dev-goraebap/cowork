@@ -84,7 +84,8 @@ public class IssueService {
     private final NotificationFacade notificationFacade;
     private final Clock clock;
     private final CycleRepository cycleRepository;
-    private final xyz.goraebap.cowork.module.workspace.issue.domain.cycle.CycleSettingsRepository cycleSettingsRepository;
+    private final xyz.goraebap.cowork.module.workspace.issue.domain.cycle.CycleSettingsRepository
+            cycleSettingsRepository;
 
     /** A project's issues, by default in board order. */
     @Transactional(readOnly = true)

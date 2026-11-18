@@ -1,8 +1,9 @@
 import { queryOptions } from '@tanstack/react-query';
-import { getJson, sendCommand, sendJson } from '@/shared/api';
+import { getJson, sendCommand, sendJson, type components } from '@/shared/api';
 import { deviceName, subscriptionBody } from '../lib/push';
 
-export type PushTopic = 'APPROVAL_REQUEST' | 'APPROVAL_RESULT' | 'COPY' | 'ANNOUNCEMENT' | 'CALENDAR';
+/** 푸시를 끌 수 있는 알림 묶음: 서버가 정한 목록(PushTopic)을 그대로 쓴다. */
+export type PushTopic = NonNullable<components['schemas']['PushTopicSetting']['topic']>;
 export type LastPush = { status: string; at: string; error?: string | null };
 export type PushDevice = {
   id: string; deviceName?: string | null; userAgent?: string | null; createdAt: string; lastSeenAt: string; expiredAt?: string | null;

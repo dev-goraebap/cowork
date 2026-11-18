@@ -7,15 +7,15 @@ import { AdaptivePopover } from '@/shared/ui/adaptive-popover';
 import { Alert, AlertTitle } from '@/shared/ui/alert';
 import { Button } from '@/shared/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/shared/ui/dialog';
-import { LockIcon, OctagonXIcon, PlusIcon, ProjectsIcon, RestoreIcon, StructureIcon, UserIcon, XIcon, type Icon } from '@/shared/ui/icon';
+import { LockIcon, OctagonXIcon, PlusIcon, ProjectsIcon, RestoreIcon, UserIcon, XIcon, type Icon } from '@/shared/ui/icon';
 import { OptionList } from '@/shared/ui/option-list';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 import { Spinner } from '@/shared/ui/spinner';
 
 const LEVELS: { value: Grant['level']; label: string }[] = [{ value: 'READ', label: '보기' }, { value: 'WRITE', label: '쓰기' }, { value: 'MANAGE', label: '관리' }];
 const LEVEL_TEXT: Record<AccessLevel, string> = { NONE: '볼 수 없음', READ: '보기', WRITE: '쓰기', MANAGE: '관리' };
-const SUBJECT_ICON: Record<GrantSubject, Icon> = { OWNER: UserIcon, USER: UserIcon, DEPARTMENT: StructureIcon, PROJECT: ProjectsIcon };
-const SUBJECT_TEXT: Record<GrantSubject, string> = { OWNER: '만든 사람', USER: '사람', DEPARTMENT: '부서', PROJECT: '프로젝트' };
+const SUBJECT_ICON: Record<GrantSubject, Icon> = { OWNER: UserIcon, USER: UserIcon, PROJECT: ProjectsIcon };
+const SUBJECT_TEXT: Record<GrantSubject, string> = { OWNER: '만든 사람', USER: '사람', PROJECT: '프로젝트' };
 const keyOf = (grant: Pick<Grant, 'subject' | 'subjectId'>) => `${grant.subject}:${grant.subjectId ?? ''}`;
 
 /** One grant's line: who (and what kind of subject), and how far, changeable or not. */
@@ -66,7 +66,6 @@ export function AccessDialog({ target, id, name, onClose }: { target: 'documents
   const taken = new Set(grants.map(keyOf));
   const choices = [
     ...(org.data?.people ?? []).map(person => ({ value: `USER:${person.id}`, label: `${person.name} · 사람`, name: person.name })),
-    ...(org.data?.departments ?? []).map(department => ({ value: `DEPARTMENT:${department.id}`, label: `${department.name} · 부서`, name: department.name })),
     ...(projects.data ?? []).map(project => ({ value: `PROJECT:${project.id}`, label: `${project.name} · 프로젝트`, name: project.name })),
   ].filter(choice => !taken.has(choice.value));
   const add = (value: string) => {

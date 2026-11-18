@@ -27,14 +27,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.user.application.auth.SessionService;
 import xyz.goraebap.cowork.shared.web.Role;
 import xyz.goraebap.cowork.support.Accounts;
 import xyz.goraebap.cowork.support.Members;
 import xyz.goraebap.cowork.support.ProjectMembers;
 import xyz.goraebap.cowork.support.TestDatabase;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * A project's issues on BIT's work items: numbered from the project's counter (an old key still finds them), read by
@@ -918,7 +918,7 @@ class IssuesTest {
 
     private void member(UUID id, String name, String email, Role... roles) {
         Accounts.upsert(jdbc, id, email, true, roles);
-        Members.insert(jdbc, Members.member(id, name, email).hired(LocalDate.parse("2020-01-01")));
+        Members.insert(jdbc, Members.member(id, name, email));
     }
 
     private Cookie cookie(UUID user) {

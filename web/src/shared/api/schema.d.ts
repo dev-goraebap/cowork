@@ -468,7 +468,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/office/work-schedule/days/{day}": {
+    "/api/v1/me/name": {
         parameters: {
             query?: never;
             header?: never;
@@ -476,665 +476,9 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["changeHours"];
+        put: operations["change"];
         post?: never;
         delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/work-schedule/days/{day}/blocks/{type}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["setBlock"];
-        post?: never;
-        delete: operations["removeBlock"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/weekly-reports/mine/{weekStart}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["week"];
-        put: operations["save_3"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/town/me/appearance": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["chooseAppearance"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/titles/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["edit"];
-        post?: never;
-        delete: operations["delete"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/titles/order": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["reorder_4"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/positions/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["edit_1"];
-        post?: never;
-        delete: operations["delete_1"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/positions/order": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["reorder_5"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/{id}/title": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["rename"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/{id}/project": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["changeProject"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/{id}/photos": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["editPhotos"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/{id}/minutes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["editMinutes"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/{id}/held": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["reschedule"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/{id}/event": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["linkEvent"];
-        post?: never;
-        delete: operations["unlinkEvent"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/prompt": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["prompt"];
-        put: operations["savePrompt"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/type-settings/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["editType"];
-        post?: never;
-        delete: operations["turnOffType"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/type-settings/order": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["reorderTypes"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/employees/{employeeId}/special-leave/{allowanceId}/grants/{grantId}/expiry": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["changeGrantExpiry"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/bereavement-policies/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["editPolicy"];
-        post?: never;
-        delete: operations["turnOffPolicy"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/bereavement-policies/order": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["reorderPolicies"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/holidays/{date}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["renameHoliday"];
-        post?: never;
-        delete: operations["removeHoliday"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{id}/title": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["changeTitle"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{id}/position": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["changePosition"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{id}/department": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["assignDepartment"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{id}/basics": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["editBasics"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/pregnancy": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["get"];
-        put: operations["expect"];
-        post?: never;
-        delete: operations["clear"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/trainings/{entryId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["replaceTraining"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/order/{section}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["reorder_6"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/families/{entryId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["replaceFamily"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/educations/{entryId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["replaceEducation"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/certifications/{entryId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["replaceCertification"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/careers/{entryId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["replaceCareer"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/departments/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["edit_2"];
-        post?: never;
-        delete: operations["delete_2"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/departments/{id}/parent": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["move"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/departments/{id}/lead": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["assignLead"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/departments/order": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["reorder_7"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/places/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["renamePlace"];
-        post?: never;
-        delete: operations["deletePlace"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/places/order": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["reorderPlaces"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/events/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["event"];
-        put: operations["updateEvent"];
-        post?: never;
-        delete: operations["deleteEvent"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/events/{id}/reminder": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["remind"];
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/templates/{departmentId}/{category}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put: operations["saveTemplate"];
-        post?: never;
-        delete: operations["deleteTemplate"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/announcements/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["get_1"];
-        put: operations["edit_3"];
-        post?: never;
-        delete: operations["delete_3"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1148,7 +492,7 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["change"];
+        put: operations["change_1"];
         post?: never;
         delete?: never;
         options?: never;
@@ -1180,7 +524,7 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["change_1"];
+        put: operations["change_2"];
         post?: never;
         delete?: never;
         options?: never;
@@ -1325,7 +669,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["move_1"];
+        post: operations["move"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1485,7 +829,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["move_2"];
+        post: operations["move_1"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1565,7 +909,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["move_3"];
+        post: operations["move_2"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1684,6 +1028,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/setup": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["state"];
+        put?: never;
+        post: operations["create_9"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/push/tests": {
         parameters: {
             query?: never;
@@ -1716,614 +1076,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/office/weekly-reports/{id}/confirmation": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["confirm"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/titles": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["list_7"];
-        put?: never;
-        post: operations["create_9"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/positions": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["list_8"];
-        put?: never;
-        post: operations["create_10"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["list_9"];
-        put?: never;
-        post: operations["create_11"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/{id}/retries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["retry"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/pipeline-runs": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["runPipeline"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/type-settings": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["types_1"];
-        put?: never;
-        post: operations["createType"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/type-settings/{id}/reactivation": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["turnOnType"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/employees/{employeeId}/special-leave/{allowanceId}/grants/{grantId}/revocation": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["revokeGrant"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/employees/{employeeId}/special-leave/changes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["change_2"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/employees/{employeeId}/annual-leave/adjustments": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["adjust"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/bereavement-policies": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["policies"];
-        put?: never;
-        post: operations["createPolicy"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/bereavement-policies/{id}/reactivation": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["turnOnPolicy"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/accrual-runs": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["run"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/holidays": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["holidays"];
-        put?: never;
-        post: operations["addHoliday"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["search"];
-        put?: never;
-        post: operations["register"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{id}/termination": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["terminate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{id}/activation": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["activate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/pregnancy/birth": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["recordBirth"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/trainings": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["addTraining"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/families": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["addFamily"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/educations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["addEducation"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/certifications": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["addCertification"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/careers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["addCareer"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/department-moves": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["moveToDepartment"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/departments": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["list_10"];
-        put?: never;
-        post: operations["create_12"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/places": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["places"];
-        put?: never;
-        post: operations["createPlace"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/imports": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["importEvents"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/events": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchEvents"];
-        put?: never;
-        post: operations["createEvent"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/requests": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["mine"];
-        put?: never;
-        post: operations["submit"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/requests/{id}/decision": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["decide"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/requests/{id}/cancellation": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["cancel"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/requests/{id}/admin-cancellation": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["cancelByAdmin"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/migrations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["migrate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/cc-recipients": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["ccRecipients"];
-        put?: never;
-        post: operations["addCcRecipient"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/announcements": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["published"];
-        put?: never;
-        post: operations["create_13"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/announcements/{id}/reads": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["read"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/admin/weekly-reports/viewers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["viewers"];
-        put?: never;
-        post: operations["addViewer"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v1/notifications/{id}/reads": {
         parameters: {
             query?: never;
@@ -2333,7 +1085,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["read_1"];
+        post: operations["read"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2379,9 +1131,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["list_11"];
+        get: operations["list_7"];
         put?: never;
-        post: operations["create_14"];
+        post: operations["create_10"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2468,6 +1220,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/admin/members": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["invite"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/workspace/work-item-types/{code}": {
         parameters: {
             query?: never;
@@ -2478,10 +1246,10 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["delete_4"];
+        delete: operations["delete"];
         options?: never;
         head?: never;
-        patch: operations["edit_4"];
+        patch: operations["edit"];
         trace?: never;
     };
     "/api/v1/workspace/work-item-labels/{labelId}": {
@@ -2494,10 +1262,10 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["delete_5"];
+        delete: operations["delete_1"];
         options?: never;
         head?: never;
-        patch: operations["edit_5"];
+        patch: operations["edit_1"];
         trace?: never;
     };
     "/api/v1/workspace/projects/{key}": {
@@ -2507,13 +1275,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["get_2"];
+        get: operations["get"];
         put?: never;
         post?: never;
-        delete: operations["delete_6"];
+        delete: operations["delete_2"];
         options?: never;
         head?: never;
-        patch: operations["edit_6"];
+        patch: operations["edit_2"];
         trace?: never;
     };
     "/api/v1/workspace/projects/{key}/members/{userId}": {
@@ -2539,13 +1307,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["get_3"];
+        get: operations["get_1"];
         put?: never;
         post?: never;
-        delete: operations["delete_7"];
+        delete: operations["delete_3"];
         options?: never;
         head?: never;
-        patch: operations["edit_7"];
+        patch: operations["edit_3"];
         trace?: never;
     };
     "/api/v1/workspace/projects/{key}/issues/{number}/comments/{commentId}": {
@@ -2558,10 +1326,10 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["delete_8"];
+        delete: operations["delete_4"];
         options?: never;
         head?: never;
-        patch: operations["edit_8"];
+        patch: operations["edit_4"];
         trace?: never;
     };
     "/api/v1/workspace/projects/{key}/integrations/{integrationId}": {
@@ -2590,10 +1358,10 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["delete_9"];
+        delete: operations["delete_5"];
         options?: never;
         head?: never;
-        patch: operations["edit_9"];
+        patch: operations["edit_5"];
         trace?: never;
     };
     "/api/v1/workspace/projects/{key}/columns/{columnId}": {
@@ -2606,10 +1374,10 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["delete_10"];
+        delete: operations["delete_6"];
         options?: never;
         head?: never;
-        patch: operations["edit_10"];
+        patch: operations["edit_6"];
         trace?: never;
     };
     "/api/v1/workspace/manual-chapters/{id}": {
@@ -2622,10 +1390,10 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["delete_11"];
+        delete: operations["delete_7"];
         options?: never;
         head?: never;
-        patch: operations["rename_1"];
+        patch: operations["rename"];
         trace?: never;
     };
     "/api/v1/workspace/manual-chapters/{id}/comments/{commentId}": {
@@ -2654,10 +1422,10 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["delete_12"];
+        delete: operations["delete_8"];
         options?: never;
         head?: never;
-        patch: operations["edit_11"];
+        patch: operations["edit_7"];
         trace?: never;
     };
     "/api/v1/workspace/documents/{id}": {
@@ -2667,13 +1435,13 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["get_4"];
+        get: operations["get_2"];
         put?: never;
         post?: never;
-        delete: operations["delete_13"];
+        delete: operations["delete_9"];
         options?: never;
         head?: never;
-        patch: operations["rename_2"];
+        patch: operations["rename_1"];
         trace?: never;
     };
     "/api/v1/workspace/documents/{id}/comments/{commentId}": {
@@ -2702,26 +1470,10 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["delete_14"];
+        delete: operations["delete_10"];
         options?: never;
         head?: never;
-        patch: operations["edit_12"];
-        trace?: never;
-    };
-    "/api/v1/office/me/employee": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["get_5"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch: operations["edit_13"];
+        patch: operations["edit_8"];
         trace?: never;
     };
     "/api/v1/me/agents/{id}": {
@@ -2737,7 +1489,7 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        patch: operations["edit_14"];
+        patch: operations["edit_9"];
         trace?: never;
     };
     "/api/v1/workspace/projects/{key}/issues/{number}/timeline": {
@@ -2843,7 +1595,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["get_6"];
+        get: operations["get_3"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2971,7 +1723,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["list_12"];
+        get: operations["list_8"];
         put?: never;
         post?: never;
         delete?: never;
@@ -2987,7 +1739,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["get_7"];
+        get: operations["get_4"];
         put?: never;
         post?: never;
         delete?: never;
@@ -3084,38 +1836,6 @@ export interface paths {
             cookie?: never;
         };
         get: operations["editors_2"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/workspace/document-box/systems": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["folders"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/workspace/document-box/systems/{kind}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["items"];
         put?: never;
         post?: never;
         delete?: never;
@@ -3227,7 +1947,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["search_1"];
+        get: operations["search"];
         put?: never;
         post?: never;
         delete?: never;
@@ -3316,966 +2036,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/office/work-schedule": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["days"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/weekly-reports": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["list_13"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/weekly-reports/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["detail"];
-        put?: never;
-        post?: never;
-        delete: operations["delete_15"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/weekly-reports/{id}/files/{fileId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["file_3"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/town/me": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["me"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/overtime/requests": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["requests"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/overtime/days": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["days_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["get_8"];
-        put?: never;
-        post?: never;
-        delete: operations["delete_16"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/{id}/photos/{photoId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["photo"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["searchMinutes"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/meetings/for-event": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["forEvent"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/usage": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["usage"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/types": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["types_2"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/types/all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["types_3"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/summary": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["summary_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/requests": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["requests_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/reports/executive": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["executiveReport"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/reports/executive/workbook": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["executiveWorkbook"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/preview": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["preview_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/employees/{employeeId}/special-leave": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["status_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/employees/{employeeId}/attendance": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["attendance"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/employees/{employeeId}/annual-leave": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["status_2"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/employees/{employeeId}/annual-leave/entries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["ledger"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/employees/attendance": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["attendanceRoster"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/calendar": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["calendar"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/bookings": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["bookings"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/attendance": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["myAttendance"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/leave/allowances": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["allowances"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["get_9"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["get_10"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/directory/org-chart": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["orgChart"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/directory/employees": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["search_2"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/directory/employees/{employeeId}/agents": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["directoryAgents"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/directory/avatars": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["chosen"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/directory/avatars/{employeeId}/{pictureId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["picture"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/departments/{id}/members": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["members_2"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/overtime/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["overtime"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/occurrences": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["occurrences"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/leaves/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["leave"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/items": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["items_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/calendar/events/{id}/photos/{photoId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["photo_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/templates": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["templates"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/sent": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["sent"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/roles": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["roles"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/requests/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["get_11"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/requests/{id}/attachments/{attachmentId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["attachment"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/received": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["received"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/received/stats": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["receivedStats"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/line": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["line"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/line-preview": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["preview_2"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/inbox": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["inbox"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/inbox/count": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["inboxCount"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/employees/{employeeId}/requests": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["ofRequester"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/copies": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["copies"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/announcements/{id}/readers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["readers"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/announcements/{id}/attachments/{attachmentId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["attachment_1"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/announcements/unread-count": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["unreadCount"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/announcements/popups": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["popups"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/announcements/pinned": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["pinned"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/announcements/authors": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["authors"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v1/notifications": {
         parameters: {
             query?: never;
@@ -4283,7 +2043,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["mine_1"];
+        get: operations["mine"];
         put?: never;
         post?: never;
         delete?: never;
@@ -4315,7 +2075,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["list_14"];
+        get: operations["list_9"];
         put?: never;
         post?: never;
         delete?: never;
@@ -4356,6 +2116,86 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/directory/org-chart": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["directory"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/directory/employees": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["find"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/directory/employees/{userId}/agents": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["agents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/directory/avatars": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["chosen"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/directory/avatars/{employeeId}/{pictureId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["picture"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/auth/me": {
         parameters: {
             query?: never;
@@ -4363,7 +2203,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["me_1"];
+        get: operations["me"];
         put?: never;
         post?: never;
         delete?: never;
@@ -4395,7 +2235,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["members_3"];
+        get: operations["members_2"];
         put?: never;
         post?: never;
         delete?: never;
@@ -4414,7 +2254,7 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["delete_17"];
+        delete: operations["delete_11"];
         options?: never;
         head?: never;
         patch?: never;
@@ -4431,54 +2271,6 @@ export interface paths {
         put?: never;
         post?: never;
         delete: operations["remove"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/employees/{employeeId}/hr-card/{section}/{entryId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete: operations["remove_1"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/approval/cc-recipients/{employeeId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete: operations["removeCcRecipient"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/office/admin/weekly-reports/viewers/{employeeId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete: operations["removeViewer"];
         options?: never;
         head?: never;
         patch?: never;
@@ -4650,7 +2442,7 @@ export interface components {
         };
         DocumentGrantInput: {
             /** @enum {string} */
-            subject: "OWNER" | "USER" | "DEPARTMENT" | "PROJECT";
+            subject: "OWNER" | "USER" | "PROJECT";
             /** Format: uuid */
             subjectId?: string;
             /** @enum {string} */
@@ -4663,14 +2455,14 @@ export interface components {
             ids: string[];
         };
         PushPreferencesChange: {
-            mutedTopics: ("APPROVAL_REQUEST" | "APPROVAL_RESULT" | "COPY" | "ANNOUNCEMENT" | "CALENDAR")[];
+            mutedTopics: "WORK_ITEM"[];
         };
         PushPreferences: {
             topics?: components["schemas"]["PushTopicSetting"][];
         };
         PushTopicSetting: {
             /** @enum {string} */
-            topic?: "APPROVAL_REQUEST" | "APPROVAL_RESULT" | "COPY" | "ANNOUNCEMENT" | "CALENDAR";
+            topic?: "WORK_ITEM";
             enabled?: boolean;
         };
         PushSubscribe: {
@@ -4699,284 +2491,8 @@ export interface components {
             at?: string;
             error?: string;
         };
-        DayHours: {
-            working?: boolean;
-            /** Format: time-local */
-            start?: string;
-            /** Format: time-local */
-            end?: string;
-            /** Format: time-local */
-            lunchStart?: string;
-            /** Format: time-local */
-            lunchEnd?: string;
-        };
-        BlockTime: {
-            /** Format: time-local */
-            start: string;
-            /** Format: time-local */
-            end: string;
-        };
-        SaveWeeklyReport: {
-            thisWeek?: string;
-            nextWeek?: string;
-            note?: string;
-            submit?: boolean;
-            /** Format: date */
-            week?: string;
-            uploads?: string[];
-        };
-        WeeklyReportSaved: {
-            /** Format: uuid */
-            id?: string;
-            state?: string;
-        };
-        AppearanceChoice: {
-            appearance: string;
-        };
-        SaveTitle: {
+        NameChange: {
             name: string;
-            /** @enum {string} */
-            group: "EXECUTIVE" | "ADVISOR";
-            role?: string;
-            scope?: string;
-            decisionAuthority?: string;
-        };
-        ReorderTitles: {
-            ids: string[];
-        };
-        SavePosition: {
-            name: string;
-            careerCriteria?: string;
-        };
-        ReorderPositions: {
-            ids: string[];
-        };
-        Rename: {
-            title: string;
-        };
-        ChangeProject: {
-            /** Format: uuid */
-            projectId?: string;
-        };
-        EditPhotos: {
-            add?: string[];
-            remove?: string[];
-        };
-        EditMinutes: {
-            minutes: string;
-        };
-        Held: {
-            /** Format: date-time */
-            start: string;
-            /** Format: date-time */
-            end: string;
-        };
-        EventAt: {
-            /** Format: uuid */
-            eventId: string;
-            /** Format: date-time */
-            occurrence?: string;
-        };
-        SavePrompt: {
-            content: string;
-        };
-        TypeSettings: {
-            name: string;
-            description?: string;
-            absence?: boolean;
-            paid?: boolean;
-            eligibleGender?: string;
-            /** Format: int32 */
-            defaultDays?: number;
-            /** Format: int32 */
-            maxDays?: number;
-            /** Format: int32 */
-            maxSplits?: number;
-            requiresReason?: boolean;
-            requiresAttachment?: boolean;
-            /** @enum {string} */
-            expiryBasis: "NONE" | "GRANT_DATE" | "EVENT_DATE" | "PERIOD_END";
-            /** Format: int32 */
-            expiryDaysAfter?: number;
-            /** @enum {string} */
-            eventType?: "BIRTH" | "DEATH";
-            /** @enum {string} */
-            durationBasis: "WORKING_DAY" | "CALENDAR_DAY";
-            /** @enum {string} */
-            renewalBasis: "NONE" | "CALENDAR_YEAR" | "MONTHLY";
-            /** Format: int32 */
-            renewalAmount?: number;
-        };
-        TypeOrder: {
-            absence?: boolean;
-            ids: string[];
-        };
-        GrantExpiry: {
-            /** Format: date */
-            expiryDate?: string;
-            reason: string;
-        };
-        PolicySettings: {
-            /** Format: int32 */
-            days?: number;
-            paid?: boolean;
-        };
-        PolicyOrder: {
-            ids: string[];
-        };
-        HolidayName: {
-            name: string;
-            substitute?: boolean;
-        };
-        ChangeTitle: {
-            /** Format: uuid */
-            titleId?: string;
-        };
-        ChangePosition: {
-            /** Format: uuid */
-            positionId?: string;
-        };
-        AssignDepartment: {
-            /** Format: uuid */
-            departmentId?: string;
-        };
-        EditBasics: {
-            name: string;
-            workEmail: string;
-            /** Format: date */
-            hireDate: string;
-            /** Format: date */
-            birthDate?: string;
-            /** @enum {string} */
-            gender?: "MALE" | "FEMALE";
-        };
-        ExpectDue: {
-            /** Format: date */
-            expectedDueDate: string;
-        };
-        SaveTraining: {
-            trainingName: string;
-            periodStart?: string;
-            periodEnd?: string;
-            note?: string;
-        };
-        Reorder: {
-            ids: string[];
-        };
-        SaveFamily: {
-            /** @enum {string} */
-            relation: "SPOUSE" | "CHILD" | "FATHER" | "MOTHER" | "SIBLING" | "GRANDPARENT" | "OTHER";
-            name: string;
-            /** Format: date */
-            birthDate?: string;
-            note?: string;
-        };
-        SaveEducation: {
-            periodStart: string;
-            periodEnd?: string;
-            schoolName: string;
-            graduated: boolean;
-            note?: string;
-        };
-        SaveCertification: {
-            certName: string;
-            certNumber?: string;
-            score?: string;
-            /** Format: date */
-            acquiredOn?: string;
-            note?: string;
-        };
-        SaveCareer: {
-            periodStart: string;
-            periodEnd?: string;
-            companyName: string;
-            jobRole?: string;
-            position?: string;
-            note?: string;
-        };
-        EditDepartment: {
-            name: string;
-            leadTitle?: string;
-            responsibilities?: string;
-        };
-        MoveDepartment: {
-            /** Format: uuid */
-            parentId?: string;
-        };
-        AssignLead: {
-            /** Format: uuid */
-            employeeId?: string;
-        };
-        ReorderDepartments: {
-            /** Format: uuid */
-            parentId?: string;
-            ids: string[];
-        };
-        SavePlace: {
-            name: string;
-        };
-        ReorderPlaces: {
-            ids: string[];
-        };
-        AttendeeInput: {
-            /** Format: uuid */
-            employeeId: string;
-            required: boolean;
-        };
-        RecurrenceInput: {
-            frequency: string;
-            /** Format: int32 */
-            interval?: number;
-            weekdays?: ("MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY")[];
-            monthlyBy?: string;
-            /** Format: int32 */
-            count?: number;
-            /** Format: date */
-            until?: string;
-        };
-        SaveEvent: {
-            visibility: string;
-            title: string;
-            body?: string;
-            location?: string;
-            allDay: boolean;
-            /** @example 2026-10-27T10:00:00 */
-            start: string;
-            /** @example 2026-10-27T11:00:00 */
-            end: string;
-            /** Format: uuid */
-            projectId?: string;
-            recurrence?: components["schemas"]["RecurrenceInput"];
-            attendees?: components["schemas"]["AttendeeInput"][];
-            /** Format: int32 */
-            reminderMinutes?: number | null;
-            photoUploads?: string[];
-            removedPhotoIds?: string[];
-            version?: string;
-            /** Format: uuid */
-            copyFrom?: string;
-        };
-        SaveReminder: {
-            /** Format: int32 */
-            minutes?: number;
-        };
-        SaveTemplate: {
-            approverIds: string[];
-        };
-        EditAnnouncement: {
-            title?: string;
-            content?: string;
-            addAttachments?: string[];
-            removeAttachments?: string[];
-            feature?: components["schemas"]["Feature"];
-        };
-        Feature: {
-            pinned?: boolean;
-            popup?: boolean;
-            /** Format: date */
-            from?: string;
-            /** Format: date */
-            until?: string;
         };
         AvatarChange: {
             /** Format: int32 */
@@ -4985,7 +2501,7 @@ export interface components {
             uploadId?: string;
         };
         RoleChange: {
-            roles: ("INSTANCE_ADMIN" | "OFFICE_ADMIN" | "WORKSPACE_ADMIN")[];
+            roles: ("INSTANCE_ADMIN" | "WORKSPACE_ADMIN")[];
         };
         TypeInput: {
             name: string;
@@ -5153,7 +2669,7 @@ export interface components {
             /** Format: uuid */
             folderId?: string;
             /** @enum {string} */
-            kind?: "PAGE" | "MANUAL" | "MEETING" | "WEEKLY_REPORT";
+            kind?: "PAGE" | "MANUAL";
             title: string;
             icon?: string;
             color?: string;
@@ -5192,6 +2708,11 @@ export interface components {
         ScreenVisitReport: {
             screen: string;
         };
+        FirstAdmin: {
+            name: string;
+            /** Format: email */
+            email: string;
+        };
         PushTestRequest: {
             /** Format: uuid */
             subscriptionId?: string;
@@ -5200,218 +2721,9 @@ export interface components {
             /** Format: int32 */
             devices?: number;
         };
-        NewMeeting: {
-            /** Format: uuid */
-            projectId?: string;
-            title: string;
-            extraNote?: string;
-            /** Format: uuid */
-            audio: string;
-            photos?: string[];
-            event?: components["schemas"]["EventAt"];
-            held?: components["schemas"]["Held"];
-            noteUploads?: string[];
-        };
-        PipelineRun: {
-            transcribed?: boolean;
-            summarized?: boolean;
-        };
-        NewType: {
-            code: string;
-            /** @enum {string} */
-            classification: "EVENT" | "GRANT" | "ACCRUAL_QUOTA";
-            settings: components["schemas"]["TypeSettings"];
-        };
-        GrantRevocation: {
-            /** Format: int32 */
-            days?: number;
-            reason: string;
-        };
-        SpecialChange: {
-            /** Format: uuid */
-            leaveTypeId: string;
-            /** Format: int32 */
-            days: number;
-            /** Format: date */
-            expiryDate?: string;
-            reason: string;
-        };
-        Adjust: {
-            days: number;
-            reason: string;
-        };
-        NewPolicy: {
-            relation: string;
-            /** Format: int32 */
-            days?: number;
-            paid?: boolean;
-        };
-        AccrualRun: {
-            /** Format: date */
-            asOf?: string;
-            /** Format: int32 */
-            succeeded?: number;
-            /** Format: int32 */
-            failed?: number;
-            accruedDays?: number;
-            expiredDays?: number;
-            /** Format: int32 */
-            quotaGrants?: number;
-            specialExpiredDays?: number;
-        };
-        NewHoliday: {
-            /** Format: date */
-            date: string;
-            name: string;
-            substitute?: boolean;
-        };
-        Register: {
-            items: components["schemas"]["RegisterItem"][];
-        };
-        RegisterItem: {
-            name: string;
-            workEmail: string;
-            /** Format: uuid */
-            departmentId?: string;
-            /** Format: uuid */
-            positionId?: string;
-            /** Format: date */
-            hireDate: string;
-            /** @enum {string} */
-            gender?: "MALE" | "FEMALE";
-            /** @enum {string} */
-            status?: "INVITED" | "ACTIVE" | "TERMINATED";
-        };
-        Registered: {
-            ids?: string[];
-        };
-        Terminate: {
-            /** Format: date */
-            terminationDate: string;
-        };
-        RecordBirth: {
-            /** Format: date */
-            birthDate: string;
-        };
-        Created: {
-            /** Format: uuid */
-            id?: string;
-        };
-        MoveToDepartment: {
-            /** Format: uuid */
-            departmentId: string;
-            employeeIds: string[];
-        };
-        DepartmentMove: {
-            /** Format: int32 */
-            moved?: number;
-            skipped?: components["schemas"]["SkippedMove"][];
-        };
-        SkippedMove: {
-            /** Format: uuid */
-            employeeId?: string;
-            reason?: string;
-        };
-        CreateDepartment: {
-            name: string;
-            /** Format: uuid */
-            parentId?: string;
-        };
-        ImportFile: {
-            content: string;
-            dryRun?: boolean;
-            /** Format: date */
-            from?: string;
-        };
-        ImportProblem: {
-            title?: string;
-            /** Format: date-time */
-            start?: string;
-            reason?: string;
-        };
-        ImportResult: {
-            dryRun?: boolean;
-            /** Format: int32 */
-            events?: number;
-            /** Format: int32 */
-            created?: number;
-            /** Format: int32 */
-            existing?: number;
-            /** Format: int32 */
-            firstOnly?: number;
-            /** Format: int32 */
-            problemCount?: number;
-            problems?: components["schemas"]["ImportProblem"][];
-        };
-        Submit: {
-            kind: string;
-            approvalLine: string[];
-            detail: components["schemas"]["OvertimeDetail"] | components["schemas"]["LeaveDetail"];
-            attachments?: string[];
-        };
-        Submitted: {
-            /** Format: uuid */
-            id?: string;
-            /** @enum {string} */
-            status?: "IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED";
-        };
-        Decide: {
-            /** @enum {string} */
-            verdict: "APPROVE" | "REJECT";
-            reason?: string;
-        };
-        CancelByAdmin: {
-            reason: string;
-        };
-        Migration: {
-            content: string;
-            dryRun?: boolean;
-        };
-        MigrationLine: {
-            /** Format: int32 */
-            line?: number;
-            kind?: string;
-            email?: string;
-            employeeName?: string;
-            /** @enum {string} */
-            outcome?: "ADDED" | "EXISTING" | "FAILED";
-            error?: string;
-            warnings?: string[];
-            /** Format: uuid */
-            requestId?: string;
-        };
-        MigrationResult: {
-            dryRun?: boolean;
-            saved?: boolean;
-            /** Format: int32 */
-            rows?: number;
-            /** Format: int32 */
-            added?: number;
-            /** Format: int32 */
-            existing?: number;
-            /** Format: int32 */
-            failed?: number;
-            /** Format: int32 */
-            warned?: number;
-            lines?: components["schemas"]["MigrationLine"][];
-        };
-        AddCcRecipient: {
-            /** Format: uuid */
-            employeeId: string;
-        };
-        WriteAnnouncement: {
-            title?: string;
-            content?: string;
-            attachments?: string[];
-            feature?: components["schemas"]["Feature"];
-        };
-        AddViewer: {
-            /** Format: uuid */
-            employeeId: string;
-        };
         Seen: {
             /** @enum {string} */
-            type: "ANNOUNCEMENT" | "APPROVAL_REQUEST" | "APPROVAL_INBOX" | "CALENDAR_EVENT" | "MEETING" | "ISSUE";
+            type: "ISSUE";
             /** Format: uuid */
             id: string;
             includeActionable?: boolean;
@@ -5488,6 +2800,18 @@ export interface components {
         RequestCode: {
             /** Format: email */
             email: string;
+        };
+        Invite: {
+            name: string;
+            /** Format: email */
+            email: string;
+        };
+        RoleMember: {
+            /** Format: uuid */
+            id?: string;
+            name?: string;
+            email?: string;
+            roles?: ("INSTANCE_ADMIN" | "WORKSPACE_ADMIN")[];
         };
         EditProject: {
             /** Format: int64 */
@@ -5578,9 +2902,6 @@ export interface components {
             expectedVersion: number;
             name: string;
             color: string;
-        };
-        EditOwnContact: {
-            personalPhone: string;
         };
         EditProfile: {
             /** Format: int64 */
@@ -5870,7 +3191,7 @@ export interface components {
             folderId?: string;
             folderName?: string;
             /** @enum {string} */
-            kind?: "PAGE" | "MANUAL" | "MEETING" | "WEEKLY_REPORT";
+            kind?: "PAGE" | "MANUAL";
             title?: string;
             icon?: string;
             color?: string;
@@ -6064,7 +3385,7 @@ export interface components {
         };
         DocumentGrantView: {
             /** @enum {string} */
-            subject?: "OWNER" | "USER" | "DEPARTMENT" | "PROJECT";
+            subject?: "OWNER" | "USER" | "PROJECT";
             /** Format: uuid */
             subjectId?: string;
             name?: string;
@@ -6088,46 +3409,6 @@ export interface components {
             version?: number;
             /** Format: int32 */
             uses?: number;
-        };
-        DocumentBoxSystem: {
-            /** @enum {string} */
-            kind?: "MEETING" | "WEEKLY_REPORT";
-            /** Format: int32 */
-            count?: number;
-            /** Format: uuid */
-            updatedById?: string;
-            updatedByName?: string;
-            /** Format: date-time */
-            updatedAt?: string;
-        };
-        DocumentBoxSystemFacet: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            /** Format: int32 */
-            count?: number;
-        };
-        DocumentBoxSystemItem: {
-            /** Format: uuid */
-            id?: string;
-            title?: string;
-            /** Format: uuid */
-            facetId?: string;
-            facetName?: string;
-            /** Format: uuid */
-            authorId?: string;
-            authorName?: string;
-            /** Format: uuid */
-            updatedById?: string;
-            updatedByName?: string;
-            /** Format: date-time */
-            updatedAt?: string;
-        };
-        DocumentBoxSystemSlice: {
-            items?: components["schemas"]["DocumentBoxSystemItem"][];
-            facets?: components["schemas"]["DocumentBoxSystemFacet"][];
-            /** Format: int32 */
-            nextOffset?: number;
         };
         DocumentBoxProject: {
             /** Format: uuid */
@@ -6309,6 +3590,9 @@ export interface components {
             items?: components["schemas"]["ActivityRow"][];
             nextCursor?: string;
         };
+        SetupState: {
+            needed?: boolean;
+        };
         SearchGroup: {
             kind?: string;
             hits?: components["schemas"]["SearchHit"][];
@@ -6407,1301 +3691,6 @@ export interface components {
             exampleMessage?: string;
             exampleLink?: string;
         };
-        ScheduleBlock: {
-            type?: string;
-            /** Format: time-local */
-            start?: string;
-            /** Format: time-local */
-            end?: string;
-        };
-        ScheduleDay: {
-            /** @enum {string} */
-            day?: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
-            working?: boolean;
-            /** Format: time-local */
-            start?: string;
-            /** Format: time-local */
-            end?: string;
-            /** Format: time-local */
-            lunchStart?: string;
-            /** Format: time-local */
-            lunchEnd?: string;
-            blocks?: components["schemas"]["ScheduleBlock"][];
-        };
-        WeeklyReportDepartment: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-        };
-        WeeklyReportList: {
-            items?: components["schemas"]["WeeklyReportRow"][];
-            /** Format: int32 */
-            nextOffset?: number;
-            departments?: components["schemas"]["WeeklyReportDepartment"][];
-            /** Format: date */
-            thisWeek?: string;
-        };
-        WeeklyReportRow: {
-            /** Format: uuid */
-            id?: string;
-            /** Format: uuid */
-            authorId?: string;
-            authorName?: string;
-            /** Format: uuid */
-            departmentId?: string;
-            departmentName?: string;
-            /** Format: date */
-            weekStart?: string;
-            state?: string;
-            /** Format: date-time */
-            deadlineAt?: string;
-            /** Format: date-time */
-            submittedAt?: string;
-            /** Format: uuid */
-            confirmedBy?: string;
-            confirmedByName?: string;
-            /** Format: int32 */
-            revisions?: number;
-            mine?: boolean;
-        };
-        WeeklyReportDetail: {
-            /** Format: uuid */
-            id?: string;
-            /** Format: date */
-            weekStart?: string;
-            /** Format: uuid */
-            authorId?: string;
-            authorName?: string;
-            departmentName?: string;
-            /** Format: date */
-            writtenOn?: string;
-            thisWeek?: string;
-            nextWeek?: string;
-            note?: string;
-            state?: string;
-            /** Format: date-time */
-            deadlineAt?: string;
-            /** Format: date-time */
-            submittedAt?: string;
-            /** Format: uuid */
-            confirmedBy?: string;
-            confirmedByName?: string;
-            /** Format: date-time */
-            confirmedAt?: string;
-            editable?: boolean;
-            confirmable?: boolean;
-            revisions?: components["schemas"]["WeeklyReportRevision"][];
-        };
-        WeeklyReportRevision: {
-            /** Format: date-time */
-            revisedAt?: string;
-            revisedByName?: string;
-            thisWeek?: string;
-            nextWeek?: string;
-            note?: string;
-        };
-        FileLink: {
-            url?: string;
-        };
-        ReportDue: {
-            /** Format: date */
-            day?: string;
-            /** Format: date-time */
-            at?: string;
-            shortenedBy?: string;
-        };
-        WeeklyReportEditor: {
-            /** Format: date */
-            weekStart?: string;
-            state?: string;
-            /** Format: uuid */
-            reportId?: string;
-            authorName?: string;
-            departmentName?: string;
-            /** Format: date */
-            writtenOn?: string;
-            thisWeek?: string;
-            nextWeek?: string;
-            note?: string;
-            prefilled?: boolean;
-            due?: components["schemas"]["ReportDue"];
-            editable?: boolean;
-            /** Format: uuid */
-            fileOwnerId?: string;
-        };
-        TownProfile: {
-            appearance?: string;
-            gender?: string;
-        };
-        TitleItem: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            /** @enum {string} */
-            group?: "EXECUTIVE" | "ADVISOR";
-            role?: string;
-            scope?: string;
-            decisionAuthority?: string;
-            /** Format: int32 */
-            order?: number;
-            /** Format: int64 */
-            memberCount?: number;
-        };
-        PositionItem: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            /** Format: int32 */
-            order?: number;
-            careerCriteria?: string;
-            /** Format: int64 */
-            memberCount?: number;
-        };
-        OvertimeDayView: {
-            /** Format: date */
-            date?: string;
-            segments?: components["schemas"]["OvertimeSpanView"][];
-            /** Format: int32 */
-            excludedMinutes?: number;
-            /** Format: int32 */
-            recognizedMinutes?: number;
-            reason?: string;
-        };
-        OvertimeRequestItem: {
-            /** Format: uuid */
-            id?: string;
-            /** Format: uuid */
-            requesterId?: string;
-            requesterName?: string;
-            departmentName?: string;
-            /** @enum {string} */
-            status?: "IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED";
-            /** Format: int32 */
-            currentStep?: number;
-            /** Format: int32 */
-            approverCount?: number;
-            overtime?: components["schemas"]["OvertimeView"];
-            /** Format: date-time */
-            submittedAt?: string;
-            /** Format: date-time */
-            decidedAt?: string;
-            /** Format: date-time */
-            cancelledAt?: string;
-            cancellableByAdmin?: boolean;
-            origin?: string;
-        };
-        OvertimeRequestSlice: {
-            items?: components["schemas"]["OvertimeRequestItem"][];
-            /** Format: int64 */
-            total?: number;
-            nextCursor?: string;
-        };
-        OvertimeSpanView: {
-            /** Format: time-local */
-            start?: string;
-            /** Format: time-local */
-            end?: string;
-            nextDay?: boolean;
-        };
-        OvertimeView: {
-            days?: components["schemas"]["OvertimeDayView"][];
-            /** Format: int32 */
-            recognizedMinutes?: number;
-            /** Format: uuid */
-            projectId?: string;
-            late?: boolean;
-        };
-        OvertimeMonth: {
-            month?: string;
-            /** Format: int32 */
-            approvedMinutes?: number;
-            /** Format: int32 */
-            inReviewMinutes?: number;
-            days?: components["schemas"]["OvertimeMonthDay"][];
-        };
-        OvertimeMonthDay: {
-            /** Format: uuid */
-            requestId?: string;
-            /** @enum {string} */
-            status?: "IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED";
-            day?: components["schemas"]["OvertimeDayView"];
-            origin?: string;
-        };
-        MeetingItem: {
-            /** Format: uuid */
-            id?: string;
-            title?: string;
-            /** Format: uuid */
-            projectId?: string;
-            projectKey?: string;
-            projectName?: string;
-            projectIcon?: string;
-            projectColor?: string;
-            status?: string;
-            /** Format: uuid */
-            createdBy?: string;
-            createdByName?: string;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            heldStart?: string;
-            heldAllDay?: boolean;
-        };
-        MeetingSlice: {
-            items?: components["schemas"]["MeetingItem"][];
-            nextCursor?: string;
-        };
-        AttachedFile: {
-            /** Format: uuid */
-            id?: string;
-            filename?: string;
-            contentType?: string;
-            /** Format: int64 */
-            size?: number;
-            image?: boolean;
-            dominantColor?: string;
-            /** Format: int32 */
-            width?: number;
-            /** Format: int32 */
-            height?: number;
-        };
-        MeetingDetail: {
-            /** Format: uuid */
-            id?: string;
-            title?: string;
-            /** Format: uuid */
-            projectId?: string;
-            projectKey?: string;
-            projectName?: string;
-            projectIcon?: string;
-            projectColor?: string;
-            status?: string;
-            errorMessage?: string;
-            audioFileName?: string;
-            extraNote?: string;
-            minutes?: string;
-            transcript?: components["schemas"]["TranscriptSegment"][];
-            photos?: components["schemas"]["AttachedFile"][];
-            /** Format: uuid */
-            createdBy?: string;
-            createdByName?: string;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            transcribedAt?: string;
-            held?: components["schemas"]["MeetingHeld"];
-            event?: components["schemas"]["MeetingEvent"];
-            editable?: boolean;
-        };
-        MeetingEvent: {
-            /** Format: uuid */
-            eventId?: string;
-            /** Format: date-time */
-            occurrence?: string;
-            found?: boolean;
-            title?: string;
-            allDay?: boolean;
-            /** Format: date-time */
-            start?: string;
-            /** Format: date-time */
-            end?: string;
-        };
-        MeetingHeld: {
-            /** Format: date-time */
-            start?: string;
-            /** Format: date-time */
-            end?: string;
-            allDay?: boolean;
-            fromEvent?: boolean;
-        };
-        TranscriptSegment: {
-            speaker?: string;
-            /** Format: int64 */
-            startMs?: number;
-            /** Format: int64 */
-            endMs?: number;
-            text?: string;
-        };
-        PhotoLink: {
-            /** Format: uri */
-            url?: string;
-        };
-        FoundMeeting: {
-            meeting?: components["schemas"]["MeetingItem"];
-            excerpt?: string;
-        };
-        FoundMeetingSlice: {
-            items?: components["schemas"]["FoundMeeting"][];
-            nextCursor?: string;
-        };
-        PromptItem: {
-            key?: string;
-            content?: string;
-        };
-        EventMeeting: {
-            meeting?: components["schemas"]["MeetingItem"];
-            editable?: boolean;
-            meetings?: components["schemas"]["MeetingItem"][];
-        };
-        EmployeeDetail: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            workEmail?: string;
-            /** Format: uuid */
-            departmentId?: string;
-            departmentName?: string;
-            /** Format: uuid */
-            positionId?: string;
-            positionName?: string;
-            /** Format: uuid */
-            titleId?: string;
-            titleName?: string;
-            /** Format: date */
-            hireDate?: string;
-            /** @enum {string} */
-            status?: "INVITED" | "ACTIVE" | "TERMINATED";
-            /** Format: date-time */
-            invitedAt?: string;
-            /** Format: date-time */
-            activatedAt?: string;
-            /** Format: date */
-            terminatedAt?: string;
-            leadOf?: string[];
-            /** @enum {string} */
-            gender?: "MALE" | "FEMALE";
-            /** Format: date */
-            birthDate?: string;
-            personalPhone?: string;
-            officePhone?: string;
-            address?: string;
-        };
-        MonthUsage: {
-            /** Format: int32 */
-            month?: number;
-            annual?: number;
-            special?: number;
-            annualScheduled?: number;
-            specialScheduled?: number;
-        };
-        Usage: {
-            /** Format: int32 */
-            year?: number;
-            months?: components["schemas"]["MonthUsage"][];
-        };
-        Relation: {
-            relation?: string;
-            /** Format: int32 */
-            days?: number;
-        };
-        SpecialCatalog: {
-            genderLimited?: boolean;
-            types?: components["schemas"]["SpecialType"][];
-            relations?: components["schemas"]["Relation"][];
-        };
-        SpecialType: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            description?: string;
-            classification?: string;
-            eventType?: string;
-            durationBasis?: string;
-            paid?: boolean;
-            requiresReason?: boolean;
-            requiresAttachment?: boolean;
-            /** Format: int32 */
-            maxDays?: number;
-            /** Format: int32 */
-            maxSplits?: number;
-            /** Format: int32 */
-            eventExpiryDays?: number;
-            available?: number;
-        };
-        TypeSummary: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            classification?: string;
-            active?: boolean;
-            adjustable?: boolean;
-        };
-        TypeSetting: {
-            /** Format: uuid */
-            id?: string;
-            code?: string;
-            classification?: string;
-            name?: string;
-            description?: string;
-            absence?: boolean;
-            paid?: boolean;
-            eligibleGender?: string;
-            /** Format: int32 */
-            defaultDays?: number;
-            /** Format: int32 */
-            maxDays?: number;
-            /** Format: int32 */
-            maxSplits?: number;
-            requiresReason?: boolean;
-            requiresAttachment?: boolean;
-            expiryBasis?: string;
-            /** Format: int32 */
-            expiryDaysAfter?: number;
-            eventType?: string;
-            durationBasis?: string;
-            renewalBasis?: string;
-            /** Format: int32 */
-            renewalAmount?: number;
-            active?: boolean;
-            used?: boolean;
-        };
-        Summary: {
-            balance?: number;
-            pending?: number;
-            available?: number;
-            granted?: number;
-            /** Format: date */
-            expiringDate?: string;
-            expiringDays?: number;
-            /** Format: date */
-            nextGrantDate?: string;
-            nextGrantDays?: number;
-        };
-        LeaveRequestItem: {
-            /** Format: uuid */
-            id?: string;
-            /** Format: uuid */
-            requesterId?: string;
-            requesterName?: string;
-            departmentName?: string;
-            /** @enum {string} */
-            status?: "IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED";
-            /** Format: int32 */
-            currentStep?: number;
-            /** Format: int32 */
-            approverCount?: number;
-            leave?: components["schemas"]["LeaveView"];
-            /** Format: date-time */
-            submittedAt?: string;
-            /** Format: date-time */
-            decidedAt?: string;
-            /** Format: date-time */
-            cancelledAt?: string;
-            cancellableByAdmin?: boolean;
-            origin?: string;
-        };
-        LeaveRequestSlice: {
-            items?: components["schemas"]["LeaveRequestItem"][];
-            /** Format: int64 */
-            total?: number;
-            nextCursor?: string;
-        };
-        LeaveView: {
-            /** Format: uuid */
-            leaveTypeId?: string;
-            typeName?: string;
-            slot?: string;
-            /** Format: date */
-            startDate?: string;
-            /** Format: date */
-            endDate?: string;
-            /** Format: time-local */
-            startTime?: string;
-            /** Format: time-local */
-            endTime?: string;
-            days?: number;
-            reason?: string;
-            /** Format: date */
-            eventDate?: string;
-            relation?: string;
-        };
-        ExecutiveReport: {
-            /** Format: date */
-            from?: string;
-            /** Format: date */
-            to?: string;
-            /** Format: date-time */
-            generatedAt?: string;
-            items?: components["schemas"]["ReportRow"][];
-        };
-        ReportLeave: {
-            /** Format: uuid */
-            requestId?: string;
-            typeName?: string;
-            slot?: string;
-            /** Format: date */
-            startDate?: string;
-            /** Format: date */
-            endDate?: string;
-            /** Format: time-local */
-            startTime?: string;
-            /** Format: time-local */
-            endTime?: string;
-        };
-        ReportRow: {
-            /** Format: uuid */
-            employeeId?: string;
-            name?: string;
-            departmentName?: string;
-            /** Format: date */
-            hireDate?: string;
-            annual?: number;
-            leaves?: components["schemas"]["ReportLeave"][];
-        };
-        Preview: {
-            days?: number;
-            available?: number;
-            /** Format: date */
-            expiryDate?: string;
-        };
-        SpecialAllowance: {
-            /** Format: uuid */
-            id?: string;
-            /** Format: uuid */
-            leaveTypeId?: string;
-            typeName?: string;
-            classification?: string;
-            /** Format: date */
-            eventDate?: string;
-            relation?: string;
-            available?: number;
-            grants?: components["schemas"]["SpecialGrant"][];
-            entries?: components["schemas"]["SpecialEntry"][];
-        };
-        SpecialEntry: {
-            /** Format: uuid */
-            id?: string;
-            type?: string;
-            amount?: number;
-            /** Format: date */
-            expiryDate?: string;
-            reason?: string;
-            byName?: string;
-            /** Format: uuid */
-            requestId?: string;
-            /** Format: date-time */
-            occurredAt?: string;
-        };
-        SpecialGrant: {
-            /** Format: uuid */
-            id?: string;
-            amount?: number;
-            remaining?: number;
-            /** Format: date */
-            expiryDate?: string;
-            reason?: string;
-        };
-        AttendanceDay: {
-            /** Format: date */
-            date?: string;
-            /** @enum {string} */
-            day?: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
-            working?: boolean;
-            holidayName?: string;
-            /** Format: time-local */
-            start?: string;
-            /** Format: time-local */
-            end?: string;
-            /** Format: int32 */
-            workMinutes?: number;
-            leaveName?: string;
-            slot?: string;
-            /** Format: int32 */
-            overtimeMinutes?: number;
-            /** Format: time-local */
-            overtimeStart?: string;
-            /** Format: time-local */
-            overtimeEnd?: string;
-            overtimeNextDay?: boolean;
-        };
-        AttendanceMonth: {
-            /** Format: uuid */
-            employeeId?: string;
-            month?: string;
-            /** Format: int32 */
-            workMinutes?: number;
-            leaveDays?: number;
-            /** Format: int32 */
-            overtimeMinutes?: number;
-            days?: components["schemas"]["AttendanceDay"][];
-        };
-        AnnualLeaveStatus: {
-            opened?: boolean;
-            /** Format: date */
-            hireDate?: string;
-            balance?: number;
-            pending?: number;
-            available?: number;
-            grants?: components["schemas"]["Grant"][];
-        };
-        Grant: {
-            /** Format: uuid */
-            id?: string;
-            period?: string;
-            amount?: number;
-            remaining?: number;
-            /** Format: date */
-            expiryDate?: string;
-        };
-        LedgerEntry: {
-            /** Format: uuid */
-            id?: string;
-            type?: string;
-            amount?: number;
-            period?: string;
-            /** Format: date */
-            expiryDate?: string;
-            reason?: string;
-            /** Format: uuid */
-            requestId?: string;
-            sourcePeriod?: string;
-            adjustedByName?: string;
-            /** Format: date-time */
-            occurredAt?: string;
-        };
-        LedgerPage: {
-            items?: components["schemas"]["LedgerEntry"][];
-            /** Format: int64 */
-            total?: number;
-            nextCursor?: string;
-        };
-        AttendanceRoster: {
-            month?: string;
-            employees?: components["schemas"]["AttendanceTotal"][];
-        };
-        AttendanceTotal: {
-            /** Format: uuid */
-            employeeId?: string;
-            name?: string;
-            departmentName?: string;
-            /** Format: int32 */
-            workMinutes?: number;
-            leaveDays?: number;
-            /** Format: int32 */
-            overtimeMinutes?: number;
-        };
-        Block: {
-            /** @enum {string} */
-            day?: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
-            slot?: string;
-            /** Format: time-local */
-            start?: string;
-            /** Format: time-local */
-            end?: string;
-        };
-        Calendar: {
-            workingDays?: ("MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY")[];
-            holidays?: components["schemas"]["Holiday"][];
-            blocks?: components["schemas"]["Block"][];
-        };
-        Holiday: {
-            /** Format: date */
-            date?: string;
-            name?: string;
-        };
-        Booking: {
-            slot?: string;
-            /** Format: date */
-            startDate?: string;
-            /** Format: date */
-            endDate?: string;
-            /** Format: time-local */
-            startTime?: string;
-            /** Format: time-local */
-            endTime?: string;
-        };
-        PolicySetting: {
-            /** Format: uuid */
-            id?: string;
-            relation?: string;
-            /** Format: int32 */
-            days?: number;
-            paid?: boolean;
-            active?: boolean;
-        };
-        AllowanceColumn: {
-            /** Format: uuid */
-            leaveTypeId?: string;
-            name?: string;
-            classification?: string;
-        };
-        AllowanceRow: {
-            /** Format: uuid */
-            employeeId?: string;
-            name?: string;
-            departmentName?: string;
-            positionName?: string;
-            /** Format: date */
-            hireDate?: string;
-            annual?: number;
-            special?: components["schemas"]["SpecialLeft"][];
-        };
-        AllowanceSlice: {
-            columns?: components["schemas"]["AllowanceColumn"][];
-            items?: components["schemas"]["AllowanceRow"][];
-            /** Format: int64 */
-            total?: number;
-            nextCursor?: string;
-        };
-        SpecialLeft: {
-            /** Format: uuid */
-            leaveTypeId?: string;
-            days?: number;
-        };
-        HolidayItem: {
-            /** Format: date */
-            date?: string;
-            name?: string;
-            substitute?: boolean;
-        };
-        EmployeeItem: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            workEmail?: string;
-            /** Format: uuid */
-            departmentId?: string;
-            departmentName?: string;
-            /** Format: uuid */
-            positionId?: string;
-            positionName?: string;
-            /** Format: uuid */
-            titleId?: string;
-            titleName?: string;
-            /** Format: date */
-            hireDate?: string;
-            /** @enum {string} */
-            status?: "INVITED" | "ACTIVE" | "TERMINATED";
-        };
-        EmployeeSlice: {
-            items?: components["schemas"]["EmployeeItem"][];
-            /** Format: int64 */
-            total?: number;
-            nextCursor?: string;
-        };
-        PregnancyInfo: {
-            /** Format: date */
-            expectedDueDate?: string;
-            /** Format: date */
-            actualBirthDate?: string;
-            active?: boolean;
-        };
-        Card: {
-            educations?: components["schemas"]["EducationItem"][];
-            careers?: components["schemas"]["CareerItem"][];
-            families?: components["schemas"]["FamilyItem"][];
-            certifications?: components["schemas"]["CertificationItem"][];
-            trainings?: components["schemas"]["TrainingItem"][];
-        };
-        CareerItem: {
-            /** Format: uuid */
-            id?: string;
-            periodStart?: string;
-            periodEnd?: string;
-            companyName?: string;
-            jobRole?: string;
-            position?: string;
-            note?: string;
-        };
-        CertificationItem: {
-            /** Format: uuid */
-            id?: string;
-            certName?: string;
-            certNumber?: string;
-            score?: string;
-            /** Format: date */
-            acquiredOn?: string;
-            note?: string;
-        };
-        EducationItem: {
-            /** Format: uuid */
-            id?: string;
-            periodStart?: string;
-            periodEnd?: string;
-            schoolName?: string;
-            graduated?: boolean;
-            note?: string;
-        };
-        FamilyItem: {
-            /** Format: uuid */
-            id?: string;
-            /** @enum {string} */
-            relation?: "SPOUSE" | "CHILD" | "FATHER" | "MOTHER" | "SIBLING" | "GRANDPARENT" | "OTHER";
-            name?: string;
-            /** Format: date */
-            birthDate?: string;
-            note?: string;
-        };
-        TrainingItem: {
-            /** Format: uuid */
-            id?: string;
-            trainingName?: string;
-            periodStart?: string;
-            periodEnd?: string;
-            note?: string;
-        };
-        OrgChart: {
-            departments?: components["schemas"]["OrgDepartment"][];
-            people?: components["schemas"]["OrgPerson"][];
-        };
-        OrgDepartment: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            /** Format: uuid */
-            parentId?: string;
-            /** Format: int32 */
-            depth?: number;
-            /** Format: int32 */
-            displayOrder?: number;
-            /** Format: uuid */
-            leadEmployeeId?: string;
-        };
-        OrgPerson: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            workEmail?: string;
-            /** Format: uuid */
-            departmentId?: string;
-            positionName?: string;
-            titleName?: string;
-        };
-        DirectoryItem: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            departmentName?: string;
-            positionName?: string;
-        };
-        AvatarItem: {
-            /** Format: uuid */
-            employeeId?: string;
-            /** Format: int32 */
-            preset?: number;
-            /** Format: uuid */
-            pictureId?: string;
-            pictureColor?: string;
-        };
-        DepartmentItem: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            /** Format: uuid */
-            parentId?: string;
-            /** Format: int32 */
-            depth?: number;
-            /** Format: int32 */
-            displayOrder?: number;
-            /** Format: uuid */
-            leadEmployeeId?: string;
-            leadName?: string;
-            leadTitle?: string;
-            responsibilities?: string;
-            /** Format: int64 */
-            memberCount?: number;
-        };
-        DepartmentMember: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-        };
-        PlaceItem: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-        };
-        CalendarApproval: {
-            detailed?: boolean;
-            status?: string;
-            /** Format: int32 */
-            currentStep?: number;
-            /** Format: date-time */
-            submittedAt?: string;
-            /** Format: date-time */
-            decidedAt?: string;
-            approvers?: components["schemas"]["CalendarApprover"][];
-            origin?: string;
-        };
-        CalendarApprover: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            departmentName?: string;
-            decision?: string;
-            /** Format: date-time */
-            decidedAt?: string;
-        };
-        CalendarOvertime: {
-            /** Format: uuid */
-            requestId?: string;
-            /** Format: uuid */
-            employeeId?: string;
-            name?: string;
-            departmentName?: string;
-            /** Format: date */
-            date?: string;
-            /** Format: time-local */
-            start?: string;
-            /** Format: time-local */
-            end?: string;
-            nextDay?: boolean;
-            /** Format: int32 */
-            minutes?: number;
-            /** Format: uuid */
-            projectId?: string;
-            projectKey?: string;
-            projectName?: string;
-            projectIcon?: string;
-            projectColor?: string;
-        };
-        CalendarOvertimeRecord: {
-            days?: components["schemas"]["CalendarOvertime"][];
-            approval?: components["schemas"]["CalendarApproval"];
-        };
-        OccurrenceItem: {
-            /** Format: uuid */
-            id?: string;
-            /** Format: date-time */
-            occurrence?: string;
-            title?: string;
-            allDay?: boolean;
-            /** Format: date-time */
-            start?: string;
-            /** Format: date-time */
-            end?: string;
-            /** Format: uuid */
-            projectId?: string;
-        };
-        CalendarLeaveDetail: {
-            /** Format: uuid */
-            requestId?: string;
-            /** Format: uuid */
-            employeeId?: string;
-            name?: string;
-            departmentName?: string;
-            typeName?: string;
-            slot?: string;
-            /** Format: date */
-            startDate?: string;
-            /** Format: date */
-            endDate?: string;
-            /** Format: time-local */
-            startTime?: string;
-            /** Format: time-local */
-            endTime?: string;
-            pending?: boolean;
-            approval?: components["schemas"]["CalendarApproval"];
-        };
-        CalendarEventItem: {
-            /** Format: uuid */
-            id?: string;
-            /** Format: date-time */
-            occurrence?: string;
-            recurring?: boolean;
-            changed?: boolean;
-            visibility?: string;
-            title?: string;
-            location?: string;
-            allDay?: boolean;
-            /** Format: date-time */
-            start?: string;
-            /** Format: date-time */
-            end?: string;
-            /** Format: uuid */
-            projectId?: string;
-            projectKey?: string;
-            projectName?: string;
-            projectIcon?: string;
-            projectColor?: string;
-            /** Format: uuid */
-            organizerId?: string;
-            organizerName?: string;
-            /** Format: int32 */
-            attendeeCount?: number;
-            attending?: boolean;
-        };
-        CalendarFeed: {
-            holidays?: components["schemas"]["CalendarHoliday"][];
-            leaves?: components["schemas"]["CalendarLeave"][];
-            overtimes?: components["schemas"]["CalendarOvertime"][];
-            events?: components["schemas"]["CalendarEventItem"][];
-            failedSources?: ("LEAVE" | "OVERTIME" | "HOLIDAY")[];
-        };
-        CalendarHoliday: {
-            /** Format: date */
-            date?: string;
-            name?: string;
-        };
-        CalendarLeave: {
-            /** Format: uuid */
-            requestId?: string;
-            /** Format: uuid */
-            employeeId?: string;
-            name?: string;
-            departmentName?: string;
-            typeName?: string;
-            slot?: string;
-            /** Format: date */
-            startDate?: string;
-            /** Format: date */
-            endDate?: string;
-            /** Format: time-local */
-            startTime?: string;
-            /** Format: time-local */
-            endTime?: string;
-            pending?: boolean;
-        };
-        EventSearchItem: {
-            /** Format: uuid */
-            id?: string;
-            /** Format: date-time */
-            occurrence?: string;
-            recurrence?: components["schemas"]["RecurrenceView"];
-            visibility?: string;
-            title?: string;
-            location?: string;
-            excerpt?: string;
-            allDay?: boolean;
-            /** Format: date-time */
-            start?: string;
-            /** Format: date-time */
-            end?: string;
-            projectKey?: string;
-            projectName?: string;
-            projectIcon?: string;
-            projectColor?: string;
-        };
-        EventSearchSlice: {
-            items?: components["schemas"]["EventSearchItem"][];
-            nextCursor?: string;
-        };
-        RecurrenceView: {
-            frequency?: string;
-            /** Format: int32 */
-            interval?: number;
-            weekdays?: ("MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY")[];
-            monthlyBy?: string;
-            /** Format: int32 */
-            count?: number;
-            /** Format: date */
-            until?: string;
-        };
-        CalendarEventDetail: {
-            /** Format: uuid */
-            id?: string;
-            /** Format: date-time */
-            occurrence?: string;
-            changed?: boolean;
-            recurrence?: components["schemas"]["RecurrenceView"];
-            /** Format: date-time */
-            seriesStart?: string;
-            visibility?: string;
-            title?: string;
-            body?: string;
-            location?: string;
-            allDay?: boolean;
-            /** Format: date-time */
-            start?: string;
-            /** Format: date-time */
-            end?: string;
-            /** Format: uuid */
-            projectId?: string;
-            projectKey?: string;
-            projectName?: string;
-            projectIcon?: string;
-            projectColor?: string;
-            /** Format: uuid */
-            organizerId?: string;
-            organizerName?: string;
-            attendees?: components["schemas"]["EventAttendee"][];
-            photos?: components["schemas"]["AttachedFile"][];
-            attending?: boolean;
-            /** Format: int32 */
-            reminderMinutes?: number;
-            editable?: boolean;
-            version?: string;
-        };
-        EventAttendee: {
-            /** Format: uuid */
-            employeeId?: string;
-            name?: string;
-            departmentName?: string;
-            required?: boolean;
-            organizer?: boolean;
-        };
-        Person: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            departmentName?: string;
-        };
-        Template: {
-            /** Format: uuid */
-            departmentId?: string;
-            category?: string;
-            approvers?: components["schemas"]["Person"][];
-        };
-        Approver: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            departmentName?: string;
-            decision?: string;
-            reason?: string;
-            /** Format: date-time */
-            decidedAt?: string;
-        };
-        Request: {
-            /** Format: uuid */
-            id?: string;
-            kind?: string;
-            requester?: components["schemas"]["Person"];
-            /** @enum {string} */
-            status?: "IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED";
-            /** Format: int32 */
-            currentStep?: number;
-            approvers?: components["schemas"]["Approver"][];
-            suggestedApprovers?: components["schemas"]["Person"][];
-            rejectionReason?: string;
-            /** Format: date-time */
-            submittedAt?: string;
-            /** Format: date-time */
-            decidedAt?: string;
-            /** Format: date-time */
-            cancelledAt?: string;
-            cancellable?: boolean;
-            cancellableByAdmin?: boolean;
-            decidable?: boolean;
-            detail?: components["schemas"]["OvertimeView"] | components["schemas"]["LeaveView"];
-            attachments?: components["schemas"]["AttachedFile"][];
-            origin?: string;
-            originLink?: string;
-        };
-        RequestSlice: {
-            items?: components["schemas"]["Request"][];
-            nextCursor?: string;
-        };
-        Roles: {
-            approver?: boolean;
-            copyRecipient?: boolean;
-        };
-        RequestPage: {
-            items?: components["schemas"]["Request"][];
-            /** Format: int64 */
-            total?: number;
-            /** Format: int32 */
-            page?: number;
-            /** Format: int32 */
-            size?: number;
-        };
-        ReceivedCounts: {
-            /** Format: int64 */
-            inReview?: number;
-            /** Format: int64 */
-            approved?: number;
-            /** Format: int64 */
-            rejected?: number;
-            /** Format: int64 */
-            cancelled?: number;
-        };
-        ReceivedStats: {
-            /** Format: int64 */
-            waiting?: number;
-            recent?: components["schemas"]["ReceivedCounts"];
-        };
-        LinePreview: {
-            category?: string;
-            source?: string;
-            approvers?: components["schemas"]["Person"][];
-        };
-        Count: {
-            /** Format: int64 */
-            count?: number;
-        };
-        AnnouncementItem: {
-            /** Format: uuid */
-            id?: string;
-            title?: string;
-            /** Format: uuid */
-            authorId?: string;
-            authorName?: string;
-            status?: string;
-            /** Format: date-time */
-            publishedAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
-            /** Format: int32 */
-            attachmentCount?: number;
-            read?: boolean;
-            /** Format: int32 */
-            readCount?: number;
-            pinned?: boolean;
-        };
-        AnnouncementSlice: {
-            items?: components["schemas"]["AnnouncementItem"][];
-            nextCursor?: string;
-        };
-        AnnouncementDetail: {
-            /** Format: uuid */
-            id?: string;
-            title?: string;
-            content?: string;
-            /** Format: uuid */
-            authorId?: string;
-            authorName?: string;
-            status?: string;
-            /** Format: date-time */
-            publishedAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
-            attachments?: components["schemas"]["AttachedFile"][];
-            editable?: boolean;
-            /** Format: int32 */
-            readCount?: number;
-            readersVisible?: boolean;
-            pinned?: boolean;
-            popup?: boolean;
-            /** Format: date */
-            featuredFrom?: string;
-            /** Format: date */
-            featuredUntil?: string;
-        };
-        Reader: {
-            /** Format: uuid */
-            employeeId?: string;
-            name?: string;
-            departmentName?: string;
-            /** Format: date-time */
-            readAt?: string;
-        };
-        UnreadCount: {
-            /** Format: int64 */
-            count?: number;
-        };
-        Popup: {
-            /** Format: uuid */
-            id?: string;
-            title?: string;
-            content?: string;
-            /** Format: uuid */
-            authorId?: string;
-            authorName?: string;
-            /** Format: date-time */
-            publishedAt?: string;
-            attachments?: components["schemas"]["AttachedFile"][];
-        };
-        Author: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-        };
-        WeeklyReportPerson: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            departmentName?: string;
-        };
         NotificationItem: {
             /** Format: uuid */
             id?: string;
@@ -7738,67 +3727,47 @@ export interface components {
             /** Format: int64 */
             timeout?: number;
         };
+        Directory: {
+            people?: components["schemas"]["Person"][];
+        };
+        Person: {
+            /** Format: uuid */
+            id?: string;
+            name?: string;
+            workEmail?: string;
+        };
+        Found: {
+            /** Format: uuid */
+            id?: string;
+            name?: string;
+        };
+        AvatarItem: {
+            /** Format: uuid */
+            employeeId?: string;
+            /** Format: int32 */
+            preset?: number;
+            /** Format: uuid */
+            pictureId?: string;
+            pictureColor?: string;
+        };
         Me: {
             /** Format: uuid */
             id?: string;
             email?: string;
             name?: string;
-            roles?: ("INSTANCE_ADMIN" | "OFFICE_ADMIN" | "WORKSPACE_ADMIN")[];
+            roles?: ("INSTANCE_ADMIN" | "WORKSPACE_ADMIN")[];
             onboarded?: boolean;
             /** Format: date-time */
             expiresAt?: string;
         };
         CsrfToken: {
-            headerName?: string;
             token?: string;
             parameterName?: string;
+            headerName?: string;
         };
         CsrfView: {
             token?: string;
             headerName?: string;
-        };
-        RoleMember: {
-            /** Format: uuid */
-            id?: string;
-            name?: string;
-            email?: string;
-            roles?: ("INSTANCE_ADMIN" | "OFFICE_ADMIN" | "WORKSPACE_ADMIN")[];
-        };
-        OvertimeDayInput: {
-            /** Format: date */
-            date: string;
-            segments: components["schemas"]["OvertimeSegmentInput"][];
-            /** Format: int32 */
-            excludedMinutes: number;
-            reason: string;
-        };
-        OvertimeDetail: {
-            days: components["schemas"]["OvertimeDayInput"][];
-            /** Format: uuid */
-            projectId?: string;
-        };
-        OvertimeSegmentInput: {
-            /** Format: time-local */
-            start: string;
-            /** Format: time-local */
-            end: string;
-        };
-        Event: {
-            /** Format: date */
-            date: string;
-            relation?: string;
-        };
-        LeaveDetail: {
-            /** @enum {string} */
-            slot: "FULL_DAY" | "HALF_DAY_AM" | "HALF_DAY_PM" | "QUARTER_DAY_1" | "QUARTER_DAY_2" | "QUARTER_DAY_3" | "QUARTER_DAY_4";
-            /** Format: date */
-            startDate: string;
-            /** Format: date */
-            endDate: string;
-            reason?: string;
-            /** Format: uuid */
-            leaveTypeId?: string;
-            event?: components["schemas"]["Event"];
         };
     };
     responses: never;
@@ -8842,1389 +4811,29 @@ export interface operations {
             };
         };
     };
-    changeHours: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                day: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DayHours"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    setBlock: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                day: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
-                type: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BlockTime"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    removeBlock: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                day: "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
-                type: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    week: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                weekStart: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["WeeklyReportEditor"];
-                };
-            };
-        };
-    };
-    save_3: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                weekStart: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveWeeklyReport"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["WeeklyReportSaved"];
-                };
-            };
-        };
-    };
-    chooseAppearance: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AppearanceChoice"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    edit: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveTitle"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    delete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    reorder_4: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ReorderTitles"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    edit_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SavePosition"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    delete_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    reorder_5: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ReorderPositions"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    rename: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Rename"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    changeProject: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChangeProject"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    editPhotos: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EditPhotos"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    editMinutes: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EditMinutes"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    reschedule: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Held"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    linkEvent: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EventAt"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    unlinkEvent: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    prompt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["PromptItem"];
-                };
-            };
-        };
-    };
-    savePrompt: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SavePrompt"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    editType: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TypeSettings"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    turnOffType: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    reorderTypes: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TypeOrder"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    changeGrantExpiry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-                allowanceId: string;
-                grantId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["GrantExpiry"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    editPolicy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PolicySettings"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    turnOffPolicy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    reorderPolicies: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PolicyOrder"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    renameHoliday: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                date: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["HolidayName"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    removeHoliday: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                date: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    changeTitle: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChangeTitle"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    changePosition: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChangePosition"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    assignDepartment: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AssignDepartment"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    editBasics: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EditBasics"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["PregnancyInfo"];
-                };
-            };
-        };
-    };
-    expect: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ExpectDue"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    clear: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    replaceTraining: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-                entryId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveTraining"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    reorder_6: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-                section: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Reorder"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    replaceFamily: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-                entryId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveFamily"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    replaceEducation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-                entryId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveEducation"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    replaceCertification: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-                entryId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveCertification"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    replaceCareer: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-                entryId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveCareer"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    edit_2: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EditDepartment"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    delete_2: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    move: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["MoveDepartment"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    assignLead: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AssignLead"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    reorder_7: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ReorderDepartments"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    renamePlace: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SavePlace"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    deletePlace: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    reorderPlaces: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ReorderPlaces"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    event: {
-        parameters: {
-            query?: {
-                occurrence?: string;
-            };
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CalendarEventDetail"];
-                };
-            };
-        };
-    };
-    updateEvent: {
-        parameters: {
-            query?: {
-                scope?: string;
-                occurrence?: string;
-            };
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveEvent"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    deleteEvent: {
-        parameters: {
-            query?: {
-                scope?: string;
-                occurrence?: string;
-            };
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    remind: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveReminder"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    saveTemplate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                departmentId: string;
-                category: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveTemplate"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    deleteTemplate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                departmentId: string;
-                category: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    get_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AnnouncementDetail"];
-                };
-            };
-        };
-    };
-    edit_3: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EditAnnouncement"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    delete_3: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
     change: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["NameChange"];
+            };
+        };
+        responses: {
+            /** @description No Content */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    change_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -10264,7 +4873,7 @@ export interface operations {
             };
         };
     };
-    change_1: {
+    change_2: {
         parameters: {
             query?: never;
             header?: never;
@@ -10619,7 +5228,7 @@ export interface operations {
             };
         };
     };
-    move_1: {
+    move: {
         parameters: {
             query?: never;
             header?: never;
@@ -10960,7 +5569,7 @@ export interface operations {
             };
         };
     };
-    move_2: {
+    move_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -11129,7 +5738,7 @@ export interface operations {
             };
         };
     };
-    move_3: {
+    move_2: {
         parameters: {
             query?: never;
             header?: never;
@@ -11362,6 +5971,48 @@ export interface operations {
             };
         };
     };
+    state: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["SetupState"];
+                };
+            };
+        };
+    };
+    create_9: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FirstAdmin"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     test: {
         parameters: {
             query?: never;
@@ -11408,1195 +6059,7 @@ export interface operations {
             };
         };
     };
-    confirm: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    list_7: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["TitleItem"][];
-                };
-            };
-        };
-    };
-    create_9: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveTitle"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    list_8: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["PositionItem"][];
-                };
-            };
-        };
-    };
-    create_10: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SavePosition"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    list_9: {
-        parameters: {
-            query?: {
-                q?: string;
-                projectId?: string[];
-                progress?: "IN_PROGRESS" | "COMPLETED" | "FAILED";
-                sort?: "HELD";
-                direction?: "ASC" | "DESC";
-                cursor?: string;
-                size?: number;
-                linkable?: boolean;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["MeetingSlice"];
-                };
-            };
-        };
-    };
-    create_11: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["NewMeeting"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    retry: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    runPipeline: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["PipelineRun"];
-                };
-            };
-        };
-    };
-    types_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["TypeSetting"][];
-                };
-            };
-        };
-    };
-    createType: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["NewType"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    turnOnType: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    revokeGrant: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-                allowanceId: string;
-                grantId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["GrantRevocation"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    change_2: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SpecialChange"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    adjust: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Adjust"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    policies: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["PolicySetting"][];
-                };
-            };
-        };
-    };
-    createPolicy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["NewPolicy"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    turnOnPolicy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    run: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AccrualRun"];
-                };
-            };
-        };
-    };
-    holidays: {
-        parameters: {
-            query: {
-                year: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["HolidayItem"][];
-                };
-            };
-        };
-    };
-    addHoliday: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["NewHoliday"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    search: {
-        parameters: {
-            query?: {
-                q?: string;
-                status?: "INVITED" | "ACTIVE" | "TERMINATED";
-                departmentId?: string[];
-                positionId?: string[];
-                sort?: "POSITION" | "NAME" | "HIRE_DATE";
-                direction?: "ASC" | "DESC";
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["EmployeeSlice"];
-                };
-            };
-        };
-    };
-    register: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Register"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Registered"];
-                };
-            };
-        };
-    };
-    terminate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Terminate"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    activate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    recordBirth: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["RecordBirth"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    addTraining: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveTraining"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Created"];
-                };
-            };
-        };
-    };
-    addFamily: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveFamily"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Created"];
-                };
-            };
-        };
-    };
-    addEducation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveEducation"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Created"];
-                };
-            };
-        };
-    };
-    addCertification: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveCertification"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Created"];
-                };
-            };
-        };
-    };
-    addCareer: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveCareer"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Created"];
-                };
-            };
-        };
-    };
-    moveToDepartment: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["MoveToDepartment"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["DepartmentMove"];
-                };
-            };
-        };
-    };
-    list_10: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["DepartmentItem"][];
-                };
-            };
-        };
-    };
-    create_12: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateDepartment"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    places: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["PlaceItem"][];
-                };
-            };
-        };
-    };
-    createPlace: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SavePlace"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    /** @description /api/v1/office/calendar/places/{id} */
-                    Location?: unknown;
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    importEvents: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ImportFile"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ImportResult"];
-                };
-            };
-        };
-    };
-    searchEvents: {
-        parameters: {
-            query: {
-                q: string;
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["EventSearchSlice"];
-                };
-            };
-        };
-    };
-    createEvent: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SaveEvent"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    /** @description /api/v1/office/calendar/events/{id} */
-                    Location?: unknown;
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    mine: {
-        parameters: {
-            query?: {
-                kind?: string;
-                page?: number;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["RequestPage"];
-                };
-            };
-        };
-    };
-    submit: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Submit"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    /** @description /api/v1/office/approval/requests/{id} */
-                    Location?: unknown;
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Submitted"];
-                };
-            };
-        };
-    };
-    decide: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Decide"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    cancel: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    cancelByAdmin: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CancelByAdmin"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    migrate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Migration"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["MigrationResult"];
-                };
-            };
-        };
-    };
-    ccRecipients: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Person"][];
-                };
-            };
-        };
-    };
-    addCcRecipient: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AddCcRecipient"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    published: {
-        parameters: {
-            query?: {
-                q?: string;
-                read?: "UNREAD" | "READ";
-                period?: "WEEK" | "MONTH" | "YEAR";
-                authorId?: string[];
-                attached?: boolean;
-                sort?: "PUBLISHED" | "TITLE";
-                direction?: "ASC" | "DESC";
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AnnouncementSlice"];
-                };
-            };
-        };
-    };
-    create_13: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["WriteAnnouncement"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
     read: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    viewers: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["WeeklyReportPerson"][];
-                };
-            };
-        };
-    };
-    addViewer: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AddViewer"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    read_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -12656,7 +6119,7 @@ export interface operations {
             };
         };
     };
-    list_11: {
+    list_7: {
         parameters: {
             query?: never;
             header?: never;
@@ -12676,7 +6139,7 @@ export interface operations {
             };
         };
     };
-    create_14: {
+    create_10: {
         parameters: {
             query?: never;
             header?: never;
@@ -12804,7 +6267,31 @@ export interface operations {
             };
         };
     };
-    delete_4: {
+    invite: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Invite"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["RoleMember"];
+                };
+            };
+        };
+    };
+    delete: {
         parameters: {
             query?: never;
             header?: never;
@@ -12824,7 +6311,7 @@ export interface operations {
             };
         };
     };
-    edit_4: {
+    edit: {
         parameters: {
             query?: never;
             header?: never;
@@ -12848,7 +6335,7 @@ export interface operations {
             };
         };
     };
-    delete_5: {
+    delete_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -12868,7 +6355,7 @@ export interface operations {
             };
         };
     };
-    edit_5: {
+    edit_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -12892,7 +6379,7 @@ export interface operations {
             };
         };
     };
-    get_2: {
+    get: {
         parameters: {
             query?: never;
             header?: never;
@@ -12914,7 +6401,7 @@ export interface operations {
             };
         };
     };
-    delete_6: {
+    delete_2: {
         parameters: {
             query: {
                 expectedVersion: number;
@@ -12936,7 +6423,7 @@ export interface operations {
             };
         };
     };
-    edit_6: {
+    edit_2: {
         parameters: {
             query?: never;
             header?: never;
@@ -13006,7 +6493,7 @@ export interface operations {
             };
         };
     };
-    get_3: {
+    get_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -13029,7 +6516,7 @@ export interface operations {
             };
         };
     };
-    delete_7: {
+    delete_3: {
         parameters: {
             query: {
                 expectedVersion: number;
@@ -13052,7 +6539,7 @@ export interface operations {
             };
         };
     };
-    edit_7: {
+    edit_3: {
         parameters: {
             query?: never;
             header?: never;
@@ -13077,7 +6564,7 @@ export interface operations {
             };
         };
     };
-    delete_8: {
+    delete_4: {
         parameters: {
             query?: never;
             header?: never;
@@ -13099,7 +6586,7 @@ export interface operations {
             };
         };
     };
-    edit_8: {
+    edit_4: {
         parameters: {
             query?: never;
             header?: never;
@@ -13173,7 +6660,7 @@ export interface operations {
             };
         };
     };
-    delete_9: {
+    delete_5: {
         parameters: {
             query?: never;
             header?: never;
@@ -13194,7 +6681,7 @@ export interface operations {
             };
         };
     };
-    edit_9: {
+    edit_5: {
         parameters: {
             query?: never;
             header?: never;
@@ -13219,7 +6706,7 @@ export interface operations {
             };
         };
     };
-    delete_10: {
+    delete_6: {
         parameters: {
             query?: never;
             header?: never;
@@ -13240,7 +6727,7 @@ export interface operations {
             };
         };
     };
-    edit_10: {
+    edit_6: {
         parameters: {
             query?: never;
             header?: never;
@@ -13265,7 +6752,7 @@ export interface operations {
             };
         };
     };
-    delete_11: {
+    delete_7: {
         parameters: {
             query: {
                 expectedVersion: number;
@@ -13287,7 +6774,7 @@ export interface operations {
             };
         };
     };
-    rename_1: {
+    rename: {
         parameters: {
             query?: never;
             header?: never;
@@ -13357,7 +6844,7 @@ export interface operations {
             };
         };
     };
-    delete_12: {
+    delete_8: {
         parameters: {
             query: {
                 expectedVersion: number;
@@ -13379,7 +6866,7 @@ export interface operations {
             };
         };
     };
-    edit_11: {
+    edit_7: {
         parameters: {
             query?: never;
             header?: never;
@@ -13403,7 +6890,7 @@ export interface operations {
             };
         };
     };
-    get_4: {
+    get_2: {
         parameters: {
             query?: never;
             header?: never;
@@ -13425,7 +6912,7 @@ export interface operations {
             };
         };
     };
-    delete_13: {
+    delete_9: {
         parameters: {
             query: {
                 expectedVersion: number;
@@ -13447,7 +6934,7 @@ export interface operations {
             };
         };
     };
-    rename_2: {
+    rename_1: {
         parameters: {
             query?: never;
             header?: never;
@@ -13517,7 +7004,7 @@ export interface operations {
             };
         };
     };
-    delete_14: {
+    delete_10: {
         parameters: {
             query: {
                 expectedVersion: number;
@@ -13539,7 +7026,7 @@ export interface operations {
             };
         };
     };
-    edit_12: {
+    edit_8: {
         parameters: {
             query?: never;
             header?: never;
@@ -13563,49 +7050,7 @@ export interface operations {
             };
         };
     };
-    get_5: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["EmployeeDetail"];
-                };
-            };
-        };
-    };
-    edit_13: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EditOwnContact"];
-            };
-        };
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    edit_14: {
+    edit_9: {
         parameters: {
             query?: never;
             header?: never;
@@ -13784,7 +7229,7 @@ export interface operations {
             };
         };
     };
-    get_6: {
+    get_3: {
         parameters: {
             query?: never;
             header?: never;
@@ -13958,7 +7403,7 @@ export interface operations {
             };
         };
     };
-    list_12: {
+    list_8: {
         parameters: {
             query?: {
                 project?: string[];
@@ -13993,7 +7438,7 @@ export interface operations {
             };
         };
     };
-    get_7: {
+    get_4: {
         parameters: {
             query?: never;
             header?: never;
@@ -14161,55 +7606,6 @@ export interface operations {
             };
         };
     };
-    folders: {
-        parameters: {
-            query?: {
-                projectId?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["DocumentBoxSystem"][];
-                };
-            };
-        };
-    };
-    items: {
-        parameters: {
-            query?: {
-                projectId?: string;
-                facet?: string;
-                offset?: number;
-                size?: number;
-            };
-            header?: never;
-            path: {
-                kind: "MEETING" | "WEEKLY_REPORT";
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["DocumentBoxSystemSlice"];
-                };
-            };
-        };
-    };
     projects: {
         parameters: {
             query?: never;
@@ -14347,7 +7743,7 @@ export interface operations {
             };
         };
     };
-    search_1: {
+    search: {
         parameters: {
             query: {
                 q: string;
@@ -14475,1437 +7871,11 @@ export interface operations {
             };
         };
     };
-    days: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ScheduleDay"][];
-                };
-            };
-        };
-    };
-    list_13: {
-        parameters: {
-            query?: {
-                week?: string;
-                department?: string[];
-                state?: string[];
-                q?: string;
-                sort?: "WEEK" | "NAME" | "DEPARTMENT" | "SUBMITTED";
-                direction?: "ASC" | "DESC";
-                offset?: number;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["WeeklyReportList"];
-                };
-            };
-        };
-    };
-    detail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["WeeklyReportDetail"];
-                };
-            };
-        };
-    };
-    delete_15: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    file_3: {
-        parameters: {
-            query?: {
-                download?: boolean;
-            };
-            header?: never;
-            path: {
-                id: string;
-                fileId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["FileLink"];
-                };
-            };
-        };
-    };
-    me: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["TownProfile"];
-                };
-            };
-        };
-    };
-    requests: {
-        parameters: {
-            query?: {
-                status?: "IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED";
-                q?: string;
-                from?: string;
-                to?: string;
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["OvertimeRequestSlice"];
-                };
-            };
-        };
-    };
-    days_1: {
-        parameters: {
-            query: {
-                month: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["OvertimeMonth"];
-                };
-            };
-        };
-    };
-    get_8: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["MeetingDetail"];
-                };
-            };
-        };
-    };
-    delete_16: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    photo: {
-        parameters: {
-            query?: {
-                download?: boolean;
-            };
-            header?: never;
-            path: {
-                id: string;
-                photoId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["PhotoLink"];
-                };
-            };
-        };
-    };
-    searchMinutes: {
-        parameters: {
-            query: {
-                q: string;
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["FoundMeetingSlice"];
-                };
-            };
-        };
-    };
-    forEvent: {
-        parameters: {
-            query: {
-                eventId: string;
-                occurrence?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["EventMeeting"];
-                };
-            };
-        };
-    };
-    usage: {
-        parameters: {
-            query: {
-                year: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Usage"];
-                };
-            };
-        };
-    };
-    types_2: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["SpecialCatalog"];
-                };
-            };
-        };
-    };
-    types_3: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["TypeSummary"][];
-                };
-            };
-        };
-    };
-    summary_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Summary"];
-                };
-            };
-        };
-    };
-    requests_1: {
-        parameters: {
-            query?: {
-                status?: "IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED";
-                q?: string;
-                type?: string[];
-                from?: string;
-                to?: string;
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["LeaveRequestSlice"];
-                };
-            };
-        };
-    };
-    executiveReport: {
-        parameters: {
-            query: {
-                from: string;
-                to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ExecutiveReport"];
-                };
-            };
-        };
-    };
-    executiveWorkbook: {
-        parameters: {
-            query: {
-                from: string;
-                to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": string;
-                };
-            };
-        };
-    };
-    preview_1: {
-        parameters: {
-            query: {
-                slot: "FULL_DAY" | "HALF_DAY_AM" | "HALF_DAY_PM" | "QUARTER_DAY_1" | "QUARTER_DAY_2" | "QUARTER_DAY_3" | "QUARTER_DAY_4";
-                startDate: string;
-                endDate: string;
-                leaveTypeId?: string;
-                eventDate?: string;
-                relation?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Preview"];
-                };
-            };
-        };
-    };
-    status_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["SpecialAllowance"][];
-                };
-            };
-        };
-    };
-    attendance: {
-        parameters: {
-            query: {
-                month: string;
-            };
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AttendanceMonth"];
-                };
-            };
-        };
-    };
-    status_2: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AnnualLeaveStatus"];
-                };
-            };
-        };
-    };
-    ledger: {
-        parameters: {
-            query?: {
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["LedgerPage"];
-                };
-            };
-        };
-    };
-    attendanceRoster: {
-        parameters: {
-            query: {
-                month: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AttendanceRoster"];
-                };
-            };
-        };
-    };
-    calendar: {
-        parameters: {
-            query: {
-                from: string;
-                to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Calendar"];
-                };
-            };
-        };
-    };
-    bookings: {
-        parameters: {
-            query: {
-                from: string;
-                to: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Booking"][];
-                };
-            };
-        };
-    };
-    myAttendance: {
-        parameters: {
-            query: {
-                month: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AttendanceMonth"];
-                };
-            };
-        };
-    };
-    allowances: {
-        parameters: {
-            query?: {
-                q?: string;
-                departmentId?: string[];
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AllowanceSlice"];
-                };
-            };
-        };
-    };
-    get_9: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["EmployeeDetail"];
-                };
-            };
-        };
-    };
-    get_10: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Card"];
-                };
-            };
-        };
-    };
-    orgChart: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["OrgChart"];
-                };
-            };
-        };
-    };
-    search_2: {
-        parameters: {
-            query?: {
-                q?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["DirectoryItem"][];
-                };
-            };
-        };
-    };
-    directoryAgents: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AgentActor"][];
-                };
-            };
-        };
-    };
-    chosen: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AvatarItem"][];
-                };
-            };
-        };
-    };
-    picture: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-                pictureId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "image/jpeg": string;
-                };
-            };
-        };
-    };
-    members_2: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["DepartmentMember"][];
-                };
-            };
-        };
-    };
-    overtime: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CalendarOvertimeRecord"];
-                };
-            };
-        };
-    };
-    occurrences: {
-        parameters: {
-            query?: {
-                q?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["OccurrenceItem"][];
-                };
-            };
-        };
-    };
-    leave: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CalendarLeaveDetail"];
-                };
-            };
-        };
-    };
-    items_1: {
-        parameters: {
-            query: {
-                from: string;
-                to: string;
-                sources?: ("LEAVE" | "OVERTIME" | "HOLIDAY")[];
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["CalendarFeed"];
-                };
-            };
-        };
-    };
-    photo_1: {
-        parameters: {
-            query?: {
-                download?: boolean;
-            };
-            header?: never;
-            path: {
-                id: string;
-                photoId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["PhotoLink"];
-                };
-            };
-        };
-    };
-    templates: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Template"][];
-                };
-            };
-        };
-    };
-    sent: {
-        parameters: {
-            query?: {
-                kind?: string[];
-                q?: string;
-                status?: ("IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED")[];
-                waiting?: boolean;
-                period?: "WEEK" | "MONTH" | "YEAR";
-                sort?: "SUBMITTED";
-                direction?: "ASC" | "DESC";
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["RequestSlice"];
-                };
-            };
-        };
-    };
-    roles: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Roles"];
-                };
-            };
-        };
-    };
-    get_11: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Request"];
-                };
-            };
-        };
-    };
-    attachment: {
-        parameters: {
-            query?: {
-                download?: boolean;
-            };
-            header?: never;
-            path: {
-                id: string;
-                attachmentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["FileLink"];
-                };
-            };
-        };
-    };
-    received: {
-        parameters: {
-            query?: {
-                kind?: string[];
-                q?: string;
-                status?: ("IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED")[];
-                waiting?: boolean;
-                period?: "WEEK" | "MONTH" | "YEAR";
-                sort?: "SUBMITTED";
-                direction?: "ASC" | "DESC";
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["RequestSlice"];
-                };
-            };
-        };
-    };
-    receivedStats: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ReceivedStats"];
-                };
-            };
-        };
-    };
-    line: {
-        parameters: {
-            query: {
-                kind: string;
-                category?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Person"][];
-                };
-            };
-        };
-    };
-    preview_2: {
-        parameters: {
-            query: {
-                employeeId: string;
-                category: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["LinePreview"];
-                };
-            };
-        };
-    };
-    inbox: {
-        parameters: {
-            query?: {
-                kind?: string[];
-                q?: string;
-                status?: ("IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED")[];
-                waiting?: boolean;
-                period?: "WEEK" | "MONTH" | "YEAR";
-                sort?: "SUBMITTED";
-                direction?: "ASC" | "DESC";
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["RequestSlice"];
-                };
-            };
-        };
-    };
-    inboxCount: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Count"];
-                };
-            };
-        };
-    };
-    ofRequester: {
-        parameters: {
-            query?: {
-                kind?: string;
-                page?: number;
-                size?: number;
-            };
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["RequestPage"];
-                };
-            };
-        };
-    };
-    copies: {
-        parameters: {
-            query?: {
-                kind?: string[];
-                q?: string;
-                status?: ("IN_REVIEW" | "APPROVED" | "REJECTED" | "CANCELLED")[];
-                waiting?: boolean;
-                period?: "WEEK" | "MONTH" | "YEAR";
-                sort?: "SUBMITTED";
-                direction?: "ASC" | "DESC";
-                cursor?: string;
-                size?: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["RequestSlice"];
-                };
-            };
-        };
-    };
-    readers: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Reader"][];
-                };
-            };
-        };
-    };
-    attachment_1: {
-        parameters: {
-            query?: {
-                download?: boolean;
-            };
-            header?: never;
-            path: {
-                id: string;
-                attachmentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["FileLink"];
-                };
-            };
-        };
-    };
-    unreadCount: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["UnreadCount"];
-                };
-            };
-        };
-    };
-    popups: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Popup"][];
-                };
-            };
-        };
-    };
-    pinned: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["AnnouncementItem"][];
-                };
-            };
-        };
-    };
-    authors: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["Author"][];
-                };
-            };
-        };
-    };
-    mine_1: {
+    mine: {
         parameters: {
             query?: {
                 q?: string;
                 read?: "UNREAD" | "READ";
-                category?: "APPROVAL" | "ANNOUNCEMENT" | "EVENT";
                 cursor?: string;
                 size?: number;
             };
@@ -15946,7 +7916,7 @@ export interface operations {
             };
         };
     };
-    list_14: {
+    list_9: {
         parameters: {
             query?: never;
             header?: never;
@@ -16008,7 +7978,114 @@ export interface operations {
             };
         };
     };
-    me_1: {
+    directory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["Directory"];
+                };
+            };
+        };
+    };
+    find: {
+        parameters: {
+            query?: {
+                q?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["Found"][];
+                };
+            };
+        };
+    };
+    agents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["AgentActor"][];
+                };
+            };
+        };
+    };
+    chosen: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["AvatarItem"][];
+                };
+            };
+        };
+    };
+    picture: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                employeeId: string;
+                pictureId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "image/jpeg": string;
+                };
+            };
+        };
+    };
+    me: {
         parameters: {
             query?: never;
             header?: never;
@@ -16050,7 +8127,7 @@ export interface operations {
             };
         };
     };
-    members_3: {
+    members_2: {
         parameters: {
             query?: never;
             header?: never;
@@ -16070,7 +8147,7 @@ export interface operations {
             };
         };
     };
-    delete_17: {
+    delete_11: {
         parameters: {
             query?: never;
             header?: never;
@@ -16098,68 +8175,6 @@ export interface operations {
             header?: never;
             path: {
                 id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    remove_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-                section: string;
-                entryId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    removeCcRecipient: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No Content */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    removeViewer: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                employeeId: string;
             };
             cookie?: never;
         };

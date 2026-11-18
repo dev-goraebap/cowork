@@ -14,10 +14,6 @@ public interface CurrentUser {
         return roles().contains(Role.INSTANCE_ADMIN);
     }
 
-    default boolean officeAdmin() {
-        return roles().contains(Role.OFFICE_ADMIN);
-    }
-
     default boolean workspaceAdmin() {
         return roles().contains(Role.WORKSPACE_ADMIN);
     }

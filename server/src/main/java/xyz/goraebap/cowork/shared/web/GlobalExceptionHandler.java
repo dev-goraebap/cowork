@@ -36,11 +36,11 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import tools.jackson.core.JacksonException;
 import xyz.goraebap.cowork.shared.error.BusinessException;
 import xyz.goraebap.cowork.shared.error.CommonErrorCode;
 import xyz.goraebap.cowork.shared.error.DomainRuleViolation;
 import xyz.goraebap.cowork.shared.error.ErrorCode;
-import tools.jackson.core.JacksonException;
 
 @Slf4j
 @RestControllerAdvice

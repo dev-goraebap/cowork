@@ -20,6 +20,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.file.AttachedFile;
 import xyz.goraebap.cowork.module.file.FileFacade;
 import xyz.goraebap.cowork.module.realtime.RealtimeFacade;
@@ -40,10 +44,6 @@ import xyz.goraebap.cowork.module.workspace.richbody.domain.RichBlockRepository.
 import xyz.goraebap.cowork.module.workspace.richbody.domain.RichBodyRepository;
 import xyz.goraebap.cowork.module.workspace.richbody.domain.RichBodyRepository.Content;
 import xyz.goraebap.cowork.module.workspace.richbody.domain.RichBodyRepository.Revision;
-import tools.jackson.core.JacksonException;
-import tools.jackson.core.type.TypeReference;
-import tools.jackson.databind.SerializationFeature;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Bodies as BIT's artifact pages keep them (V34 artifact_rich_*) and the-seed's item bodies save them: a save goes over

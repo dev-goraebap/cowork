@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.workspace.issue.domain.code.GitHost;
 import xyz.goraebap.cowork.module.workspace.issue.domain.code.GitHostException;
 import xyz.goraebap.cowork.module.workspace.issue.domain.code.Provider;
 import xyz.goraebap.cowork.module.workspace.issue.domain.code.Remote;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * GitHub's REST API (github.com or Enterprise Server at its own address) with a personal or fine-grained token (BIT's

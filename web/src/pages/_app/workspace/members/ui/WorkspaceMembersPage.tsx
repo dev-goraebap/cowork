@@ -24,7 +24,7 @@ import { ParticipationDialog } from './ParticipationDialog';
 type Crumb = { label: string; href?: string; icon?: string };
 /** 한 사람의 참여: 프로젝트와 그 안의 역할. */
 type Joined = { project: Project; role: ProjectRole };
-type Row = { person: OrgPerson; departmentName?: string; projects: Joined[] };
+type Row = { person: OrgPerson; projects: Joined[] };
 /** 참여 관리 열기: 그 사람의 프로젝트 참여를 관리하는 대화상자를 연다(내가 관리자인 프로젝트가 있을 때만). */
 type Manage = (person: OrgPerson) => void;
 
@@ -94,8 +94,6 @@ function MembersTable({ rows, onOpen, onManage }: { rows: Row[]; onOpen: (id: st
       <TableHeader>
         <TableRow>
           <TableHead>이름</TableHead>
-          <TableHead className="w-40">부서</TableHead>
-          <TableHead className="w-24">직위</TableHead>
           <TableHead className="w-56">이메일</TableHead>
           <TableHead>참여 프로젝트</TableHead>
         </TableRow>
@@ -104,8 +102,6 @@ function MembersTable({ rows, onOpen, onManage }: { rows: Row[]; onOpen: (id: st
         {rows.map(row => (
           <TableRow key={row.person.id} className="group/row relative bg-background hover:bg-row-hover">
             <TableCell><Name person={row.person} onOpen={() => onOpen(row.person.id)} /></TableCell>
-            <TableCell><TableText className="max-w-40">{dash(row.departmentName)}</TableText></TableCell>
-            <TableCell><TableText>{dash(row.person.positionName)}</TableText></TableCell>
             <TableCell className="text-muted-foreground"><TableText className="max-w-56">{dash(row.person.workEmail)}</TableText></TableCell>
             <TableCell><Projects row={row} onManage={onManage} /></TableCell>
           </TableRow>
@@ -115,13 +111,12 @@ function MembersTable({ rows, onOpen, onManage }: { rows: Row[]; onOpen: (id: st
   );
 }
 
-/** 휴대폰 줄: 사진 · 이름 · 부서, 그 아래 참여 프로젝트. */
+/** 휴대폰 줄: 사진 · 이름, 그 아래 참여 프로젝트. */
 function MemberRow({ row, onOpen, onManage }: { row: Row; onOpen: () => void; onManage?: Manage }) {
   return (
     <li className="relative flex flex-col gap-2 border-b bg-background px-4 py-3">
       <span className="flex min-w-0 items-center gap-2">
         <Name person={row.person} onOpen={onOpen} />
-        {row.departmentName ? <span className="truncate text-xs text-muted-foreground">{row.departmentName}</span> : null}
       </span>
       {row.projects.length > 0 || onManage ? <span className="pl-8"><Projects row={row} onManage={onManage} /></span> : null}
     </li>
@@ -156,7 +151,6 @@ export function WorkspaceMembersPage({ crumbs }: { crumbs: Crumb[] }) {
     const error = chart.error ?? projects.error ?? memberships.error;
     if (error) return <PageState kind="error" title="멤버를 불러오지 못했습니다" description={error.message} />;
     if (!chart.data || !projects.data || !memberships.data) return null;
-    const departments = new Map(chart.data.departments.map(department => [department.id, department.name]));
     const byId = new Map(projects.data.map(project => [project.id, project]));
     const order = new Map(projects.data.map((project, index) => [project.id, index]));
     const projectsOf = (person: OrgPerson) => memberships.data
@@ -166,7 +160,7 @@ export function WorkspaceMembersPage({ crumbs }: { crumbs: Crumb[] }) {
     const needle = words.trim().toLowerCase();
     const rows: Row[] = chart.data.people
       .filter(person => !needle || person.name.toLowerCase().includes(needle) || (person.workEmail ?? '').toLowerCase().includes(needle))
-      .map(person => ({ person, departmentName: person.departmentId ? departments.get(person.departmentId) : undefined, projects: projectsOf(person) }))
+      .map(person => ({ person, projects: projectsOf(person) }))
       .sort((one, other) => Number(other.projects.length > 0) - Number(one.projects.length > 0) || one.person.name.localeCompare(other.person.name, 'ko'));
     if (rows.length === 0) return <PageState kind="search" title="찾는 멤버가 없습니다" />;
     const joined = rows.filter(row => row.projects.length > 0).length;

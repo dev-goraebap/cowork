@@ -11,7 +11,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import jakarta.servlet.http.Cookie;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,14 +24,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.user.application.auth.SessionService;
 import xyz.goraebap.cowork.shared.web.Role;
 import xyz.goraebap.cowork.support.Accounts;
 import xyz.goraebap.cowork.support.Members;
 import xyz.goraebap.cowork.support.ProjectMembers;
 import xyz.goraebap.cowork.support.TestDatabase;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Saved views over the issue lists (BIT's views): a project starts with 보드 and 내 이슈 after the built-in 전체 이슈, any
@@ -251,7 +250,7 @@ class IssueViewsTest {
 
     private void member(UUID id, String name, String email, Role... roles) {
         Accounts.upsert(jdbc, id, email, true, roles);
-        Members.insert(jdbc, Members.member(id, name, email).hired(LocalDate.parse("2020-01-01")));
+        Members.insert(jdbc, Members.member(id, name, email));
     }
 
     private Cookie cookie(UUID user) {

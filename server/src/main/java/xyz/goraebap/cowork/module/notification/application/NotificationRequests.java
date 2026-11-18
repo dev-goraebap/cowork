@@ -15,13 +15,12 @@ public final class NotificationRequests {
     public record Seen(@NotNull Subject.Type type, @NotNull UUID id, Boolean includeActionable) {}
 
     /**
-     * The member's notices, newest first, searched in their title and message and narrowed by read state and by what
-     * they are about, a slice at a time.
+     * The member's notices, newest first, searched in their title and message and narrowed by read state, a slice at a
+     * time.
      */
     public record NotificationListing(
             @Size(max = 100) String q,
             ReadState read,
-            Category category,
             @Size(max = 1000) String cursor,
             @Min(1) @Max(MAX_SIZE) Integer size) {
         public static final int DEFAULT_SIZE = 20;
@@ -37,11 +36,5 @@ public final class NotificationRequests {
     public enum ReadState {
         UNREAD,
         READ
-    }
-
-    public enum Category {
-        APPROVAL,
-        ANNOUNCEMENT,
-        EVENT
     }
 }

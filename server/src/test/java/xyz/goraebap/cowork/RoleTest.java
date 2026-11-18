@@ -9,7 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import jakarta.servlet.http.Cookie;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +39,7 @@ import xyz.goraebap.cowork.support.TestDatabase;
 @Tag("integration")
 class RoleTest {
     private static final UUID INSTANCE = id(1);
-    private static final UUID OFFICE = id(2);
+    private static final UUID WORKSPACE = id(2);
     private static final UUID MEMBER = id(3);
     private static final UUID LEFT = id(4);
 
@@ -60,26 +59,26 @@ class RoleTest {
     void prepare() {
         TestDatabase.clear(jdbc);
         member(INSTANCE, "가인스턴스", "instance@example.test", "ACTIVE", Role.INSTANCE_ADMIN);
-        member(OFFICE, "나오피스", "office@example.test", "ACTIVE", Role.OFFICE_ADMIN);
+        member(WORKSPACE, "나워크", "workspace@example.test", "ACTIVE", Role.WORKSPACE_ADMIN);
         member(MEMBER, "다구성원", "member@example.test", "ACTIVE");
-        member(LEFT, "라퇴사", "left@example.test", "TERMINATED", Role.OFFICE_ADMIN);
+        member(LEFT, "라퇴사", "left@example.test", "TERMINATED", Role.WORKSPACE_ADMIN);
     }
 
     @org.junit.jupiter.api.Disabled("오피스를 뺀 뒤 깨짐: 오피스 주소나 도구를 썼다. 워크스페이스 기준으로 다시 쓴다.")
     @Test
     void eachRoleOpensOnlyItsOwnAdministration() throws Exception {
-        mvc.perform(get("/api/v1/system/status").cookie(cookie(OFFICE))).andExpect(status().isForbidden());
-        mvc.perform(get("/api/v1/push-deliveries/summary").cookie(cookie(OFFICE)))
+        mvc.perform(get("/api/v1/system/status").cookie(cookie(WORKSPACE))).andExpect(status().isForbidden());
+        mvc.perform(get("/api/v1/push-deliveries/summary").cookie(cookie(WORKSPACE)))
                 .andExpect(status().isForbidden());
         mvc.perform(get("/api/v1/system/status").cookie(cookie(INSTANCE))).andExpect(status().isOk());
 
         mvc.perform(get("/api/v1/office/employees").cookie(cookie(INSTANCE))).andExpect(status().isForbidden());
-        mvc.perform(get("/api/v1/office/employees").cookie(cookie(OFFICE))).andExpect(status().isOk());
+        mvc.perform(get("/api/v1/office/employees").cookie(cookie(WORKSPACE))).andExpect(status().isOk());
 
-        mvc.perform(get("/api/v1/admin/roles").cookie(cookie(OFFICE))).andExpect(status().isForbidden());
+        mvc.perform(get("/api/v1/admin/roles").cookie(cookie(WORKSPACE))).andExpect(status().isForbidden());
         mvc.perform(get("/api/v1/admin/roles").cookie(cookie(MEMBER))).andExpect(status().isForbidden());
         mvc.perform(write(put("/api/v1/admin/roles/" + MEMBER))
-                        .cookie(cookie(OFFICE))
+                        .cookie(cookie(WORKSPACE))
                         .content("{\"roles\":[\"INSTANCE_ADMIN\"]}"))
                 .andExpect(status().isForbidden());
     }
@@ -91,7 +90,7 @@ class RoleTest {
         mvc.perform(get("/api/v1/admin/roles").cookie(instance))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
-                .andExpect(jsonPath("$[*].name").value(contains("가인스턴스", "나오피스", "다구성원")))
+                .andExpect(jsonPath("$[*].name").value(contains("가인스턴스", "나워크", "다구성원")))
                 .andExpect(jsonPath("$[0].id").value(INSTANCE.toString()))
                 .andExpect(jsonPath("$[0].email").value("instance@example.test"))
                 .andExpect(jsonPath("$[0].roles").value(contains("INSTANCE_ADMIN")))
@@ -99,17 +98,17 @@ class RoleTest {
 
         mvc.perform(write(put("/api/v1/admin/roles/" + MEMBER))
                         .cookie(instance)
-                        .content("{\"roles\":[\"WORKSPACE_ADMIN\",\"OFFICE_ADMIN\"]}"))
+                        .content("{\"roles\":[\"WORKSPACE_ADMIN\"]}"))
                 .andExpect(status().isNoContent());
         mvc.perform(get("/api/v1/admin/roles").cookie(instance))
-                .andExpect(jsonPath("$[2].roles").value(contains("OFFICE_ADMIN", "WORKSPACE_ADMIN")));
+                .andExpect(jsonPath("$[2].roles").value(contains("WORKSPACE_ADMIN")));
         assertThat(jdbc.queryForList(
                         "SELECT granted_by FROM user_role WHERE user_id=? ORDER BY role", UUID.class, MEMBER))
                 .containsOnly(INSTANCE);
         // The next request already opens the office's administration.
         mvc.perform(get("/api/v1/office/employees").cookie(cookie(MEMBER))).andExpect(status().isOk());
         mvc.perform(get("/api/v1/auth/me").cookie(cookie(MEMBER)))
-                .andExpect(jsonPath("$.roles").value(contains("OFFICE_ADMIN", "WORKSPACE_ADMIN")));
+                .andExpect(jsonPath("$.roles").value(contains("WORKSPACE_ADMIN")));
 
         mvc.perform(write(put("/api/v1/admin/roles/" + MEMBER)).cookie(instance).content("{\"roles\":[]}"))
                 .andExpect(status().isNoContent());
@@ -121,7 +120,7 @@ class RoleTest {
                 .andExpect(status().isBadRequest());
         mvc.perform(write(put("/api/v1/admin/roles/" + LEFT))
                         .cookie(instance)
-                        .content("{\"roles\":[\"OFFICE_ADMIN\"]}"))
+                        .content("{\"roles\":[\"WORKSPACE_ADMIN\"]}"))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.code").value("AUTH_NOT_FOUND"));
         mvc.perform(write(put("/api/v1/admin/roles/" + UUID.randomUUID()))
@@ -135,7 +134,7 @@ class RoleTest {
         Cookie instance = cookie(INSTANCE);
         mvc.perform(write(put("/api/v1/admin/roles/" + INSTANCE))
                         .cookie(instance)
-                        .content("{\"roles\":[\"OFFICE_ADMIN\"]}"))
+                        .content("{\"roles\":[\"WORKSPACE_ADMIN\"]}"))
                 .andExpect(status().isConflict())
                 .andExpect(jsonPath("$.code").value("AUTH_LAST_ADMIN"));
         assertThat(roles(INSTANCE)).containsExactly("INSTANCE_ADMIN");
@@ -147,22 +146,22 @@ class RoleTest {
                 .andExpect(status().isNoContent());
         mvc.perform(write(put("/api/v1/admin/roles/" + INSTANCE))
                         .cookie(instance)
-                        .content("{\"roles\":[\"OFFICE_ADMIN\"]}"))
+                        .content("{\"roles\":[\"WORKSPACE_ADMIN\"]}"))
                 .andExpect(status().isNoContent());
-        assertThat(roles(INSTANCE)).containsExactly("OFFICE_ADMIN");
+        assertThat(roles(INSTANCE)).containsExactly("WORKSPACE_ADMIN");
     }
 
     @Test
     void theServerSettingsMakeInstanceAdministratorsByEmail() {
         int granted = roleService.grantInstanceAdmins(
-                List.of(" Office@Example.test ", "member@example.test", "left@example.test", "nobody@example.test"));
+                List.of(" Workspace@Example.test ", "member@example.test", "left@example.test", "nobody@example.test"));
         assertThat(granted).isEqualTo(2);
-        assertThat(roles(OFFICE)).containsExactly("INSTANCE_ADMIN", "OFFICE_ADMIN");
+        assertThat(roles(WORKSPACE)).containsExactly("INSTANCE_ADMIN", "WORKSPACE_ADMIN");
         assertThat(roles(MEMBER)).containsExactly("INSTANCE_ADMIN");
-        assertThat(roles(LEFT)).containsExactly("OFFICE_ADMIN");
+        assertThat(roles(LEFT)).containsExactly("WORKSPACE_ADMIN");
 
         // Starting again changes nothing.
-        assertThat(roleService.grantInstanceAdmins(List.of("office@example.test", "instance@example.test")))
+        assertThat(roleService.grantInstanceAdmins(List.of("workspace@example.test", "instance@example.test")))
                 .isZero();
         assertThat(roleService.grantInstanceAdmins(List.of())).isZero();
     }
@@ -173,7 +172,7 @@ class RoleTest {
 
     private void member(UUID id, String name, String email, String status, Role... roles) {
         Accounts.upsert(jdbc, id, email, status.equals("ACTIVE"), roles);
-        Members.insert(jdbc, Members.member(id, name, email).status(status).hired(LocalDate.parse("2020-01-01")));
+        Members.insert(jdbc, Members.member(id, name, email).status(status));
     }
 
     private Cookie cookie(UUID user) {

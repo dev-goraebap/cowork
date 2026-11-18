@@ -2,11 +2,7 @@ import type { PushTopic } from '@/features/push-device';
 
 /** Each group of notices a member may take as a push, named and explained as the member meets it. */
 export const topicLabels: Record<PushTopic, { label: string; description: string }> = {
-  APPROVAL_REQUEST: { label: '결재 요청', description: '내가 결재할 차례인 신청이 오면 알려 줍니다.' },
-  APPROVAL_RESULT: { label: '결재 결과', description: '내 신청이 승인·반려되거나, 결재한 신청이 취소되면 알려 줍니다.' },
-  COPY: { label: '수신참조', description: '나를 참조로 둔 신청이 올라오면 알려 줍니다.' },
-  ANNOUNCEMENT: { label: '공지', description: '새 공지가 게시되면 알려 줍니다.' },
-  CALENDAR: { label: '일정', description: '일정에 초대되거나 일정이 바뀌거나 빠지면, 그리고 일정이 시작하기 전에 알려 줍니다.' },
+  WORK_ITEM: { label: '업무', description: '나에게 업무가 배정되면 알려 줍니다.' },
 };
 
 /** How the last push to a device went. */

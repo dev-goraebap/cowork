@@ -38,9 +38,7 @@ public class AvatarController {
         return avatarService.chosen();
     }
 
-    @GetMapping(
-            value = "/api/v1/directory/avatars/{employeeId}/{pictureId}",
-            produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/api/v1/directory/avatars/{employeeId}/{pictureId}", produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<byte[]> picture(@PathVariable UUID employeeId, @PathVariable UUID pictureId) {
         return avatarService
                 .picture(employeeId, pictureId)

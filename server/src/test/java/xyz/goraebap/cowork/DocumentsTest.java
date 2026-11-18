@@ -14,7 +14,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import jakarta.servlet.http.Cookie;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -29,6 +28,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.user.application.auth.SessionService;
 import xyz.goraebap.cowork.module.workspace.document.application.document.DocumentService;
 import xyz.goraebap.cowork.module.workspace.document.application.folder.FolderService;
@@ -38,7 +38,6 @@ import xyz.goraebap.cowork.support.Members;
 import xyz.goraebap.cowork.support.ProjectMembers;
 import xyz.goraebap.cowork.support.StoredFiles;
 import xyz.goraebap.cowork.support.TestDatabase;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Documents on BIT's 문서함: the shared space (공용) and each project's, folders nested in a space and documents in them;
@@ -804,7 +803,7 @@ class DocumentsTest {
 
     private void member(UUID id, String name, String email, Role... roles) {
         Accounts.upsert(jdbc, id, email, true, roles);
-        Members.insert(jdbc, Members.member(id, name, email).hired(LocalDate.parse("2020-01-01")));
+        Members.insert(jdbc, Members.member(id, name, email));
     }
 
     private Cookie cookie(UUID user) {

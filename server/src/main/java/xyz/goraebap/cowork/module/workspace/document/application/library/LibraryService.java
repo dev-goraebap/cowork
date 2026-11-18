@@ -80,10 +80,11 @@ public class LibraryService {
         var project = project(user, key, true);
         var doc = documentRepository
                 .findById(id)
-                .filter(found -> !found.isDeleted() && found.isWritten())
+                .filter(found -> !found.isDeleted())
                 .orElseThrow(DocumentErrorCode.DOCUMENT_NOT_FOUND::raise);
         if (!project.equals(doc.projectId())) throw DocumentErrorCode.DOCUMENT_NOT_FOUND.raise();
-        access.requireDocument(user, doc, xyz.goraebap.cowork.module.workspace.document.domain.access.Grant.Level.WRITE);
+        access.requireDocument(
+                user, doc, xyz.goraebap.cowork.module.workspace.document.domain.access.Grant.Level.WRITE);
         if (doc.version() != value.expectedVersion()) conflict();
         if (doc.parentId() != null) throw new DomainRuleViolation("하위 페이지는 별도 라벨을 갖지 않습니다");
         requireLabels(project, value.ids());

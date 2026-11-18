@@ -5,15 +5,14 @@ import java.util.UUID;
 import xyz.goraebap.cowork.shared.error.DomainRuleViolation;
 
 /**
- * One grant on a closed folder or document (docs/pending-records.md, 문서함 ②): who (the item's maker, a member, a
- * department with the departments under it, or a project's members) and how far they go.
+ * One grant on a closed folder or document (docs/pending-records.md, 문서함 ②): who (the item's maker, a member or a
+ * project's members) and how far they go.
  */
 public record Grant(Subject subject, UUID subjectId, Level level) {
     /** Who a grant is for. OWNER is the item's maker and has no id; the others name one. */
     public enum Subject {
         OWNER,
         USER,
-        DEPARTMENT,
         PROJECT
     }
 

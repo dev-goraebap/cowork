@@ -42,7 +42,6 @@ public class AccessService {
     private final DocumentFolderRepository documentFolderRepository;
     private final DocumentAccess documentAccess;
     private final DocumentSpaces documentSpaces;
-    private final ReaderQuery readerQuery;
     private final UserFacade userFacade;
     private final ProjectFacade projectFacade;
     private final Clock clock;
@@ -108,13 +107,11 @@ public class AccessService {
         documentSpaces.signal(id);
     }
 
-    /** Every member, department and project the grants name must exist. */
+    /** Every member and project the grants name must exist. */
     private void requireSubjects(List<Grant> grants) {
         var users = ids(grants, Grant.Subject.USER);
-        var departments = ids(grants, Grant.Subject.DEPARTMENT);
         var projects = ids(grants, Grant.Subject.PROJECT);
         boolean found = userFacade.summariesOf(users).keySet().containsAll(users)
-                && readerQuery.departmentNames(departments).keySet().containsAll(departments)
                 && projectFacade.summariesOf(projects).values().stream()
                         .filter(project -> !project.deleted())
                         .map(project -> project.id())
@@ -128,7 +125,6 @@ public class AccessService {
         var userIds = new HashSet<>(ids(grants, Grant.Subject.USER));
         if (maker != null) userIds.add(maker);
         var users = userFacade.summariesOf(userIds);
-        var departments = readerQuery.departmentNames(ids(grants, Grant.Subject.DEPARTMENT));
         var projects = projectFacade.summariesOf(ids(grants, Grant.Subject.PROJECT));
         return grants.stream()
                 .map(grant -> new AccessViews.GrantView(
@@ -143,7 +139,6 @@ public class AccessService {
                                 users.get(grant.subjectId()) == null
                                         ? null
                                         : users.get(grant.subjectId()).name();
-                            case DEPARTMENT -> departments.get(grant.subjectId());
                             case PROJECT ->
                                 projects.get(grant.subjectId()) == null
                                         ? null
@@ -180,7 +175,7 @@ public class AccessService {
             case DOCUMENT -> {
                 var document = documentRepository
                         .findById(id)
-                        .filter(found -> !found.isDeleted() && found.isWritten())
+                        .filter(found -> !found.isDeleted())
                         .orElseThrow(DocumentErrorCode.DOCUMENT_NOT_FOUND::raise);
                 yield new Item(
                         document.projectId(),

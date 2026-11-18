@@ -14,7 +14,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import jakarta.servlet.http.Cookie;
-import java.time.LocalDate;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -366,7 +365,7 @@ class ProjectsTest {
 
     private void member(UUID id, String name, String email, String status, Role... roles) {
         Accounts.upsert(jdbc, id, email, status.equals("ACTIVE"), roles);
-        Members.insert(jdbc, Members.member(id, name, email).status(status).hired(LocalDate.parse("2020-01-01")));
+        Members.insert(jdbc, Members.member(id, name, email).status(status));
     }
 
     private Cookie cookie(UUID user) {

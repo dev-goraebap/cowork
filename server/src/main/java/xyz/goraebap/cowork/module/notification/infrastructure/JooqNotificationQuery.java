@@ -4,7 +4,6 @@ import static xyz.goraebap.cowork.jooq.tables.NotificationEvent.NOTIFICATION_EVE
 import static xyz.goraebap.cowork.jooq.tables.NotificationRecipient.NOTIFICATION_RECIPIENT;
 
 import java.time.Instant;
-import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.jooq.Condition;
@@ -19,19 +18,6 @@ import xyz.goraebap.cowork.shared.web.Cursor;
 @Repository
 @RequiredArgsConstructor
 class JooqNotificationQuery implements NotificationQuery {
-    /** Kinds of notices about new announcements. */
-    private static final String ANNOUNCEMENT_PREFIX = "ANNOUNCEMENT_";
-
-    /** Kinds of notices about calendar events: invited, changed, removed and reminded. */
-    private static final String EVENT_PREFIX = "EVENT_";
-
-    /**
-     * How the kinds of notices about approval requests end ({KIND}_SUBMITTED and the like). Calendar notices are in
-     * neither group and show only when no group is chosen.
-     */
-    private static final List<String> APPROVAL_SUFFIXES =
-            List.of("_SUBMITTED", "_PENDING", "_CC", "_APPROVED", "_REJECTED", "_CANCELLED");
-
     private static final String SORT = "LATEST";
 
     private final DSLContext dslContext;
@@ -54,13 +40,6 @@ class JooqNotificationQuery implements NotificationQuery {
                     listing.read() == NotificationRequests.ReadState.UNREAD
                             ? NOTIFICATION_RECIPIENT.READ_AT.isNull()
                             : NOTIFICATION_RECIPIENT.READ_AT.isNotNull());
-        if (listing.category() != null)
-            condition = condition.and(
-                    switch (listing.category()) {
-                        case ANNOUNCEMENT -> NOTIFICATION_EVENT.KIND.startsWith(ANNOUNCEMENT_PREFIX);
-                        case EVENT -> NOTIFICATION_EVENT.KIND.startsWith(EVENT_PREFIX);
-                        case APPROVAL -> approval();
-                    });
         if (listing.cursor() != null) {
             var last = Cursor.decode(listing.cursor(), SORT, 2);
             condition = condition.and(DSL.row(NOTIFICATION_EVENT.CREATED_AT, NOTIFICATION_EVENT.EVENT_ID)
@@ -96,15 +75,6 @@ class JooqNotificationQuery implements NotificationQuery {
         var end = shown.getLast();
         return new NotificationViews.RowSlice(
                 shown, Cursor.encode(SORT, end.createdAt().toString(), end.id().toString()));
-    }
-
-    /** A notice about an approval request: not an announcement or calendar one, and ending as approval kinds do. */
-    private static Condition approval() {
-        return DSL.not(NOTIFICATION_EVENT.KIND.startsWith(ANNOUNCEMENT_PREFIX))
-                .and(DSL.not(NOTIFICATION_EVENT.KIND.startsWith(EVENT_PREFIX)))
-                .and(DSL.or(APPROVAL_SUFFIXES.stream()
-                        .map(NOTIFICATION_EVENT.KIND::endsWith)
-                        .toList()));
     }
 
     public long countUnread(UUID recipientId) {

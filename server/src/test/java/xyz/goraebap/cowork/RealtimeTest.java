@@ -71,20 +71,20 @@ class RealtimeTest {
         UUID toEveryone = UUID.randomUUID();
 
         transaction.executeWithoutResult(status -> {
-            realtime.signal(Signal.to(Signal.Topic.APPROVAL, rolledBack, List.of(HANA)));
+            realtime.signal(Signal.to(Signal.Topic.ISSUES, rolledBack, List.of(HANA)));
             status.setRollbackOnly();
         });
         transaction.executeWithoutResult(status -> {
-            realtime.signal(Signal.to(Signal.Topic.APPROVAL, committed, List.of(HANA)));
+            realtime.signal(Signal.to(Signal.Topic.ISSUES, committed, List.of(HANA)));
             // Still inside the transaction: nothing has left yet.
             assertThat(content(hana)).doesNotContain(committed.toString());
         });
         // Outside any transaction a signal leaves at once.
-        realtime.signal(Signal.toEveryone(Signal.Topic.ANNOUNCEMENT, toEveryone));
+        realtime.signal(Signal.toEveryone(Signal.Topic.DOCUMENTS, toEveryone));
 
         assertThat(content(hana))
                 .contains("event:signal")
-                .contains("\"topic\":\"APPROVAL\"")
+                .contains("\"topic\":\"ISSUES\"")
                 .contains(committed.toString())
                 .contains(toEveryone.toString())
                 .doesNotContain(rolledBack.toString());

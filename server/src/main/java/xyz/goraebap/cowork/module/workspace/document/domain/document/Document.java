@@ -22,20 +22,10 @@ import xyz.goraebap.cowork.shared.error.DomainRuleViolation;
 public class Document {
     public static final int TITLE_MAX = 200;
 
-    /**
-     * What a document is: a page on its own or a 매뉴얼 of ordered chapters, written here; or the row of a meeting's minutes
-     * or a submitted weekly report, which their own modules keep (문서함's system folders) and nothing here changes.
-     */
+    /** What a document is: a page on its own or a 매뉴얼 of ordered chapters. */
     public enum Kind {
         PAGE,
-        MANUAL,
-        MEETING,
-        WEEKLY_REPORT;
-
-        /** Whether documents of this kind are written in 문서함 (its folders, bodies, chapters and grants). */
-        public boolean isWritten() {
-            return this == PAGE || this == MANUAL;
-        }
+        MANUAL
     }
 
     @EqualsAndHashCode.Include
@@ -90,9 +80,6 @@ public class Document {
     }
 
     /** Whether it is written in 문서함 (a page or a 매뉴얼), not a system folder's row. */
-    public boolean isWritten() {
-        return kind.isWritten();
-    }
 
     /** Puts the document in a folder of its space, or at its top; the caller has checked the folder is the space's. */
     public void moveTo(UUID folderId) {

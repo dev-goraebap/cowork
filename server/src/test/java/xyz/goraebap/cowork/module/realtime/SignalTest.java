@@ -21,8 +21,7 @@ class SignalTest {
         assertThat(alsoAdministrators.reaches(OTHER, true)).isTrue();
         assertThat(alsoAdministrators.reaches(OTHER, false)).isFalse();
 
-        assertThat(Signal.toEveryone(Signal.Topic.ANNOUNCEMENT, UUID.randomUUID())
-                        .reaches(OTHER, false))
+        assertThat(Signal.toEveryone(Signal.Topic.DOCUMENTS, UUID.randomUUID()).reaches(OTHER, false))
                 .isTrue();
     }
 }

@@ -46,7 +46,9 @@ class SetupTest {
 
     @Test
     void theFirstStartMakesOneAdministratorAndThenCloses() throws Exception {
-        mvc.perform(get("/api/v1/setup")).andExpect(status().isOk()).andExpect(jsonPath("$.needed").value(true));
+        mvc.perform(get("/api/v1/setup"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.needed").value(true));
 
         mvc.perform(write(post("/api/v1/setup")).content("{\"name\":\"첫 관리자\",\"email\":\"First@Example.test\"}"))
                 .andExpect(status().isCreated());
@@ -56,7 +58,8 @@ class SetupTest {
         assertThat(jdbc.queryForList("SELECT role FROM user_role WHERE user_id=? ORDER BY role", String.class, admin))
                 .containsExactly("INSTANCE_ADMIN", "WORKSPACE_ADMIN");
         // The administrator signs in as everyone does (a code by e-mail), and starts with the onboarding.
-        assertThat(jdbc.queryForObject("SELECT is_active FROM users WHERE user_id=?", Boolean.class, admin)).isTrue();
+        assertThat(jdbc.queryForObject("SELECT is_active FROM users WHERE user_id=?", Boolean.class, admin))
+                .isTrue();
         mvc.perform(get("/api/v1/auth/me").cookie(cookie(admin)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("첫 관리자"))
@@ -65,7 +68,8 @@ class SetupTest {
         mvc.perform(write(post("/api/v1/setup")).content("{\"name\":\"두 번째\",\"email\":\"second@example.test\"}"))
                 .andExpect(status().isConflict())
                 .andExpect(jsonPath("$.code").value("AUTH_SETUP_DONE"));
-        assertThat(jdbc.queryForObject("SELECT count(*) FROM users", Integer.class)).isEqualTo(1);
+        assertThat(jdbc.queryForObject("SELECT count(*) FROM users", Integer.class))
+                .isEqualTo(1);
     }
 
     @Test
@@ -88,8 +92,10 @@ class SetupTest {
                 .andExpect(jsonPath("$.name").value("새 구성원"))
                 .andExpect(jsonPath("$.roles").isEmpty());
         var member = jdbc.queryForObject("SELECT user_id FROM users WHERE email='new@example.test'", UUID.class);
-        assertThat(jdbc.queryForObject("SELECT is_active FROM users WHERE user_id=?", Boolean.class, member)).isTrue();
-        mvc.perform(get("/api/v1/auth/me").cookie(cookie(member))).andExpect(jsonPath("$.onboarded").value(false));
+        assertThat(jdbc.queryForObject("SELECT is_active FROM users WHERE user_id=?", Boolean.class, member))
+                .isTrue();
+        mvc.perform(get("/api/v1/auth/me").cookie(cookie(member)))
+                .andExpect(jsonPath("$.onboarded").value(false));
 
         // The same e-mail twice, and anyone but an instance administrator, are refused.
         mvc.perform(write(post("/api/v1/admin/members"))
@@ -107,7 +113,8 @@ class SetupTest {
     }
 
     private MockHttpServletRequestBuilder write(MockHttpServletRequestBuilder builder) throws Exception {
-        var result = mvc.perform(get("/api/v1/auth/csrf")).andExpect(status().isOk()).andReturn();
+        var result =
+                mvc.perform(get("/api/v1/auth/csrf")).andExpect(status().isOk()).andReturn();
         var tree = tools.jackson.databind.json.JsonMapper.builder()
                 .build()
                 .readTree(result.getResponse().getContentAsString());

@@ -2,9 +2,9 @@ import { queryOptions } from '@tanstack/react-query';
 import { getJson, type components } from '@/shared/api';
 
 type Schemas = components['schemas'];
-export type OrgDepartment = Schemas['OrgDepartment'] & Required<Pick<Schemas['OrgDepartment'], 'id' | 'name' | 'depth' | 'displayOrder'>>;
-export type OrgPerson = Schemas['OrgPerson'] & Required<Pick<Schemas['OrgPerson'], 'id' | 'name'>>;
-export type OrgChart = { departments: OrgDepartment[]; people: OrgPerson[] };
+export type OrgPerson = Schemas['Person'] & Required<Pick<Schemas['Person'], 'id' | 'name'>>;
+/** 일하는 사람들. (부서는 서버가 아직 비워 보낸다.) */
+type OrgChart = { people: OrgPerson[] };
 export const directoryAgentKeys = ['directory-agents'] as const;
 
 export const directoryAgentsOptions = (employeeId: string) => queryOptions({

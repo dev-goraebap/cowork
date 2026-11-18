@@ -14,11 +14,11 @@ import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.Query;
 import org.springframework.stereotype.Repository;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.jooq.tables.records.IssueViewRecord;
 import xyz.goraebap.cowork.module.workspace.issue.domain.view.SavedView;
 import xyz.goraebap.cowork.module.workspace.issue.domain.view.SavedViewRepository;
-import tools.jackson.core.type.TypeReference;
-import tools.jackson.databind.json.JsonMapper;
 
 @Repository
 @RequiredArgsConstructor

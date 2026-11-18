@@ -36,13 +36,12 @@ public class DocumentAccess {
     private final GrantRepository grantRepository;
     private final DocumentFolderRepository documentFolderRepository;
     private final DocumentRepository documentRepository;
-    private final ReaderQuery readerQuery;
     private final ProjectAccess projectAccess;
 
     /** The member as the grants see them. */
     public Reader reader(CurrentUser user) {
-        if (user.workspaceAdmin()) return new Reader(user.id(), true, Set.of(), Map.of());
-        return new Reader(user.id(), false, readerQuery.departmentsOf(user.id()), projectAccess.rolesOf(user.id()));
+        if (user.workspaceAdmin()) return new Reader(user.id(), true, Map.of());
+        return new Reader(user.id(), false, projectAccess.rolesOf(user.id()));
     }
 
     /** Every folder's and closed document's level for the reader, read once for one request. */

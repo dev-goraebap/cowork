@@ -9,9 +9,9 @@ import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.shared.error.CommonErrorCode;
 import xyz.goraebap.cowork.shared.error.ErrorCode;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * The problem body for errors answered outside Spring MVC: a URL the security firewall rejects, the error page, and

@@ -95,12 +95,9 @@ class IdentityAccessTest {
                             + " ON CONFLICT(user_id) DO UPDATE SET email=excluded.email",
                     id,
                     email(id));
-            Members.insert(
-                    jdbc,
-                    Members.member(id, "Test Member", email(id))
-                            .hired(java.time.LocalDate.now(java.time.ZoneOffset.UTC)));
+            Members.insert(jdbc, Members.member(id, "Test Member", email(id)));
         }
-        Accounts.roles(jdbc, MANAGER, Role.OFFICE_ADMIN);
+        Accounts.roles(jdbc, MANAGER, Role.WORKSPACE_ADMIN);
         doAnswer(invocation -> {
                     code.set(invocation.getArgument(1));
                     return null;
@@ -315,9 +312,9 @@ class IdentityAccessTest {
     @org.junit.jupiter.api.Disabled("오피스를 뺀 뒤 깨짐: 오피스 주소나 도구를 썼다. 워크스페이스 기준으로 다시 쓴다.")
     @Test
     void sessionCarriesTheRolesInTheirOwnOrder() throws Exception {
-        Accounts.roles(jdbc, MANAGER, Role.WORKSPACE_ADMIN, Role.OFFICE_ADMIN, Role.INSTANCE_ADMIN);
+        Accounts.roles(jdbc, MANAGER, Role.WORKSPACE_ADMIN, Role.INSTANCE_ADMIN);
         mvc.perform(get("/api/v1/auth/me").cookie(cookie(MANAGER)))
-                .andExpect(jsonPath("$.roles").value(contains("INSTANCE_ADMIN", "OFFICE_ADMIN", "WORKSPACE_ADMIN")))
+                .andExpect(jsonPath("$.roles").value(contains("INSTANCE_ADMIN", "WORKSPACE_ADMIN")))
                 .andExpect(jsonPath("$.admin").doesNotExist());
         mvc.perform(get("/api/v1/auth/me").cookie(cookie(USER)))
                 .andExpect(jsonPath("$.roles").isEmpty());
@@ -327,10 +324,7 @@ class IdentityAccessTest {
 
     @Test
     void onboardingIsMarkedOnceForTheSignedInAccountOnly() throws Exception {
-        // V3 adds the column empty, so every account, existing ones included, starts not onboarded.
-        assertThat(jdbc.queryForObject(
-                        "SELECT count(*) FROM flyway_schema_history WHERE version='3' AND success=1", Integer.class))
-                .isEqualTo(1);
+        // Every account starts not onboarded.
         mvc.perform(get("/api/v1/auth/me").cookie(cookie(USER)))
                 .andExpect(jsonPath("$.onboarded").value(false));
         mvc.perform(write(put("/api/v1/auth/onboarding"))).andExpect(status().isUnauthorized());

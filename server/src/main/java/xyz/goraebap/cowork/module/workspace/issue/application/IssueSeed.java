@@ -20,6 +20,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 import xyz.goraebap.cowork.module.seed.SeedAuthors;
 import xyz.goraebap.cowork.module.seed.SeedFormatSpi;
 import xyz.goraebap.cowork.module.workspace.activity.ActivityFacade;
@@ -40,8 +42,6 @@ import xyz.goraebap.cowork.module.workspace.project.NewProject;
 import xyz.goraebap.cowork.module.workspace.project.ProjectFacade;
 import xyz.goraebap.cowork.module.workspace.project.ProjectSummary;
 import xyz.goraebap.cowork.module.workspace.richbody.RichBodyFacade;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * A seed file of a project's issues (cowork-guide-architecture, 개발 서버 채우기): {project, labels?, issues}. The
