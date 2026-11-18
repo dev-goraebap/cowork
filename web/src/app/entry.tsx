@@ -7,7 +7,7 @@ import { Toaster } from '@/shared/ui/toast';
 import { TooltipProvider } from '@/shared/ui/tooltip';
 import { queryClient } from './model/query-client';
 import { AppTheme } from './providers/AppTheme';
-import { BootCover } from './router/BootCover';
+import { BootCover } from './BootCover';
 import { createAppRouter } from './router/router';
 
 const router = createAppRouter(queryClient);

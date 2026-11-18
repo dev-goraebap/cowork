@@ -1,7 +1,7 @@
 import { Navigate, createRouter } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 import { Route as AppRoute } from '@/pages/_app/route';
-import { AuthLayout } from './AuthLayout';
+import { AuthLayout } from '../layout/AuthLayout';
 import { routeTree } from './routeTree.gen';
 import { isWorkItemViewChange } from './work-item-view-transition';
 

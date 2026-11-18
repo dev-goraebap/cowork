@@ -37,7 +37,7 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 
 | 규칙 | 내용 |
 | :--- | :--- |
-| 주소 | TanStack Router 코드 라우팅(`app/router/router.tsx`). 메뉴 항목마다 주소(`widgets/app-shell/model/nav.ts`의 `path`). 메인 메뉴의 페이지는 묶음 이름 없이 바로(`/schedule` · `/weekly-reports` · `/members` …), 중첩은 프로젝트(`/projects/{key}/…`)와 관리 구역만. client의 옛 주소(`/office/calendar` · `/office/org-chart` …)와 상세 주소(`/office/announcements/$id` …)는 router의 `MOVED`가 쿼리째 새 주소로 넘긴다. 업무의 옛 주소(`/issues` · `/issues/$id` · `/projects/$key/issues` · `/projects/$key/issues/$number`)도 `work-items`로 쿼리째 넘긴다. `/`는 `/schedule`로, 구역을 뜻하는 주소(`/instance` · `/office/admin` · `/projects/admin` · `/projects/{key}`)는 그 첫 페이지로. 관리 구역 주소는 그 역할(`INSTANCE_ADMIN` · `OFFICE_ADMIN` · `PROJECTS_ADMIN`)이 있을 때만, 프로젝트 설정은 `PROJECTS_ADMIN`만(없으면 그 프로젝트 업무로). 모르는 주소는 홈으로. 상세 · 새 글 주소는 목록 아래(`/announcements/$id`, `/leaves/new`, `/schedule/events/$id` …), 프로젝트 안 페이지는 `/projects/$key/(work-items|work-items/$number|cycles|schedule|documents|documents/$documentId|members|settings/$section)` |
+| 주소 | TanStack Router 파일 라우팅. `src/pages`의 폴더가 곧 주소이고(`app/router/routeTree.gen.ts`가 만들어진다), `page.tsx`가 그 주소의 화면, `route.tsx`가 그 아래 전부에 걸리는 틀(권한 확인 · 먼저 읽기)이다. 로그인한 사람의 주소는 `_app` 아래(주소에 나타나지 않음), 로그인 · 온보딩 · 인쇄는 그 밖. 구역 주소(`/`, `/instance`, `/account`, `/workspace/settings`, `/workspace/projects/{key}/settings`)는 첫 페이지로 보낸다. 관리 구역은 그 역할(`INSTANCE_ADMIN` · `WORKSPACE_ADMIN`)이 있을 때만, 프로젝트 설정은 그 프로젝트의 관리자만(없으면 그 프로젝트 업무로). 모르는 주소는 홈(`/workspace/projects`)으로. 프로젝트 안 페이지는 `/workspace/projects/{key}/(work-items|work-items/{number}|cycles|documents|documents/{id}|members|settings/…)` |
 | 업무 이름 | 이 항목은 업무(work items)다. 주소 · 소스(`entities/work-item` · `widgets/work-item-*` · `pages/work-items`, `WorkItem…` 이름)와 화면 글은 업무로 쓰고 이슈라 하지 않는다. 서버 API(`/api/v1/issues…`, `/api/v1/issue-views…`)와 스키마 이름(`IssueRow` …)은 서버의 이름 그대로 둔다 |
 | 업무 보기 (2026-11-11) | 업무는 프로젝트마다 본다. 전체 업무(`/work-items`)는 주소만 남고 메뉴에 없다. 전역 문서함도 없다: `/documents`는 프로젝트 목록으로, `/documents/{id}`는 그 문서의 프로젝트 주소로 넘긴다 |
 | 세션 | `/api/v1/auth/me`(`shared/auth`), 1분마다 다시 읽음. 없으면 `/login`, 어디서든 401이면 로그인으로. 로그인 직후에는 세션을 바로 다시 읽는다(로그인 화면에는 세션을 보는 쿼리가 없어 무효화만으로는 옛 값이 남는다) |
@@ -177,6 +177,6 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 
 - 프로젝트 일반의 기본정보 줄은 표식(`MarkPicker`)과 이름 입력칸을 한 줄에 가운데 정렬하고, 이름이 남은 너비를 쓴다. 긴 설명은 줄 높이를 늘리고 입력 오류는 해당 입력 아래에 둔다.
 - 묶어 저장하는 양식은 페이지의 변경 저장 · 되돌리기를 유지한다. 보기 좋은 줄을 만들기 위해 즉시 저장으로 바꾸지 않는다.
-- 첫 진입만 첫 방문 덮개(로켓, `app/router/BootCover`)가 덮는다. 이후 화면 이동은 [AGENTS.md](../AGENTS.md)의 화면 전환 로딩 규칙을 따른다: 가리는 판 없이 캐시가 있으면 바로 그리고, 없으면 150ms 뒤 콘텐츠 카드 위 2px 진행 표시(`app/router/RouteStage`, 최소 300ms), 준비된 화면끼리는 콘텐츠 영역만 200ms 교차 페이드(`cowork-content`). 탐색 메뉴는 계속 쓸 수 있다.
+- 첫 진입만 첫 방문 덮개(로켓, `app/BootCover`)가 덮는다. 이후 화면 이동은 [AGENTS.md](../AGENTS.md)의 화면 전환 로딩 규칙을 따른다: 가리는 판 없이 캐시가 있으면 바로 그리고, 없으면 150ms 뒤 콘텐츠 카드 위 2px 진행 표시(`app/router/RouteStage`, 최소 300ms), 준비된 화면끼리는 콘텐츠 영역만 200ms 교차 페이드(`cowork-content`). 탐색 메뉴는 계속 쓸 수 있다.
 - 탭 · 필터 변경, 추가 페이지, 백그라운드 조회의 대기와 오류는 해당 영역에서 처리한다. 움직임 줄이기를 선택하면 교차 페이드와 진행 표시의 흐름을 생략한다.
 - 키보드 초점은 키트 부품의 shadcn 기본(`focus-visible:ring-3 ring-ring/50`, 바깥 3px)이고, 직접 그린 단추는 `focus-visible:ring-2 ring-ring`을 쓴다.

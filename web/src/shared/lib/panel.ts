@@ -76,7 +76,7 @@ export function useOpenPanel() {
 /**
  * 지금 페이지 위에 열린 대화상자(href)와 나가는 길. close는 그 아래 페이지로(여기서 열었으면 한 걸음 뒤로, 아니면 표시를 뗀
  * 주소로; 대화상자가 아닐 때 fallbackHref가 있으면 그리로), expand는 같은 것을 자기 페이지로, done은 다른 주소(만든 것의
- * 상세)로 대화상자 자리를 바꾼다. 휴대폰 폭에서 남은 ?panel은 PanelHost(app/router)가 expand로 페이지로 옮긴다:
+ * 상세)로 대화상자 자리를 바꾼다. 휴대폰 폭에서 남은 ?panel은 PanelHost(app/layout)가 expand로 페이지로 옮긴다:
  * 양식이 그 전에 쓰던 내용을 맡길 수 있도록 href는 휴대폰에서도 그대로 돌려준다.
  */
 /**
@@ -157,7 +157,7 @@ export function useLeaveEditor() {
 /**
  * 지금 페이지(또는 대화상자)의 주소가 있는 대화상자(버전 기록 같은 것): 페이지 주소에 ?dialog=name을 달고 주소창에는 페이지
  * 주소 뒤에 /name을 붙여 보인다(패널처럼 mask). 새로고침 · 복사한 주소는 /name 경로를 거쳐 대화상자가 열린 채 돌아온다
- * (app/router, unmaskDialogHref). 닫으면 여기서 열었을 때 한 걸음 뒤로, 아니면 그 값만 뗀다.
+ * (옛 주소 라우트의 unmaskDialogHref). 닫으면 여기서 열었을 때 한 걸음 뒤로, 아니면 그 값만 뗀다.
  */
 export function useMaskedDialog(name: string) {
   const router = useRouter()

@@ -1,7 +1,7 @@
 import { Outlet, useRouterState } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
 import { cn } from 'cn';
-import { isWorkItemViewChange } from './work-item-view-transition';
+import { isWorkItemViewChange } from '../router/work-item-view-transition';
 
 /** 이 시간 안에 끝나는 이동에는 진행 막대를 띄우지 않는다. */
 const SHOW_AFTER_MS = 150;
