@@ -118,14 +118,6 @@ async function prepare(client: QueryClient, pathname: string, searchStr: string,
     await prime((await import('@/entities/calendar')).calendarFeedOptions(place.days[0] ?? place.day, place.days.at(-1) ?? place.day));
     return;
   }
-  if (pathname === '/workspace/settings/general') {
-    const projects = await import('@/entities/project'); const issues = await import('@/entities/work-item');
-    await Promise.all([prime(projects.projectsOptions('ACTIVE')), prime(projects.projectsOptions('ARCHIVED')),
-      prime(projects.projectsOptions('DELETED')), prime(issues.typesOptions()), prime(issues.labelsOptions())]); return;
-  }
-  if (pathname === '/workspace/settings/work-item-types' || pathname === '/workspace/settings/work-item-labels') {
-    const issues = await import('@/entities/work-item'); if (pathname.endsWith('/types')) await prime(issues.typesOptions()); else await prime(issues.labelsOptions()); return;
-  }
   if (pathname === '/workspace/projects' || key) {
     const api = await import('@/entities/project');
     if (key) await Promise.all([prime(api.projectOptions(key)), path === '/members' ? prime(api.projectMembersOptions(key)) : Promise.resolve()]);

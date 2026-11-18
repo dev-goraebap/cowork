@@ -16,6 +16,7 @@ import { Route as LoginIndexRouteImport } from './../../pages/login/index'
 import { Route as AppAccountIndexRouteImport } from './../../pages/_app/account/index'
 import { Route as AppInboxIdRouteImport } from './../../pages/_app/inbox/$id'
 import { Route as AppInstanceIndexRouteImport } from './../../pages/_app/instance/index'
+import { Route as AppWorkspaceSettingsRouteRouteImport } from './../../pages/_app/workspace/settings/route'
 import { Route as AppAccountAgentsIndexRouteImport } from './../../pages/_app/account/agents/index'
 import { Route as AppAccountDisplayIndexRouteImport } from './../../pages/_app/account/display/index'
 import { Route as AppAccountNotificationsIndexRouteImport } from './../../pages/_app/account/notifications/index'
@@ -23,6 +24,12 @@ import { Route as AppAccountProfileIndexRouteImport } from './../../pages/_app/a
 import { Route as AppInstanceMembersIndexRouteImport } from './../../pages/_app/instance/members/index'
 import { Route as AppInstancePushDeliveriesIndexRouteImport } from './../../pages/_app/instance/push-deliveries/index'
 import { Route as AppInstanceSystemStatusIndexRouteImport } from './../../pages/_app/instance/system-status/index'
+import { Route as AppWorkspaceSettingsIndexRouteImport } from './../../pages/_app/workspace/settings/index'
+import { Route as AppWorkspaceSettingsDocumentLabelsIndexRouteImport } from './../../pages/_app/workspace/settings/document-labels/index'
+import { Route as AppWorkspaceSettingsGeneralIndexRouteImport } from './../../pages/_app/workspace/settings/general/index'
+import { Route as AppWorkspaceSettingsRolesIndexRouteImport } from './../../pages/_app/workspace/settings/roles/index'
+import { Route as AppWorkspaceSettingsWorkItemLabelsIndexRouteImport } from './../../pages/_app/workspace/settings/work-item-labels/index'
+import { Route as AppWorkspaceSettingsWorkItemTypesIndexRouteImport } from './../../pages/_app/workspace/settings/work-item-types/index'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',
@@ -58,6 +65,12 @@ const AppInstanceIndexRoute = AppInstanceIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppInstanceRouteRoute,
 } as any)
+const AppWorkspaceSettingsRouteRoute =
+  AppWorkspaceSettingsRouteRouteImport.update({
+    id: '/workspace/settings',
+    path: '/workspace/settings',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
 const AppAccountAgentsIndexRoute = AppAccountAgentsIndexRouteImport.update({
   id: '/account/agents/',
   path: '/account/agents/',
@@ -96,12 +109,49 @@ const AppInstanceSystemStatusIndexRoute =
     path: '/system-status/',
     getParentRoute: () => AppInstanceRouteRoute,
   } as any)
+const AppWorkspaceSettingsIndexRoute =
+  AppWorkspaceSettingsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AppWorkspaceSettingsRouteRoute,
+  } as any)
+const AppWorkspaceSettingsDocumentLabelsIndexRoute =
+  AppWorkspaceSettingsDocumentLabelsIndexRouteImport.update({
+    id: '/document-labels/',
+    path: '/document-labels/',
+    getParentRoute: () => AppWorkspaceSettingsRouteRoute,
+  } as any)
+const AppWorkspaceSettingsGeneralIndexRoute =
+  AppWorkspaceSettingsGeneralIndexRouteImport.update({
+    id: '/general/',
+    path: '/general/',
+    getParentRoute: () => AppWorkspaceSettingsRouteRoute,
+  } as any)
+const AppWorkspaceSettingsRolesIndexRoute =
+  AppWorkspaceSettingsRolesIndexRouteImport.update({
+    id: '/roles/',
+    path: '/roles/',
+    getParentRoute: () => AppWorkspaceSettingsRouteRoute,
+  } as any)
+const AppWorkspaceSettingsWorkItemLabelsIndexRoute =
+  AppWorkspaceSettingsWorkItemLabelsIndexRouteImport.update({
+    id: '/work-item-labels/',
+    path: '/work-item-labels/',
+    getParentRoute: () => AppWorkspaceSettingsRouteRoute,
+  } as any)
+const AppWorkspaceSettingsWorkItemTypesIndexRoute =
+  AppWorkspaceSettingsWorkItemTypesIndexRouteImport.update({
+    id: '/work-item-types/',
+    path: '/work-item-types/',
+    getParentRoute: () => AppWorkspaceSettingsRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppRouteRouteWithChildren
   '/inbox': typeof AppInboxRouteRouteWithChildren
   '/instance': typeof AppInstanceRouteRouteWithChildren
   '/login/': typeof LoginIndexRoute
+  '/workspace/settings': typeof AppWorkspaceSettingsRouteRouteWithChildren
   '/inbox/$id': typeof AppInboxIdRoute
   '/account/': typeof AppAccountIndexRoute
   '/instance/': typeof AppInstanceIndexRoute
@@ -112,6 +162,12 @@ export interface FileRoutesByFullPath {
   '/instance/members/': typeof AppInstanceMembersIndexRoute
   '/instance/push-deliveries/': typeof AppInstancePushDeliveriesIndexRoute
   '/instance/system-status/': typeof AppInstanceSystemStatusIndexRoute
+  '/workspace/settings/': typeof AppWorkspaceSettingsIndexRoute
+  '/workspace/settings/document-labels/': typeof AppWorkspaceSettingsDocumentLabelsIndexRoute
+  '/workspace/settings/general/': typeof AppWorkspaceSettingsGeneralIndexRoute
+  '/workspace/settings/roles/': typeof AppWorkspaceSettingsRolesIndexRoute
+  '/workspace/settings/work-item-labels/': typeof AppWorkspaceSettingsWorkItemLabelsIndexRoute
+  '/workspace/settings/work-item-types/': typeof AppWorkspaceSettingsWorkItemTypesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AppRouteRouteWithChildren
@@ -127,6 +183,12 @@ export interface FileRoutesByTo {
   '/instance/members': typeof AppInstanceMembersIndexRoute
   '/instance/push-deliveries': typeof AppInstancePushDeliveriesIndexRoute
   '/instance/system-status': typeof AppInstanceSystemStatusIndexRoute
+  '/workspace/settings': typeof AppWorkspaceSettingsIndexRoute
+  '/workspace/settings/document-labels': typeof AppWorkspaceSettingsDocumentLabelsIndexRoute
+  '/workspace/settings/general': typeof AppWorkspaceSettingsGeneralIndexRoute
+  '/workspace/settings/roles': typeof AppWorkspaceSettingsRolesIndexRoute
+  '/workspace/settings/work-item-labels': typeof AppWorkspaceSettingsWorkItemLabelsIndexRoute
+  '/workspace/settings/work-item-types': typeof AppWorkspaceSettingsWorkItemTypesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -134,6 +196,7 @@ export interface FileRoutesById {
   '/_app/inbox': typeof AppInboxRouteRouteWithChildren
   '/_app/instance': typeof AppInstanceRouteRouteWithChildren
   '/login/': typeof LoginIndexRoute
+  '/_app/workspace/settings': typeof AppWorkspaceSettingsRouteRouteWithChildren
   '/_app/inbox/$id': typeof AppInboxIdRoute
   '/_app/account/': typeof AppAccountIndexRoute
   '/_app/instance/': typeof AppInstanceIndexRoute
@@ -144,6 +207,12 @@ export interface FileRoutesById {
   '/_app/instance/members/': typeof AppInstanceMembersIndexRoute
   '/_app/instance/push-deliveries/': typeof AppInstancePushDeliveriesIndexRoute
   '/_app/instance/system-status/': typeof AppInstanceSystemStatusIndexRoute
+  '/_app/workspace/settings/': typeof AppWorkspaceSettingsIndexRoute
+  '/_app/workspace/settings/document-labels/': typeof AppWorkspaceSettingsDocumentLabelsIndexRoute
+  '/_app/workspace/settings/general/': typeof AppWorkspaceSettingsGeneralIndexRoute
+  '/_app/workspace/settings/roles/': typeof AppWorkspaceSettingsRolesIndexRoute
+  '/_app/workspace/settings/work-item-labels/': typeof AppWorkspaceSettingsWorkItemLabelsIndexRoute
+  '/_app/workspace/settings/work-item-types/': typeof AppWorkspaceSettingsWorkItemTypesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -152,6 +221,7 @@ export interface FileRouteTypes {
     | '/inbox'
     | '/instance'
     | '/login/'
+    | '/workspace/settings'
     | '/inbox/$id'
     | '/account/'
     | '/instance/'
@@ -162,6 +232,12 @@ export interface FileRouteTypes {
     | '/instance/members/'
     | '/instance/push-deliveries/'
     | '/instance/system-status/'
+    | '/workspace/settings/'
+    | '/workspace/settings/document-labels/'
+    | '/workspace/settings/general/'
+    | '/workspace/settings/roles/'
+    | '/workspace/settings/work-item-labels/'
+    | '/workspace/settings/work-item-types/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,12 +253,19 @@ export interface FileRouteTypes {
     | '/instance/members'
     | '/instance/push-deliveries'
     | '/instance/system-status'
+    | '/workspace/settings'
+    | '/workspace/settings/document-labels'
+    | '/workspace/settings/general'
+    | '/workspace/settings/roles'
+    | '/workspace/settings/work-item-labels'
+    | '/workspace/settings/work-item-types'
   id:
     | '__root__'
     | '/_app'
     | '/_app/inbox'
     | '/_app/instance'
     | '/login/'
+    | '/_app/workspace/settings'
     | '/_app/inbox/$id'
     | '/_app/account/'
     | '/_app/instance/'
@@ -193,6 +276,12 @@ export interface FileRouteTypes {
     | '/_app/instance/members/'
     | '/_app/instance/push-deliveries/'
     | '/_app/instance/system-status/'
+    | '/_app/workspace/settings/'
+    | '/_app/workspace/settings/document-labels/'
+    | '/_app/workspace/settings/general/'
+    | '/_app/workspace/settings/roles/'
+    | '/_app/workspace/settings/work-item-labels/'
+    | '/_app/workspace/settings/work-item-types/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -251,6 +340,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInstanceIndexRouteImport
       parentRoute: typeof AppInstanceRouteRoute
     }
+    '/_app/workspace/settings': {
+      id: '/_app/workspace/settings'
+      path: '/workspace/settings'
+      fullPath: '/workspace/settings'
+      preLoaderRoute: typeof AppWorkspaceSettingsRouteRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/account/agents/': {
       id: '/_app/account/agents/'
       path: '/account/agents'
@@ -300,6 +396,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInstanceSystemStatusIndexRouteImport
       parentRoute: typeof AppInstanceRouteRoute
     }
+    '/_app/workspace/settings/': {
+      id: '/_app/workspace/settings/'
+      path: '/'
+      fullPath: '/workspace/settings/'
+      preLoaderRoute: typeof AppWorkspaceSettingsIndexRouteImport
+      parentRoute: typeof AppWorkspaceSettingsRouteRoute
+    }
+    '/_app/workspace/settings/document-labels/': {
+      id: '/_app/workspace/settings/document-labels/'
+      path: '/document-labels'
+      fullPath: '/workspace/settings/document-labels/'
+      preLoaderRoute: typeof AppWorkspaceSettingsDocumentLabelsIndexRouteImport
+      parentRoute: typeof AppWorkspaceSettingsRouteRoute
+    }
+    '/_app/workspace/settings/general/': {
+      id: '/_app/workspace/settings/general/'
+      path: '/general'
+      fullPath: '/workspace/settings/general/'
+      preLoaderRoute: typeof AppWorkspaceSettingsGeneralIndexRouteImport
+      parentRoute: typeof AppWorkspaceSettingsRouteRoute
+    }
+    '/_app/workspace/settings/roles/': {
+      id: '/_app/workspace/settings/roles/'
+      path: '/roles'
+      fullPath: '/workspace/settings/roles/'
+      preLoaderRoute: typeof AppWorkspaceSettingsRolesIndexRouteImport
+      parentRoute: typeof AppWorkspaceSettingsRouteRoute
+    }
+    '/_app/workspace/settings/work-item-labels/': {
+      id: '/_app/workspace/settings/work-item-labels/'
+      path: '/work-item-labels'
+      fullPath: '/workspace/settings/work-item-labels/'
+      preLoaderRoute: typeof AppWorkspaceSettingsWorkItemLabelsIndexRouteImport
+      parentRoute: typeof AppWorkspaceSettingsRouteRoute
+    }
+    '/_app/workspace/settings/work-item-types/': {
+      id: '/_app/workspace/settings/work-item-types/'
+      path: '/work-item-types'
+      fullPath: '/workspace/settings/work-item-types/'
+      preLoaderRoute: typeof AppWorkspaceSettingsWorkItemTypesIndexRouteImport
+      parentRoute: typeof AppWorkspaceSettingsRouteRoute
+    }
   }
 }
 
@@ -332,9 +470,38 @@ const AppInstanceRouteRouteChildren: AppInstanceRouteRouteChildren = {
 const AppInstanceRouteRouteWithChildren =
   AppInstanceRouteRoute._addFileChildren(AppInstanceRouteRouteChildren)
 
+interface AppWorkspaceSettingsRouteRouteChildren {
+  AppWorkspaceSettingsIndexRoute: typeof AppWorkspaceSettingsIndexRoute
+  AppWorkspaceSettingsDocumentLabelsIndexRoute: typeof AppWorkspaceSettingsDocumentLabelsIndexRoute
+  AppWorkspaceSettingsGeneralIndexRoute: typeof AppWorkspaceSettingsGeneralIndexRoute
+  AppWorkspaceSettingsRolesIndexRoute: typeof AppWorkspaceSettingsRolesIndexRoute
+  AppWorkspaceSettingsWorkItemLabelsIndexRoute: typeof AppWorkspaceSettingsWorkItemLabelsIndexRoute
+  AppWorkspaceSettingsWorkItemTypesIndexRoute: typeof AppWorkspaceSettingsWorkItemTypesIndexRoute
+}
+
+const AppWorkspaceSettingsRouteRouteChildren: AppWorkspaceSettingsRouteRouteChildren =
+  {
+    AppWorkspaceSettingsIndexRoute: AppWorkspaceSettingsIndexRoute,
+    AppWorkspaceSettingsDocumentLabelsIndexRoute:
+      AppWorkspaceSettingsDocumentLabelsIndexRoute,
+    AppWorkspaceSettingsGeneralIndexRoute:
+      AppWorkspaceSettingsGeneralIndexRoute,
+    AppWorkspaceSettingsRolesIndexRoute: AppWorkspaceSettingsRolesIndexRoute,
+    AppWorkspaceSettingsWorkItemLabelsIndexRoute:
+      AppWorkspaceSettingsWorkItemLabelsIndexRoute,
+    AppWorkspaceSettingsWorkItemTypesIndexRoute:
+      AppWorkspaceSettingsWorkItemTypesIndexRoute,
+  }
+
+const AppWorkspaceSettingsRouteRouteWithChildren =
+  AppWorkspaceSettingsRouteRoute._addFileChildren(
+    AppWorkspaceSettingsRouteRouteChildren,
+  )
+
 interface AppRouteRouteChildren {
   AppInboxRouteRoute: typeof AppInboxRouteRouteWithChildren
   AppInstanceRouteRoute: typeof AppInstanceRouteRouteWithChildren
+  AppWorkspaceSettingsRouteRoute: typeof AppWorkspaceSettingsRouteRouteWithChildren
   AppAccountIndexRoute: typeof AppAccountIndexRoute
   AppAccountAgentsIndexRoute: typeof AppAccountAgentsIndexRoute
   AppAccountDisplayIndexRoute: typeof AppAccountDisplayIndexRoute
@@ -345,6 +512,7 @@ interface AppRouteRouteChildren {
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppInboxRouteRoute: AppInboxRouteRouteWithChildren,
   AppInstanceRouteRoute: AppInstanceRouteRouteWithChildren,
+  AppWorkspaceSettingsRouteRoute: AppWorkspaceSettingsRouteRouteWithChildren,
   AppAccountIndexRoute: AppAccountIndexRoute,
   AppAccountAgentsIndexRoute: AppAccountAgentsIndexRoute,
   AppAccountDisplayIndexRoute: AppAccountDisplayIndexRoute,

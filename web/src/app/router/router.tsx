@@ -17,12 +17,7 @@ import type { AnyRoute } from '@tanstack/react-router';
 import { routeTree as fileRouteTree } from './routeTree.gen';
 import { preparePage } from './prepare-page';
 
-const DocumentLabelsPage = lazyRouteComponent(() => import('@/pages/workspace-settings/document-labels'), 'DocumentLabelsPage');
 const SearchPage = lazyRouteComponent(() => import('@/pages/workspace/search'), 'SearchPage');
-const WorkspaceGeneralPage = lazyRouteComponent(() => import('@/pages/workspace-settings/general'), 'WorkspaceGeneralPage');
-const WorkspaceRolesPage = lazyRouteComponent(() => import('@/pages/workspace-settings/roles'), 'WorkspaceRolesPage');
-const WorkItemLabelsPage = lazyRouteComponent(() => import('@/pages/workspace-settings/work-item-labels'), 'WorkItemLabelsPage');
-const WorkItemTypesPage = lazyRouteComponent(() => import('@/pages/workspace-settings/work-item-types'), 'WorkItemTypesPage');
 const ComingSoonPage = lazyRouteComponent(() => import('@/pages/workspace/coming-soon'), 'ComingSoonPage');
 const ProjectGeneralPage = lazyRouteComponent(() => import('@/pages/project-settings/general'), 'ProjectGeneralPage');
 const ProjectIntegrationsPage = lazyRouteComponent(() => import('@/pages/project-settings/integrations'), 'ProjectIntegrationsPage');
@@ -97,11 +92,6 @@ const PAGES: Record<string, ComponentType<{ crumbs: Crumb[] }>> = {
   '/my-work': MyWorkPage,
   '/workspace/documents': DocumentBoxPage,
   '/workspace/members': WorkspaceMembersPage,
-  '/workspace/settings/general': WorkspaceGeneralPage,
-  '/workspace/settings/roles': WorkspaceRolesPage,
-  '/workspace/settings/document-labels': DocumentLabelsPage,
-  '/workspace/settings/work-item-labels': WorkItemLabelsPage,
-  '/workspace/settings/work-item-types': WorkItemTypesPage,
 };
 
 /** The page at a menu's address (one not built yet says it is on its way). */
@@ -155,7 +145,6 @@ const pageRoutes = [
 /** Addresses standing for a menu, taking one to its first page, and the moved ones. */
 const REDIRECTS: Record<string, string> = {
   '/': HOME,
-  '/workspace/settings': '/workspace/settings/general',
   '/workspace/projects/new': '/workspace/projects',
 };
 
@@ -177,7 +166,7 @@ const historyRoutes = ['/workspace/documents/$documentId/history']
   }));
 
 /** 파일 라우트(src/pages/_app)로 옮긴 주소와 그 아래: 메뉴 항목마다 만드는 길에서 뺀다. */
-const FILE_ROUTED = ['/inbox', '/instance', '/account'];
+const FILE_ROUTED = ['/inbox', '/instance', '/account', '/workspace/settings'];
 const isFileRouted = (path: string) => FILE_ROUTED.some(base => path === base || path.startsWith(base + '/'));
 
 /**
