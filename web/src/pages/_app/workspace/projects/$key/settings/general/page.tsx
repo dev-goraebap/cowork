@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { ProjectGeneralPage } from './ui/ProjectGeneralPage';
 
 /** /workspace/projects/{key}/settings/general: 프로젝트 이름 · 키 · 설명. */

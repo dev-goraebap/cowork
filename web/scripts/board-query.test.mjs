@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { listingForGroup } from '../src/widgets/work-item-list/model/board-query.ts';
+import { listingForGroup } from '../src/features/work-item-list/model/board-query.ts';
 
 test('a status lane narrows IDs while preserving every other condition and order', () => {
   const original = { category: 'STARTED', project: 'ONE,TWO', assignee: 'me', labelId: 'label', q: '오류', sort: 'UPDATED', direction: 'DESC' };

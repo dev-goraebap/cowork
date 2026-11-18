@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { workItemHref, workspaceWorkItemHref } from '@/entities/work-item';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
-import { NewWorkItem } from '@/widgets/work-item-create';
+import { NewWorkItem } from '@/pages/_app/workspace/work-items/new';
 import type { Crumb } from '@/shared/ui/nav-icon';
 
 /**

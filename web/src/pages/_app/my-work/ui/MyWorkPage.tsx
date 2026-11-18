@@ -6,7 +6,7 @@ import { Button } from '@/shared/ui/button';
 import { Page } from '@/shared/ui/layout/page';
 import { PageState } from '@/shared/ui/page-state';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
-import { PagedWorkItemGroups } from '@/widgets/work-item-list';
+import { PagedWorkItemGroups } from '@/features/work-item-list';
 
 type Crumb = { label: string; href?: string; icon?: string };
 type Category = (typeof CATEGORIES)[number]['value'];

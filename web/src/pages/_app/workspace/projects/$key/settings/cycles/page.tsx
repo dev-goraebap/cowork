@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { ProjectCycleSettingsPage } from './ui/ProjectCycleSettingsPage';
 
 /** /workspace/projects/{key}/settings/cycles: 사이클 설정. */

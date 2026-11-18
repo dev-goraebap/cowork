@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { ProjectOverviewPage } from './ui/ProjectOverviewPage';
 
 /** /workspace/projects/{key}: 프로젝트 개요. 프로젝트 목록에서 프로젝트를 누르면 열린다. */

@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { typesOptions } from '@/entities/work-item';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { WorkItemTypesPage } from './ui/WorkItemTypesPage';
 
 /** /workspace/settings/work-item-types: 업무 유형. */

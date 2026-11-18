@@ -1,7 +1,7 @@
 import { RealtimeSync } from '@/features/realtime';
 import { usePageLocation, usePendingPathname } from '@/shared/lib/route-location';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, useMemo } from 'react';
 import { PanelLoading } from './PanelLoading';
 import { derivedAvatar, drawnAvatarSource, useMemberPicture } from '@/shared/lib/avatar';
 import { projectMembershipsOptions, projectOptions, projectsOptions } from '@/entities/project';
@@ -12,7 +12,9 @@ import { useOpenPanel, usePanel } from '@/shared/lib/panel';
 import { useIsMobile } from '@/shared/lib/use-mobile';
 import { sessionOptions } from '@/shared/auth';
 import { useAppearance } from '@/shared/lib/appearance';
-import { AppFrame, projectKeyOf } from '@/widgets/app-shell';
+import { crumbsOf, projectKeyOf } from '@/shared/config';
+import { PageCrumbsProvider } from '@/shared/lib/page-crumbs';
+import { AppFrame } from './AppFrame';
 import { RouteStage } from './RouteStage';
 import { useIntentPreload } from './use-intent-preload';
 import { PanelHost } from './PanelHost';
@@ -39,6 +41,11 @@ export function AuthLayout() {
   const key = projectKeyOf(menuPathname);
   const isSignedIn = !!session && !sessionChanged;
   const project = useQuery({ ...projectOptions(key ?? ''), enabled: isSignedIn && !!key });
+  // 페이지 머리 경로는 준비된 주소를 따른다(메뉴는 누른 주소를 먼저 따른다). 프로젝트 안이면 첫 단계에 프로젝트 이름을 단다.
+  const pageKey = projectKeyOf(pathname);
+  const pageProject = useQuery({ ...projectOptions(pageKey ?? ''), enabled: isSignedIn && !!pageKey });
+  const pageProjectName = pageProject.data?.name;
+  const crumbs = useMemo(() => crumbsOf(pathname, pageProjectName), [pathname, pageProjectName]);
   const projects = useQuery({ ...projectsOptions(), enabled: isSignedIn });
   // 업무 메뉴에는 내가 멤버인 프로젝트를 프로젝트 목록의 순서로 둔다(Linear의 Your teams, 2026-11-14).
   const memberships = useQuery({ ...projectMembershipsOptions(), enabled: isSignedIn });
@@ -74,7 +81,7 @@ export function AuthLayout() {
     me={{ name: session.name ?? '', team: session.email ?? '', picture, fallbackPicture: drawnAvatarSource(derivedAvatar(session.id ?? '')) }}
     onLogout={() => void logout()}>
     <RealtimeSync userId={session.id} />
-    <RouteStage />
+    <PageCrumbsProvider value={crumbs}><RouteStage /></PageCrumbsProvider>
     {/* 이 페이지 위에 대화상자로 연 페이지(새 업무, 새 일정, 검색). 대화상자는 그려진 쪽(DetailSurface · FormDialog …)이
         저마다 띄운다. 휴대폰은 PanelHost가 그 페이지로 옮기므로 기다리는 자리를 띄우지 않는다. */}
     <Suspense fallback={panel.href && !isMobile ? <PanelLoading href={panel.href} onClose={panel.close} /> : null}>

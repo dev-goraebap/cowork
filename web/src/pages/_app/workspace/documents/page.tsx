@@ -1,11 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { prepare } from '@/shared/lib/prepare';
-import { useCrumbs } from '@/widgets/app-shell';
-import { DocumentBoxPage, prepareDocuments } from '@/widgets/document-library';
+import { createFileRoute, redirect } from '@tanstack/react-router';
+import { HOME_PATH } from '@/shared/config';
 
-/** /workspace/documents: 워크스페이스 문서함. 매뉴얼의 장은 ?chapter=로 연다. */
+/** /workspace/documents: 옛 문서함 주소. 문서는 프로젝트마다 있으므로 프로젝트 목록으로 보낸다. */
 export const Route = createFileRoute('/_app/workspace/documents/')({
-  loader: ({ context, location }) => prepare(context.queryClient, location.href,
-    prep => prepareDocuments(prep, { documentId: new URLSearchParams(location.searchStr).get('chapter') ?? undefined })),
-  component: function DocumentsRoute() { return <DocumentBoxPage crumbs={useCrumbs()} />; },
+  beforeLoad: () => { throw redirect({ href: HOME_PATH, replace: true }); },
 });

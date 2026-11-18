@@ -1,6 +1,6 @@
 import { createFileRoute, useParams } from '@tanstack/react-router';
 import { notificationsOptions, unreadNotificationsOptions } from '@/entities/notification';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { NotificationsPage } from './ui/NotificationsPage';
 
 /**

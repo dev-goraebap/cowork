@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { statusLanes } from '../src/widgets/work-item-list/model/status-lanes.ts';
+import { statusLanes } from '../src/features/work-item-list/model/status-lanes.ts';
 
 const columns = [
   { id: 'backlog', name: '백로그', category: 'BACKLOG', position: 0 },

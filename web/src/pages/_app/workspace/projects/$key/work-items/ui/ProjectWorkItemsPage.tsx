@@ -4,7 +4,7 @@ import { columnsOptions, cyclesOptions, newWorkItemHref, workItemHref, labelsOpt
 import { projectOptions } from '@/entities/project';
 import { useOpenPanel } from '@/shared/lib/panel';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
-import { groupingOf, groupsOf, isNarrowed, WorkItemList, projectFilters, queryOf, sortsOf, useWorkItemTools, useWorkItemViews, ViewTweaks } from '@/widgets/work-item-list';
+import { groupingOf, groupsOf, isNarrowed, WorkItemList, projectFilters, queryOf, sortsOf, useWorkItemTools, useWorkItemViews, ViewTweaks } from '@/features/work-item-list';
 
 /** The router's crumbs (icons by meaning name), handed to the kit Page through pageCrumbs. */
 type Crumb = { label: string; href?: string; icon?: string };

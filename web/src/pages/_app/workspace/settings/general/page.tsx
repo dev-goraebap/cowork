@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { projectsOptions } from '@/entities/project';
 import { labelsOptions, typesOptions } from '@/entities/work-item';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { WorkspaceGeneralPage } from './ui/WorkspaceGeneralPage';
 
 /** /workspace/settings/general: 프로젝트 목록(진행 · 보관 · 삭제)과 업무 유형 · 라벨의 요약. */

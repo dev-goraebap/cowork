@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { visibleCodeLinks } from '../src/widgets/work-item-detail/model/visible-code-links.ts';
+import { visibleCodeLinks } from '../src/features/work-item-detail/model/visible-code-links.ts';
 
 test('a frontend PR does not hide the same named branch in the backend repository', () => {
   const links = [

@@ -8,7 +8,7 @@ import type { Prep } from '@/shared/lib/prepare';
 import {
   groupingOf, isNarrowed, kanbanGroupsInOrder, listGroupPageOptions, listGroupsInOrder, listingForGroup, listingOf, queryFromRoute, queryOf,
   storedLayoutOf,
-} from '@/widgets/work-item-list';
+} from '@/features/work-item-list';
 
 /**
  * 프로젝트 업무 목록의 첫 화면: 고른 보기(?view, 없으면 첫 보기)의 배치대로, 첫 화면에 보일 만큼만 읽는다.

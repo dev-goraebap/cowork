@@ -10,18 +10,17 @@ import { useIsMobile } from '@/shared/lib/use-mobile';
 import { DialogPanel, swapDialog } from '@/shared/ui/dialog';
 import { workItemHref } from '@/entities/work-item';
 
-import { useSearchSources } from '@/pages/_app/search';
-import { GlobalSearch } from '@/widgets/global-search';
-import { ProfileSurface } from '@/widgets/person-profile';
+import { GlobalSearch, useSearchSources } from '@/pages/_app/search';
+import { ProfileSurface } from './ProfileSurface';
 import { memberHref } from '@/shared/ui/person';
 
-import { NewWorkItem } from '@/widgets/work-item-create';
+import { NewWorkItem } from '@/pages/_app/workspace/work-items/new';
 
 const MEMBER = /^\/members\/([^/]+)$/;
 
 const WorkItemPage = lazyRouteComponent(() => import('@/pages/_app/workspace/projects/$key/work-items/$number'), 'WorkItemPage');
-const DocumentBoxPage = lazyRouteComponent(() => import('@/widgets/document-library'), 'DocumentBoxPage');
-const DocumentPagesManager = lazyRouteComponent(() => import('@/widgets/document-library'), 'DocumentPagesManager');
+const DocumentBoxPage = lazyRouteComponent(() => import('@/pages/_app/workspace/projects/$key/documents'), 'DocumentBoxPage');
+const DocumentPagesManager = lazyRouteComponent(() => import('@/pages/_app/workspace/projects/$key/documents'), 'DocumentPagesManager');
 const CreateProjectDialog = lazyRouteComponent(() => import('@/pages/_app/workspace/projects'), 'CreateProjectDialog');
 
 /** 목록 위 대화상자로 여는 화면의 코드: 한가할 때 미리 받아 둔다(PanelHost). */
@@ -126,9 +125,9 @@ function usePanelContent(): { node: ReactNode; isLoading: boolean; href?: string
 async function preparePanel(prep: Prep, url: URL) {
   const uuid = '[0-9a-fA-F-]{36}';
   const pages = new RegExp(`^/workspace/projects/([^/]+)/documents/(${uuid})/pages$`).exec(url.pathname);
-  if (pages) return (await import('@/widgets/document-library')).prepareDocumentPages(prep, pages[1]!);
+  if (pages) return (await import('@/pages/_app/workspace/projects/$key/documents')).prepareDocumentPages(prep, pages[1]!);
   const document = new RegExp(`^/workspace/projects/([^/]+)/documents/(${uuid})$`).exec(url.pathname);
-  if (document) return (await import('@/widgets/document-library')).prepareDocuments(prep, { projectKey: document[1], documentId: url.searchParams.get('chapter') ?? document[2] });
+  if (document) return (await import('@/pages/_app/workspace/projects/$key/documents')).prepareDocuments(prep, { projectKey: document[1], documentId: url.searchParams.get('chapter') ?? document[2] });
   const item = /^\/workspace\/projects\/([^/]+)\/work-items\/(\d+)$/.exec(url.pathname);
   if (item) return (await import('@/pages/_app/workspace/projects/$key/work-items/$number')).prepareWorkItem(prep, item[1]!, Number(item[2]));
 }

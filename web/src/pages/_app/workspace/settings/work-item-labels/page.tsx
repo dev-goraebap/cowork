@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { labelsOptions } from '@/entities/work-item';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { WorkItemLabelsPage } from './ui/WorkItemLabelsPage';
 
 /** /workspace/settings/work-item-labels: 업무 라벨. */

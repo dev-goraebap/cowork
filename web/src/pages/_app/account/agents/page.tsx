@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { agentProfilesOptions, agentTokensOptions } from './api/agents';
 import { AgentTokensPage } from './ui/AgentTokensPage';
 

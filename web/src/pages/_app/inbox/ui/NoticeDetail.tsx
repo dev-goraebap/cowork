@@ -4,7 +4,7 @@ import { inAppLink, kindOf, targetOf, useReadNotification, type NoticeTarget, ty
 import { workItemHref } from '@/entities/work-item';
 import { SplitColumn, SplitDetail } from '@/shared/ui/layout/split-view';
 import { ToneBadge } from '@/shared/ui/tone-badge';
-import { WorkItemDetail } from '@/widgets/work-item-detail';
+import { WorkItemDetail } from '@/features/work-item-detail';
 import { momentOf } from '../model/format';
 
 /**

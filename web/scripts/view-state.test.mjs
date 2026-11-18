@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { queryFromRoute, viewRoute } from '../src/widgets/work-item-list/model/view-route.ts';
-import { workItemTree } from '../src/widgets/work-item-list/list-view/model/tree.ts';
+import { queryFromRoute, viewRoute } from '../src/features/work-item-list/model/view-route.ts';
+import { workItemTree } from '../src/features/work-item-list/list-view/model/tree.ts';
 
 const base = { state: { status: ['STARTED'] }, display: { sort: 'UPDATED', direction: 'desc', group: 'STATUS' } };
 test('view links follow saved conditions while an explicit empty snapshot stays empty', () => {

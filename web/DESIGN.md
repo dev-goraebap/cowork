@@ -38,7 +38,7 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 | 규칙 | 내용 |
 | :--- | :--- |
 | 주소 | TanStack Router 파일 라우팅. `src/pages`의 폴더가 곧 주소이고(`app/router/routeTree.gen.ts`가 만들어진다), `page.tsx`가 그 주소의 화면, `route.tsx`가 그 아래 전부에 걸리는 틀(권한 확인 · 먼저 읽기)이다. 로그인한 사람의 주소는 `_app` 아래(주소에 나타나지 않음), 로그인 · 온보딩 · 인쇄는 그 밖. 구역 주소(`/`, `/instance`, `/account`, `/workspace/settings`, `/workspace/projects/{key}/settings`)는 첫 페이지로 보낸다. 관리 구역은 그 역할(`INSTANCE_ADMIN` · `WORKSPACE_ADMIN`)이 있을 때만, 프로젝트 설정은 그 프로젝트의 관리자만(없으면 그 프로젝트 업무로). 모르는 주소는 홈(`/workspace/projects`)으로. 프로젝트 안 페이지는 `/workspace/projects/{key}/(work-items|work-items/{number}|cycles|documents|documents/{id}|members|settings/…)` |
-| 업무 이름 | 이 항목은 업무(work items)다. 주소 · 소스(`entities/work-item` · `widgets/work-item-*` · `pages/work-items`, `WorkItem…` 이름)와 화면 글은 업무로 쓰고 이슈라 하지 않는다. 서버 API(`/api/v1/issues…`, `/api/v1/issue-views…`)와 스키마 이름(`IssueRow` …)은 서버의 이름 그대로 둔다 |
+| 업무 이름 | 이 항목은 업무(work items)다. 주소 · 소스(`entities/work-item` · `features/work-item-*` · `pages/_app/workspace/projects/$key/work-items`, `WorkItem…` 이름)와 화면 글은 업무로 쓰고 이슈라 하지 않는다. 서버 API(`/api/v1/issues…`, `/api/v1/issue-views…`)와 스키마 이름(`IssueRow` …)은 서버의 이름 그대로 둔다 |
 | 업무 보기 (2026-11-11) | 업무는 프로젝트마다 본다. 전체 업무(`/work-items`)는 주소만 남고 메뉴에 없다. 전역 문서함도 없다: `/documents`는 프로젝트 목록으로, `/documents/{id}`는 그 문서의 프로젝트 주소로 넘긴다 |
 | 세션 | `/api/v1/auth/me`(`shared/auth`), 1분마다 다시 읽음. 없으면 `/login`, 어디서든 401이면 로그인으로. 로그인 직후에는 세션을 바로 다시 읽는다(로그인 화면에는 세션을 보는 쿼리가 없어 무효화만으로는 옛 값이 남는다) |
 | 요청 | `shared/api`(CSRF 토큰, 오류 문구), 타입은 `npm run api:generate`(서버 `openapi.json`) |
@@ -48,13 +48,13 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 | 스크롤바 | 앱의 가는 스크롤바(8px, 트랙 없음, 평소 옅고 가리키면 진해짐), 가로 · 세로 모두. `app/styles/scrollbar.css` |
 | 모양 설정 | 화면 설정(`/profile/display`)의 색상 테마(stone과 6종) · 모드 · 레이아웃(inset · split) · 목록 높이 · 글꼴(고딕 · 명조와 명조 적용 범위)은 `shared/lib/appearance`(localStorage `cowork-appearance`)에 둔다: 고르면 바로 바뀌고 이 브라우저에만 남는다. 목록 높이 촘촘하게는 `html[data-density=compact]`이고 화면은 `compact:` 변형으로 줄 높이를 줄인다(업무 리스트 · 테이블, 프로젝트 목록, 알림함 줄) |
 
-## 앱 셸 (`widgets/app-shell`, `shared/ui/layout/app-shell`)
+## 앱 셸 (`app/layout/AppFrame`, `shared/ui/layout/app-shell`)
 
 생성 양식 · 공통 다이얼로그 · Split · Inset · 라우트 마스킹은 Webcraft design-system 지침과 [제품 구현 경로](../.agents/skills/cowork-runtime/SKILL.md)에서 사용 기준과 제품 구현을 함께 찾는다. 셸의 공통 구조는 `app-layout.md`를 따른다. 새 화면은 해당 구현을 사용하고 실제 제품 화면에서 검증한다.
 
 | 규칙 | 내용 |
 | :--- | :--- |
-| 바탕 | 키트 `AppShell`(shadcn Sidebar 위)에 `AppFrame`이 메뉴 데이터(`nav.ts`) · 로고 · 내 메뉴 · Agent 줄 · 휴대폰 도구를 넘긴다 |
+| 바탕 | 키트 `AppShell`(shadcn Sidebar 위)에 `AppFrame`이 메뉴 데이터(`shared/config/nav.ts`) · 로고 · 내 메뉴 · Agent 줄 · 휴대폰 도구를 넘긴다 |
 | 사이드바 폭 | 처음과 펼칠 때 340px, 가장자리를 끌어 220~380px. 저장하지 않고, 접었다 펼치면 다시 340px. Ctrl/⌘+B로도 접는다 |
 | Agent 줄 | 데스크톱 본문 아래 40px 줄(`AgentBar`): 앞에 장식 바코드, 끝에 Agent 버튼(`ghost`, 보조 글자색, 내 AI 에이전트로). inset이면 면 바깥, split이면 본문 아래. 휴대폰에는 없다 |
 | 사이드바 머리 | 첫 줄 왼쪽에 워드마크(`BrandLogo`: 펼치면 cowork 워드마크 SVG 10rem, 접으면 정사각 심벌 `BrandMark`), 오른쪽 끝에 검색 아이콘(`ghost`). 로고를 누르면 전사 일정(`/schedule`)으로 간다. 그 아래 내 박스(`MeBox`: 32px 아바타 · 이름 · 소속, 오른쪽 …)가 내 메뉴(내 정보 · 화면 설정 · 내 AI 에이전트 · 로그아웃)를 연다. 접으면 심볼 · 검색 · 아바타를 세로로 쌓는다. 아바타 그림이 없으면 cowork 기본 그림(`shared/lib/avatar`의 18종) |

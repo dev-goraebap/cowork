@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { WorkItemEditPage } from './ui/WorkItemEditPage';
 
 /** /workspace/projects/{key}/work-items/{번호}/edit: 업무 고치기. */

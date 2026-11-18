@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { prepare } from '@/shared/lib/prepare';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { prepareWorkItemList } from './model/prepare';
 import { ProjectWorkItemsPage } from './ui/ProjectWorkItemsPage';
 

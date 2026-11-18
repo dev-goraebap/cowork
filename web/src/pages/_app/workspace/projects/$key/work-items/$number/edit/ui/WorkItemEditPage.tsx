@@ -3,7 +3,7 @@ import { useLeaveEditor } from '@/shared/lib/panel';
 import { DetailSurface } from '@/shared/ui/detail-surface';
 import { PageState } from '@/shared/ui/page-state';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
-import { WorkItemEditor } from '@/widgets/work-item-detail';
+import { WorkItemEditor } from '@/features/work-item-detail';
 import type { Crumb } from '@/shared/ui/nav-icon';
 
 /**

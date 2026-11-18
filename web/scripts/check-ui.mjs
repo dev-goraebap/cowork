@@ -51,7 +51,15 @@ const ALWAYS = [
   { why: '@/shared/lib/utils: cn은 cn 패키지에서 가져온다(import { cn } from "cn")', test: /from\s+['"]@\/shared\/lib\/utils['"]/ },
 ];
 
-const LAYERS = { shared: 0, entities: 1, features: 2, widgets: 3, pages: 4, app: 5 };
+const LAYERS = { shared: 0, entities: 1, features: 2, pages: 3, app: 4 };
+/** pages의 파일이 속한 주소 폴더: 슬라이스 세그먼트(ui · api · model · lib · config)와 그 아래를 뺀 폴더. */
+const SEGMENTS = new Set(['ui', 'api', 'model', 'lib', 'config']);
+function routeFolder(file) {
+  const parts = path.relative(SRC, file).split(path.sep);
+  const at = parts.findIndex((part, index) => index > 0 && SEGMENTS.has(part));
+  const folder = at === -1 ? parts.slice(0, -1) : parts.slice(0, at);
+  return path.join(SRC, ...folder);
+}
 const errors = [];
 for (const file of files(SRC)) {
   if (file.endsWith('.generated.ts')) continue;
@@ -74,16 +82,26 @@ for (const file of files(SRC)) {
   }
   // FSD's layers: a file imports only from layers below its own, and not from another slice of its own layer (shared
   // and app are not sliced). A part two slices of one layer both need moves down a layer, or into the one slice.
-  // pages are grouped by space (pages/{instance,office,workspace}/<slice>, 2026-11-15): there the slice is the two parts.
-  const [layer, first, second] = path.relative(SRC, file).split(path.sep);
-  const slice = layer === 'pages' ? `${first}/${second}` : first;
+  const [layer, first] = path.relative(SRC, file).split(path.sep);
   if (!isCss && layer in LAYERS) {
     lines.forEach((line, index) => {
-      for (const [, target, one, two] of line.matchAll(/from\s+['"]@\/([a-z]+)\/([^/'"]+)(?:\/([^/'"]+))?/g)) {
+      for (const [, target, one] of line.matchAll(/from\s+['"]@\/([a-z]+)\/([^/'"]+)/g)) {
         if (!(target in LAYERS)) continue;
-        const targetSlice = target === 'pages' ? `${one}/${two}` : one;
         if (LAYERS[target] > LAYERS[layer]) errors.push(`${where(index)}: 아래 레이어(${layer})가 위 레이어(${target})를 가져다 씀`);
-        else if (target === layer && targetSlice !== slice && !['shared', 'app'].includes(layer)) errors.push(`${where(index)}: 같은 레이어의 다른 슬라이스(${target}/${targetSlice})를 가져다 씀`);
+        else if (target === layer && one !== first && !['shared', 'app', 'pages'].includes(layer)) errors.push(`${where(index)}: 같은 레이어의 다른 슬라이스(${target}/${one})를 가져다 씀`);
+      }
+    });
+  }
+  // pages는 파일 라우팅이라 폴더가 곧 주소이고 슬라이스다. 한 주소의 파일은 자기 폴더와 위 주소(조상 폴더)의 것만 가져다
+  // 쓴다: 아래 주소가 위 주소의 화면을 함께 쓰는 것(목록과 그 상세)은 되고, 옆 주소의 것은 안 된다. 둘이 함께 쓰면 공통 조상으로.
+  if (!isCss && layer === 'pages') {
+    const own = routeFolder(file);
+    lines.forEach((line, index) => {
+      for (const [, spec] of line.matchAll(/(?:from|import\()\s*['"]((?:@\/pages|\.{1,2})\/[^'"]+)['"]/g)) {
+        const target = spec.startsWith('@/') ? path.join(SRC, spec.slice(2)) : path.resolve(path.dirname(file), spec);
+        const theirs = routeFolder(target);
+        if (own !== theirs && !own.startsWith(theirs + path.sep))
+          errors.push(`${where(index)}: 다른 주소의 페이지(${path.relative(path.join(SRC, 'pages'), theirs) || '.'})를 가져다 씀`);
       }
     });
   }

@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { PushDeliveriesPage } from './ui/PushDeliveriesPage';
 
 /** /instance/push-deliveries: 알림 발송 현황. */

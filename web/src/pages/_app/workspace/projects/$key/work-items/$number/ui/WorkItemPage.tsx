@@ -6,7 +6,7 @@ import { useOpenEditor } from '@/shared/lib/panel';
 import { DetailSurface } from '@/shared/ui/detail-surface';
 import { PageState } from '@/shared/ui/page-state';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
-import { WorkItemDetail } from '@/widgets/work-item-detail';
+import { WorkItemDetail } from '@/features/work-item-detail';
 import type { Crumb } from '@/shared/ui/nav-icon';
 
 /** Where the detail stands: its own page (a link, a reload, 크게 보기), or the dialog a list opened (app's panel host). */

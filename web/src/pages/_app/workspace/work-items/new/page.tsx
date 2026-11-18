@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { NewWorkItemPage } from './ui/NewWorkItemPage';
 
 /** /workspace/work-items/new: 새 업무. 프로젝트 안에서 열면 ?project=로 그 프로젝트를 미리 고른다. */

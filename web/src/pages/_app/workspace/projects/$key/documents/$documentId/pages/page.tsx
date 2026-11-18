@@ -1,7 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { prepare } from '@/shared/lib/prepare';
-import { useCrumbs } from '@/widgets/app-shell';
-import { DocumentPagesManager, prepareDocumentPages } from '@/widgets/document-library';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
+import { DocumentPagesManager } from '@/pages/_app/workspace/projects/$key/documents/ui/DocumentPagesManager';
+import { prepareDocumentPages } from '@/pages/_app/workspace/projects/$key/documents/model/prepare';
 
 /** /workspace/projects/{key}/documents/{id}/pages: 문서의 하위 페이지 관리. */
 export const Route = createFileRoute('/_app/workspace/projects/$key/documents/$documentId/pages/')({

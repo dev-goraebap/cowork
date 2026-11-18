@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { NotificationSettingsPage } from './ui/NotificationSettingsPage';
 
 /** /account/notifications: 알림 설정. */

@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { projectsOptions } from '@/entities/project';
-import { useCrumbs } from '@/widgets/app-shell';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
 import { ProjectsPage } from './ui/ProjectsPage';
 
 type Status = 'ACTIVE' | 'ARCHIVED' | 'DELETED';

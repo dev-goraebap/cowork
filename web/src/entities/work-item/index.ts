@@ -1,5 +1,5 @@
 export {
-  boardGroupsOptions, type WorkItemBoardGroup, BOARD_SIZE,  changeComment, resolveComment, columnsOptions, createWorkItem, deleteWorkItem, draftOf, editWorkItem,  workItemOptions, workItemPath,
+  boardGroupsOptions, type WorkItemBoardGroup, BOARD_SIZE,  changeComment, resolveComment, columnsOptions, createWorkItem, draftOf, editWorkItem,  workItemOptions, workItemPath,
   workItemsOptions, labelsOptions,  refreshWorkItems, timelineOptions, typesOptions, workingPeopleOptions, type WorkItemListing,
 } from './api/work-items';
 export {
@@ -35,3 +35,5 @@ export {
 } from './api/code';
 
 export { WorkItemPullRequests } from './ui/WorkItemPullRequests';
+export { canDeleteWorkItem } from './model/can-delete';
+export { DeleteWorkItemDialog } from './ui/DeleteWorkItemDialog';

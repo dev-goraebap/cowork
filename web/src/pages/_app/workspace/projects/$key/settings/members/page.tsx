@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { projectMembersOptions } from '@/entities/project';
 import { prepare } from '@/shared/lib/prepare';
-import { useCrumbs } from '@/widgets/app-shell';
-import { ProjectMembersPage } from '@/widgets/project-members';
+import { useCrumbs } from '@/shared/lib/page-crumbs';
+import { ProjectMembersPage } from '@/pages/_app/workspace/projects/$key/ui/ProjectMembersPage';
 
 /** /workspace/projects/{key}/settings/members: 프로젝트에 사람을 넣고 빼는 곳(Linear의 팀 설정 › Members). */
 export const Route = createFileRoute('/_app/workspace/projects/$key/settings/members/')({
