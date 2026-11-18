@@ -22,7 +22,7 @@ export const activityViews: PageView<ActivityView>[] = [
 export function ActivityViews({ value }: { value: ActivityView }) {
   const navigate = useNavigate();
   return <PageViews label="알림함 뷰" views={activityViews} value={value} onChange={id => {
-    const href = id === 'approval' ? '/approvals' : id === 'all' ? '/notifications' : `/notifications?view=${id}`;
+    const href = id === 'approval' ? '/approvals' : id === 'all' ? '/inbox' : `/inbox?view=${id}`;
     void navigate({ href });
   }} />;
 }

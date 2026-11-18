@@ -82,7 +82,7 @@ public class PushAdminService {
         pushQuery.findEmployee(employeeId).orElseThrow(NotificationErrorCode.PUSH_MEMBER_NOT_FOUND::raise);
         var devices = subscriptions.findAllActiveByUserIdIn(Set.of(employeeId));
         if (devices.isEmpty()) throw NotificationErrorCode.PUSH_NO_DEVICE.raise();
-        pushOutbox.queueTest(employeeId, devices, "관리자가 보낸 테스트 알림이에요.", "/notifications", clock.instant());
+        pushOutbox.queueTest(employeeId, devices, "관리자가 보낸 테스트 알림이에요.", "/inbox", clock.instant());
         return new PushViews.PushTestQueued(devices.size());
     }
 }

@@ -1,4 +1,4 @@
-import { parseWorkItemRef } from '@/entities/work-item';
+import { parseWorkItemRef, workspaceWorkItemHref } from '@/entities/work-item';
 import { useLeaveEditor } from '@/shared/lib/panel';
 import { DetailSurface } from '@/shared/ui/detail-surface';
 import { PageState } from '@/shared/ui/page-state';
@@ -15,7 +15,7 @@ export function WorkItemEditPage({ crumbs, workItemRef, projectKey, number }: { 
   const found = workItemRef ? parseWorkItemRef(workItemRef) : projectKey && number ? { key: projectKey.toUpperCase(), number } : undefined;
   const listHref = workItemRef ? '/my-work' : `/workspace/projects/${projectKey}/work-items`;
   const ref = found ? `${found.key}-${found.number}` : '업무';
-  const detailHref = workItemRef ? `/my-work/${ref}` : `${listHref}/${number}`;
+  const detailHref = workItemRef ? workspaceWorkItemHref({ ref }) : `${listHref}/${number}`;
   const trail: Crumb[] = [
     ...crumbs.map((crumb, index) => (index === crumbs.length - 1 ? { ...crumb, href: listHref } : crumb)),
     { label: ref, icon: 'tasks', href: detailHref },

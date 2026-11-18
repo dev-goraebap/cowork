@@ -49,14 +49,14 @@ function RequestNotice({ id, item, frame }: { id: string; item: NotificationItem
 
 function AnnouncementNotice({ id, item, frame }: { id: string; item: NotificationItem; frame: Frame }) {
   const navigate = useNavigate();
-  const panel = useAnnouncementPanel(id, { onDeleted: () => void navigate({ href: '/notifications', replace: true }) });
+  const panel = useAnnouncementPanel(id, { onDeleted: () => void navigate({ href: '/inbox', replace: true }) });
   if (panel.isMissing) return <NoticeItself item={item} frame={frame} />;
   return <>{frame({ title: panel.title, menu: panel.menu, content: panel.body, column: false, label: '공지사항', href: `/office/announcements/${id}` })}</>;
 }
 
 function EventNotice({ id, occurrence, item, frame }: { id: string; occurrence?: string; item: NotificationItem; frame: Frame }) {
   const navigate = useNavigate();
-  const panel = useEventPanel(id, { occurrence, onDeleted: () => void navigate({ href: '/notifications', replace: true }) });
+  const panel = useEventPanel(id, { occurrence, onDeleted: () => void navigate({ href: '/inbox', replace: true }) });
   if (panel.isMissing) return <NoticeItself item={item} frame={frame} />;
   return <>{frame({
     title: panel.title, menu: panel.menu, content: panel.body, column: false, label: '일정', href: eventHref({ id, occurrence }),
@@ -68,7 +68,7 @@ function WorkItemNotice({ target, frame }: { target: Extract<NoticeTarget, { kin
   return <>{frame({
     title: `${target.projectKey}-${target.number}`, column: false, label: `${target.projectKey}-${target.number}`, href: workItemHref(target),
     content: <WorkItemDetail projectKey={target.projectKey} number={target.number} hrefOf={workItemHref}
-      onDeleted={() => void navigate({ href: '/notifications', replace: true })} />,
+      onDeleted={() => void navigate({ href: '/inbox', replace: true })} />,
   })}</>;
 }
 

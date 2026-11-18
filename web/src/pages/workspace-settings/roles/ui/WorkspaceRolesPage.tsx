@@ -47,7 +47,7 @@ export function WorkspaceRolesPage({ crumbs }: { crumbs: Crumb[] }) {
   const canGive = (session?.roles ?? []).includes('INSTANCE_ADMIN');
   return <SettingsPage crumbs={pageCrumbs(crumbs)} title="역할">
     <SettingsSection title="역할"
-      action={canGive ? <Button variant="secondary" size="sm" nativeButton={false} render={<Link to="/instance/roles" />}>워크스페이스 관리자 지정</Button> : undefined}>
+      action={canGive ? <Button variant="secondary" size="sm" nativeButton={false} render={<Link to="/instance/members" />}>워크스페이스 관리자 지정</Button> : undefined}>
       {ROLES.map(each => <div key={each.role} className="flex flex-col gap-0.5 px-4 py-3">
         <p className="font-semibold">{each.name}</p>
         <p className="text-sm text-muted-foreground">{each.summary}</p>

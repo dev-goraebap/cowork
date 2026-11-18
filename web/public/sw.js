@@ -58,5 +58,5 @@ self.addEventListener('notificationclick', event => {
 
 // A path inside the app ('/…' but not '//…'), else the notices screen.
 function inApp(url) {
-  return typeof url === 'string' && url.startsWith('/') && !url.startsWith('//') ? url : '/notifications';
+  return typeof url === 'string' && url.startsWith('/') && !url.startsWith('//') ? url : '/inbox';
 }

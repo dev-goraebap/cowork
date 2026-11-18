@@ -17,7 +17,6 @@ import { memberHref } from '@/shared/ui/person';
 
 import { NewWorkItem } from '@/widgets/work-item-create';
 
-const PROJECT_NEW = /^\/workspace\/projects\/([^/]+)\/work-items\/new$/;
 const MEMBER = /^\/members\/([^/]+)$/;
 
 const WorkItemPage = lazyRouteComponent(() => import('@/pages/workspace/work-items'), 'WorkItemPage');
@@ -109,8 +108,6 @@ function usePanelContent(): { node: ReactNode; isLoading: boolean; href?: string
   if (documentPages) return result(<DocumentPagesManager key={href} {...detail} projectKey={documentPages[1]} documentId={documentPages[2]} crumbs={[{ label: '문서', href: `/workspace/projects/${documentPages[1]}/documents`, icon: 'document' }]} />);
   const document = new RegExp(`^/workspace/projects/([^/]+)/documents/(${uuid})$`).exec(url.pathname);
   if (document) return result(<DocumentBoxPage key={href} {...detail} projectKey={document[1]} documentId={document[2]} crumbs={[{ label: '문서', href: `/workspace/projects/${document[1]}/documents`, icon: 'document' }]} />);
-  const workspaceItem = /^\/my-work\/([^/]+-\d+)$/.exec(url.pathname)?.[1];
-  if (workspaceItem) return result(<WorkItemPage key={href} {...detail} workItemRef={workspaceItem} crumbs={[{ label: '업무', href: '/my-work', icon: 'tasks' }]} />);
   const projectItem = /^\/workspace\/projects\/([^/]+)\/work-items\/(\d+)$/.exec(url.pathname);
   if (projectItem) return result(<WorkItemPage key={href} {...detail} projectKey={projectItem[1]} number={Number(projectItem[2])} crumbs={[{ label: '업무', href: `/workspace/projects/${projectItem[1]}/work-items`, icon: 'tasks' }]} />);
   const member = MEMBER.exec(url.pathname)?.[1];
@@ -119,10 +116,10 @@ function usePanelContent(): { node: ReactNode; isLoading: boolean; href?: string
       onExpand={id => panel.done(memberHref(id))} />);
   if (url.pathname === '/search')
     return result(<GlobalSearch key={href} surface="dialog" sources={search.sources} shortcuts={search.shortcuts} onGo={panel.done} onClose={panel.close} onExpand={expand} />);
-  const projectKey = PROJECT_NEW.exec(url.pathname)?.[1];
-  if (projectKey || url.pathname === '/my-work/new')
+  const projectKey = url.searchParams.get('project') ?? undefined;
+  if (url.pathname === '/workspace/work-items/new')
     return result(<NewWorkItem key={href} projectKey={projectKey} columnId={url.searchParams.get('column') ?? undefined} surface="dialog"
       crumbs={[{ label: '새 업무' }]} onClose={panel.close} onExpand={expand}
-      onCreated={created => showSaved(projectKey ? workItemHref({ projectKey: created.key, number: created.number }) : `/my-work/${created.key}-${created.number}`)} />);
+      onCreated={created => showSaved(workItemHref({ projectKey: created.key, number: created.number }))} />);
   return result(null);
 }

@@ -105,7 +105,7 @@ class PushDispatcher {
                     new PushGateway.PushMessage(
                             Product.NAME,
                             delivery.title(),
-                            delivery.link() == null ? "/notifications" : delivery.link(),
+                            delivery.link() == null ? "/inbox" : delivery.link(),
                             Objects.requireNonNullElse(delivery.eventId(), delivery.id())
                                     .toString(),
                             // Only a test has no notice behind it.

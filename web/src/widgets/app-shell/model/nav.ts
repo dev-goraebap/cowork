@@ -30,7 +30,7 @@ const entry = (path: string, label: string, icon: string, isHidden?: boolean): N
 export const GLOBAL_TITLE = '전체';
 const GLOBAL: NavSection = { title: GLOBAL_TITLE, isHeaderHidden: true, entries: [
   entry('/search', '탐색', 'search'),
-  entry('/notifications', '알림함', 'inbox'),
+  entry('/inbox', '알림함', 'inbox'),
   entry('/my-work', '내 업무', 'user'),
 ] };
 
@@ -53,7 +53,7 @@ export const WORKSPACE: NavSpace = {
     // addresses keep their routes and 탐색 finds them.
     { title: '관리', entries: [
       entry('/instance', '인스턴스 관리', 'shield', true),
-      entry('/workspace/admin', '워크스페이스 관리', 'projects', true),
+      entry('/workspace/settings', '워크스페이스 관리', 'projects', true),
     ] },
   ],
 };
@@ -76,7 +76,7 @@ export function ownSpaceOf(pathname: string): HomeSpace | undefined {
 }
 
 /** The role each of 관리's entries needs. */
-const ADMIN_ROLE: Record<string, AdminRole> = { '/instance': 'INSTANCE_ADMIN', '/workspace/admin': 'WORKSPACE_ADMIN' };
+const ADMIN_ROLE: Record<string, AdminRole> = { '/instance': 'INSTANCE_ADMIN', '/workspace/settings': 'WORKSPACE_ADMIN' };
 
 const BACK = { label: '돌아가기', path: '/' };
 
@@ -84,10 +84,10 @@ const BACK = { label: '돌아가기', path: '/' };
 export const ACCOUNT: NavSpace = {
   id: 'account', title: '내 계정', back: BACK, sections: [
     { title: '내 계정', isHeaderHidden: true, entries: [
-      entry('/profile', '내 정보', 'user'),
-      entry('/profile/notifications', '알림 설정', 'bell'),
-      entry('/profile/display', '화면 설정', 'computer'),
-      entry('/profile/agent-tokens', '내 AI 에이전트', 'agent'),
+      entry('/account/profile', '내 정보', 'user'),
+      entry('/account/notifications', '알림 설정', 'bell'),
+      entry('/account/display', '화면 설정', 'computer'),
+      entry('/account/agents', '내 AI 에이전트', 'agent'),
     ] },
   ],
 };
@@ -98,8 +98,8 @@ export const ACCOUNT: NavSpace = {
 export const INSTANCE: NavSpace = {
   id: 'instance', title: '인스턴스 관리', sections: [
     { title: '인스턴스', isHeaderHidden: true, entries: [
-      entry('/instance/roles', '구성원 · 권한', 'people'),
-      entry('/instance/system', '시스템 현황', 'dashboard'),
+      entry('/instance/members', '구성원 · 권한', 'people'),
+      entry('/instance/system-status', '시스템 현황', 'dashboard'),
       entry('/instance/push-deliveries', '알림 발송 현황', 'bell'),
     ] },
   ],
@@ -109,11 +109,11 @@ export const INSTANCE: NavSpace = {
 export const WORKSPACE_ADMIN: NavSpace = {
   id: 'workspace-admin', title: '워크스페이스 관리', back: { label: '돌아가기', path: '/workspace/projects' }, sections: [
     { title: '워크스페이스 관리', isHeaderHidden: true, entries: [
-      entry('/workspace/admin/general', '일반', 'settings'),
-      entry('/workspace/admin/roles', '역할', 'shield'),
-      entry('/workspace/admin/labels', '업무 라벨', 'tag'),
-      entry('/workspace/admin/document-labels', '문서 라벨', 'tag'),
-      entry('/workspace/admin/types', '업무 유형', 'tasks'),
+      entry('/workspace/settings/general', '일반', 'settings'),
+      entry('/workspace/settings/roles', '역할', 'shield'),
+      entry('/workspace/settings/work-item-labels', '업무 라벨', 'tag'),
+      entry('/workspace/settings/document-labels', '문서 라벨', 'tag'),
+      entry('/workspace/settings/work-item-types', '업무 유형', 'tasks'),
     ] },
   ],
 };
@@ -175,9 +175,9 @@ function placeOf(pathname: string, projectName?: string): NavSpace {
  * a menu of their own.
  */
 export function spaceOf(pathname: string, projectName?: string): NavSpace {
-  if (pathname === '/profile' || pathname.startsWith('/profile/')) return ACCOUNT;
+  if (pathname === '/account' || pathname.startsWith('/account/')) return ACCOUNT;
   if (pathname.startsWith('/instance')) return INSTANCE;
-  if (pathname.startsWith('/workspace/admin')) return WORKSPACE_ADMIN;
+  if (pathname.startsWith('/workspace/settings')) return WORKSPACE_ADMIN;
   const key = projectKeyOf(pathname);
   if (key && /^\/workspace\/projects\/[^/]+\/settings(\/|$)/.test(pathname)) return projectSettingsSpace(key, projectName ?? key);
   return WORKSPACE;

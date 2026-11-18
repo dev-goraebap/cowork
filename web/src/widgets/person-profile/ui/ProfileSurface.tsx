@@ -6,7 +6,7 @@ import { PersonProfile } from './PersonProfile';
 
 /**
  * A member's profile where a pressed avatar opens it: a dialog over the page in view on a desktop (title, 크게 보기,
- * 닫기 over a scrolling body), or on its own page (/office/members/{id}) on a phone or from a direct link: a desktop's
+ * 닫기 over a scrolling body), or on its own page (/workspace/members/{id}) on a phone or from a direct link: a desktop's
  * page is the detail frame with its round back.
  */
 export function ProfileSurface({ employeeId, surface, crumbs = [], onClose, onExpand }: {

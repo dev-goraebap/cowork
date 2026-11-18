@@ -52,56 +52,9 @@ async function prepare(client: QueryClient, pathname: string, searchStr: string,
     await Promise.all(reads);
     return;
   }
-  const day = /^\/office\/schedule\/days\/(\d{4}-\d{2}-\d{2})$/.exec(pathname)?.[1];
-  if (day) { await prime((await import('@/entities/calendar')).calendarFeedOptions(day, day)); return; }
-  const calendarDetail = /^\/office\/schedule\/(events|leaves|overtime)\/([0-9a-fA-F-]{36})(?:\/edit)?$/.exec(pathname);
-  if (calendarDetail) {
-    const api = await import('@/entities/calendar'); const id = calendarDetail[2]!;
-    if (calendarDetail[1] === 'events') {
-      const occurrence = params.get('occurrence') ?? undefined;
-      const event = await ensure(api.calendarEventOptions(id, occurrence));
-      const date = event.start.slice(0, 10);
-      await Promise.all([prime(api.calendarFeedOptions(date, date)),
-        prime((await import('@/entities/meeting')).eventMeetingsOptions({ eventId: id, occurrence: event.occurrence ?? occurrence }))]);
-    }
-    else if (calendarDetail[1] === 'leaves') await prime(api.calendarLeaveOptions(id));
-    else await prime(api.calendarOvertimeOptions(id));
-    return;
-  }
-  // 사원 상세(오피스 관리, 목록 위 대화상자): 사원을 먼저 받아, 빈 머리로 열렸다 채워지지 않고 불러오는 중에서 내용으로 바꿔 낀다.
-  const employeeId = /^\/office\/admin\/employees\/([0-9a-fA-F-]{36})$/.exec(pathname)?.[1];
-  if (employeeId) { await prime((await import('@/entities/organization')).employeeOptions(employeeId)); return; }
-  const requestId = /^\/(?:requests|office\/admin\/(?:leave-requests|overtime-requests))\/([0-9a-fA-F-]{36})$/.exec(pathname)?.[1];
-  if (requestId) {
-    await Promise.all([prime((await import('@/entities/approval')).requestOptions(requestId)), prime((await import('@/entities/project')).projectsOptions())]);
-    return;
-  }
-  if (pathname === '/office/announcements') {
-    const api = await import('@/entities/announcement');
-    await Promise.all([primeInfinite(api.announcementsOptions({})), prime(api.pinnedOptions()), prime(api.authorsOptions())]);
-    return;
-  }
-  if (pathname === '/notifications' || pathname.startsWith('/notifications/')) {
+  if (pathname === '/inbox' || pathname.startsWith('/inbox/')) {
     const api = await import('@/entities/notification');
     await Promise.all([primeInfinite(api.notificationsOptions({})), prime(api.unreadNotificationsOptions())]);
-    return;
-  }
-  if (pathname === '/office/leaves') {
-    const api = await import('@/entities/leave');
-    if (params.get('tab') === 'overtime') {
-      await prime((await import('@/entities/overtime')).overtimeMonthOptions(params.get('month') ?? api.currentMonth()));
-    } else await Promise.all([prime(api.leaveSummaryOptions()), prime(api.specialCatalogOptions()), prime(api.leaveUsageOptions(Number(api.currentMonth().slice(0, 4))))]);
-    return;
-  }
-  if (pathname === '/office/weekly-reports') {
-    await primeInfinite((await import('@/entities/weekly-report')).weeklyReportListOptions({}));
-    return;
-  }
-  if (pathname === '/office/meetings') {
-    await Promise.all([
-      primeInfinite((await import('@/entities/meeting')).meetingsOptions({})),
-      prime((await import('@/entities/project')).projectsOptions()),
-    ]);
     return;
   }
   if (path === '/work-items') {
@@ -165,29 +118,20 @@ async function prepare(client: QueryClient, pathname: string, searchStr: string,
     if (key) await Promise.all([prime((await import('@/entities/document')).libraryOptions(key)), primeInfinite(api.documentsOptions({ project: key }))]);
     return;
   }
-  if (pathname === '/office/schedule' || (key && path === '/schedule')) {
+  if (key && path === '/schedule') {
     const place = (await import('@/widgets/calendar-board')).calendarPlace(searchStr);
     await prime((await import('@/entities/calendar')).calendarFeedOptions(place.days[0] ?? place.day, place.days.at(-1) ?? place.day));
     return;
   }
-  if (pathname === '/office/members') {
-    await prime((await import('@/entities/organization')).orgChartOptions());
-    if (params.get('view') === 'chart') await (await import('@/widgets/department-pyramid')).preparePyramidFlow();
-    return;
-  }
-  const meeting = /^\/office\/meetings\/([^/]+)$/.exec(pathname);
-  if (meeting && meeting[1] !== 'new') { await prime((await import('@/entities/meeting')).meetingOptions(meeting[1]!)); return; }
-  const report = /^\/office\/weekly-reports\/([^/]+)$/.exec(pathname);
-  if (report && report[1] !== 'write') { await prime((await import('@/entities/weekly-report')).weeklyReportOptions(report[1]!)); return; }
-  if (pathname === '/workspace/admin/general') {
+  if (pathname === '/workspace/settings/general') {
     const projects = await import('@/entities/project'); const issues = await import('@/entities/work-item');
     await Promise.all([prime(projects.projectsOptions('ACTIVE')), prime(projects.projectsOptions('ARCHIVED')),
       prime(projects.projectsOptions('DELETED')), prime(issues.typesOptions()), prime(issues.labelsOptions())]); return;
   }
-  if (pathname === '/workspace/admin/types' || pathname === '/workspace/admin/labels') {
+  if (pathname === '/workspace/settings/work-item-types' || pathname === '/workspace/settings/work-item-labels') {
     const issues = await import('@/entities/work-item'); if (pathname.endsWith('/types')) await prime(issues.typesOptions()); else await prime(issues.labelsOptions()); return;
   }
-  if (pathname === '/profile/agent-tokens') {
+  if (pathname === '/account/agents') {
     const api = await import('@/pages/account/agents'); await Promise.all([prime(api.agentProfilesOptions()), prime(api.agentTokensOptions())]); return;
   }
   if (pathname === '/workspace/projects' || key) {

@@ -6,7 +6,7 @@ import { PersonAvatar as KitPersonAvatar } from '@/shared/ui/person-avatar';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
 
 /** A member's own page (구성원's profile), which a desktop opens as a dialog over the page in view. */
-export const memberHref = (id: string) => `/office/members/${encodeURIComponent(id)}`;
+export const memberHref = (id: string) => `/workspace/members/${encodeURIComponent(id)}`;
 
 /** Resolves a chosen picture or the member's default drawn avatar from directory data. */
 export const memberPicture = avatarSource;

@@ -7,5 +7,14 @@ export function parseWorkItemRef(ref: string): { key: string; number: number } |
 /** Where a work item opens, as client/ addresses it: under its project (/projects/cowork/work-items/12). */
 export const workItemHref = (workItem: { projectKey: string; number: number }) => `/workspace/projects/${workItem.projectKey}/work-items/${workItem.number}`;
 
-/** Where a work item opens from 업무, the workspace's work items, so the menu stays there: /work-items/COWORK-12. */
-export const workspaceWorkItemHref = (workItem: { ref: string }) => `/my-work/${workItem.ref}`;
+/**
+ * Where a work item opens when only its reference is known (COWORK-12): its one address under its project. A
+ * reference that is no reference stays as it was, so a wrong one shows as not found there.
+ */
+export const workspaceWorkItemHref = (workItem: { ref: string }) => {
+  const parsed = parseWorkItemRef(workItem.ref);
+  return parsed ? workItemHref({ projectKey: parsed.key, number: parsed.number }) : `/workspace/projects/${workItem.ref}`;
+};
+
+/** 새 업무의 주소 하나: 프로젝트 안에서 열면 그 프로젝트를 미리 고른다(?project=). */
+export const newWorkItemHref = (projectKey?: string) => `/workspace/work-items/new${projectKey ? `?project=${encodeURIComponent(projectKey)}` : ''}`;

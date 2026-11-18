@@ -5,7 +5,7 @@ import { NewWorkItem } from '@/widgets/work-item-create';
 import type { Crumb } from './crumb';
 
 /**
- * 새 업무 on its own page (/work-items/new, /projects/{key}/work-items/new, ?column= the status it starts at): where a
+ * 새 업무 on its own page (/workspace/work-items/new, ?project= the project chosen first, ?column= the status it starts at): where a
  * link, a reload or 크게 보기 opens it, and a phone always (a desktop opens it as a dialog over the list, app's panel
  * host). Made, the new work item's page takes its place; 취소 goes back to the list. The list's last step becomes the way
  * back to it, then 새 업무.

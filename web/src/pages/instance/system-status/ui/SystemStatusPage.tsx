@@ -47,7 +47,7 @@ export function SystemStatusPage({ crumbs }: { crumbs: Crumb[] }) {
     const query = new URLSearchParams(window.location.search);
     if (next.tab) { if (next.tab === 'overview') query.delete('tab'); else query.set('tab', next.tab); }
     if (next.range) { if (next.range === 'DAY') query.delete('range'); else query.set('range', next.range); }
-    void navigate({ href: `/instance/system${query.size ? `?${query}` : ''}`, replace: true });
+    void navigate({ href: `/instance/system-status${query.size ? `?${query}` : ''}`, replace: true });
   };
   const chart = useQuery({ ...orgChartOptions(), enabled: tab === 'activities' });
   const [words, setWords] = useAddressWords();

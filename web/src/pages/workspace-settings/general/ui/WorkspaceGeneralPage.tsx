@@ -30,14 +30,14 @@ export function WorkspaceGeneralPage({ crumbs }: { crumbs: Crumb[] }) {
       <SettingsRow label="보관함">{value(count(archived))}</SettingsRow>
       <SettingsRow label="삭제됨">{value(count(deleted))}</SettingsRow>
     </SettingsSection>
-    <SettingsSection title="업무" action={go('/workspace/admin/types', '업무 유형')}>
+    <SettingsSection title="업무" action={go('/workspace/settings/work-item-types', '업무 유형')}>
       <SettingsRow label="기본 유형">
         {fallback
           ? <span className="flex items-center gap-2"><WorkItemTypeIcon type={fallback.code} />{fallback.name}</span>
           : <span>{types.isError ? '불러오지 못함' : types.data ? '기본 유형 없음' : '불러오는 중'}</span>}
       </SettingsRow>
       <SettingsRow label="업무 유형">{value(count(types))}</SettingsRow>
-      <SettingsRow label="라벨"><span className="flex items-center gap-3">{value(count(labels))}{go('/workspace/admin/labels', '라벨 관리')}</span></SettingsRow>
+      <SettingsRow label="라벨"><span className="flex items-center gap-3">{value(count(labels))}{go('/workspace/settings/work-item-labels', '라벨 관리')}</span></SettingsRow>
     </SettingsSection>
   </SettingsPage>;
 }

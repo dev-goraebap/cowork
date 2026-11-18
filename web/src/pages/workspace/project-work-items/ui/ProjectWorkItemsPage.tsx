@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
-import { columnsOptions, cyclesOptions, workItemHref, labelsOptions, useWorkItemTypes, workingPeopleOptions } from '@/entities/work-item';
+import { columnsOptions, cyclesOptions, newWorkItemHref, workItemHref, labelsOptions, useWorkItemTypes, workingPeopleOptions } from '@/entities/work-item';
 import { projectOptions } from '@/entities/project';
 import { useOpenPanel } from '@/shared/lib/panel';
 import { pageCrumbs } from '@/widgets/app-shell';
@@ -40,7 +40,7 @@ function ProjectWorkItems({ projectKey: key, crumbs }: { projectKey: string; cru
   const canWrite = !!project.data?.can.edit;
   const workItems = state.workItems;
   const items = workItems.data?.pages.flatMap(page => page.items) ?? [];
-  const newHref = `/workspace/projects/${key}/work-items/new`;
+  const newHref = newWorkItemHref(key);
   const create = canWrite ? { label: '새 업무', onClick: () => openPanel(newHref) } : undefined;
   return <WorkItemList board={state.board} crumbs={pageCrumbs(crumbs)} bar={state.bar} tools={tools} applied={applied} create={create}
     notice={state.problem ? { message: state.problem, onDismiss: state.dismiss } : undefined}

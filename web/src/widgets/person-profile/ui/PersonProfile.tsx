@@ -2,10 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { directoryAgentsOptions, orgChartOptions, treeRows } from '@/entities/organization';
 import { sessionOptions } from '@/shared/auth';
-import { useOpenPanel } from '@/shared/lib/panel';
 import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';
-import { ChevronRightIcon, UserIcon } from '@/shared/ui/icon';
+import { UserIcon } from '@/shared/ui/icon';
 import { Mark } from '@/shared/ui/mark-picker';
 import { PersonAvatar } from '@/shared/ui/person';
 
@@ -15,7 +14,6 @@ import { PersonAvatar } from '@/shared/ui/person';
  * 내 정보, and an office administrator's to the employee's page.
  */
 export function PersonProfile({ employeeId, name }: { employeeId: string; name?: string }) {
-  const open = useOpenPanel();
   const chart = useQuery(orgChartOptions());
   const session = useQuery(sessionOptions());
   const departments = chart.data?.departments ?? [];
@@ -26,7 +24,6 @@ export function PersonProfile({ employeeId, name }: { employeeId: string; name?:
   const path = treeRows(departments).find(row => row.item.id === department?.id)?.path;
   const leads = departments.filter(item => item.leadEmployeeId === employeeId);
   const isSelf = session.data?.id === employeeId;
-  const isOfficeAdmin = (session.data?.roles ?? []).includes('OFFICE_ADMIN');
   if (chart.isPending) return null;
   if (!person) return <div className="flex flex-col gap-1 p-4">
     <h2 className="text-base font-semibold">{name ?? '구성원'}</h2>
@@ -67,14 +64,8 @@ export function PersonProfile({ employeeId, name }: { employeeId: string; name?:
     </section>
     {isSelf
       ? <div className="flex justify-end">
-        <Button variant="secondary" size="sm" nativeButton={false} render={<Link to="/profile" />}><UserIcon data-icon="inline-start" />내 정보로</Button>
+        <Button variant="secondary" size="sm" nativeButton={false} render={<Link to="/account/profile" />}><UserIcon data-icon="inline-start" />내 정보로</Button>
       </div>
-      : isOfficeAdmin
-        ? <div className="flex justify-end">
-          <Button variant="secondary" size="sm" onClick={() => open(`/office/admin/employees/${person.id}`, { surface: 'inherit' })}>
-            사원 상세<ChevronRightIcon data-icon="inline-end" />
-          </Button>
-        </div>
-        : null}
+      : null}
   </div>;
 }

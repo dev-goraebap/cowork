@@ -31,7 +31,7 @@ function entryIcon(entry: NavEntry): Pick<ShellEntry, 'icon' | 'media'> {
  * 설정)은 어느 공간에도 속하지 않아 공간 전환 메뉴 아래의 톱니바퀴로 연다.
  */
 const SPACE_ADMINISTRATIONS: Record<string, { path: string; label: string; icon: string; role: AdminRole }> = {
-  workspace: { path: '/workspace/admin', label: '워크스페이스 관리', icon: 'settings', role: 'WORKSPACE_ADMIN' },
+  workspace: { path: '/workspace/settings', label: '워크스페이스 관리', icon: 'settings', role: 'WORKSPACE_ADMIN' },
 };
 const INSTANCE_SETTINGS = { path: '/instance', label: '인스턴스 관리', role: 'INSTANCE_ADMIN' as AdminRole };
 
@@ -120,7 +120,7 @@ export function AppFrame({ pathname, search = '', myProjects = [], onCreateProje
   const childrenOf = (entry: NavEntry): NavEntry[] | undefined => entry.children;
   const toShell = (entry: NavEntry): ShellEntry => {
     const [path, at] = entry.path.split('?');
-    const isActivity = entry.path === '/notifications';
+    const isActivity = entry.path === '/inbox';
     // 탐색(2026-11-15): 오피스 · 워크스페이스 메뉴 맨 위의 항목. 누르면 주소로 가지 않고 검색 창이 열린다(Ctrl/⌘+K).
     const isExplore = entry.path === '/search';
     return {
@@ -146,7 +146,7 @@ export function AppFrame({ pathname, search = '', myProjects = [], onCreateProje
   // 어디서나 보이는 묶음(탐색 · 알림함 · 내 업무)은 세지 않는다. 그 옆은 메뉴 시트(머리에서 오피스 ⇕ 워크스페이스).
   const core = sections.filter(section => section.title !== GLOBAL_TITLE).flatMap(section => section.entries).slice(0, 2);
   const phoneTabs: ShellEntry[] = [
-    { path: '/notifications', label: activityLabel(unread, awaitingApprovals), icon: activityIcon(needsActivity), badge: awaitingApprovals > 0 ? awaitingApprovals : undefined },
+    { path: '/inbox', label: activityLabel(unread, awaitingApprovals), icon: activityIcon(needsActivity), badge: awaitingApprovals > 0 ? awaitingApprovals : undefined },
     ...core.map(entry => ({ path: entry.path, label: entry.label, icon: navIcon(entry.icon) })),
   ];
 
@@ -167,9 +167,9 @@ export function AppFrame({ pathname, search = '', myProjects = [], onCreateProje
     name: me.name, detail: me.team, picture: me.picture || me.fallbackPicture,
     groups: [
       [
-        { label: '내 정보', icon: UserIcon, onSelect: () => go('/profile') },
-        { label: '화면 설정', icon: MonitorIcon, onSelect: () => go('/profile/display') },
-        { label: '내 AI 에이전트', icon: SparklesIcon, onSelect: () => go('/profile/agent-tokens') },
+        { label: '내 정보', icon: UserIcon, onSelect: () => go('/account/profile') },
+        { label: '화면 설정', icon: MonitorIcon, onSelect: () => go('/account/display') },
+        { label: '내 AI 에이전트', icon: SparklesIcon, onSelect: () => go('/account/agents') },
       ],
       onLogout ? [{ label: '로그아웃', icon: LogoutIcon, onSelect: onLogout }] : [],
     ],
@@ -218,7 +218,7 @@ export function AppFrame({ pathname, search = '', myProjects = [], onCreateProje
     <AppShell space={shellSpace} pathname={pathname} layout={layout} me={shellMe} hasMeBox={false} adminEntries={adminEntries}
       brand={brand} headerTools={headerTools}
       // 데스크톱 화면 아래 줄(2026-11-15 되살림): 왼쪽 끝에 버전, 오른쪽 끝에 에이전트(내 AI 에이전트로)와 그 왼쪽 바코드 장식. 휴대폰에는 없다.
-      bottomBar={<AgentBar onOpen={() => go('/profile/agent-tokens')} start={<span className="tabular-nums">{version}</span>}><Barcode /></AgentBar>}
+      bottomBar={<AgentBar onOpen={() => go('/account/agents')} start={<span className="tabular-nums">{version}</span>}><Barcode /></AgentBar>}
       phoneBar={{ tabs: phoneTabs, spaces: phoneSpaces, currentSpaceId: space.id === 'instance' ? 'instance' : topSpaceOf(space), onSearch }}>
       {children}
     </AppShell>

@@ -2,7 +2,7 @@ import { usePageLocation } from '@/shared/lib/route-location';
 import { useQuery } from '@tanstack/react-query';
 import { unmaskDialogHref } from '@/shared/lib/panel';
 import { isWorkItemViewChange } from './work-item-view-transition';
-import { Navigate, Outlet, lazyRouteComponent, createRootRouteWithContext, createRoute, createRouter, redirect, useChildMatches, useLocation, useParams } from '@tanstack/react-router';
+import { Navigate, Outlet, lazyRouteComponent, createRootRouteWithContext, createRoute, createRouter, redirect, useChildMatches, useLocation, useParams, useSearch } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 import type { ComponentType, ReactNode } from 'react';
 import { projectOptions } from '@/entities/project';
@@ -97,7 +97,7 @@ function WelcomeRoute() {
   return <WelcomePage onDone={() => window.location.replace(HOME)} />;
 }
 const welcomeRoute = createRoute({
-  getParentRoute: () => rootRoute, path: '/welcome', component: WelcomeRoute,
+  getParentRoute: () => rootRoute, path: '/onboarding', component: WelcomeRoute,
   beforeLoad: async ({ context }) => {
     const session = await context.queryClient.ensureQueryData(sessionOptions());
     if (!session) throw redirect({ to: '/login', replace: true });
@@ -110,7 +110,7 @@ const appRoute = createRoute({
   beforeLoad: async ({ context }) => {
     const session = await context.queryClient.ensureQueryData(sessionOptions());
     if (!session) throw redirect({ to: '/login' });
-    if (!session.onboarded) throw redirect({ to: '/welcome', replace: true });
+    if (!session.onboarded) throw redirect({ to: '/onboarding', replace: true });
     return { session };
   },
 });
@@ -123,23 +123,29 @@ function useCrumbs(): Crumb[] {
   return crumbsOf(pathname, project.data?.name);
 }
 
+/** 새 업무: ?project=가 있으면 그 프로젝트를 미리 고른다. */
+function NewWorkItemRoute({ crumbs }: { crumbs: Crumb[] }) {
+  const { project } = useSearch({ strict: false }) as { project?: string };
+  return <NewWorkItemPage crumbs={crumbs} projectKey={project} />;
+}
+
 /** The menu pages built so far, by address; each takes its head's path. */
 const PAGES: Record<string, ComponentType<{ crumbs: Crumb[] }>> = {
   '/my-work': MyWorkPage,
   '/workspace/documents': DocumentBoxPage,
   '/workspace/members': WorkspaceMembersPage,
-  '/profile': ProfilePage,
-  '/profile/notifications': NotificationSettingsPage,
-  '/profile/display': DisplayPage,
-  '/profile/agent-tokens': AgentTokensPage,
-  '/instance/roles': RolesPage,
-  '/instance/system': SystemStatusPage,
+  '/account/profile': ProfilePage,
+  '/account/notifications': NotificationSettingsPage,
+  '/account/display': DisplayPage,
+  '/account/agents': AgentTokensPage,
+  '/instance/members': RolesPage,
+  '/instance/system-status': SystemStatusPage,
   '/instance/push-deliveries': PushDeliveriesPage,
-  '/workspace/admin/general': WorkspaceGeneralPage,
-  '/workspace/admin/roles': WorkspaceRolesPage,
-  '/workspace/admin/document-labels': DocumentLabelsPage,
-  '/workspace/admin/labels': WorkItemLabelsPage,
-  '/workspace/admin/types': WorkItemTypesPage,
+  '/workspace/settings/general': WorkspaceGeneralPage,
+  '/workspace/settings/roles': WorkspaceRolesPage,
+  '/workspace/settings/document-labels': DocumentLabelsPage,
+  '/workspace/settings/work-item-labels': WorkItemLabelsPage,
+  '/workspace/settings/work-item-types': WorkItemTypesPage,
 };
 
 /** The page at a menu's address (one not built yet says it is on its way). */
@@ -186,53 +192,18 @@ const pageRoutes = [
   page('/search', SearchPage, () => <SearchPage crumbs={[{ label: '검색', icon: 'search' }]} />),
   // A document (a 매뉴얼's chapter ?chapter=) of the workspace's 문서함, under it in its head.
   page('/workspace/documents/$documentId', DocumentBoxPage, (crumbs, { documentId }) => <DocumentBoxPage crumbs={crumbs} documentId={documentId} />),
-  // 내 업무에서 연 업무 · 새 업무는 /my-work 아래에 둔다(메뉴가 내 업무에 그대로 선다, 2026-11-15). 전체 업무 목록은 없앴다.
-  page('/my-work/new', NewWorkItemPage, crumbs => <NewWorkItemPage crumbs={crumbs} />),
-  page('/my-work/$ref', WorkItemPage, (crumbs, { ref }) => <WorkItemPage crumbs={crumbs} workItemRef={ref} />),
-  // 업무의 수정 화면: 상세의 편집 단추가 연다(제목과 본문만 고치는 화면).
-  page('/my-work/$ref/edit', WorkItemEditPage, (crumbs, { ref }) => <WorkItemEditPage crumbs={crumbs} workItemRef={ref} />),
+  // 새 업무의 주소 하나. 프로젝트 안에서 열면 ?project=로 그 프로젝트를 미리 고른다.
+  page('/workspace/work-items/new', NewWorkItemPage, crumbs => <NewWorkItemRoute crumbs={crumbs} />),
 ];
-
-/**
- * Addresses that moved ($id carried over, with the query), so a bookmark and a notice left before still land: client/'s
- * 오피스 ones that were renamed, and web/'s old 업무 ones.
- */
-const MOVED: Record<string, string> = {
-  // 업무 was at /issues before it took the name work items (the server API keeps issues).
-  '/issues': '/my-work',
-  '/issues/$id': '/my-work/$id',
-};
 
 /** Addresses standing for a menu, taking one to its first page, and the moved ones. */
 const REDIRECTS: Record<string, string> = {
-  ...MOVED,
-  '/workspace/documents/ai-notes': '/workspace/documents',
-  '/workspace/documents/ai-notes/$id': '/workspace/documents',
   '/': HOME,
-  '/instance': '/instance/roles',
-  '/workspace/admin': '/workspace/admin/general',
+  '/account': '/account/profile',
+  '/instance': '/instance/members',
+  '/workspace/settings': '/workspace/settings/general',
   '/workspace/projects/new': '/workspace/projects',
 };
-
-/**
- * 공간 접두가 붙기 전의 주소(2026-11-15까지): 최상위에 있던 오피스 · 워크스페이스 화면은 /office/… · /workspace/…로, 내 업무는
- * /my-work로 넘긴다. 그 아래 주소와 쿼리를 그대로 옮긴다(알림에 남은 옛 링크, 즐겨찾기, 에이전트가 받아 둔 주소).
- */
-const SPACE_MOVED: [from: string, to: string][] = [
-  ['/projects/admin', '/workspace/admin'],
-  ['/projects', '/workspace/projects'],
-  ['/work-items', '/my-work'],
-  // 잠깐 쓰던 주소(/workspace/work-items/{REF})도 내 업무 아래로.
-  ['/workspace/work-items', '/my-work'],
-  ['/documents', '/workspace/documents'],
-];
-const spaceMovedRoutes = SPACE_MOVED.flatMap(([from, to]) => [from, `${from}/$`].map(path => createRoute({
-  getParentRoute: () => appRoute, path, ...pageData,
-  beforeLoad: ({ params, location }) => {
-    const rest = (params as Params)._splat;
-    throw redirect({ href: `${to}${rest ? `/${rest}` : ''}${location.searchStr}`, replace: true });
-  },
-})));
 
 const redirectRoutes = Object.entries(REDIRECTS).map(([path, to]) => createRoute({
   getParentRoute: () => appRoute, path, ...pageData,
@@ -245,19 +216,19 @@ const redirectRoutes = Object.entries(REDIRECTS).map(([path, to]) => createRoute
  * A body's 버전 기록 at its old short addresses (useMaskedDialog): they open the page with it open. A project's document's and
  * work item's …/history are pages of their own (BodyHistoryPage): the detail opens the same address as a dialog.
  */
-const historyRoutes = ['/my-work/$ref/history', '/workspace/documents/$documentId/history']
+const historyRoutes = ['/workspace/documents/$documentId/history']
   .map(path => createRoute({
     getParentRoute: () => appRoute, path, ...pageData,
     beforeLoad: ({ location }) => { throw redirect({ href: unmaskDialogHref(location.pathname, location.searchStr, 'history'), replace: true }); },
   }));
 
 /**
- * The inboxes (받은 알림, 결재함): the list's address and the chosen item's under it (/notifications/{id},
+ * The inboxes (받은 알림, 결재함): the list's address and the chosen item's under it (/inbox/{id},
  * /approvals/{id}) are one page that stays while the address moves between them, so the list keeps its place and
  * filters; the item's address has no page of its own (the page reads it). The page decides a phone's detail page.
  */
 const INBOXES: Record<string, ComponentType<{ crumbs: Crumb[]; id?: string }>> = {
-  '/notifications': NotificationsPage,
+  '/inbox': NotificationsPage,
 };
 const inboxRoutes = Object.entries(INBOXES).map(([path, Inbox]) => {
   pageComponents.set(path, Inbox);
@@ -332,7 +303,6 @@ const projectPageRoutes = [
   // 프로젝트의 첫 화면은 개요다(2026-11-15, 전에는 업무로 넘겼다): 프로젝트 목록에서 프로젝트를 누르면 열린다.
   projectPage('/', ProjectOverviewPage, (crumbs, { key }) => <ProjectOverviewPage crumbs={crumbs} projectKey={key ?? ''} />),
   projectPage('work-items', ProjectWorkItemsPage, crumbs => <ProjectWorkItemsPage crumbs={crumbs} />),
-  projectPage('work-items/new', NewWorkItemPage, (crumbs, { key }) => <NewWorkItemPage crumbs={crumbs} projectKey={key} />),
   projectPage('work-items/$number', WorkItemPage, (crumbs, { key, number }) => <WorkItemPage crumbs={crumbs} projectKey={key} number={Number(number)} />),
   projectPage('work-items/$number/edit', WorkItemEditPage, (crumbs, { key, number }) => <WorkItemEditPage crumbs={crumbs} projectKey={key} number={Number(number)} />),
   projectPage('schedule', ProjectSchedulePage, (crumbs, { key }) => <ProjectSchedulePage crumbs={crumbs} projectKey={key} />),
@@ -347,15 +317,6 @@ const projectPageRoutes = [
   projectPage('members', ProjectMembersPage, crumbs => <ProjectMembersPage crumbs={crumbs} />),
   projectPage('cycles', ProjectCyclesPage, crumbs => <ProjectCyclesPage crumbs={crumbs} />),
 ];
-
-/** A project's old 업무 addresses (/projects/{key}/issues, /issues/{number}) moved to work-items, with the query. */
-const projectMovedRoutes = ['issues', 'issues/$number'].map(path => createRoute({
-  getParentRoute: () => projectRoute, path, ...pageData,
-  beforeLoad: ({ params, location }) => {
-    const { key, number } = params as Params;
-    throw redirect({ href: `/workspace/projects/${key}/work-items${number ? `/${number}` : ''}${location.searchStr}`, replace: true });
-  },
-}));
 
 /** A project's settings, with each section's component and reads prepared before entry. */
 function ProjectSettingsRoute() {
@@ -380,8 +341,8 @@ const projectSettingsRoute = createRoute({
 });
 
 const routeTree = rootRoute.addChildren([loginRoute, welcomeRoute, printRoute, appRoute.addChildren([
-  ...redirectRoutes, ...spaceMovedRoutes, ...historyRoutes, ...inboxRoutes, ...splitRoutes, ...entryRoutes, ...pageRoutes, projectsRoute,
-  projectRoute.addChildren([...projectPageRoutes, ...projectMovedRoutes, projectSettingsRoute]),
+  ...redirectRoutes, ...historyRoutes, ...inboxRoutes, ...splitRoutes, ...entryRoutes, ...pageRoutes, projectsRoute,
+  projectRoute.addChildren([...projectPageRoutes, projectSettingsRoute]),
 ])]);
 
 export const createAppRouter = (queryClient: QueryClient) => createRouter({
@@ -395,7 +356,7 @@ export const createAppRouter = (queryClient: QueryClient) => createRouter({
   defaultViewTransition: typeof CSS !== 'undefined' && CSS.supports('selector(:active-view-transition-type(cowork-content))') && {
     types: ({ fromLocation, toLocation, pathChanged }) => {
       if (!fromLocation || (!pathChanged && !isWorkItemViewChange(fromLocation, toLocation))
-        || [fromLocation.pathname, toLocation.pathname].some(path => path === '/login' || path === '/welcome')
+        || [fromLocation.pathname, toLocation.pathname].some(path => path === '/login' || path === '/onboarding')
         || matchMedia('(prefers-reduced-motion: reduce)').matches
         || document.documentElement.matches(':active-view-transition')
         || document.querySelector('dialog[open], [role="dialog"][data-open], [role="alertdialog"][data-open]')) return false;

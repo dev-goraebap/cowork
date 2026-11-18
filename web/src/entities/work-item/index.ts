@@ -9,7 +9,7 @@ export {
 export { completeCycle, createCycle, CYCLE_STATES, cycleDays, cyclesOptions, deleteCycle, editCycle, saveCycleSettings, type Cycle, type CycleInput, type CycleList, type CycleSettings } from './api/cycles';
 export { deleteTimeEntry, formatHours, logTime, STORY_POINTS, timeEntriesOptions, type TimeEntries, type TimeEntry, type TimeEntryInput } from './api/time-entries';
 export { changeWorkItemViews, workItemViewsOptions, viewKeys, type WorkItemViewChange } from './api/views';
-export { workItemHref, parseWorkItemRef, workspaceWorkItemHref } from './model/address';
+export { newWorkItemHref, workItemHref, parseWorkItemRef, workspaceWorkItemHref } from './model/address';
 export { dayOf, formatWorkItemDate, isLate, momentOf } from './model/date';
 export { labelColor, type LabelColor } from './model/label';
 export type {

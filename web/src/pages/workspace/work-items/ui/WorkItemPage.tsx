@@ -39,7 +39,7 @@ export function WorkItemPage({ crumbs, workItemRef, projectKey, number, surface 
     {found
       ? <WorkItemDetail key={`${found.key}-${found.number}`} projectKey={found.key} number={found.number} headSlot={headSlot}
         hrefOf={isWorkspace ? workspaceWorkItemHref : workItemHref}
-        onEdit={() => openEditor(isWorkspace ? `/my-work/${found.key}-${found.number}/edit` : `${listHref}/${found.number}/edit`)}
+        onEdit={() => openEditor(isWorkspace ? `${workspaceWorkItemHref({ ref: `${found.key}-${found.number}` })}/edit` : `${listHref}/${found.number}/edit`)}
         onDeleted={() => onClose ? onClose() : void navigate({ href: listHref, replace: true })} />
       : <PageState kind="not-found" title="업무를 찾을 수 없습니다" description="주소의 업무 번호(예: COWORK-12)를 확인해 주세요." />}
   </DetailSurface>;

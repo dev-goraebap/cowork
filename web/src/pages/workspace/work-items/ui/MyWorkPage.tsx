@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { boardGroupsOptions, CATEGORIES, workspaceWorkItemHref, type WorkItemBoardGroup } from '@/entities/work-item';
+import { boardGroupsOptions, CATEGORIES, workspaceWorkItemHref, type WorkItemBoardGroup, newWorkItemHref } from '@/entities/work-item';
 import { useOpenPanel } from '@/shared/lib/panel';
 import { Button } from '@/shared/ui/button';
 import { Page } from '@/shared/ui/layout/page';
@@ -46,13 +46,13 @@ function Summary({ groups, only, onPick }: { groups: WorkItemBoardGroup[] | unde
 /**
  * 내 업무(/my-work): 어느 프로젝트의 것이든 내가 담당한 업무만 본다. 목록은 업무 목록과 같은 부품(상태 묶음 · 접기 · 하위
  * 업무 · 더 보기 · 빈 화면)이고, 조건만 담당자가 나로 고정된다. 끝난 묶음(완료 · 취소)은 접어 둔다. 위의 알약으로 열린 한
- * 묶음만 골라 본다. 업무를 열면 /my-work/{KEY-번호}라 메뉴가 내 업무에 그대로 선다.
+ * 묶음만 골라 본다. 업무는 프로젝트 아래 주소 하나로 연다(데스크톱은 이 목록 위 대화상자).
  */
 export function MyWorkPage({ crumbs }: { crumbs: Crumb[] }) {
   const openPanel = useOpenPanel();
   const [only, setOnly] = useState<Category | null>(null);
   const all = useQuery(boardGroupsOptions(undefined, MINE, 'STATUS'));
-  const create = { label: '새 업무', onClick: () => openPanel('/my-work/new') };
+  const create = { label: '새 업무', onClick: () => openPanel(newWorkItemHref()) };
   return (
     <Page crumbs={pageCrumbs(crumbs)} create={create}>
       {all.error ? <PageState kind="error" title="내 업무를 불러오지 못했습니다" description={all.error.message} /> : <>

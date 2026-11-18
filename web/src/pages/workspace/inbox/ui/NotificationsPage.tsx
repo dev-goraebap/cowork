@@ -39,7 +39,7 @@ function NotificationsMenu({ unread, onReadAll }: { unread: number; onReadAll: (
   const navigate = useNavigate();
   return <ActionMenu label="알림함 메뉴" actions={[
     ...(unread > 0 ? [{ label: `모두 읽음 (${unread})`, icon: CircleCheckIcon, onSelect: onReadAll }] : []),
-    { label: '알림 설정', icon: SettingsIcon, onSelect: () => void navigate({ href: '/profile/notifications' }) },
+    { label: '알림 설정', icon: SettingsIcon, onSelect: () => void navigate({ href: '/account/notifications' }) },
   ]} />;
 }
 
@@ -58,7 +58,7 @@ const GroupTitle = ({ children }: { children: string }) => <h2 className="px-4 p
 /**
  * One notice: who sent it (the system's own notices the company's mark in the same place), its title, what it reports and
  * its words, and when it came; an unread one tinted, the chosen one marked. Pressed anywhere it opens in the detail
- * (/notifications/{id}); the sender's avatar opens their profile.
+ * (/inbox/{id}); the sender's avatar opens their profile.
  */
 function NotificationRow({ item, now, isChosen, href }: { item: NotificationItem; now: number; isChosen: boolean; href: string }) {
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ function NotificationRow({ item, now, isChosen, href }: { item: NotificationItem
 }
 
 /**
- * 받은 알림 (/notifications, /notifications/{id}): the member's notices, newest first, narrowed by read state and what
+ * 알림함 (/inbox, /inbox/{id}): the member's notices, newest first, narrowed by read state and what
  * they are about, read a slice at a time, as an inbox (shared/ui/inbox): the list on the left, the chosen notice (id)
  * on the right showing what it points to in place (NoticeDetail). A phone shows the list alone and the chosen notice
  * as a page of its own, its way back the list (the filters kept, this component staying while the address changes).
@@ -85,7 +85,7 @@ export function NotificationsPage({ crumbs, id }: { crumbs: Crumb[]; id?: string
   const { view } = useSearch({ strict: false }) as { view?: unknown };
   const category = view === 'announcement' || view === 'event' ? view : undefined;
   const search = category ? `?view=${category}` : '';
-  const hrefOf = (noticeId?: string) => `/notifications${noticeId ? `/${noticeId}` : ''}${search}`;
+  const hrefOf = (noticeId?: string) => `/inbox${noticeId ? `/${noticeId}` : ''}${search}`;
   const filters = useFilters(FILTERS);
   const listing: NotificationListing = {
     read: filters.one('read') as NotificationListing['read'], category,
