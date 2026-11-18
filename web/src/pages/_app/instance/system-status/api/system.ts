@@ -27,7 +27,7 @@ export type Traffic = {
  */
 export type ActivityRow = {
   id: number; kind: 'CHANGE' | 'VISIT'; at: string; lastAt?: string | null; visits?: number | null;
-  employeeId?: string | null; employeeName?: string | null; departmentName?: string | null; ip: string;
+  employeeId?: string | null; employeeName?: string | null; ip: string;
   method?: string | null; route: string; target?: string | null; status?: number | null; durationMs?: number | null;
   traceId?: string | null; userAgent?: string | null;
 };

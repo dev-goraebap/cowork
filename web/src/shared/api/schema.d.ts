@@ -2967,7 +2967,6 @@ export interface components {
             /** Format: uuid */
             userId?: string;
             name?: string;
-            departmentName?: string;
             /** @enum {string} */
             role?: "NONE" | "VIEWER" | "EDITOR" | "ADMIN";
             /** Format: date-time */
@@ -3574,7 +3573,6 @@ export interface components {
             /** Format: uuid */
             employeeId?: string;
             employeeName?: string;
-            departmentName?: string;
             ip?: string;
             method?: string;
             route?: string;
@@ -3636,7 +3634,6 @@ export interface components {
             /** Format: uuid */
             id?: string;
             name?: string;
-            departmentName?: string;
             /** Format: int64 */
             devices?: number;
             /** Format: date-time */
@@ -3673,7 +3670,6 @@ export interface components {
             /** Format: uuid */
             id?: string;
             name?: string;
-            departmentName?: string;
             devices?: components["schemas"]["PushDevice"][];
             deliveries?: components["schemas"]["PushDeliveryRow"][];
         };

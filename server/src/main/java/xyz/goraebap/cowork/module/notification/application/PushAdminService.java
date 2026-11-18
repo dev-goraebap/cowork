@@ -52,7 +52,6 @@ public class PushAdminService {
                     return new PushViews.PushMemberRow(
                             row.id(),
                             person == null ? row.name() : person.name(),
-                            person == null ? null : person.departmentName(),
                             row.devices(),
                             row.lastPushAt(),
                             row.lastStatus(),
@@ -70,7 +69,6 @@ public class PushAdminService {
         return new PushViews.PushMemberDetail(
                 employeeId,
                 person == null ? null : person.name(),
-                person == null ? null : person.departmentName(),
                 pushQuery.devicesOf(employeeId, DEVICES_SHOWN),
                 pushQuery.deliveriesOf(employeeId, DELIVERIES_SHOWN));
     }

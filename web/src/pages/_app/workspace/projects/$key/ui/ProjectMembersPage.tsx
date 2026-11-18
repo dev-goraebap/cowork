@@ -15,7 +15,7 @@ import { ListMore } from '@/shared/ui/list-more';
 import { Page } from '@/shared/ui/layout/page';
 import { PageState } from '@/shared/ui/page-state';
 import { memberHref, PersonAvatar } from '@/shared/ui/person';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableText } from '@/shared/ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/table';
 import { toast } from '@/shared/ui/toast';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { AddMemberDialog } from './AddMemberDialog';
@@ -25,7 +25,6 @@ type Crumb = { label: string; href?: string; icon?: string };
 type RowActions = { onRole: (role: ProjectRole) => void; onRemove: () => void };
 
 const day = new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: 'short', day: 'numeric' });
-const dash = (value?: string | null) => value || <span className="text-muted-foreground">-</span>;
 
 /** 이름 칸: 사진과 이름. 이름 단추가 줄 전체를 덮어(::after) 어디를 눌러도 프로필이 열린다(워크스페이스 멤버 표와 같다). */
 function Name({ member, onOpen }: { member: ProjectMember; onOpen: () => void }) {
@@ -60,7 +59,7 @@ function More({ member, actions }: { member: ProjectMember; actions?: RowActions
 
 /**
  * A project's 멤버 (프로젝트 설정 › 멤버): who is in it with which role (cowork-projects 권한), in the order they
- * joined. Laid out as the area's 멤버 table (2026-11-15): 이름 · 부서 · 역할 · 참여한 날, and for the project's
+ * joined. Laid out as the area's 멤버 table (2026-11-15): 이름 · 역할 · 참여한 날, and for the project's
  * administrators (and Workspace administrators) a role to choose in the row and 프로젝트에서 빼기 under its more (…) menu;
  * a phone shows rows. They add a working member with a role (멤버 추가), an archived project's too; the last administrator
  * stays. Everyone else reads. A row opens the member's profile. The project's key is the address's ($key).
@@ -94,14 +93,13 @@ export function ProjectMembersPage({ crumbs }: { crumbs: Crumb[] }) {
     if (!members.data) return null;
     if (members.data.length === 0) return <PageState kind="empty" title="아직 멤버가 없습니다"
       action={openAdd ? <Button variant="secondary" onClick={openAdd}>멤버 추가</Button> : undefined} />;
-    // 휴대폰은 줄 목록(표가 좁아 들어가지 않는다): 사진 · 이름 · 부서, 끝에 역할과 더보기.
+    // 휴대폰은 줄 목록(표가 좁아 들어가지 않는다): 사진 · 이름, 끝에 역할과 더보기.
     if (isMobile) return (
       <ul aria-label="프로젝트 멤버">
         {members.data.map(member => (
           <li key={member.userId} className="relative flex min-h-16 items-center gap-3 border-b bg-background px-4 py-2">
             <span className="flex min-w-0 flex-1 flex-col gap-0.5">
               <Name member={member} onOpen={() => open(member)} />
-              {member.departmentName ? <span className="truncate pl-7 text-xs text-muted-foreground">{member.departmentName}</span> : null}
             </span>
             <Role member={member} actions={actionsOf(member)} />
             <More member={member} actions={actionsOf(member)} />
@@ -114,7 +112,6 @@ export function ProjectMembersPage({ crumbs }: { crumbs: Crumb[] }) {
         <TableHeader>
           <TableRow>
             <TableHead>이름</TableHead>
-            <TableHead>부서</TableHead>
             <TableHead>역할</TableHead>
             <TableHead>참여한 날</TableHead>
             {canChange ? <TableHead><span className="sr-only">더보기</span></TableHead> : null}
@@ -124,7 +121,6 @@ export function ProjectMembersPage({ crumbs }: { crumbs: Crumb[] }) {
           {members.data.map(member => (
             <TableRow key={member.userId} className="relative">
               <TableCell><Name member={member} onOpen={() => open(member)} /></TableCell>
-              <TableCell><TableText className="max-w-40">{dash(member.departmentName)}</TableText></TableCell>
               <TableCell><Role member={member} actions={actionsOf(member)} /></TableCell>
               <TableCell className="text-muted-foreground tabular-nums">{day.format(new Date(member.joinedAt))}</TableCell>
               {canChange ? <TableCell><More member={member} actions={actionsOf(member)} /></TableCell> : null}

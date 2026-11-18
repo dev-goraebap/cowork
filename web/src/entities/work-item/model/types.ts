@@ -24,7 +24,7 @@ export type TimelineEntry = WithRequired<Schemas['TimelineEntry'], 'kind' | 'id'
 export type BoardColumn = WithRequired<Schemas['ColumnView'], 'id' | 'name' | 'category' | 'position'>;
 export type WorkItemLabel = WithRequired<Schemas['LabelView'], 'id' | 'name' | 'color' | 'position'>;
 /** A working member a work item can be given to. */
-export type WorkItemPerson = { id: string; name: string; departmentId?: string; positionName?: string };
+export type WorkItemPerson = { id: string; name: string };
 
 /** What a work item is made or changed with; the project is the key the request goes to. */
 export type WorkItemDraft = {

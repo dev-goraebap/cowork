@@ -43,7 +43,7 @@ public final class ProjectViews {
     }
 
     /** One member of a project with their role, as its members page lists them. */
-    public record MemberView(UUID userId, String name, String departmentName, ProjectRole role, Instant joinedAt) {}
+    public record MemberView(UUID userId, String name, ProjectRole role, Instant joinedAt) {}
 
     /** That a member belongs to a project and with which role, for the area's members page. */
     public record Membership(UUID projectId, UUID userId, ProjectRole role) {}

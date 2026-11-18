@@ -87,7 +87,7 @@ function Name({ person, onOpen }: { person: OrgPerson; onOpen: () => void }) {
   );
 }
 
-/** 데스크톱 표(Linear의 Members 표): 이름 · 부서 · 직위 · 이메일 · 참여 프로젝트. */
+/** 데스크톱 표(Linear의 Members 표): 이름 · 이메일 · 참여 프로젝트. */
 function MembersTable({ rows, onOpen, onManage }: { rows: Row[]; onOpen: (id: string) => void; onManage?: Manage }) {
   return (
     <Table aria-label="멤버" className="bg-background">

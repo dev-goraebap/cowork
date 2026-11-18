@@ -148,8 +148,7 @@ public class ProjectService implements ProjectFacade {
                 .filter(member -> names.containsKey(member.userId()))
                 .map(member -> {
                     var person = names.get(member.userId());
-                    return new ProjectViews.MemberView(
-                            member.userId(), person.name(), person.departmentName(), member.role(), member.at());
+                    return new ProjectViews.MemberView(member.userId(), person.name(), member.role(), member.at());
                 })
                 .toList();
     }

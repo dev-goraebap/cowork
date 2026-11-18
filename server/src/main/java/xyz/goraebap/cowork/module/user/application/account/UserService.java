@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import xyz.goraebap.cowork.module.user.AffiliationSpi;
 import xyz.goraebap.cowork.module.user.Gender;
 import xyz.goraebap.cowork.module.user.NewUser;
 import xyz.goraebap.cowork.module.user.UserFacade;
@@ -37,7 +36,6 @@ public class UserService implements UserFacade {
     private final AgentTokenRepository agentTokenRepository;
     private final AgentProfileRepository agentProfileRepository;
     private final UserQuery userQuery;
-    private final Optional<AffiliationSpi> affiliation;
     private final Clock clock;
 
     @Override
@@ -124,9 +122,7 @@ public class UserService implements UserFacade {
         Map<UUID, UserSummary> summaries = new HashMap<>();
         if (userIds.isEmpty()) return summaries;
         var names = userQuery.namesOf(userIds);
-        var departments =
-                affiliation.map(each -> each.departmentNamesOf(names.keySet())).orElse(Map.of());
-        names.forEach((id, name) -> summaries.put(id, new UserSummary(id, name, departments.get(id))));
+        names.forEach((id, name) -> summaries.put(id, new UserSummary(id, name)));
         return summaries;
     }
 

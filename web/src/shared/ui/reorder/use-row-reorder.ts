@@ -76,7 +76,7 @@ export type RowReorderOptions = {
  * - 끄는 동안 줄은 제자리를 점선 틀로 비우고 복사본이 손을 따라온다. 이웃 줄은 비켜 미끄러지고, 상자 끝에 닿으면 스크롤한다.
  * - Esc · 손가락 취소는 처음 순서로 되돌린다. 놓으면 바로 새 순서를 보이고 저장하며, 저장 중에 또 옮기면 마지막 것만 보낸다.
  * 목록 요소의 종류는 E로 정한다(useRowReorder<HTMLUListElement>).
- * - 줄이 자기 목록(하위 부서)을 품어도 목록의 바로 아래 줄만 센다. 대화상자 안이면 복사본도 대화상자 안에 그린다.
+ * - 줄이 자기 목록(하위 항목)을 품어도 목록의 바로 아래 줄만 센다. 대화상자 안이면 복사본도 대화상자 안에 그린다.
  */
 export function useRowReorder<E extends HTMLElement = HTMLDivElement>({ rows, noun, onReorder, onError }: RowReorderOptions) {
   const list = useRef<E>(null)

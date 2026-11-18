@@ -28,8 +28,7 @@ import xyz.goraebap.cowork.module.notification.domain.push.PushDelivery;
 
 /**
  * Push devices and records for the member and for administrators. Which members count as working decides the lists
- * and counts, so it is read from the employee table here (backend guideline 04); names and departments come from
- * the organization facade.
+ * and counts, so it is read from the users table here (backend guideline 04); names come from the user facade.
  */
 @Repository
 @RequiredArgsConstructor
@@ -265,7 +264,6 @@ class JooqPushQuery implements PushQuery {
                 .fetch(row -> new PushViews.PushMemberRow(
                         row.value1(),
                         row.value2(),
-                        null,
                         row.value3(),
                         row.value4(),
                         row.value5(),

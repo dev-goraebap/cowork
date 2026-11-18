@@ -6,7 +6,7 @@ export type PushSummary = {
   sent: number; failed: number; gone: number; noDevice: number; muted: number; pending: number;
 };
 export type PushMember = {
-  id: string; name: string; departmentName?: string | null; devices: number; lastPushAt?: string | null; lastStatus?: string | null;
+  id: string; name: string; devices: number; lastPushAt?: string | null; lastStatus?: string | null;
   sent: number; failed: number; noDevice: number;
 };
 export type PushDeviceRow = {
@@ -17,7 +17,7 @@ export type PushDeliveryRow = {
   id: string; title: string; link?: string | null; status: string; httpStatus?: number | null; error?: string | null; attempts: number;
   createdAt: string; attemptedAt?: string | null; subscriptionId?: string | null; deviceName?: string | null; test: boolean;
 };
-export type PushMemberDetail = { id: string; name?: string | null; departmentName?: string | null; devices: PushDeviceRow[]; deliveries: PushDeliveryRow[] };
+export type PushMemberDetail = { id: string; name?: string | null; devices: PushDeviceRow[]; deliveries: PushDeliveryRow[] };
 type WithRequired<T, K extends keyof T> = T & { [P in K]-?: NonNullable<T[P]> };
 export type NoticeKindRow = WithRequired<components['schemas']['NoticeKindRow'], 'kind' | 'notices' | 'recipients' | 'pushed'>;
 /** The members' list narrowed by a name and by those with a failed push or without a device. */

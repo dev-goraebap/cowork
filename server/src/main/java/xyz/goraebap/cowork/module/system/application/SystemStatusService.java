@@ -187,7 +187,7 @@ public class SystemStatusService {
         var items = page.stream()
                 .map(row -> {
                     UserSummary who = row.employeeId() == null ? null : names.get(row.employeeId());
-                    return who == null ? row : row.named(who.name(), who.departmentName());
+                    return who == null ? row : row.named(who.name());
                 })
                 .toList();
         String next = null;

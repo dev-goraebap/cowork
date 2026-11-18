@@ -48,7 +48,6 @@ public class ProjectMcpTools implements McpToolProvider {
                                             .map(member -> {
                                                 var view = new LinkedHashMap<String, Object>();
                                                 view.put("name", member.name());
-                                                view.put("department", member.departmentName());
                                                 return view;
                                             })
                                             .toList());

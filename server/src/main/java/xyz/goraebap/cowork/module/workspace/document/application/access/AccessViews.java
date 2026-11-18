@@ -35,7 +35,7 @@ public final class AccessViews {
         }
     }
 
-    /** One grant asked for: the item's maker (OWNER, no id), a member, a department or a project, and how far. */
+    /** One grant asked for: the item's maker (OWNER, no id), a member or a project, and how far. */
     @Schema(name = "DocumentGrantInput")
     public record GrantInput(
             @NotNull Grant.Subject subject,

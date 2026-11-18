@@ -93,10 +93,7 @@ function ActivityTable({ rows, opened, onOpen }: { rows: ActivityRow[]; opened: 
           </TableCell>
           <TableCell className="tabular-nums">{stampText(row.at)}</TableCell>
           <TableCell>
-            <span className="flex min-w-0 flex-col">
-              <span className="truncate">{whoOf(row)}</span>
-              {row.departmentName ? <span className="truncate text-xs text-muted-foreground">{row.departmentName}</span> : null}
-            </span>
+            <span className="block truncate">{whoOf(row)}</span>
           </TableCell>
           <TableCell><OutcomeBadge {...activityOutcome(row)} /></TableCell>
           <TableCell className="tabular-nums">{row.durationMs == null ? '-' : durationText(row.durationMs)}</TableCell>
@@ -118,7 +115,7 @@ function ActivityTable({ rows, opened, onOpen }: { rows: ActivityRow[]; opened: 
  * address and browser.
  */
 function ActivityFacts({ row }: { row: ActivityRow }) {
-  const who = row.employeeName ? `${row.employeeName}${row.departmentName ? ` · ${row.departmentName}` : ''}` : row.employeeId ?? '로그인 전';
+  const who = row.employeeName ?? row.employeeId ?? '로그인 전';
   const facts: [string, ReactNode][] = row.kind === 'VISIT'
     ? [
       ['처음 연 시각', momentText(row.at)],

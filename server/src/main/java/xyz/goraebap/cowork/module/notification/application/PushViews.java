@@ -52,7 +52,6 @@ public final class PushViews {
     public record PushMemberRow(
             UUID id,
             String name,
-            String departmentName,
             long devices,
             Instant lastPushAt,
             String lastStatus,
@@ -76,8 +75,7 @@ public final class PushViews {
             boolean test) {}
 
     /** A member's devices, ended ones too, and their latest pushes, for an administrator. */
-    public record PushMemberDetail(
-            UUID id, String name, String departmentName, List<PushDevice> devices, List<PushDeliveryRow> deliveries) {
+    public record PushMemberDetail(UUID id, String name, List<PushDevice> devices, List<PushDeliveryRow> deliveries) {
         public PushMemberDetail {
             devices = List.copyOf(devices);
             deliveries = List.copyOf(deliveries);

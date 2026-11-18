@@ -26,7 +26,7 @@ export function AddMemberDialog({ people, isLoading, isPending, error, onAdd, on
             <div className="rounded-lg border p-1">
               <OptionList label="구성원" isSearchable chosen={chosen ? [chosen] : []} onPick={value => { if (!isPending) setChosen(value); }}
                 options={people.map(person => ({
-                  value: person.id, label: person.positionName ? `${person.name} · ${person.positionName}` : person.name,
+                  value: person.id, label: person.name,
                   icon: <PersonAvatar id={person.id} name={person.name} size={20} isStatic />,
                 }))} />
             </div>

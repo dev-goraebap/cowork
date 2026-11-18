@@ -81,7 +81,6 @@ public final class SystemViews {
             Integer visits,
             UUID employeeId,
             String employeeName,
-            String departmentName,
             String ip,
             String method,
             String route,
@@ -93,8 +92,8 @@ public final class SystemViews {
         public static final String CHANGE = "CHANGE";
         public static final String VISIT = "VISIT";
 
-        /** The same row with the member's name and department. */
-        public ActivityRow named(String name, String department) {
+        /** The same row with the member's name. */
+        public ActivityRow named(String name) {
             return new ActivityRow(
                     id,
                     kind,
@@ -103,7 +102,6 @@ public final class SystemViews {
                     visits,
                     employeeId,
                     name,
-                    department,
                     ip,
                     method,
                     route,

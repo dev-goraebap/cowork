@@ -43,7 +43,7 @@ public interface UserFacade {
     /** MALE or FEMALE as the member recorded it; empty when not recorded. */
     Optional<Gender> genderOf(UUID userId);
 
-    /** Names, with the department the space that keeps one names, for the given people in one batch; unknown ids are left out. */
+    /** Names for the given people in one batch; unknown ids are left out. */
     Map<UUID, UserSummary> summariesOf(Collection<UUID> userIds);
 
     /** Current names of known agent profiles, indexed by profile ID. */

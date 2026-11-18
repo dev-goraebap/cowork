@@ -131,7 +131,7 @@ function Deliveries({ listing, isNarrowed, onClear, opened, onOpen }: {
           <span className="flex min-w-0 flex-1 flex-col">
             <button type="button" className={cn(OPENS_ROW, 'font-medium')} onClick={() => onOpen(member)}>{member.name}</button>
             <span className="truncate text-sm text-muted-foreground">
-              {`${member.departmentName ?? '미배정'} · ${member.devices > 0 ? `기기 ${member.devices}대` : '기기 없음'}${member.failed > 0 ? ` · 실패 ${member.failed}` : ''}`}
+              {`${member.devices > 0 ? `기기 ${member.devices}대` : '기기 없음'}${member.failed > 0 ? ` · 실패 ${member.failed}` : ''}`}
             </span>
           </span>
           <span className="flex shrink-0 flex-col items-end gap-0.5">
@@ -142,7 +142,7 @@ function Deliveries({ listing, isNarrowed, onClear, opened, onOpen }: {
       </ul>
       : <MembersTable rows={list} opened={opened} onOpen={onOpen} />;
   };
-  return <WithPanel title={opened?.name} subtitle={opened ? opened.departmentName ?? '미배정' : undefined}
+  return <WithPanel title={opened?.name}
     panel={opened ? <MemberPushes member={opened} /> : undefined} onClose={() => onOpen(null)}>
     <div className="flex flex-col gap-4 py-4">
       {s ? <div className="flex flex-col gap-3 px-4">
@@ -190,7 +190,6 @@ function MembersTable({ rows, opened, onOpen }: { rows: PushMember[]; opened: Pu
           <span className="flex min-w-0 items-center gap-2">
             <PersonAvatar id={row.id} name={row.name} size={20} isStatic />
             <button type="button" className={OPENS_ROW} onClick={() => onOpen(row)}>{row.name}</button>
-            <span className="truncate text-muted-foreground">{row.departmentName ?? '미배정'}</span>
           </span>
         </TableCell>
         <TableCell className={row.devices > 0 ? undefined : 'text-muted-foreground'}>{row.devices > 0 ? `${row.devices}대` : '없음'}</TableCell>

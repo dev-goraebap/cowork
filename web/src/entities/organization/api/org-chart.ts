@@ -3,7 +3,7 @@ import { getJson, type components } from '@/shared/api';
 
 type Schemas = components['schemas'];
 export type OrgPerson = Schemas['Person'] & Required<Pick<Schemas['Person'], 'id' | 'name'>>;
-/** 일하는 사람들. (부서는 서버가 아직 비워 보낸다.) */
+/** 일하는 사람들. */
 type OrgChart = { people: OrgPerson[] };
 export const directoryAgentKeys = ['directory-agents'] as const;
 
