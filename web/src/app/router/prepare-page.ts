@@ -126,9 +126,6 @@ async function prepare(client: QueryClient, pathname: string, searchStr: string,
   if (pathname === '/workspace/settings/work-item-types' || pathname === '/workspace/settings/work-item-labels') {
     const issues = await import('@/entities/work-item'); if (pathname.endsWith('/types')) await prime(issues.typesOptions()); else await prime(issues.labelsOptions()); return;
   }
-  if (pathname === '/account/agents') {
-    const api = await import('@/pages/account/agents'); await Promise.all([prime(api.agentProfilesOptions()), prime(api.agentTokensOptions())]); return;
-  }
   if (pathname === '/workspace/projects' || key) {
     const api = await import('@/entities/project');
     if (key) await Promise.all([prime(api.projectOptions(key)), path === '/members' ? prime(api.projectMembersOptions(key)) : Promise.resolve()]);

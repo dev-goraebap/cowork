@@ -3,4 +3,5 @@ export {
   visibleSections, type AdminRole, type NavEntry, type NavPlace, type NavSection, type NavSpace,
 } from './model/nav';
 export { navIcon, pageCrumbs } from './model/nav-icons';
+export { useCrumbs } from './model/use-crumbs';
 export { AppFrame, type ShellLayout } from './ui/AppFrame';

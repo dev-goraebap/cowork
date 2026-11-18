@@ -1,7 +1,6 @@
 import { createFileRoute, useParams } from '@tanstack/react-router';
 import { notificationsOptions, unreadNotificationsOptions } from '@/entities/notification';
-import { usePageLocation } from '@/shared/lib/route-location';
-import { crumbsOf } from '@/widgets/app-shell';
+import { useCrumbs } from '@/widgets/app-shell';
 import { NotificationsPage } from './ui/NotificationsPage';
 
 /**
@@ -17,7 +16,6 @@ export const Route = createFileRoute('/_app/inbox')({
 });
 
 function InboxRoute() {
-  const { pathname } = usePageLocation();
   const { id } = useParams({ strict: false }) as { id?: string };
-  return <NotificationsPage crumbs={crumbsOf(pathname)} id={id} />;
+  return <NotificationsPage crumbs={useCrumbs()} id={id} />;
 }

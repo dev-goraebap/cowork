@@ -11,9 +11,18 @@
 import { Route as rootRouteImport } from './../../pages/__root'
 import { Route as AppRouteRouteImport } from './../../pages/_app/route'
 import { Route as AppInboxRouteRouteImport } from './../../pages/_app/inbox/route'
+import { Route as AppInstanceRouteRouteImport } from './../../pages/_app/instance/route'
 import { Route as LoginIndexRouteImport } from './../../pages/login/index'
+import { Route as AppAccountIndexRouteImport } from './../../pages/_app/account/index'
 import { Route as AppInboxIdRouteImport } from './../../pages/_app/inbox/$id'
+import { Route as AppInstanceIndexRouteImport } from './../../pages/_app/instance/index'
+import { Route as AppAccountAgentsIndexRouteImport } from './../../pages/_app/account/agents/index'
+import { Route as AppAccountDisplayIndexRouteImport } from './../../pages/_app/account/display/index'
+import { Route as AppAccountNotificationsIndexRouteImport } from './../../pages/_app/account/notifications/index'
+import { Route as AppAccountProfileIndexRouteImport } from './../../pages/_app/account/profile/index'
 import { Route as AppInstanceMembersIndexRouteImport } from './../../pages/_app/instance/members/index'
+import { Route as AppInstancePushDeliveriesIndexRouteImport } from './../../pages/_app/instance/push-deliveries/index'
+import { Route as AppInstanceSystemStatusIndexRouteImport } from './../../pages/_app/instance/system-status/index'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',
@@ -24,56 +33,166 @@ const AppInboxRouteRoute = AppInboxRouteRouteImport.update({
   path: '/inbox',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppInstanceRouteRoute = AppInstanceRouteRouteImport.update({
+  id: '/instance',
+  path: '/instance',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const LoginIndexRoute = LoginIndexRouteImport.update({
   id: '/login/',
   path: '/login/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppAccountIndexRoute = AppAccountIndexRouteImport.update({
+  id: '/account/',
+  path: '/account/',
+  getParentRoute: () => AppRouteRoute,
 } as any)
 const AppInboxIdRoute = AppInboxIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => AppInboxRouteRoute,
 } as any)
-const AppInstanceMembersIndexRoute = AppInstanceMembersIndexRouteImport.update({
-  id: '/instance/members/',
-  path: '/instance/members/',
+const AppInstanceIndexRoute = AppInstanceIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppInstanceRouteRoute,
+} as any)
+const AppAccountAgentsIndexRoute = AppAccountAgentsIndexRouteImport.update({
+  id: '/account/agents/',
+  path: '/account/agents/',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppAccountDisplayIndexRoute = AppAccountDisplayIndexRouteImport.update({
+  id: '/account/display/',
+  path: '/account/display/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppAccountNotificationsIndexRoute =
+  AppAccountNotificationsIndexRouteImport.update({
+    id: '/account/notifications/',
+    path: '/account/notifications/',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
+const AppAccountProfileIndexRoute = AppAccountProfileIndexRouteImport.update({
+  id: '/account/profile/',
+  path: '/account/profile/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppInstanceMembersIndexRoute = AppInstanceMembersIndexRouteImport.update({
+  id: '/members/',
+  path: '/members/',
+  getParentRoute: () => AppInstanceRouteRoute,
+} as any)
+const AppInstancePushDeliveriesIndexRoute =
+  AppInstancePushDeliveriesIndexRouteImport.update({
+    id: '/push-deliveries/',
+    path: '/push-deliveries/',
+    getParentRoute: () => AppInstanceRouteRoute,
+  } as any)
+const AppInstanceSystemStatusIndexRoute =
+  AppInstanceSystemStatusIndexRouteImport.update({
+    id: '/system-status/',
+    path: '/system-status/',
+    getParentRoute: () => AppInstanceRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppRouteRouteWithChildren
   '/inbox': typeof AppInboxRouteRouteWithChildren
+  '/instance': typeof AppInstanceRouteRouteWithChildren
   '/login/': typeof LoginIndexRoute
   '/inbox/$id': typeof AppInboxIdRoute
+  '/account/': typeof AppAccountIndexRoute
+  '/instance/': typeof AppInstanceIndexRoute
+  '/account/agents/': typeof AppAccountAgentsIndexRoute
+  '/account/display/': typeof AppAccountDisplayIndexRoute
+  '/account/notifications/': typeof AppAccountNotificationsIndexRoute
+  '/account/profile/': typeof AppAccountProfileIndexRoute
   '/instance/members/': typeof AppInstanceMembersIndexRoute
+  '/instance/push-deliveries/': typeof AppInstancePushDeliveriesIndexRoute
+  '/instance/system-status/': typeof AppInstanceSystemStatusIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AppRouteRouteWithChildren
   '/inbox': typeof AppInboxRouteRouteWithChildren
   '/login': typeof LoginIndexRoute
   '/inbox/$id': typeof AppInboxIdRoute
+  '/account': typeof AppAccountIndexRoute
+  '/instance': typeof AppInstanceIndexRoute
+  '/account/agents': typeof AppAccountAgentsIndexRoute
+  '/account/display': typeof AppAccountDisplayIndexRoute
+  '/account/notifications': typeof AppAccountNotificationsIndexRoute
+  '/account/profile': typeof AppAccountProfileIndexRoute
   '/instance/members': typeof AppInstanceMembersIndexRoute
+  '/instance/push-deliveries': typeof AppInstancePushDeliveriesIndexRoute
+  '/instance/system-status': typeof AppInstanceSystemStatusIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
   '/_app/inbox': typeof AppInboxRouteRouteWithChildren
+  '/_app/instance': typeof AppInstanceRouteRouteWithChildren
   '/login/': typeof LoginIndexRoute
   '/_app/inbox/$id': typeof AppInboxIdRoute
+  '/_app/account/': typeof AppAccountIndexRoute
+  '/_app/instance/': typeof AppInstanceIndexRoute
+  '/_app/account/agents/': typeof AppAccountAgentsIndexRoute
+  '/_app/account/display/': typeof AppAccountDisplayIndexRoute
+  '/_app/account/notifications/': typeof AppAccountNotificationsIndexRoute
+  '/_app/account/profile/': typeof AppAccountProfileIndexRoute
   '/_app/instance/members/': typeof AppInstanceMembersIndexRoute
+  '/_app/instance/push-deliveries/': typeof AppInstancePushDeliveriesIndexRoute
+  '/_app/instance/system-status/': typeof AppInstanceSystemStatusIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/inbox' | '/login/' | '/inbox/$id' | '/instance/members/'
+  fullPaths:
+    | '/'
+    | '/inbox'
+    | '/instance'
+    | '/login/'
+    | '/inbox/$id'
+    | '/account/'
+    | '/instance/'
+    | '/account/agents/'
+    | '/account/display/'
+    | '/account/notifications/'
+    | '/account/profile/'
+    | '/instance/members/'
+    | '/instance/push-deliveries/'
+    | '/instance/system-status/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/inbox' | '/login' | '/inbox/$id' | '/instance/members'
+  to:
+    | '/'
+    | '/inbox'
+    | '/login'
+    | '/inbox/$id'
+    | '/account'
+    | '/instance'
+    | '/account/agents'
+    | '/account/display'
+    | '/account/notifications'
+    | '/account/profile'
+    | '/instance/members'
+    | '/instance/push-deliveries'
+    | '/instance/system-status'
   id:
     | '__root__'
     | '/_app'
     | '/_app/inbox'
+    | '/_app/instance'
     | '/login/'
     | '/_app/inbox/$id'
+    | '/_app/account/'
+    | '/_app/instance/'
+    | '/_app/account/agents/'
+    | '/_app/account/display/'
+    | '/_app/account/notifications/'
+    | '/_app/account/profile/'
     | '/_app/instance/members/'
+    | '/_app/instance/push-deliveries/'
+    | '/_app/instance/system-status/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -97,12 +216,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInboxRouteRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/instance': {
+      id: '/_app/instance'
+      path: '/instance'
+      fullPath: '/instance'
+      preLoaderRoute: typeof AppInstanceRouteRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/login/': {
       id: '/login/'
       path: '/login'
       fullPath: '/login/'
       preLoaderRoute: typeof LoginIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_app/account/': {
+      id: '/_app/account/'
+      path: '/account'
+      fullPath: '/account/'
+      preLoaderRoute: typeof AppAccountIndexRouteImport
+      parentRoute: typeof AppRouteRoute
     }
     '/_app/inbox/$id': {
       id: '/_app/inbox/$id'
@@ -111,12 +244,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInboxIdRouteImport
       parentRoute: typeof AppInboxRouteRoute
     }
+    '/_app/instance/': {
+      id: '/_app/instance/'
+      path: '/'
+      fullPath: '/instance/'
+      preLoaderRoute: typeof AppInstanceIndexRouteImport
+      parentRoute: typeof AppInstanceRouteRoute
+    }
+    '/_app/account/agents/': {
+      id: '/_app/account/agents/'
+      path: '/account/agents'
+      fullPath: '/account/agents/'
+      preLoaderRoute: typeof AppAccountAgentsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/account/display/': {
+      id: '/_app/account/display/'
+      path: '/account/display'
+      fullPath: '/account/display/'
+      preLoaderRoute: typeof AppAccountDisplayIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/account/notifications/': {
+      id: '/_app/account/notifications/'
+      path: '/account/notifications'
+      fullPath: '/account/notifications/'
+      preLoaderRoute: typeof AppAccountNotificationsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/account/profile/': {
+      id: '/_app/account/profile/'
+      path: '/account/profile'
+      fullPath: '/account/profile/'
+      preLoaderRoute: typeof AppAccountProfileIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/instance/members/': {
       id: '/_app/instance/members/'
-      path: '/instance/members'
+      path: '/members'
       fullPath: '/instance/members/'
       preLoaderRoute: typeof AppInstanceMembersIndexRouteImport
-      parentRoute: typeof AppRouteRoute
+      parentRoute: typeof AppInstanceRouteRoute
+    }
+    '/_app/instance/push-deliveries/': {
+      id: '/_app/instance/push-deliveries/'
+      path: '/push-deliveries'
+      fullPath: '/instance/push-deliveries/'
+      preLoaderRoute: typeof AppInstancePushDeliveriesIndexRouteImport
+      parentRoute: typeof AppInstanceRouteRoute
+    }
+    '/_app/instance/system-status/': {
+      id: '/_app/instance/system-status/'
+      path: '/system-status'
+      fullPath: '/instance/system-status/'
+      preLoaderRoute: typeof AppInstanceSystemStatusIndexRouteImport
+      parentRoute: typeof AppInstanceRouteRoute
     }
   }
 }
@@ -133,14 +315,41 @@ const AppInboxRouteRouteWithChildren = AppInboxRouteRoute._addFileChildren(
   AppInboxRouteRouteChildren,
 )
 
+interface AppInstanceRouteRouteChildren {
+  AppInstanceIndexRoute: typeof AppInstanceIndexRoute
+  AppInstanceMembersIndexRoute: typeof AppInstanceMembersIndexRoute
+  AppInstancePushDeliveriesIndexRoute: typeof AppInstancePushDeliveriesIndexRoute
+  AppInstanceSystemStatusIndexRoute: typeof AppInstanceSystemStatusIndexRoute
+}
+
+const AppInstanceRouteRouteChildren: AppInstanceRouteRouteChildren = {
+  AppInstanceIndexRoute: AppInstanceIndexRoute,
+  AppInstanceMembersIndexRoute: AppInstanceMembersIndexRoute,
+  AppInstancePushDeliveriesIndexRoute: AppInstancePushDeliveriesIndexRoute,
+  AppInstanceSystemStatusIndexRoute: AppInstanceSystemStatusIndexRoute,
+}
+
+const AppInstanceRouteRouteWithChildren =
+  AppInstanceRouteRoute._addFileChildren(AppInstanceRouteRouteChildren)
+
 interface AppRouteRouteChildren {
   AppInboxRouteRoute: typeof AppInboxRouteRouteWithChildren
-  AppInstanceMembersIndexRoute: typeof AppInstanceMembersIndexRoute
+  AppInstanceRouteRoute: typeof AppInstanceRouteRouteWithChildren
+  AppAccountIndexRoute: typeof AppAccountIndexRoute
+  AppAccountAgentsIndexRoute: typeof AppAccountAgentsIndexRoute
+  AppAccountDisplayIndexRoute: typeof AppAccountDisplayIndexRoute
+  AppAccountNotificationsIndexRoute: typeof AppAccountNotificationsIndexRoute
+  AppAccountProfileIndexRoute: typeof AppAccountProfileIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppInboxRouteRoute: AppInboxRouteRouteWithChildren,
-  AppInstanceMembersIndexRoute: AppInstanceMembersIndexRoute,
+  AppInstanceRouteRoute: AppInstanceRouteRouteWithChildren,
+  AppAccountIndexRoute: AppAccountIndexRoute,
+  AppAccountAgentsIndexRoute: AppAccountAgentsIndexRoute,
+  AppAccountDisplayIndexRoute: AppAccountDisplayIndexRoute,
+  AppAccountNotificationsIndexRoute: AppAccountNotificationsIndexRoute,
+  AppAccountProfileIndexRoute: AppAccountProfileIndexRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(

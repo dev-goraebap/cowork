@@ -1,5 +1,4 @@
 import { usePageLocation } from '@/shared/lib/route-location';
-import { useQuery } from '@tanstack/react-query';
 import { unmaskDialogHref } from '@/shared/lib/panel';
 import { isWorkItemViewChange } from './work-item-view-transition';
 import { Navigate, lazyRouteComponent, createRoute, createRouter, redirect, useChildMatches, useLocation, useParams, useSearch } from '@tanstack/react-router';
@@ -9,7 +8,7 @@ import { projectOptions } from '@/entities/project';
 
 import { sessionOptions, type Session } from '@/shared/auth';
 import type { SplitMode } from '@/shared/ui/layout/split-view';
-import { FIXED_SPACES, crumbsOf, projectKeyOf, roleOfSpace, type AdminRole } from '@/widgets/app-shell';
+import { FIXED_SPACES, crumbsOf, roleOfSpace, useCrumbs, type AdminRole } from '@/widgets/app-shell';
 import { Route as FileRootRoute } from '@/pages/__root';
 import { Route as FileAppRoute } from '@/pages/_app/route';
 import { AuthLayout } from './AuthLayout';
@@ -19,13 +18,7 @@ import { routeTree as fileRouteTree } from './routeTree.gen';
 import { preparePage } from './prepare-page';
 
 const DocumentLabelsPage = lazyRouteComponent(() => import('@/pages/workspace-settings/document-labels'), 'DocumentLabelsPage');
-const AgentTokensPage = lazyRouteComponent(() => import('@/pages/account/agents'), 'AgentTokensPage');
-const DisplayPage = lazyRouteComponent(() => import('@/pages/account/display'), 'DisplayPage');
-const NotificationSettingsPage = lazyRouteComponent(() => import('@/pages/account/notification-settings'), 'NotificationSettingsPage');
-const ProfilePage = lazyRouteComponent(() => import('@/pages/account/profile'), 'ProfilePage');
 const SearchPage = lazyRouteComponent(() => import('@/pages/workspace/search'), 'SearchPage');
-const PushDeliveriesPage = lazyRouteComponent(() => import('@/pages/instance/push-deliveries'), 'PushDeliveriesPage');
-const SystemStatusPage = lazyRouteComponent(() => import('@/pages/instance/system-status'), 'SystemStatusPage');
 const WorkspaceGeneralPage = lazyRouteComponent(() => import('@/pages/workspace-settings/general'), 'WorkspaceGeneralPage');
 const WorkspaceRolesPage = lazyRouteComponent(() => import('@/pages/workspace-settings/roles'), 'WorkspaceRolesPage');
 const WorkItemLabelsPage = lazyRouteComponent(() => import('@/pages/workspace-settings/work-item-labels'), 'WorkItemLabelsPage');
@@ -93,14 +86,6 @@ const welcomeRoute = createRoute({
   },
 });
 
-/** The head's path for the address in view, a project's titled with the project's name. */
-function useCrumbs(): Crumb[] {
-  const { pathname } = usePageLocation();
-  const key = projectKeyOf(pathname);
-  const project = useQuery({ ...projectOptions(key ?? ''), enabled: !!key });
-  return crumbsOf(pathname, project.data?.name);
-}
-
 /** 새 업무: ?project=가 있으면 그 프로젝트를 미리 고른다. */
 function NewWorkItemRoute({ crumbs }: { crumbs: Crumb[] }) {
   const { project } = useSearch({ strict: false }) as { project?: string };
@@ -112,12 +97,6 @@ const PAGES: Record<string, ComponentType<{ crumbs: Crumb[] }>> = {
   '/my-work': MyWorkPage,
   '/workspace/documents': DocumentBoxPage,
   '/workspace/members': WorkspaceMembersPage,
-  '/account/profile': ProfilePage,
-  '/account/notifications': NotificationSettingsPage,
-  '/account/display': DisplayPage,
-  '/account/agents': AgentTokensPage,
-  '/instance/system-status': SystemStatusPage,
-  '/instance/push-deliveries': PushDeliveriesPage,
   '/workspace/settings/general': WorkspaceGeneralPage,
   '/workspace/settings/roles': WorkspaceRolesPage,
   '/workspace/settings/document-labels': DocumentLabelsPage,
@@ -176,8 +155,6 @@ const pageRoutes = [
 /** Addresses standing for a menu, taking one to its first page, and the moved ones. */
 const REDIRECTS: Record<string, string> = {
   '/': HOME,
-  '/account': '/account/profile',
-  '/instance': '/instance/members',
   '/workspace/settings': '/workspace/settings/general',
   '/workspace/projects/new': '/workspace/projects',
 };
@@ -199,8 +176,9 @@ const historyRoutes = ['/workspace/documents/$documentId/history']
     beforeLoad: ({ location }) => { throw redirect({ href: unmaskDialogHref(location.pathname, location.searchStr, 'history'), replace: true }); },
   }));
 
-/** 파일 라우트로 옮긴 주소: 메뉴 항목마다 만드는 길에서 뺀다. */
-const FILE_ROUTED = new Set(['/inbox', '/instance/members']);
+/** 파일 라우트(src/pages/_app)로 옮긴 주소와 그 아래: 메뉴 항목마다 만드는 길에서 뺀다. */
+const FILE_ROUTED = ['/inbox', '/instance', '/account'];
+const isFileRouted = (path: string) => FILE_ROUTED.some(base => path === base || path.startsWith(base + '/'));
 
 /**
  * 공지사항 · 회의록 (2026-11-14): laid out as the inboxes are, the list and the one opened beside it on a desktop. The
@@ -235,7 +213,7 @@ const splitRoutes = Object.entries(SPLITS).map(([path, { view: Split, children }
 // 메뉴 항목마다 길 하나. 두 공간에 함께 서는 항목(탐색 · 알림함 · 내 업무)은 한 번만, 제 길이 따로 있는 것(검색 · 프로젝트 목록)은 뺀다.
 const entryPaths = new Set<string>();
 const entryRoutes = FIXED_SPACES.flatMap(space => space.sections.flatMap(section => section.entries)
-  .filter(entry => !(entry.path in REDIRECTS) && !FILE_ROUTED.has(entry.path) && !(entry.path in SPLITS) && entry.path !== '/workspace/projects' && entry.path !== '/search')
+  .filter(entry => !(entry.path in REDIRECTS) && !isFileRouted(entry.path) && !(entry.path in SPLITS) && entry.path !== '/workspace/projects' && entry.path !== '/search')
   .filter(entry => !entryPaths.has(entry.path) && !!entryPaths.add(entry.path))
   .map(entry => createRoute({
     getParentRoute: () => appRoute, path: entry.path, component: EntryRoute, ...pageData,
