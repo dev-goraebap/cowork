@@ -1,8 +1,6 @@
 import {useEffect,useRef,useState} from 'react';
-import type {Editor} from '@tiptap/core';
 import {Check,Copy,AlertCircle} from './icons';
 import {Button} from './Button';
-import {useEditable} from './block-ui';
 export function BlockCopy({text,label}:{text:string;label:string}){
  const [state,setState]=useState<'idle'|'copied'|'error'>('idle');const timer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
  useEffect(()=>()=>clearTimeout(timer.current),[]);

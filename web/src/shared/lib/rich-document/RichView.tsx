@@ -1,16 +1,15 @@
 import {LinkCard} from './LinkCard';
 import {useEffect,useRef,useState} from 'react';
-import {NodeViewWrapper,ReactNodeViewRenderer,type NodeViewProps} from '@tiptap/react';
+import {NodeViewWrapper,type NodeViewProps} from '@tiptap/react';
 import {closeHistory} from '@tiptap/pm/history';
-import katex from 'katex';
 import {Button} from './Button';
 import {SourceArea} from './SourceArea';
 import {Globe,Pencil,Search} from './icons';
 import {diagramSlide,openZoom} from '@/shared/ui/zoom-viewer';
 import {BlockCopy} from './block-ui';
 import {embedURL} from './embed';
-import {richNode,examples,type RichKind} from './rich-node-spec';
-import {labels,mermaidModule,diagram,usePreview,richNodeViews,diagramBackground} from './rich-nodes';
+import {examples,type RichKind} from './rich-node-spec';
+import {labels,usePreview,diagramBackground} from './rich-nodes';
 export function RichView({node,editor,updateAttributes,getPos,selected}:NodeViewProps){
  const kind=node.type.name as RichKind,inline=kind==='inlineMath',source=String(node.attrs.source??''),label=labels[kind];
  const [editing,setEditing]=useState(false),[draft,setDraft]=useState(source),[editable,setEditable]=useState(editor.isEditable);
@@ -25,7 +24,7 @@ export function RichView({node,editor,updateAttributes,getPos,selected}:NodeView
  // 취소: 아직 주소가 없는 새 링크 카드는 빈 블록을 남기지 않고 지운다.
  const cancel=()=>{const pos=getPos();if(kind==='webEmbed'&&!source.trim()&&typeof pos==='number'){editor.chain().focus().deleteRange({from:pos,to:pos+node.nodeSize}).run();return;}setDraft(source);setEditing(false);editor.commands.focus();};
  const apply=()=>{if(!editable||preview.pending||preview.error)return;editor.view.dispatch(closeHistory(editor.state.tr));updateAttributes({source:draft.trim()});editor.view.dispatch(closeHistory(editor.state.tr));setEditing(false);const pos=getPos();if(typeof pos==='number')editor.chain().focus().setNodeSelection(pos).run();};
- let embed:ReturnType<typeof embedURL>|null=null;if(kind==='webEmbed'&&!preview.error&&!preview.pending){try{embed=embedURL(editing?draft:source);}catch{}}
+ let embed:ReturnType<typeof embedURL>|null=null;if(kind==='webEmbed'&&!preview.error&&!preview.pending){try{embed=embedURL(editing?draft:source);}catch{/* 주소가 틀리면 미리보기 없이 둔다. */}}
  const render=()=>preview.pending?<span className="rich-loading" role="status">미리보기 만드는 중…</span>:preview.error?<span className="rich-render-error" role="alert">{label}를 표시할 수 없습니다. <span>{preview.error}</span></span>:kind==='webEmbed'&&embed?<LinkCard url={embed.original} host={embed.host} editable={editable} onEdit={start}/>:<span className={`rich-render ${kind==='mermaidBlock'?'mermaid-render':''}`} data-rendered={kind} dangerouslySetInnerHTML={{__html:preview.html}}/>;
  return <NodeViewWrapper as={inline?'span':'div'} className={`rich-node rich-${kind} ${selected&&editable?'rich-selected':''}`} data-rich-type={kind} data-block-id={node.attrs.blockId??undefined} contentEditable={false}>
    {kind==='mermaidBlock'&&<span className="media-tools">{!editing&&!preview.pending&&!preview.error&&<Button aria-label="다이어그램 크게 보기" title="크게 보기" onClick={zoom}><Search size={14}/></Button>}<BlockCopy text={source} label="Mermaid 원문 복사"/>{editable&&!editing&&<Button aria-label={`${label} 편집`} title="편집" onClick={start}><Pencil size={14}/></Button>}</span>}

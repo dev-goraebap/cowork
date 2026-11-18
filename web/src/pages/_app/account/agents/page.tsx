@@ -6,8 +6,8 @@ import { AgentTokensPage } from './ui/AgentTokensPage';
 /** /account/agents: 내 AI 에이전트(토큰 · 연결 방법). */
 export const Route = createFileRoute('/_app/account/agents/')({
   loader: ({ context }) => Promise.all([
-    context.queryClient.prefetchQuery(agentProfilesOptions()),
-    context.queryClient.prefetchQuery(agentTokensOptions()),
+    context.queryClient.query(agentProfilesOptions()).catch(() => undefined),
+    context.queryClient.query(agentTokensOptions()).catch(() => undefined),
   ]),
   component: function AgentsRoute() { return <AgentTokensPage crumbs={useCrumbs()} />; },
 });

@@ -5,6 +5,6 @@ import { WorkItemLabelsPage } from './ui/WorkItemLabelsPage';
 
 /** /workspace/settings/work-item-labels: 업무 라벨. */
 export const Route = createFileRoute('/_app/workspace/settings/work-item-labels/')({
-  loader: ({ context }) => context.queryClient.prefetchQuery(labelsOptions()),
+  loader: ({ context }) => context.queryClient.query(labelsOptions()).catch(() => undefined),
   component: function WorkItemLabelsRoute() { return <WorkItemLabelsPage crumbs={useCrumbs()} />; },
 });

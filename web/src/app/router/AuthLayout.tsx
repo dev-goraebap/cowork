@@ -1,7 +1,6 @@
 import { RealtimeSync } from '@/features/realtime';
 import { usePageLocation, usePendingPathname } from '@/shared/lib/route-location';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from '@tanstack/react-router';
 import { Suspense, useEffect, useState } from 'react';
 import { PanelLoading } from './PanelLoading';
 import { derivedAvatar, drawnAvatarSource, useMemberPicture } from '@/shared/lib/avatar';
@@ -28,7 +27,6 @@ export function AuthLayout() {
   const panel = usePanel();
   const isMobile = useIsMobile();
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
   const { pathname, searchStr } = usePageLocation();
   // 메뉴는 누른 곳을 바로 따른다(2026-11-15): 페이지는 읽을 것을 준비한 뒤에 바뀌지만, 사이드 메뉴(공간 · 고른 항목)는 가는
   // 주소의 것으로 먼저 바뀌어 공간을 바꿀 때 멈춘 듯 보이지 않는다. 페이지 머리와 본문은 준비된 주소를 그대로 따른다.

@@ -5,6 +5,6 @@ import { WorkItemTypesPage } from './ui/WorkItemTypesPage';
 
 /** /workspace/settings/work-item-types: 업무 유형. */
 export const Route = createFileRoute('/_app/workspace/settings/work-item-types/')({
-  loader: ({ context }) => context.queryClient.prefetchQuery(typesOptions()),
+  loader: ({ context }) => context.queryClient.query(typesOptions()).catch(() => undefined),
   component: function WorkItemTypesRoute() { return <WorkItemTypesPage crumbs={useCrumbs()} />; },
 });

@@ -1,10 +1,9 @@
 import {Input} from '@/shared/ui/input';
-import {useEffect,useState} from 'react';
-import {History,X,RotateCw,Clock3,Bookmark,ShieldCheck,ArrowLeft,ArrowRight,Plus,Minus,Pencil,MoveRight,FileText,LoaderCircle} from './icons';
+import {useState} from 'react';
+import {History,X,RotateCw,Clock3,Bookmark,ShieldCheck,FileText,LoaderCircle} from './icons';
 import {Button} from './Button';
-import {nodeText,type JSONNode,type VersionRecord} from './model';
-import {blockNames,textParts,type Change,type ChangeKind} from './version-diff';
-import {reasonNames,date,time,kinds,labels,icons} from './VersionViews';
+import {type VersionRecord} from './model';
+import {reasonNames,date,time} from './VersionViews';
 export function VersionPanel({versions,title,name,onName,onSave,onClose,onRefresh,onSelect,onCurrent,selected,preview,loading,busy,error}:{versions:VersionRecord[];title:string;name:string;onName:(s:string)=>void;onSave:()=>void;onClose:()=>void;onRefresh:()=>void;onSelect:(v:VersionRecord)=>void;onCurrent:()=>void;selected?:string;preview:boolean;loading:boolean;busy:boolean;error:string}){
  const [query,setQuery]=useState('');const filtered=versions.filter(v=>(v.label+' '+v.title+' '+reasonNames[v.reason]+' '+date(v.created)).toLowerCase().includes(query.toLowerCase()));
  return <aside className="version-panel history-panel" aria-label="버전 목록" onKeyDown={e=>{if(e.key==='Escape'&&!busy){e.stopPropagation();onClose();}}}>

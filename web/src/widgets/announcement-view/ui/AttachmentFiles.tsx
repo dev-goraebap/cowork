@@ -18,7 +18,7 @@ export function AttachmentFiles({ files, linkOf }: { files: readonly Announcemen
   const [failure, setFailure] = useState('');
   const save = async (file: AnnouncementFile) => {
     setFailure('');
-    try { window.location.assign((await client.fetchQuery(linkOf(file.id, true))).url); }
+    try { window.location.assign((await client.query(linkOf(file.id, true))).url); }
     catch { setFailure(`${file.filename}을(를) 내려받지 못했습니다. 다시 시도해 주세요.`); }
   };
   return <section aria-labelledby={titleId} className="flex flex-col gap-3 border-t pt-5">

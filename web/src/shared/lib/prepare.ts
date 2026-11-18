@@ -8,12 +8,12 @@ import { bodyStateOptions, RichBody } from '@/shared/ui/rich-body';
  */
 export type Prep = {
   client: QueryClient;
-  /** 꼭 있어야 하는 것: 실패하면 준비가 멈춘다. */
-  ensure: QueryClient['ensureQueryData'];
-  ensureInfinite: QueryClient['ensureInfiniteQueryData'];
-  /** 있으면 좋은 것: 실패해도 넘어간다. */
-  prime: QueryClient['prefetchQuery'];
-  primeInfinite: QueryClient['prefetchInfiniteQuery'];
+  /** 꼭 있어야 하는 것: 캐시가 있으면 그것을, 없으면 읽어 온다. 실패하면 준비가 멈춘다. */
+  ensure: QueryClient['query'];
+  ensureInfinite: QueryClient['infiniteQuery'];
+  /** 있으면 좋은 것: ensure와 같되 실패해도 넘어간다. */
+  prime: QueryClient['query'];
+  primeInfinite: QueryClient['infiniteQuery'];
   /**
    * 본문: 첫 그림부터 완성돼 있어야 그 아래(활동 등)가 밀리지 않는다. 편집기 코드를 함께 받고 본문을 준비한다.
    * 오래된 캐시는 본문이 뒤에서 확인한다(server-store, stale-while-revalidate).
@@ -26,13 +26,14 @@ const prepared = new WeakMap<QueryClient, Map<string, QueryKey[]>>();
 /** 주소(id) 하나의 준비를 돌리고, 무엇을 읽었는지 적어 둔다(isPrepared). */
 export async function prepare(client: QueryClient, id: string, run: (prep: Prep) => Promise<unknown>) {
   const keys: QueryKey[] = [];
-  const ensure: QueryClient['ensureQueryData'] = options => { keys.push(options.queryKey); return client.ensureQueryData(options); };
-  const ensureInfinite: QueryClient['ensureInfiniteQueryData'] = options => { keys.push(options.queryKey); return client.ensureInfiniteQueryData(options); };
+  const ensure: QueryClient['query'] = options => { keys.push(options.queryKey); return client.query({ ...options, staleTime: 'static' }); };
+  const ensureInfinite: QueryClient['infiniteQuery'] = options => { keys.push(options.queryKey); return client.infiniteQuery({ ...options, staleTime: 'static' }); };
   const me = client.getQueryData(sessionOptions().queryKey);
   const prep: Prep = {
     client, ensure, ensureInfinite,
-    prime: async options => { await ensure(options).catch(() => undefined); },
-    primeInfinite: async options => { await ensureInfinite(options).catch(() => undefined); },
+    // 실패는 삼킨다: 값은 쓰지 않고 캐시만 채운다.
+    prime: options => ensure(options).catch(() => undefined as never),
+    primeInfinite: options => ensureInfinite(options).catch(() => undefined as never),
     body: base => Promise.all([RichBody.preload(), me?.id ? prep.prime(bodyStateOptions(base, me.id)) : undefined]),
   };
   try {

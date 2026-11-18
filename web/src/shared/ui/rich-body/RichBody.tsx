@@ -2,7 +2,7 @@ import { ApiError } from '@/shared/api';
 import { useBodyPresence } from './use-body-presence';
 import {
   RichDocument, VersionHistoryDialog,
-  type DocumentFont, type JSONNode, type VersionRecord,
+  type DocumentFont, type JSONNode,
 } from '@/shared/lib/rich-document';
 import { useEffect, useRef, useState, type MouseEvent, type ReactElement } from 'react';
 import { useNavigate } from '@tanstack/react-router';

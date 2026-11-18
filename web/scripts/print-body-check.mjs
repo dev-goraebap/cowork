@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { printBody } from '../src/pages/workspace/document-print/model/print-body.ts';
+import { printBody } from '../src/pages/print/documents/$documentId/model/print-body.ts';
 
 const heading = (text, attrs = {}) => ({ type: 'heading', attrs: { level: 1, ...attrs }, content: [{ type: 'text', text }] });
 const paragraph = (text, attrs = {}) => ({ type: 'paragraph', attrs, content: [{ type: 'text', text }] });

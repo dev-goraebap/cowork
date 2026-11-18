@@ -40,7 +40,6 @@ export type SystemFacet = Required<Schemas['DocumentBoxSystemFacet'], 'id' | 'na
 export type SystemSlice = { items: SystemItem[]; facets: SystemFacet[]; nextOffset?: number | null };
 
 const CHAPTERS = '/api/v1/workspace/manual-chapters';
-const FOLDERS = '/api/v1/workspace/document-folders';
 const idOf = (location: string) => location.split('/').pop() ?? '';
 
 export const boxKeys = {
@@ -66,7 +65,7 @@ export const systemItemsOptions = (kind: SystemKind, { projectId, facet }: { pro
     if (facet) params.set('facet', facet);
     const items: SystemItem[] = [];
     const offsets = new Set<number>();
-    let facets: SystemFacet[] = [];
+    let facets: SystemFacet[];
     for (;;) {
       const page = await getJson<SystemSlice>(`/api/v1/workspace/document-box/systems/${kind}?${params}`, signal);
       items.push(...page.items);

@@ -1,11 +1,9 @@
-import {NodeViewWrapper,NodeViewContent,ReactNodeViewRenderer,type NodeViewProps} from '@tiptap/react';
-import {closeHistory} from '@tiptap/pm/history';
+import {ReactNodeViewRenderer} from '@tiptap/react';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import {common,createLowlight} from 'lowlight';
-import {Info,Lightbulb,CheckCircle2,TriangleAlert,OctagonAlert,NotebookPen,Code2} from './icons';
+import {Info,Lightbulb,CheckCircle2,TriangleAlert,OctagonAlert,NotebookPen} from './icons';
 import {MediaNodeView} from './media-node';
 import {Callout} from './schema';
-import {BlockCopy,useEditable} from './block-ui';
 
 export const tones=[{value:'gray',label:'메모',icon:NotebookPen},{value:'info',label:'정보',icon:Info},{value:'tip',label:'팁',icon:Lightbulb},{value:'success',label:'확인',icon:CheckCircle2},{value:'warning',label:'주의',icon:TriangleAlert},{value:'danger',label:'경고',icon:OctagonAlert}];
 export {CalloutView} from './CalloutView';

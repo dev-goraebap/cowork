@@ -7,7 +7,7 @@ import { sessionOptions } from '@/shared/auth';
  */
 export const Route = createFileRoute('/_app')({
   beforeLoad: async ({ context }) => {
-    const session = await context.queryClient.ensureQueryData(sessionOptions());
+    const session = await context.queryClient.query({ ...sessionOptions(), staleTime: 'static' });
     if (!session) throw redirect({ to: '/login' });
     if (!session.onboarded) throw redirect({ href: '/onboarding', replace: true });
     return { session };

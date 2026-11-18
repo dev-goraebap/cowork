@@ -22,7 +22,7 @@ export function WorkItemRowMenu({ workItem, href }: { workItem: WorkItemRow; hre
   const session = useQuery(sessionOptions()).data;
   const can = useProjectCan(isWanted ? workItem.projectKey : undefined);
   const view = useQuery({ ...workItemOptions(workItem.projectKey, workItem.number), enabled: isWanted });
-  const prefetch = () => { if (!isWanted) { setWanted(true); void client.prefetchQuery(workItemOptions(workItem.projectKey, workItem.number)); } };
+  const prefetch = () => { if (!isWanted) { setWanted(true); void client.query(workItemOptions(workItem.projectKey, workItem.number)).catch(() => undefined); } };
   const actions: MenuAction[] = [
     ...(href ? [{ label: '주소 복사', icon: LinkIcon, onSelect: () => void navigator.clipboard.writeText(`${window.location.origin}${href}`) }] : []),
     ...(canDeleteWorkItem(view.data, session, can.manage) ? [{ label: '삭제', icon: Trash2Icon, onSelect: () => setDeleting(true) }] : []),

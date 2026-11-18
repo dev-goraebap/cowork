@@ -27,7 +27,7 @@ export function useWorkItemChange(workItem: WorkItemRow | undefined) {
     onSettled: () => refreshWorkItems(client),
   });
   const undo = async (row: WorkItemRow, before: Partial<WorkItemDraft>) => {
-    const latest = await client.fetchQuery({ ...workItemOptions(row.projectKey, row.number), staleTime: 0 });
+    const latest = await client.query({ ...workItemOptions(row.projectKey, row.number), staleTime: 0 });
     await editWorkItem(latest.issue, { ...draftOf(latest.issue), ...before });
     await refreshWorkItems(client);
   };

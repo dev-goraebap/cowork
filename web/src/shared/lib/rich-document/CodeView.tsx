@@ -1,13 +1,9 @@
 import {DocumentSelect} from './DocumentSelect';
-import {NodeViewWrapper,NodeViewContent,ReactNodeViewRenderer,type NodeViewProps} from '@tiptap/react';
+import {NodeViewWrapper,NodeViewContent,type NodeViewProps} from '@tiptap/react';
 import {closeHistory} from '@tiptap/pm/history';
-import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
-import {common,createLowlight} from 'lowlight';
-import {Info,Lightbulb,CheckCircle2,TriangleAlert,OctagonAlert,NotebookPen,Code2} from './icons';
-import {MediaNodeView} from './media-node';
-import {Callout} from './schema';
+import {Code2} from './icons';
 import {BlockCopy,useEditable} from './block-ui';
-import {tones,languages,lowlight,componentNodeViews} from './component-nodes';
+import {languages} from './component-nodes';
 export function CodeView({node,editor,updateAttributes}:NodeViewProps){
  const editable=useEditable(editor),language=node.attrs.language??'plaintext',label=languages.find(([value])=>value===language)?.[1]??language;
  return <NodeViewWrapper className="doc-code" data-code-block="" data-language={language} data-block-id={node.attrs.blockId}>

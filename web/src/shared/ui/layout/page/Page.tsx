@@ -5,7 +5,7 @@ import { useIsMobile } from "@/shared/lib/use-mobile"
 import { cn } from "cn"
 import { ActionMenu } from "@/shared/ui/action-menu"
 import { Button, ButtonStyleProvider, type ButtonStyle } from "@/shared/ui/button"
-import { ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon, type Icon } from "@/shared/ui/icon"
+import { ChevronLeftIcon, ChevronRightIcon, PlusIcon, type Icon } from "@/shared/ui/icon"
 import { PageTitleProvider, useFullScreen, usePageChrome } from "./chrome"
 import { InAppBarProvider, PhoneToolsProvider, usePhoneTools } from "@/shared/ui/layout/phone-tools"
 

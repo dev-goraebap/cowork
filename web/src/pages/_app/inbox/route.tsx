@@ -9,8 +9,8 @@ import { NotificationsPage } from './ui/NotificationsPage';
  */
 export const Route = createFileRoute('/_app/inbox')({
   loader: ({ context }) => Promise.all([
-    context.queryClient.prefetchInfiniteQuery(notificationsOptions({})),
-    context.queryClient.prefetchQuery(unreadNotificationsOptions()),
+    context.queryClient.infiniteQuery(notificationsOptions({})).catch(() => undefined),
+    context.queryClient.query(unreadNotificationsOptions()).catch(() => undefined),
   ]),
   component: InboxRoute,
 });

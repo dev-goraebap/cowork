@@ -1,10 +1,8 @@
 import {Snippet} from './Snippet';
 import {useEffect,useState} from 'react';
-import {History,X,RotateCw,Clock3,Bookmark,ShieldCheck,ArrowLeft,ArrowRight,Plus,Minus,Pencil,MoveRight,FileText,LoaderCircle} from './icons';
-import {Button} from './Button';
-import {nodeText,type JSONNode,type VersionRecord} from './model';
-import {blockNames,textParts,type Change,type ChangeKind} from './version-diff';
-import {reasonNames,date,time,kinds,labels,icons} from './VersionViews';
+import {ShieldCheck,ArrowRight,FileText} from './icons';
+import {blockNames,type Change,type ChangeKind} from './version-diff';
+import {kinds,labels,icons} from './VersionViews';
 /** description: 무엇과 무엇을 비교했는지(기본은 고른 버전 → 지금). same: 바뀐 것이 없을 때의 말. */
 export function VersionChanges({changes,oldTitle,title,versionId,description='선택한 버전 이후, 현재 문서까지의 변경입니다.',same='현재 문서와 같습니다'}:{changes:Change[];oldTitle:string;title:string;versionId:string;description?:string;same?:string}){
  const [filter,setFilter]=useState<'all'|ChangeKind>('all');useEffect(()=>setFilter('all'),[versionId]);const counts=Object.fromEntries(kinds.map(k=>[k,changes.filter(c=>k==='moved'?c.moved:c.kind===k).length])) as Record<ChangeKind,number>;const visible=changes.filter(c=>filter==='all'||(filter==='moved'?c.moved:c.kind===filter));const renamed=oldTitle!==title;

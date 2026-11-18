@@ -1,7 +1,5 @@
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useState} from 'react';
 import type {Editor} from '@tiptap/core';
-import {Check,Copy,AlertCircle} from './icons';
-import {Button} from './Button';
 
 export function useEditable(editor:Editor){
  const [editable,setEditable]=useState(editor.isEditable);
@@ -9,4 +7,4 @@ export function useEditable(editor:Editor){
  return editable;
 }
 export {BlockCopy} from './BlockCopy';
-import {BlockCopy} from './BlockCopy';
+

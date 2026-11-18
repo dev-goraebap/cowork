@@ -1,4 +1,3 @@
-import { Button } from "@/shared/ui/button"
 import { ListIcon } from "@/shared/ui/icon"
 import { PropertyPill } from "@/shared/ui/property-pill"
 import type { PageLayout } from "./pagination"

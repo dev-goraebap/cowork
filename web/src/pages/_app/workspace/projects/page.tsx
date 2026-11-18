@@ -10,7 +10,7 @@ export const Route = createFileRoute('/_app/workspace/projects/')({
   loaderDeps: ({ search }) => ({ status: (search as { status?: string }).status }),
   loader: ({ context, deps }) => {
     const status: Status = deps.status === 'ARCHIVED' || deps.status === 'DELETED' ? deps.status : 'ACTIVE';
-    return context.queryClient.prefetchQuery(projectsOptions(status));
+    return context.queryClient.query(projectsOptions(status)).catch(() => undefined);
   },
   component: function ProjectsRoute() { return <ProjectsPage crumbs={useCrumbs()} />; },
 });

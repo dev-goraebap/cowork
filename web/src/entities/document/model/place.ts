@@ -1,6 +1,6 @@
 import type { QueryClient } from '@tanstack/react-query';
 import { serverBodyStore, type RichBodyStore } from '@/shared/ui/rich-body';
-import { documentPath, type DocumentListing, type DocumentSort } from '../api/documents';
+import { documentPath } from '../api/documents';
 
 /**
  * A document's own page, under its project. A shared (공용) document has no page in v2 yet; it opens the project list.

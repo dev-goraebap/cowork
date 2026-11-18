@@ -10,7 +10,7 @@ import { rememberThisDevice } from './this-device';
  */
 export async function claimThisDevice(client: QueryClient): Promise<string | null> {
   if (pushSupport() !== 'ready' || notificationPermission() !== 'granted') return null;
-  const config = await client.fetchQuery(pushConfigOptions());
+  const config = await client.query(pushConfigOptions());
   const existing = await currentSubscription();
   if (!config.enabled || !config.publicKey || !existing) return null;
   const device = await saveDevice(await subscribePush(config.publicKey));

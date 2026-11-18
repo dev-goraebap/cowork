@@ -1,19 +1,18 @@
 import {WidthControl} from './WidthControl';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
-import {NodeViewWrapper,ReactNodeViewRenderer,type NodeViewProps} from '@tiptap/react';
+import {NodeViewWrapper,type NodeViewProps} from '@tiptap/react';
 import {closeHistory} from '@tiptap/pm/history';
-import {Image,Film,FileText,Music2,Download,RotateCw,AlertCircle,LoaderCircle,Search} from './icons';
+import {FileText,Download,RotateCw,AlertCircle,LoaderCircle,Search} from './icons';
 import {fileKind} from './file-kinds';
-import {Media} from './schema';
 import {useEditable} from './block-ui';
 import {Button} from './Button';
-import {clampWidth,bytes,MediaNodeView} from './media-node';
+import {clampWidth,bytes} from './media-node';
 import {isImageAtHand,noteImageArrived} from '@/shared/lib/image-traits';
 import {openHtml,openZoom} from '@/shared/ui/zoom-viewer';
 /** 내려받기 주소: 서비스의 첨부 주소면 download=true를 붙여 저장소가 '내려받기'로 주게 한다(그 밖은 그대로). */
 function downloadHref(src:string){if(!src)return undefined;if(!/^\/api\/.+\/files\//.test(src))return src;return `${src}${src.includes('?')?'&':'?'}download=true`;}
 export function MediaView({node,editor,updateAttributes,getPos,selected}:NodeViewProps){
- const editable=useEditable(editor),a=node.attrs,kind=a.mime.startsWith('image/')?'image':a.mime.startsWith('video/')?'video':a.mime.startsWith('audio/')?'audio':'file',Icon={image:Image,video:Film,audio:Music2,file:FileText}[kind],label={image:'이미지',video:'동영상',audio:'오디오',file:'파일'}[kind];
+ const editable=useEditable(editor),a=node.attrs,kind=a.mime.startsWith('image/')?'image':a.mime.startsWith('video/')?'video':a.mime.startsWith('audio/')?'audio':'file',label={image:'이미지',video:'동영상',audio:'오디오',file:'파일'}[kind];
  const safe=(/^(\/(?!\/)|https:\/\/|blob:)/.test(String(a.src)))?String(a.src):'',width=clampWidth(a.width);const [state,setState]=useState<'loading'|'ready'|'error'>('loading'),[retry,setRetry]=useState(0),[size,setSize]=useState(Number(a.size)||0);
  const stage=useRef<HTMLDivElement>(null),picture=useRef<HTMLImageElement>(null),[nearby,setNearby]=useState(false),[loadedWidth,setLoadedWidth]=useState(0);
  const src=retry&&!safe.startsWith('blob:')?`${safe}${safe.includes('?')?'&':'?'}retry=${retry}`:safe;

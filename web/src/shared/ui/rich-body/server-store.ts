@@ -48,7 +48,7 @@ export function serverBodyStore({ base, client, readerId }: { base: string; auth
       keep: lease => sendCommand(`${base}/editing/${lease}`, 'PUT'),
       leave: lease => sendCommand(`${base}/editing/${lease}`, 'DELETE'),
     } : undefined,
-    load: async () => snapshotOf(await (client && readerId ? client.fetchQuery(bodyStateOptions(base, readerId)) : getJson<BodyState>(base))),
+    load: async () => snapshotOf(await (client && readerId ? client.query(bodyStateOptions(base, readerId)) : getJson<BodyState>(base))),
     save: async ({ expectedVersion, body, uploadIds, checkpoint }) =>
       keep(await sendJson<BodyState>(base, 'PUT', { expectedVersion, body, uploadIds, checkpoint, schemaVersion: 1 })),
     patch: async patch => keep(await sendJson<BodyState>(base, 'PATCH', patch)),

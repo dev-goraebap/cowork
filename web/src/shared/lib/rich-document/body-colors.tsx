@@ -10,7 +10,6 @@ export const MARK_COLORS:Record<string,string>={gray:'#363633',brown:'#493b34',o
 const HEX=/^#[0-9a-fA-F]{6}$/;
 const colorOf=(kind:'mark'|'span',key:string)=>HEX.test(key)?key:(kind==='mark'?MARK_COLORS:TEXT_COLORS)[key];
 
-const OPEN=/<(mark|span)\s+data-color="([#\w-]+)"\s*>/g;
 const ANY=/<(mark|span)\s+data-color="[#\w-]+"\s*>|<\/(mark|span)>/g;
 const BLOCK=/^(\s*(?:[-*+]\s+(?:\[[ xX]\]\s+)?|\d+[.)]\s+|#{1,6}\s+|>\s*)*)/;
 

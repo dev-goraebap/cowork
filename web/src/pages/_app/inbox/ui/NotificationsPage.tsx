@@ -2,7 +2,7 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useMemo, useRef } from 'react';
 import {
-  kindOf, notificationsOptions, targetOf, unreadNotificationsOptions, useReadAllNotifications,
+  kindOf, notificationsOptions, unreadNotificationsOptions, useReadAllNotifications,
   type NotificationItem, type NotificationListing,
 } from '@/entities/notification';
 import { activitySplit } from '@/features/activity-navigation';
@@ -17,7 +17,6 @@ import { ListMore } from '@/shared/ui/list-more';
 import { SplitColumn, SplitList, SplitView, SplitRow, OpenPageButton, type SplitState } from '@/shared/ui/layout/split-view';
 import { PageState } from '@/shared/ui/page-state';
 import { PersonAvatar } from '@/shared/ui/person';
-import { Spinner } from '@/shared/ui/spinner';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { momentOf } from '../model/format';
 import { useFilters } from '../model/use-filters';
@@ -44,17 +43,6 @@ function NotificationsMenu({ unread, onReadAll }: { unread: number; onReadAll: (
 }
 
 /** A centred button under the rows (내 결재 더 보기, a list read again). */
-function ListButton({ label, isLoading, onClick }: { label: string; isLoading?: boolean; onClick: () => void }) {
-  return <div className="flex justify-center p-3">
-    <Button variant="secondary" size="sm" disabled={isLoading} onClick={onClick}>
-      {isLoading ? <Spinner data-icon="inline-start" /> : null}{label}
-    </Button>
-  </div>;
-}
-
-/** A group's name over its rows (내 결재 차례, 최근 소식). */
-const GroupTitle = ({ children }: { children: string }) => <h2 className="px-4 py-2 text-xs font-semibold text-muted-foreground">{children}</h2>;
-
 /**
  * One notice: who sent it (the system's own notices the company's mark in the same place), its title, what it reports and
  * its words, and when it came; an unread one tinted, the chosen one marked. Pressed anywhere it opens in the detail

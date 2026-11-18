@@ -55,13 +55,13 @@ export default defineConfig({
   define: { __APP_VERSION__: JSON.stringify(releaseTag()) },
   // Tailwind CSS v4 builds the utilities from app/theme/tailwind.css.
   plugins: [
-    // 파일 라우팅: src/pages의 폴더가 곧 주소다. 슬라이스 안의 세그먼트(ui · api · model · lib · config)와 옛 공개 진입점
-    // (index.ts)은 라우트로 치지 않는다. 손으로 쓴 라우트와 함께 쓰는 동안 트리는 app/router가 이어 붙인다.
+    // 파일 라우팅: src/pages의 폴더가 곧 주소다. page.tsx가 그 주소의 화면, route.tsx가 그 아래에 걸리는 틀이다.
+    // 슬라이스 안의 세그먼트(ui · api · model · lib · config)와 공개 진입점(index.ts)은 라우트로 치지 않는다.
     tanstackRouter({
       target: 'react',
       routesDirectory: './src/pages',
       generatedRouteTree: './src/app/router/routeTree.gen.ts',
-      autoCodeSplitting: true, indexToken: 'page', routeFileIgnorePattern: '^(ui|api|model|lib|config|index\.ts)$',
+      autoCodeSplitting: true, indexToken: 'page', routeFileIgnorePattern: '^(ui|api|model|lib|config|index\\.ts)$',
       quoteStyle: 'single',
     }),
     react(), tailwindcss(), solarSet(), initialCover(),

@@ -3,7 +3,7 @@ import { mapBodySources } from './body-sources';
 import { useEffect, useRef, useState } from 'react';
 import { useBlocker } from '@tanstack/react-router';
 import { blank, prepareDocument, type JSONNode, type VersionRecord } from '@/shared/lib/rich-document';
-import { ApiError, sendJson, type components } from '@/shared/api';
+import { ApiError, type components } from '@/shared/api';
 
 /**
  * A body as the server holds it: its version, the body (null when nothing is written yet) and, when the domain keeps

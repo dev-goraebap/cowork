@@ -1,16 +1,11 @@
-import {clampWidth} from './media-node';
 import {useEffect,useRef,useState,type RefObject} from 'react';
-import {NodeViewWrapper,ReactNodeViewRenderer,type NodeViewProps} from '@tiptap/react';
-import {closeHistory} from '@tiptap/pm/history';
+import {ReactNodeViewRenderer} from '@tiptap/react';
 import katex from 'katex';
-import {Button} from './Button';
-import {Workflow,Pencil} from './icons';
-import {BlockCopy} from './block-ui';
 import {embedURL} from './embed';
 import {useAppearance,type DiagramStyle} from '@/shared/lib/appearance';
 import {diagramBackground,diagramConfig,type Scheme} from './diagram-style';
 
-import {richNode,examples,type RichKind} from './rich-node-spec';
+import {richNode,type RichKind} from './rich-node-spec';
 export const labels:Record<RichKind,string>={mathBlock:'수식',inlineMath:'인라인 수식',mermaidBlock:'Mermaid',webEmbed:'링크 카드'};
 export let mermaidModule:Promise<typeof import('mermaid')>|undefined;
 export type {Scheme};

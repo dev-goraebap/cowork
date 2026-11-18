@@ -56,7 +56,7 @@ export function DocumentPagesManager({ projectKey, documentId, crumbs, surface =
   const title = root ? `${root.title} 페이지 관리` : '페이지 관리';
   const said = (reason: unknown) => setFailure(reason instanceof Error ? reason.message : '저장하지 못했습니다.');
   const order = async (ids: string[], parentId: string) => {
-    const current = await client.fetchQuery({ ...libraryOptions(projectKey), staleTime: 0 });
+    const current = await client.query({ ...libraryOptions(projectKey), staleTime: 0 });
     await saveDocumentOrder(projectKey, ids, current.order.version, parentId);
     await refresh();
   };

@@ -127,7 +127,7 @@ export function ProjectLibrary({ crumbs, projectKey, documentId, ...surface }: {
   };
   const error = (reason: unknown) => setFailure(reason instanceof Error ? reason.message : '순서를 저장하지 못했습니다.');
   const saveOrder = async (ids: string[], parentId: string | null) => {
-    const current = await client.fetchQuery({ ...libraryOptions(projectKey), staleTime: 0 });
+    const current = await client.query({ ...libraryOptions(projectKey), staleTime: 0 });
     await saveDocumentOrder(projectKey, ids, current.order.version, parentId);
     await refresh();
   };
