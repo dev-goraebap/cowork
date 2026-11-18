@@ -1,7 +1,7 @@
 import { lazyRouteComponent } from '@tanstack/react-router';
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { isPagePrepared, preparePage } from './prepare-page';
+import { isPrepared, prepare, type Prep } from '@/shared/lib/prepare';
 import { PanelLoading } from './PanelLoading';
 import { useLoadingHold } from '@/shared/ui/page-loading/use-loading-hold';
 import { sessionOptions } from '@/shared/auth';
@@ -19,9 +19,9 @@ import { NewWorkItem } from '@/widgets/work-item-create';
 
 const MEMBER = /^\/members\/([^/]+)$/;
 
-const WorkItemPage = lazyRouteComponent(() => import('@/pages/workspace/work-items'), 'WorkItemPage');
-const DocumentBoxPage = lazyRouteComponent(() => import('@/pages/workspace/documents'), 'DocumentBoxPage');
-const DocumentPagesManager = lazyRouteComponent(() => import('@/pages/workspace/documents'), 'DocumentPagesManager');
+const WorkItemPage = lazyRouteComponent(() => import('@/pages/_app/workspace/projects/$key/work-items/$number'), 'WorkItemPage');
+const DocumentBoxPage = lazyRouteComponent(() => import('@/widgets/document-library'), 'DocumentBoxPage');
+const DocumentPagesManager = lazyRouteComponent(() => import('@/widgets/document-library'), 'DocumentPagesManager');
 const CreateProjectDialog = lazyRouteComponent(() => import('@/pages/_app/workspace/projects'), 'CreateProjectDialog');
 
 /** 목록 위 대화상자로 여는 화면의 코드: 한가할 때 미리 받아 둔다(PanelHost). */
@@ -75,8 +75,7 @@ function usePanelContent(): { node: ReactNode; isLoading: boolean; href?: string
   const isPhone = useIsMobile();
   const { href, expand } = panel;
   const client = useQueryClient();
-  const destination = href ? new URL(href, 'http://cowork.invalid') : undefined;
-  const cached = !!destination && isPagePrepared(client, destination.pathname, destination.search);
+  const cached = !!href && isPrepared(client, href);
   const opening = useRef<{ href: string | undefined; cold: boolean }>({ href: undefined, cold: false });
   if (opening.current.href !== href) opening.current = { href, cold: !cached };
   const prepared = useQuery({
@@ -84,8 +83,7 @@ function usePanelContent(): { node: ReactNode; isLoading: boolean; href?: string
     enabled: !!href && !isPhone && !cached,
     staleTime: Infinity, gcTime: 0,
     queryFn: async () => {
-      const destination = new URL(href!, 'http://cowork.invalid');
-      await preparePage(client, destination.pathname, destination.search);
+      await prepare(client, href!, prep => preparePanel(prep, new URL(href!, 'http://cowork.invalid')));
       return true;
     },
   });
@@ -122,4 +120,15 @@ function usePanelContent(): { node: ReactNode; isLoading: boolean; href?: string
       crumbs={[{ label: '새 업무' }]} onClose={panel.close} onExpand={expand}
       onCreated={created => showSaved(workItemHref({ projectKey: created.key, number: created.number }))} />);
   return result(null);
+}
+
+/** 대화상자로 여는 화면이 첫 그림에 쓸 것: 그 화면의 라우트 loader와 같은 준비 함수다. */
+async function preparePanel(prep: Prep, url: URL) {
+  const uuid = '[0-9a-fA-F-]{36}';
+  const pages = new RegExp(`^/workspace/projects/([^/]+)/documents/(${uuid})/pages$`).exec(url.pathname);
+  if (pages) return (await import('@/widgets/document-library')).prepareDocumentPages(prep, pages[1]!);
+  const document = new RegExp(`^/workspace/projects/([^/]+)/documents/(${uuid})$`).exec(url.pathname);
+  if (document) return (await import('@/widgets/document-library')).prepareDocuments(prep, { projectKey: document[1], documentId: url.searchParams.get('chapter') ?? document[2] });
+  const item = /^\/workspace\/projects\/([^/]+)\/work-items\/(\d+)$/.exec(url.pathname);
+  if (item) return (await import('@/pages/_app/workspace/projects/$key/work-items/$number')).prepareWorkItem(prep, item[1]!, Number(item[2]));
 }

@@ -10,7 +10,7 @@ import { CheckIcon, ChevronDownIcon, ChevronUpIcon, InboxIcon, LinkIcon, LogoutI
 import { toast } from '@/shared/ui/toast';
 import { markTone, MarkIcon } from '@/shared/ui/mark-picker';
 import { GLOBAL_TITLE, INSTANCE, projectKeyOf, projectPlaces, spaceOf, TOP_SPACES, topSpaceOf, visibleSections, WORKSPACE, type AdminRole, type NavEntry, type NavSection, type NavSpace } from '../model/nav';
-import { navIcon } from '../model/nav-icons';
+import { navIcon } from '@/shared/ui/nav-icon';
 
 export type ShellLayout = 'inset' | 'split';
 

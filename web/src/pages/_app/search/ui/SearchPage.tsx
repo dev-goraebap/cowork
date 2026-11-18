@@ -2,7 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { useMemo } from 'react';
 import { sessionOptions } from '@/shared/auth';
-import { INSTANCE_WHERE, navIcon, navPlaces, pageCrumbs } from '@/widgets/app-shell';
+import { INSTANCE_WHERE, navPlaces } from '@/widgets/app-shell';
+import { navIcon, pageCrumbs } from '@/shared/ui/nav-icon';
 import { contentSources, GlobalSearch, matches, type SearchHit, type SearchSource } from '@/widgets/global-search';
 
 type Crumb = { label: string; href?: string; icon?: string };

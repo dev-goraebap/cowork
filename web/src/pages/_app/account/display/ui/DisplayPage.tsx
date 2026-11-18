@@ -4,7 +4,7 @@ import { DiagramPreview } from '@/shared/lib/rich-document';
 import { SegmentedControl } from '@/shared/ui/segmented-control';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 
 type Crumb = { label: string; href?: string; icon?: string };
 

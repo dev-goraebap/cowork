@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { sessionOptions } from '@/shared/auth';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { Button } from '@/shared/ui/button';
 import { CheckIcon } from '@/shared/ui/icon';
 import { SettingsPage, SettingsSection } from '@/shared/ui/settings';

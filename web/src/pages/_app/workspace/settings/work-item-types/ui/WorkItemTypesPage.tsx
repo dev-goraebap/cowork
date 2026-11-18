@@ -5,7 +5,7 @@ import {
   createType, deleteType, editType, orderTypes, refreshBoard, typesOptions, WorkItemTypeIcon, type WorkItemTypeRow,
 } from '@/entities/work-item';
 import { rowReorderStyles as rows, useRowReorder } from '@/shared/lib/row-reorder';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { ActionMenu, type MenuAction } from '@/shared/ui/action-menu';
 import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';

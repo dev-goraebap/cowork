@@ -9,7 +9,7 @@ import { Mark } from '@/shared/ui/mark-picker';
 import { PageState } from '@/shared/ui/page-state';
 import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { agentTokenKeys, agentProfilesOptions, agentTokensOptions, revokeAgentToken, type AgentProfile, type AgentToken, type AgentTokenCreated } from '../api/agents';
 import { AgentEditorDialog, AgentTokenSecretDialog } from './AgentTokenDialogs';
 import { AgentUsageSection } from './AgentUsageSection';

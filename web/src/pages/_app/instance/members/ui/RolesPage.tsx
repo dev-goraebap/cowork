@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useBlocker } from '@tanstack/react-router';
 import { useState } from 'react';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/alert';
 import { Button } from '@/shared/ui/button';
 import { Card } from '@/shared/ui/card';

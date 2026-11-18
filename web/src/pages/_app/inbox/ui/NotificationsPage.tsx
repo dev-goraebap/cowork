@@ -18,7 +18,7 @@ import { SplitColumn, SplitList, SplitView, SplitRow, OpenPageButton, type Split
 import { PageState } from '@/shared/ui/page-state';
 import { PersonAvatar } from '@/shared/ui/person';
 import { Spinner } from '@/shared/ui/spinner';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { momentOf } from '../model/format';
 import { useFilters } from '../model/use-filters';
 import { inboxFrame, NoticeDetail } from './NoticeDetail';

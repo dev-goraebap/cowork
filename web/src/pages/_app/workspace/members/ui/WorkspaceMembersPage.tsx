@@ -18,7 +18,7 @@ import { SearchTool } from '@/shared/ui/search-tool';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableText } from '@/shared/ui/table';
 import { toast } from '@/shared/ui/toast';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { ParticipationDialog } from './ParticipationDialog';
 
 type Crumb = { label: string; href?: string; icon?: string };

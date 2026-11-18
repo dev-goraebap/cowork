@@ -5,7 +5,7 @@ import { cn } from 'cn';
 import { kindOf } from '@/entities/notification';
 import { useAddressFilters, useAddressWords } from '@/shared/lib/list-address';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/alert';
 import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';

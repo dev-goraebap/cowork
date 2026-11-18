@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { orgChartOptions } from '@/entities/organization';
 import { useAddressFilters, useAddressWords } from '@/shared/lib/list-address';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { FilterBar, FilterChips, FilterMenu, useFilters, type FilterDef, type FilterState, type Filters } from '@/shared/ui/filter';
 import { CalendarIcon, CircleCheckIcon, ClockIcon, DashboardIcon, EyeIcon, TriangleAlertIcon, UserIcon } from '@/shared/ui/icon';
 import { Page, PageViews, type PageView } from '@/shared/ui/layout/page';

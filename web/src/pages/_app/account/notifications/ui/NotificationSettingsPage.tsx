@@ -12,7 +12,7 @@ import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings
 import { Spinner } from '@/shared/ui/spinner';
 import { Switch } from '@/shared/ui/switch';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { momentText, pushStatusLabels, topicLabels } from '../model/push-labels';
 
 type Crumb = { label: string; href?: string; icon?: string };

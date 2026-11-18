@@ -26,7 +26,7 @@ import { PersonAvatar } from '@/shared/ui/person';
 import { Popover, PopoverContent, PopoverHeader, PopoverTitle, PopoverTrigger } from '@/shared/ui/popover';
 import { SortableHead } from '@/shared/ui/sortable-head';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableText } from '@/shared/ui/table';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { CreateProjectDialog } from './CreateProjectDialog';
 import { ProjectChangeDialog } from './ProjectChangeDialog';
 
@@ -171,7 +171,7 @@ export function ProjectsPage({ crumbs }: { crumbs: Crumb[] }) {
               className={cn(rows.row, 'flex items-center gap-3 bg-background px-4 py-3 hover:bg-row-hover')}>
               <Mark icon={project.icon} color={project.color} letter={project.key} size="md" />
               <span className="flex min-w-0 flex-1 flex-col">
-                <RowLink to={`/workspace/projects/${project.key}`} className="truncate font-medium">{project.name}</RowLink>
+                <RowLink to="/workspace/projects/$key" params={{ key: project.key }} className="truncate font-medium">{project.name}</RowLink>
                 <span className="truncate text-xs text-muted-foreground">
                   <span className="tabular-nums">{project.key}</span>{description ? ` · ${description}` : ''}
                 </span>
@@ -223,7 +223,7 @@ export function ProjectsPage({ crumbs }: { crumbs: Crumb[] }) {
                 <TableCell className={cn(!canReorder && 'pl-4')}>
                   <span className="flex min-w-0 items-center gap-2.5">
                     <Mark icon={project.icon} color={project.color} letter={project.key} size="sm" />
-                    <RowLink to={`/workspace/projects/${project.key}`} className="truncate font-medium">{project.name}</RowLink>
+                    <RowLink to="/workspace/projects/$key" params={{ key: project.key }} className="truncate font-medium">{project.name}</RowLink>
                     <span className="shrink-0 text-xs text-muted-foreground tabular-nums">{project.key}</span>
                   </span>
                 </TableCell>

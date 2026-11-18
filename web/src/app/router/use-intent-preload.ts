@@ -6,7 +6,7 @@ const AGAIN_MS = 10_000;
 
 /**
  * 앱 안의 링크에 포인터가 올라가거나 초점이 오면 그 화면을 미리 준비한다(intent prefetch). 화면마다 따로 붙이지 않고
- * 문서에 한 번 건다: 목록 행·카드·사이드바·경로처럼 a[href]로 그린 것은 모두 해당한다. 준비는 라우트 loader(prepare-page)
+ * 문서에 한 번 건다: 목록 행·카드·사이드바·경로처럼 a[href]로 그린 것은 모두 해당한다. 준비는 라우트 loader(각 page.tsx)
  * 그대로라, 누르면 캐시가 있어 진행 막대 없이 바로 바뀐다.
  */
 export function useIntentPreload() {

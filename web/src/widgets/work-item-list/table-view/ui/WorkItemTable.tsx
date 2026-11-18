@@ -72,7 +72,7 @@ export function WorkItemTable({ workItems, selected, showsProject = false, hrefO
           </TableCell>
           <TableCell className="max-w-21"><WorkItemTypeIcon type={workItem.type} showsLabel /></TableCell>
           {showsProject ? <TableCell className="max-w-32">
-            {workItem.projectName ? <Link to={`/workspace/projects/${encodeURIComponent(workItem.projectKey)}/work-items`}
+            {workItem.projectName ? <Link to="/workspace/projects/$key/work-items" params={{ key: workItem.projectKey }}
               className="relative z-1 flex min-w-0 items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
               <ProjectsIcon className="size-3.5 shrink-0 text-icon-muted" />
               <span className="truncate">{workItem.projectName}</span>

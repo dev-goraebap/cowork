@@ -9,7 +9,7 @@ import { GalleryEditIcon, PencilIcon } from '@/shared/ui/icon';
 import { Input } from '@/shared/ui/input';
 import { PersonAvatar } from '@/shared/ui/person';
 import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { changeMyName } from '../api/profile';
 
 type Crumb = { label: string; href?: string; icon?: string };

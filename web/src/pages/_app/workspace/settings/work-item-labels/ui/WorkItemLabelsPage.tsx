@@ -5,7 +5,7 @@ import {
   createLabel, deleteLabel, editLabel, labelsOptions, orderLabels, refreshBoard, WorkItemLabelDot, type WorkItemLabel,
 } from '@/entities/work-item';
 import { rowReorderStyles as rows, useRowReorder } from '@/shared/lib/row-reorder';
-import { pageCrumbs } from '@/widgets/app-shell';
+import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { ActionMenu, type MenuAction } from '@/shared/ui/action-menu';
 import { Button } from '@/shared/ui/button';
 import { ColorPalette, DEFAULT_MARK_COLOR } from '@/shared/ui/color-palette';
