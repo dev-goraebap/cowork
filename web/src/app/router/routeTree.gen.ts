@@ -17,7 +17,6 @@ import { Route as LoginPageRouteImport } from './../../pages/login/page'
 import { Route as OnboardingPageRouteImport } from './../../pages/onboarding/page'
 import { Route as AppAccountPageRouteImport } from './../../pages/_app/account/page'
 import { Route as AppInboxIdRouteImport } from './../../pages/_app/inbox/$id'
-import { Route as AppInstancePageRouteImport } from './../../pages/_app/instance/page'
 import { Route as AppMyWorkPageRouteImport } from './../../pages/_app/my-work/page'
 import { Route as AppSearchPageRouteImport } from './../../pages/_app/search/page'
 import { Route as AppWorkspaceSettingsRouteRouteImport } from './../../pages/_app/workspace/settings/route'
@@ -33,7 +32,6 @@ import { Route as AppWorkspaceMembersPageRouteImport } from './../../pages/_app/
 import { Route as AppWorkspaceProjectsPageRouteImport } from './../../pages/_app/workspace/projects/page'
 import { Route as AppWorkspaceProjectsKeyRouteRouteImport } from './../../pages/_app/workspace/projects/$key/route'
 import { Route as AppWorkspaceProjectsNewRouteImport } from './../../pages/_app/workspace/projects/new'
-import { Route as AppWorkspaceSettingsPageRouteImport } from './../../pages/_app/workspace/settings/page'
 import { Route as PrintDocumentsDocumentIdPageRouteImport } from './../../pages/print/documents/$documentId/page'
 import { Route as AppWorkspaceDocumentsDocumentIdPageRouteImport } from './../../pages/_app/workspace/documents/$documentId/page'
 import { Route as AppWorkspaceDocumentsDocumentIdHistoryRouteImport } from './../../pages/_app/workspace/documents/$documentId/history'
@@ -48,7 +46,6 @@ import { Route as AppWorkspaceWorkItemsNewPageRouteImport } from './../../pages/
 import { Route as AppWorkspaceProjectsKeyCyclesPageRouteImport } from './../../pages/_app/workspace/projects/$key/cycles/page'
 import { Route as AppWorkspaceProjectsKeyDocumentsPageRouteImport } from './../../pages/_app/workspace/projects/$key/documents/page'
 import { Route as AppWorkspaceProjectsKeyMembersPageRouteImport } from './../../pages/_app/workspace/projects/$key/members/page'
-import { Route as AppWorkspaceProjectsKeySettingsPageRouteImport } from './../../pages/_app/workspace/projects/$key/settings/page'
 import { Route as AppWorkspaceProjectsKeyWorkItemsPageRouteImport } from './../../pages/_app/workspace/projects/$key/work-items/page'
 import { Route as AppWorkspaceProjectsKeyDocumentsDocumentIdPageRouteImport } from './../../pages/_app/workspace/projects/$key/documents/$documentId/page'
 import { Route as AppWorkspaceProjectsKeySettingsCyclesPageRouteImport } from './../../pages/_app/workspace/projects/$key/settings/cycles/page'
@@ -103,11 +100,6 @@ const AppInboxIdRoute = AppInboxIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => AppInboxRouteRoute,
-} as any)
-const AppInstancePageRoute = AppInstancePageRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AppInstanceRouteRoute,
 } as any)
 const AppMyWorkPageRoute = AppMyWorkPageRouteImport.update({
   id: '/my-work/',
@@ -191,12 +183,6 @@ const AppWorkspaceProjectsNewRoute = AppWorkspaceProjectsNewRouteImport.update({
   path: '/workspace/projects/new',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppWorkspaceSettingsPageRoute =
-  AppWorkspaceSettingsPageRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => AppWorkspaceSettingsRouteRoute,
-  } as any)
 const PrintDocumentsDocumentIdPageRoute =
   PrintDocumentsDocumentIdPageRouteImport.update({
     id: '/print/documents/$documentId/',
@@ -280,12 +266,6 @@ const AppWorkspaceProjectsKeyMembersPageRoute =
     id: '/members/',
     path: '/members/',
     getParentRoute: () => AppWorkspaceProjectsKeyRouteRoute,
-  } as any)
-const AppWorkspaceProjectsKeySettingsPageRoute =
-  AppWorkspaceProjectsKeySettingsPageRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => AppWorkspaceProjectsKeySettingsRouteRoute,
   } as any)
 const AppWorkspaceProjectsKeyWorkItemsPageRoute =
   AppWorkspaceProjectsKeyWorkItemsPageRouteImport.update({
@@ -389,7 +369,6 @@ export interface FileRoutesByFullPath {
   '/workspace/settings': typeof AppWorkspaceSettingsRouteRouteWithChildren
   '/inbox/$id': typeof AppInboxIdRoute
   '/account/': typeof AppAccountPageRoute
-  '/instance/': typeof AppInstancePageRoute
   '/my-work/': typeof AppMyWorkPageRoute
   '/search/': typeof AppSearchPageRoute
   '/workspace/projects/$key': typeof AppWorkspaceProjectsKeyRouteRouteWithChildren
@@ -404,7 +383,6 @@ export interface FileRoutesByFullPath {
   '/workspace/documents/': typeof AppWorkspaceDocumentsPageRoute
   '/workspace/members/': typeof AppWorkspaceMembersPageRoute
   '/workspace/projects/': typeof AppWorkspaceProjectsPageRoute
-  '/workspace/settings/': typeof AppWorkspaceSettingsPageRoute
   '/print/documents/$documentId/': typeof PrintDocumentsDocumentIdPageRoute
   '/workspace/projects/$key/settings': typeof AppWorkspaceProjectsKeySettingsRouteRouteWithChildren
   '/workspace/documents/$documentId/history': typeof AppWorkspaceDocumentsDocumentIdHistoryRoute
@@ -419,7 +397,6 @@ export interface FileRoutesByFullPath {
   '/workspace/projects/$key/cycles/': typeof AppWorkspaceProjectsKeyCyclesPageRoute
   '/workspace/projects/$key/documents/': typeof AppWorkspaceProjectsKeyDocumentsPageRoute
   '/workspace/projects/$key/members/': typeof AppWorkspaceProjectsKeyMembersPageRoute
-  '/workspace/projects/$key/settings/': typeof AppWorkspaceProjectsKeySettingsPageRoute
   '/workspace/projects/$key/work-items/': typeof AppWorkspaceProjectsKeyWorkItemsPageRoute
   '/workspace/projects/$key/documents/$documentId/': typeof AppWorkspaceProjectsKeyDocumentsDocumentIdPageRoute
   '/workspace/projects/$key/settings/cycles/': typeof AppWorkspaceProjectsKeySettingsCyclesPageRoute
@@ -438,12 +415,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/inbox': typeof AppInboxRouteRouteWithChildren
+  '/instance': typeof AppInstanceRouteRouteWithChildren
   '/': typeof AppPageRoute
   '/login': typeof LoginPageRoute
   '/onboarding': typeof OnboardingPageRoute
+  '/workspace/settings': typeof AppWorkspaceSettingsRouteRouteWithChildren
   '/inbox/$id': typeof AppInboxIdRoute
   '/account': typeof AppAccountPageRoute
-  '/instance': typeof AppInstancePageRoute
   '/my-work': typeof AppMyWorkPageRoute
   '/search': typeof AppSearchPageRoute
   '/workspace/projects/new': typeof AppWorkspaceProjectsNewRoute
@@ -457,8 +435,8 @@ export interface FileRoutesByTo {
   '/workspace/documents': typeof AppWorkspaceDocumentsPageRoute
   '/workspace/members': typeof AppWorkspaceMembersPageRoute
   '/workspace/projects': typeof AppWorkspaceProjectsPageRoute
-  '/workspace/settings': typeof AppWorkspaceSettingsPageRoute
   '/print/documents/$documentId': typeof PrintDocumentsDocumentIdPageRoute
+  '/workspace/projects/$key/settings': typeof AppWorkspaceProjectsKeySettingsRouteRouteWithChildren
   '/workspace/documents/$documentId/history': typeof AppWorkspaceDocumentsDocumentIdHistoryRoute
   '/workspace/documents/$documentId': typeof AppWorkspaceDocumentsDocumentIdPageRoute
   '/workspace/projects/$key': typeof AppWorkspaceProjectsKeyPageRoute
@@ -471,7 +449,6 @@ export interface FileRoutesByTo {
   '/workspace/projects/$key/cycles': typeof AppWorkspaceProjectsKeyCyclesPageRoute
   '/workspace/projects/$key/documents': typeof AppWorkspaceProjectsKeyDocumentsPageRoute
   '/workspace/projects/$key/members': typeof AppWorkspaceProjectsKeyMembersPageRoute
-  '/workspace/projects/$key/settings': typeof AppWorkspaceProjectsKeySettingsPageRoute
   '/workspace/projects/$key/work-items': typeof AppWorkspaceProjectsKeyWorkItemsPageRoute
   '/workspace/projects/$key/documents/$documentId': typeof AppWorkspaceProjectsKeyDocumentsDocumentIdPageRoute
   '/workspace/projects/$key/settings/cycles': typeof AppWorkspaceProjectsKeySettingsCyclesPageRoute
@@ -499,7 +476,6 @@ export interface FileRoutesById {
   '/_app/workspace/settings': typeof AppWorkspaceSettingsRouteRouteWithChildren
   '/_app/inbox/$id': typeof AppInboxIdRoute
   '/_app/account/': typeof AppAccountPageRoute
-  '/_app/instance/': typeof AppInstancePageRoute
   '/_app/my-work/': typeof AppMyWorkPageRoute
   '/_app/search/': typeof AppSearchPageRoute
   '/_app/workspace/projects/$key': typeof AppWorkspaceProjectsKeyRouteRouteWithChildren
@@ -514,7 +490,6 @@ export interface FileRoutesById {
   '/_app/workspace/documents/': typeof AppWorkspaceDocumentsPageRoute
   '/_app/workspace/members/': typeof AppWorkspaceMembersPageRoute
   '/_app/workspace/projects/': typeof AppWorkspaceProjectsPageRoute
-  '/_app/workspace/settings/': typeof AppWorkspaceSettingsPageRoute
   '/print/documents/$documentId/': typeof PrintDocumentsDocumentIdPageRoute
   '/_app/workspace/projects/$key/settings': typeof AppWorkspaceProjectsKeySettingsRouteRouteWithChildren
   '/_app/workspace/documents/$documentId/history': typeof AppWorkspaceDocumentsDocumentIdHistoryRoute
@@ -529,7 +504,6 @@ export interface FileRoutesById {
   '/_app/workspace/projects/$key/cycles/': typeof AppWorkspaceProjectsKeyCyclesPageRoute
   '/_app/workspace/projects/$key/documents/': typeof AppWorkspaceProjectsKeyDocumentsPageRoute
   '/_app/workspace/projects/$key/members/': typeof AppWorkspaceProjectsKeyMembersPageRoute
-  '/_app/workspace/projects/$key/settings/': typeof AppWorkspaceProjectsKeySettingsPageRoute
   '/_app/workspace/projects/$key/work-items/': typeof AppWorkspaceProjectsKeyWorkItemsPageRoute
   '/_app/workspace/projects/$key/documents/$documentId/': typeof AppWorkspaceProjectsKeyDocumentsDocumentIdPageRoute
   '/_app/workspace/projects/$key/settings/cycles/': typeof AppWorkspaceProjectsKeySettingsCyclesPageRoute
@@ -557,7 +531,6 @@ export interface FileRouteTypes {
     | '/workspace/settings'
     | '/inbox/$id'
     | '/account/'
-    | '/instance/'
     | '/my-work/'
     | '/search/'
     | '/workspace/projects/$key'
@@ -572,7 +545,6 @@ export interface FileRouteTypes {
     | '/workspace/documents/'
     | '/workspace/members/'
     | '/workspace/projects/'
-    | '/workspace/settings/'
     | '/print/documents/$documentId/'
     | '/workspace/projects/$key/settings'
     | '/workspace/documents/$documentId/history'
@@ -587,7 +559,6 @@ export interface FileRouteTypes {
     | '/workspace/projects/$key/cycles/'
     | '/workspace/projects/$key/documents/'
     | '/workspace/projects/$key/members/'
-    | '/workspace/projects/$key/settings/'
     | '/workspace/projects/$key/work-items/'
     | '/workspace/projects/$key/documents/$documentId/'
     | '/workspace/projects/$key/settings/cycles/'
@@ -606,12 +577,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/inbox'
+    | '/instance'
     | '/'
     | '/login'
     | '/onboarding'
+    | '/workspace/settings'
     | '/inbox/$id'
     | '/account'
-    | '/instance'
     | '/my-work'
     | '/search'
     | '/workspace/projects/new'
@@ -625,8 +597,8 @@ export interface FileRouteTypes {
     | '/workspace/documents'
     | '/workspace/members'
     | '/workspace/projects'
-    | '/workspace/settings'
     | '/print/documents/$documentId'
+    | '/workspace/projects/$key/settings'
     | '/workspace/documents/$documentId/history'
     | '/workspace/documents/$documentId'
     | '/workspace/projects/$key'
@@ -639,7 +611,6 @@ export interface FileRouteTypes {
     | '/workspace/projects/$key/cycles'
     | '/workspace/projects/$key/documents'
     | '/workspace/projects/$key/members'
-    | '/workspace/projects/$key/settings'
     | '/workspace/projects/$key/work-items'
     | '/workspace/projects/$key/documents/$documentId'
     | '/workspace/projects/$key/settings/cycles'
@@ -666,7 +637,6 @@ export interface FileRouteTypes {
     | '/_app/workspace/settings'
     | '/_app/inbox/$id'
     | '/_app/account/'
-    | '/_app/instance/'
     | '/_app/my-work/'
     | '/_app/search/'
     | '/_app/workspace/projects/$key'
@@ -681,7 +651,6 @@ export interface FileRouteTypes {
     | '/_app/workspace/documents/'
     | '/_app/workspace/members/'
     | '/_app/workspace/projects/'
-    | '/_app/workspace/settings/'
     | '/print/documents/$documentId/'
     | '/_app/workspace/projects/$key/settings'
     | '/_app/workspace/documents/$documentId/history'
@@ -696,7 +665,6 @@ export interface FileRouteTypes {
     | '/_app/workspace/projects/$key/cycles/'
     | '/_app/workspace/projects/$key/documents/'
     | '/_app/workspace/projects/$key/members/'
-    | '/_app/workspace/projects/$key/settings/'
     | '/_app/workspace/projects/$key/work-items/'
     | '/_app/workspace/projects/$key/documents/$documentId/'
     | '/_app/workspace/projects/$key/settings/cycles/'
@@ -778,13 +746,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/inbox/$id'
       preLoaderRoute: typeof AppInboxIdRouteImport
       parentRoute: typeof AppInboxRouteRoute
-    }
-    '/_app/instance/': {
-      id: '/_app/instance/'
-      path: '/'
-      fullPath: '/instance/'
-      preLoaderRoute: typeof AppInstancePageRouteImport
-      parentRoute: typeof AppInstanceRouteRoute
     }
     '/_app/my-work/': {
       id: '/_app/my-work/'
@@ -891,13 +852,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppWorkspaceProjectsNewRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/workspace/settings/': {
-      id: '/_app/workspace/settings/'
-      path: '/'
-      fullPath: '/workspace/settings/'
-      preLoaderRoute: typeof AppWorkspaceSettingsPageRouteImport
-      parentRoute: typeof AppWorkspaceSettingsRouteRoute
-    }
     '/print/documents/$documentId/': {
       id: '/print/documents/$documentId/'
       path: '/print/documents/$documentId'
@@ -995,13 +949,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/workspace/projects/$key/members/'
       preLoaderRoute: typeof AppWorkspaceProjectsKeyMembersPageRouteImport
       parentRoute: typeof AppWorkspaceProjectsKeyRouteRoute
-    }
-    '/_app/workspace/projects/$key/settings/': {
-      id: '/_app/workspace/projects/$key/settings/'
-      path: '/'
-      fullPath: '/workspace/projects/$key/settings/'
-      preLoaderRoute: typeof AppWorkspaceProjectsKeySettingsPageRouteImport
-      parentRoute: typeof AppWorkspaceProjectsKeySettingsRouteRoute
     }
     '/_app/workspace/projects/$key/work-items/': {
       id: '/_app/workspace/projects/$key/work-items/'
@@ -1124,14 +1071,12 @@ const AppInboxRouteRouteWithChildren = AppInboxRouteRoute._addFileChildren(
 )
 
 interface AppInstanceRouteRouteChildren {
-  AppInstancePageRoute: typeof AppInstancePageRoute
   AppInstanceMembersPageRoute: typeof AppInstanceMembersPageRoute
   AppInstancePushDeliveriesPageRoute: typeof AppInstancePushDeliveriesPageRoute
   AppInstanceSystemStatusPageRoute: typeof AppInstanceSystemStatusPageRoute
 }
 
 const AppInstanceRouteRouteChildren: AppInstanceRouteRouteChildren = {
-  AppInstancePageRoute: AppInstancePageRoute,
   AppInstanceMembersPageRoute: AppInstanceMembersPageRoute,
   AppInstancePushDeliveriesPageRoute: AppInstancePushDeliveriesPageRoute,
   AppInstanceSystemStatusPageRoute: AppInstanceSystemStatusPageRoute,
@@ -1141,7 +1086,6 @@ const AppInstanceRouteRouteWithChildren =
   AppInstanceRouteRoute._addFileChildren(AppInstanceRouteRouteChildren)
 
 interface AppWorkspaceSettingsRouteRouteChildren {
-  AppWorkspaceSettingsPageRoute: typeof AppWorkspaceSettingsPageRoute
   AppWorkspaceSettingsDocumentLabelsPageRoute: typeof AppWorkspaceSettingsDocumentLabelsPageRoute
   AppWorkspaceSettingsGeneralPageRoute: typeof AppWorkspaceSettingsGeneralPageRoute
   AppWorkspaceSettingsRolesPageRoute: typeof AppWorkspaceSettingsRolesPageRoute
@@ -1151,7 +1095,6 @@ interface AppWorkspaceSettingsRouteRouteChildren {
 
 const AppWorkspaceSettingsRouteRouteChildren: AppWorkspaceSettingsRouteRouteChildren =
   {
-    AppWorkspaceSettingsPageRoute: AppWorkspaceSettingsPageRoute,
     AppWorkspaceSettingsDocumentLabelsPageRoute:
       AppWorkspaceSettingsDocumentLabelsPageRoute,
     AppWorkspaceSettingsGeneralPageRoute: AppWorkspaceSettingsGeneralPageRoute,
@@ -1168,7 +1111,6 @@ const AppWorkspaceSettingsRouteRouteWithChildren =
   )
 
 interface AppWorkspaceProjectsKeySettingsRouteRouteChildren {
-  AppWorkspaceProjectsKeySettingsPageRoute: typeof AppWorkspaceProjectsKeySettingsPageRoute
   AppWorkspaceProjectsKeySettingsCyclesPageRoute: typeof AppWorkspaceProjectsKeySettingsCyclesPageRoute
   AppWorkspaceProjectsKeySettingsGeneralPageRoute: typeof AppWorkspaceProjectsKeySettingsGeneralPageRoute
   AppWorkspaceProjectsKeySettingsIntegrationsPageRoute: typeof AppWorkspaceProjectsKeySettingsIntegrationsPageRoute
@@ -1178,8 +1120,6 @@ interface AppWorkspaceProjectsKeySettingsRouteRouteChildren {
 
 const AppWorkspaceProjectsKeySettingsRouteRouteChildren: AppWorkspaceProjectsKeySettingsRouteRouteChildren =
   {
-    AppWorkspaceProjectsKeySettingsPageRoute:
-      AppWorkspaceProjectsKeySettingsPageRoute,
     AppWorkspaceProjectsKeySettingsCyclesPageRoute:
       AppWorkspaceProjectsKeySettingsCyclesPageRoute,
     AppWorkspaceProjectsKeySettingsGeneralPageRoute:

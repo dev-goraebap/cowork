@@ -14,3 +14,9 @@ export function usePendingPathname() {
   return useRouterState({ select: state => state.status === 'pending' && state.resolvedLocation
     && state.location.pathname !== state.resolvedLocation.pathname ? state.location.pathname : undefined });
 }
+
+/**
+ * 주소가 딱 path인가(끝의 /는 보지 않는다). 아래 주소 전부에 걸리는 라우트(route.tsx)가 "그 폴더 주소 자체"일 때만 할
+ * 일(첫 화면으로 보내기)을 가를 때 쓴다.
+ */
+export const isExactly = (pathname: string, path: string) => (pathname.replace(/\/+$/, '') || '/') === path;
