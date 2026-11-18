@@ -61,7 +61,7 @@ export default defineConfig({
       target: 'react',
       routesDirectory: './src/pages',
       generatedRouteTree: './src/app/router/routeTree.gen.ts',
-      autoCodeSplitting: true, routeFileIgnorePattern: '^(ui|api|model|lib|config|index\.ts)$',
+      autoCodeSplitting: true, indexToken: 'page', routeFileIgnorePattern: '^(ui|api|model|lib|config|index\.ts)$',
       quoteStyle: 'single',
     }),
     react(), tailwindcss(), solarSet(), initialCover(),

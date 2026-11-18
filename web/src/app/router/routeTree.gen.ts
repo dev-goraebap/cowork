@@ -10,30 +10,42 @@
 
 import { Route as rootRouteImport } from './../../pages/__root'
 import { Route as AppRouteRouteImport } from './../../pages/_app/route'
+import { Route as AppPageRouteImport } from './../../pages/_app/page'
 import { Route as AppInboxRouteRouteImport } from './../../pages/_app/inbox/route'
 import { Route as AppInstanceRouteRouteImport } from './../../pages/_app/instance/route'
-import { Route as LoginIndexRouteImport } from './../../pages/login/index'
-import { Route as AppAccountIndexRouteImport } from './../../pages/_app/account/index'
+import { Route as LoginPageRouteImport } from './../../pages/login/page'
+import { Route as OnboardingPageRouteImport } from './../../pages/onboarding/page'
+import { Route as AppAccountPageRouteImport } from './../../pages/_app/account/page'
 import { Route as AppInboxIdRouteImport } from './../../pages/_app/inbox/$id'
-import { Route as AppInstanceIndexRouteImport } from './../../pages/_app/instance/index'
+import { Route as AppInstancePageRouteImport } from './../../pages/_app/instance/page'
+import { Route as AppSearchPageRouteImport } from './../../pages/_app/search/page'
 import { Route as AppWorkspaceSettingsRouteRouteImport } from './../../pages/_app/workspace/settings/route'
-import { Route as AppAccountAgentsIndexRouteImport } from './../../pages/_app/account/agents/index'
-import { Route as AppAccountDisplayIndexRouteImport } from './../../pages/_app/account/display/index'
-import { Route as AppAccountNotificationsIndexRouteImport } from './../../pages/_app/account/notifications/index'
-import { Route as AppAccountProfileIndexRouteImport } from './../../pages/_app/account/profile/index'
-import { Route as AppInstanceMembersIndexRouteImport } from './../../pages/_app/instance/members/index'
-import { Route as AppInstancePushDeliveriesIndexRouteImport } from './../../pages/_app/instance/push-deliveries/index'
-import { Route as AppInstanceSystemStatusIndexRouteImport } from './../../pages/_app/instance/system-status/index'
-import { Route as AppWorkspaceSettingsIndexRouteImport } from './../../pages/_app/workspace/settings/index'
-import { Route as AppWorkspaceSettingsDocumentLabelsIndexRouteImport } from './../../pages/_app/workspace/settings/document-labels/index'
-import { Route as AppWorkspaceSettingsGeneralIndexRouteImport } from './../../pages/_app/workspace/settings/general/index'
-import { Route as AppWorkspaceSettingsRolesIndexRouteImport } from './../../pages/_app/workspace/settings/roles/index'
-import { Route as AppWorkspaceSettingsWorkItemLabelsIndexRouteImport } from './../../pages/_app/workspace/settings/work-item-labels/index'
-import { Route as AppWorkspaceSettingsWorkItemTypesIndexRouteImport } from './../../pages/_app/workspace/settings/work-item-types/index'
+import { Route as AppAccountAgentsPageRouteImport } from './../../pages/_app/account/agents/page'
+import { Route as AppAccountDisplayPageRouteImport } from './../../pages/_app/account/display/page'
+import { Route as AppAccountNotificationsPageRouteImport } from './../../pages/_app/account/notifications/page'
+import { Route as AppAccountProfilePageRouteImport } from './../../pages/_app/account/profile/page'
+import { Route as AppInstanceMembersPageRouteImport } from './../../pages/_app/instance/members/page'
+import { Route as AppInstancePushDeliveriesPageRouteImport } from './../../pages/_app/instance/push-deliveries/page'
+import { Route as AppInstanceSystemStatusPageRouteImport } from './../../pages/_app/instance/system-status/page'
+import { Route as AppWorkspaceMembersPageRouteImport } from './../../pages/_app/workspace/members/page'
+import { Route as AppWorkspaceProjectsPageRouteImport } from './../../pages/_app/workspace/projects/page'
+import { Route as AppWorkspaceProjectsNewRouteImport } from './../../pages/_app/workspace/projects/new'
+import { Route as AppWorkspaceSettingsPageRouteImport } from './../../pages/_app/workspace/settings/page'
+import { Route as PrintDocumentsDocumentIdPageRouteImport } from './../../pages/print/documents/$documentId/page'
+import { Route as AppWorkspaceSettingsDocumentLabelsPageRouteImport } from './../../pages/_app/workspace/settings/document-labels/page'
+import { Route as AppWorkspaceSettingsGeneralPageRouteImport } from './../../pages/_app/workspace/settings/general/page'
+import { Route as AppWorkspaceSettingsRolesPageRouteImport } from './../../pages/_app/workspace/settings/roles/page'
+import { Route as AppWorkspaceSettingsWorkItemLabelsPageRouteImport } from './../../pages/_app/workspace/settings/work-item-labels/page'
+import { Route as AppWorkspaceSettingsWorkItemTypesPageRouteImport } from './../../pages/_app/workspace/settings/work-item-types/page'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppPageRoute = AppPageRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRouteRoute,
 } as any)
 const AppInboxRouteRoute = AppInboxRouteRouteImport.update({
   id: '/inbox',
@@ -45,12 +57,17 @@ const AppInstanceRouteRoute = AppInstanceRouteRouteImport.update({
   path: '/instance',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const LoginIndexRoute = LoginIndexRouteImport.update({
+const LoginPageRoute = LoginPageRouteImport.update({
   id: '/login/',
   path: '/login/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppAccountIndexRoute = AppAccountIndexRouteImport.update({
+const OnboardingPageRoute = OnboardingPageRouteImport.update({
+  id: '/onboarding/',
+  path: '/onboarding/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppAccountPageRoute = AppAccountPageRouteImport.update({
   id: '/account/',
   path: '/account/',
   getParentRoute: () => AppRouteRoute,
@@ -60,10 +77,15 @@ const AppInboxIdRoute = AppInboxIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => AppInboxRouteRoute,
 } as any)
-const AppInstanceIndexRoute = AppInstanceIndexRouteImport.update({
+const AppInstancePageRoute = AppInstancePageRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppInstanceRouteRoute,
+} as any)
+const AppSearchPageRoute = AppSearchPageRouteImport.update({
+  id: '/search/',
+  path: '/search/',
+  getParentRoute: () => AppRouteRoute,
 } as any)
 const AppWorkspaceSettingsRouteRoute =
   AppWorkspaceSettingsRouteRouteImport.update({
@@ -71,148 +93,189 @@ const AppWorkspaceSettingsRouteRoute =
     path: '/workspace/settings',
     getParentRoute: () => AppRouteRoute,
   } as any)
-const AppAccountAgentsIndexRoute = AppAccountAgentsIndexRouteImport.update({
+const AppAccountAgentsPageRoute = AppAccountAgentsPageRouteImport.update({
   id: '/account/agents/',
   path: '/account/agents/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppAccountDisplayIndexRoute = AppAccountDisplayIndexRouteImport.update({
+const AppAccountDisplayPageRoute = AppAccountDisplayPageRouteImport.update({
   id: '/account/display/',
   path: '/account/display/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppAccountNotificationsIndexRoute =
-  AppAccountNotificationsIndexRouteImport.update({
+const AppAccountNotificationsPageRoute =
+  AppAccountNotificationsPageRouteImport.update({
     id: '/account/notifications/',
     path: '/account/notifications/',
     getParentRoute: () => AppRouteRoute,
   } as any)
-const AppAccountProfileIndexRoute = AppAccountProfileIndexRouteImport.update({
+const AppAccountProfilePageRoute = AppAccountProfilePageRouteImport.update({
   id: '/account/profile/',
   path: '/account/profile/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppInstanceMembersIndexRoute = AppInstanceMembersIndexRouteImport.update({
+const AppInstanceMembersPageRoute = AppInstanceMembersPageRouteImport.update({
   id: '/members/',
   path: '/members/',
   getParentRoute: () => AppInstanceRouteRoute,
 } as any)
-const AppInstancePushDeliveriesIndexRoute =
-  AppInstancePushDeliveriesIndexRouteImport.update({
+const AppInstancePushDeliveriesPageRoute =
+  AppInstancePushDeliveriesPageRouteImport.update({
     id: '/push-deliveries/',
     path: '/push-deliveries/',
     getParentRoute: () => AppInstanceRouteRoute,
   } as any)
-const AppInstanceSystemStatusIndexRoute =
-  AppInstanceSystemStatusIndexRouteImport.update({
+const AppInstanceSystemStatusPageRoute =
+  AppInstanceSystemStatusPageRouteImport.update({
     id: '/system-status/',
     path: '/system-status/',
     getParentRoute: () => AppInstanceRouteRoute,
   } as any)
-const AppWorkspaceSettingsIndexRoute =
-  AppWorkspaceSettingsIndexRouteImport.update({
+const AppWorkspaceMembersPageRoute = AppWorkspaceMembersPageRouteImport.update({
+  id: '/workspace/members/',
+  path: '/workspace/members/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppWorkspaceProjectsPageRoute =
+  AppWorkspaceProjectsPageRouteImport.update({
+    id: '/workspace/projects/',
+    path: '/workspace/projects/',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
+const AppWorkspaceProjectsNewRoute = AppWorkspaceProjectsNewRouteImport.update({
+  id: '/workspace/projects/new',
+  path: '/workspace/projects/new',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppWorkspaceSettingsPageRoute =
+  AppWorkspaceSettingsPageRouteImport.update({
     id: '/',
     path: '/',
     getParentRoute: () => AppWorkspaceSettingsRouteRoute,
   } as any)
-const AppWorkspaceSettingsDocumentLabelsIndexRoute =
-  AppWorkspaceSettingsDocumentLabelsIndexRouteImport.update({
+const PrintDocumentsDocumentIdPageRoute =
+  PrintDocumentsDocumentIdPageRouteImport.update({
+    id: '/print/documents/$documentId/',
+    path: '/print/documents/$documentId/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AppWorkspaceSettingsDocumentLabelsPageRoute =
+  AppWorkspaceSettingsDocumentLabelsPageRouteImport.update({
     id: '/document-labels/',
     path: '/document-labels/',
     getParentRoute: () => AppWorkspaceSettingsRouteRoute,
   } as any)
-const AppWorkspaceSettingsGeneralIndexRoute =
-  AppWorkspaceSettingsGeneralIndexRouteImport.update({
+const AppWorkspaceSettingsGeneralPageRoute =
+  AppWorkspaceSettingsGeneralPageRouteImport.update({
     id: '/general/',
     path: '/general/',
     getParentRoute: () => AppWorkspaceSettingsRouteRoute,
   } as any)
-const AppWorkspaceSettingsRolesIndexRoute =
-  AppWorkspaceSettingsRolesIndexRouteImport.update({
+const AppWorkspaceSettingsRolesPageRoute =
+  AppWorkspaceSettingsRolesPageRouteImport.update({
     id: '/roles/',
     path: '/roles/',
     getParentRoute: () => AppWorkspaceSettingsRouteRoute,
   } as any)
-const AppWorkspaceSettingsWorkItemLabelsIndexRoute =
-  AppWorkspaceSettingsWorkItemLabelsIndexRouteImport.update({
+const AppWorkspaceSettingsWorkItemLabelsPageRoute =
+  AppWorkspaceSettingsWorkItemLabelsPageRouteImport.update({
     id: '/work-item-labels/',
     path: '/work-item-labels/',
     getParentRoute: () => AppWorkspaceSettingsRouteRoute,
   } as any)
-const AppWorkspaceSettingsWorkItemTypesIndexRoute =
-  AppWorkspaceSettingsWorkItemTypesIndexRouteImport.update({
+const AppWorkspaceSettingsWorkItemTypesPageRoute =
+  AppWorkspaceSettingsWorkItemTypesPageRouteImport.update({
     id: '/work-item-types/',
     path: '/work-item-types/',
     getParentRoute: () => AppWorkspaceSettingsRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof AppRouteRouteWithChildren
+  '/': typeof AppPageRoute
   '/inbox': typeof AppInboxRouteRouteWithChildren
   '/instance': typeof AppInstanceRouteRouteWithChildren
-  '/login/': typeof LoginIndexRoute
+  '/login/': typeof LoginPageRoute
+  '/onboarding/': typeof OnboardingPageRoute
   '/workspace/settings': typeof AppWorkspaceSettingsRouteRouteWithChildren
   '/inbox/$id': typeof AppInboxIdRoute
-  '/account/': typeof AppAccountIndexRoute
-  '/instance/': typeof AppInstanceIndexRoute
-  '/account/agents/': typeof AppAccountAgentsIndexRoute
-  '/account/display/': typeof AppAccountDisplayIndexRoute
-  '/account/notifications/': typeof AppAccountNotificationsIndexRoute
-  '/account/profile/': typeof AppAccountProfileIndexRoute
-  '/instance/members/': typeof AppInstanceMembersIndexRoute
-  '/instance/push-deliveries/': typeof AppInstancePushDeliveriesIndexRoute
-  '/instance/system-status/': typeof AppInstanceSystemStatusIndexRoute
-  '/workspace/settings/': typeof AppWorkspaceSettingsIndexRoute
-  '/workspace/settings/document-labels/': typeof AppWorkspaceSettingsDocumentLabelsIndexRoute
-  '/workspace/settings/general/': typeof AppWorkspaceSettingsGeneralIndexRoute
-  '/workspace/settings/roles/': typeof AppWorkspaceSettingsRolesIndexRoute
-  '/workspace/settings/work-item-labels/': typeof AppWorkspaceSettingsWorkItemLabelsIndexRoute
-  '/workspace/settings/work-item-types/': typeof AppWorkspaceSettingsWorkItemTypesIndexRoute
+  '/account/': typeof AppAccountPageRoute
+  '/instance/': typeof AppInstancePageRoute
+  '/search/': typeof AppSearchPageRoute
+  '/workspace/projects/new': typeof AppWorkspaceProjectsNewRoute
+  '/account/agents/': typeof AppAccountAgentsPageRoute
+  '/account/display/': typeof AppAccountDisplayPageRoute
+  '/account/notifications/': typeof AppAccountNotificationsPageRoute
+  '/account/profile/': typeof AppAccountProfilePageRoute
+  '/instance/members/': typeof AppInstanceMembersPageRoute
+  '/instance/push-deliveries/': typeof AppInstancePushDeliveriesPageRoute
+  '/instance/system-status/': typeof AppInstanceSystemStatusPageRoute
+  '/workspace/members/': typeof AppWorkspaceMembersPageRoute
+  '/workspace/projects/': typeof AppWorkspaceProjectsPageRoute
+  '/workspace/settings/': typeof AppWorkspaceSettingsPageRoute
+  '/print/documents/$documentId/': typeof PrintDocumentsDocumentIdPageRoute
+  '/workspace/settings/document-labels/': typeof AppWorkspaceSettingsDocumentLabelsPageRoute
+  '/workspace/settings/general/': typeof AppWorkspaceSettingsGeneralPageRoute
+  '/workspace/settings/roles/': typeof AppWorkspaceSettingsRolesPageRoute
+  '/workspace/settings/work-item-labels/': typeof AppWorkspaceSettingsWorkItemLabelsPageRoute
+  '/workspace/settings/work-item-types/': typeof AppWorkspaceSettingsWorkItemTypesPageRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof AppRouteRouteWithChildren
   '/inbox': typeof AppInboxRouteRouteWithChildren
-  '/login': typeof LoginIndexRoute
+  '/': typeof AppPageRoute
+  '/login': typeof LoginPageRoute
+  '/onboarding': typeof OnboardingPageRoute
   '/inbox/$id': typeof AppInboxIdRoute
-  '/account': typeof AppAccountIndexRoute
-  '/instance': typeof AppInstanceIndexRoute
-  '/account/agents': typeof AppAccountAgentsIndexRoute
-  '/account/display': typeof AppAccountDisplayIndexRoute
-  '/account/notifications': typeof AppAccountNotificationsIndexRoute
-  '/account/profile': typeof AppAccountProfileIndexRoute
-  '/instance/members': typeof AppInstanceMembersIndexRoute
-  '/instance/push-deliveries': typeof AppInstancePushDeliveriesIndexRoute
-  '/instance/system-status': typeof AppInstanceSystemStatusIndexRoute
-  '/workspace/settings': typeof AppWorkspaceSettingsIndexRoute
-  '/workspace/settings/document-labels': typeof AppWorkspaceSettingsDocumentLabelsIndexRoute
-  '/workspace/settings/general': typeof AppWorkspaceSettingsGeneralIndexRoute
-  '/workspace/settings/roles': typeof AppWorkspaceSettingsRolesIndexRoute
-  '/workspace/settings/work-item-labels': typeof AppWorkspaceSettingsWorkItemLabelsIndexRoute
-  '/workspace/settings/work-item-types': typeof AppWorkspaceSettingsWorkItemTypesIndexRoute
+  '/account': typeof AppAccountPageRoute
+  '/instance': typeof AppInstancePageRoute
+  '/search': typeof AppSearchPageRoute
+  '/workspace/projects/new': typeof AppWorkspaceProjectsNewRoute
+  '/account/agents': typeof AppAccountAgentsPageRoute
+  '/account/display': typeof AppAccountDisplayPageRoute
+  '/account/notifications': typeof AppAccountNotificationsPageRoute
+  '/account/profile': typeof AppAccountProfilePageRoute
+  '/instance/members': typeof AppInstanceMembersPageRoute
+  '/instance/push-deliveries': typeof AppInstancePushDeliveriesPageRoute
+  '/instance/system-status': typeof AppInstanceSystemStatusPageRoute
+  '/workspace/members': typeof AppWorkspaceMembersPageRoute
+  '/workspace/projects': typeof AppWorkspaceProjectsPageRoute
+  '/workspace/settings': typeof AppWorkspaceSettingsPageRoute
+  '/print/documents/$documentId': typeof PrintDocumentsDocumentIdPageRoute
+  '/workspace/settings/document-labels': typeof AppWorkspaceSettingsDocumentLabelsPageRoute
+  '/workspace/settings/general': typeof AppWorkspaceSettingsGeneralPageRoute
+  '/workspace/settings/roles': typeof AppWorkspaceSettingsRolesPageRoute
+  '/workspace/settings/work-item-labels': typeof AppWorkspaceSettingsWorkItemLabelsPageRoute
+  '/workspace/settings/work-item-types': typeof AppWorkspaceSettingsWorkItemTypesPageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
   '/_app/inbox': typeof AppInboxRouteRouteWithChildren
   '/_app/instance': typeof AppInstanceRouteRouteWithChildren
-  '/login/': typeof LoginIndexRoute
+  '/_app/': typeof AppPageRoute
+  '/login/': typeof LoginPageRoute
+  '/onboarding/': typeof OnboardingPageRoute
   '/_app/workspace/settings': typeof AppWorkspaceSettingsRouteRouteWithChildren
   '/_app/inbox/$id': typeof AppInboxIdRoute
-  '/_app/account/': typeof AppAccountIndexRoute
-  '/_app/instance/': typeof AppInstanceIndexRoute
-  '/_app/account/agents/': typeof AppAccountAgentsIndexRoute
-  '/_app/account/display/': typeof AppAccountDisplayIndexRoute
-  '/_app/account/notifications/': typeof AppAccountNotificationsIndexRoute
-  '/_app/account/profile/': typeof AppAccountProfileIndexRoute
-  '/_app/instance/members/': typeof AppInstanceMembersIndexRoute
-  '/_app/instance/push-deliveries/': typeof AppInstancePushDeliveriesIndexRoute
-  '/_app/instance/system-status/': typeof AppInstanceSystemStatusIndexRoute
-  '/_app/workspace/settings/': typeof AppWorkspaceSettingsIndexRoute
-  '/_app/workspace/settings/document-labels/': typeof AppWorkspaceSettingsDocumentLabelsIndexRoute
-  '/_app/workspace/settings/general/': typeof AppWorkspaceSettingsGeneralIndexRoute
-  '/_app/workspace/settings/roles/': typeof AppWorkspaceSettingsRolesIndexRoute
-  '/_app/workspace/settings/work-item-labels/': typeof AppWorkspaceSettingsWorkItemLabelsIndexRoute
-  '/_app/workspace/settings/work-item-types/': typeof AppWorkspaceSettingsWorkItemTypesIndexRoute
+  '/_app/account/': typeof AppAccountPageRoute
+  '/_app/instance/': typeof AppInstancePageRoute
+  '/_app/search/': typeof AppSearchPageRoute
+  '/_app/workspace/projects/new': typeof AppWorkspaceProjectsNewRoute
+  '/_app/account/agents/': typeof AppAccountAgentsPageRoute
+  '/_app/account/display/': typeof AppAccountDisplayPageRoute
+  '/_app/account/notifications/': typeof AppAccountNotificationsPageRoute
+  '/_app/account/profile/': typeof AppAccountProfilePageRoute
+  '/_app/instance/members/': typeof AppInstanceMembersPageRoute
+  '/_app/instance/push-deliveries/': typeof AppInstancePushDeliveriesPageRoute
+  '/_app/instance/system-status/': typeof AppInstanceSystemStatusPageRoute
+  '/_app/workspace/members/': typeof AppWorkspaceMembersPageRoute
+  '/_app/workspace/projects/': typeof AppWorkspaceProjectsPageRoute
+  '/_app/workspace/settings/': typeof AppWorkspaceSettingsPageRoute
+  '/print/documents/$documentId/': typeof PrintDocumentsDocumentIdPageRoute
+  '/_app/workspace/settings/document-labels/': typeof AppWorkspaceSettingsDocumentLabelsPageRoute
+  '/_app/workspace/settings/general/': typeof AppWorkspaceSettingsGeneralPageRoute
+  '/_app/workspace/settings/roles/': typeof AppWorkspaceSettingsRolesPageRoute
+  '/_app/workspace/settings/work-item-labels/': typeof AppWorkspaceSettingsWorkItemLabelsPageRoute
+  '/_app/workspace/settings/work-item-types/': typeof AppWorkspaceSettingsWorkItemTypesPageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -221,10 +284,13 @@ export interface FileRouteTypes {
     | '/inbox'
     | '/instance'
     | '/login/'
+    | '/onboarding/'
     | '/workspace/settings'
     | '/inbox/$id'
     | '/account/'
     | '/instance/'
+    | '/search/'
+    | '/workspace/projects/new'
     | '/account/agents/'
     | '/account/display/'
     | '/account/notifications/'
@@ -232,7 +298,10 @@ export interface FileRouteTypes {
     | '/instance/members/'
     | '/instance/push-deliveries/'
     | '/instance/system-status/'
+    | '/workspace/members/'
+    | '/workspace/projects/'
     | '/workspace/settings/'
+    | '/print/documents/$documentId/'
     | '/workspace/settings/document-labels/'
     | '/workspace/settings/general/'
     | '/workspace/settings/roles/'
@@ -240,12 +309,15 @@ export interface FileRouteTypes {
     | '/workspace/settings/work-item-types/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/inbox'
+    | '/'
     | '/login'
+    | '/onboarding'
     | '/inbox/$id'
     | '/account'
     | '/instance'
+    | '/search'
+    | '/workspace/projects/new'
     | '/account/agents'
     | '/account/display'
     | '/account/notifications'
@@ -253,7 +325,10 @@ export interface FileRouteTypes {
     | '/instance/members'
     | '/instance/push-deliveries'
     | '/instance/system-status'
+    | '/workspace/members'
+    | '/workspace/projects'
     | '/workspace/settings'
+    | '/print/documents/$documentId'
     | '/workspace/settings/document-labels'
     | '/workspace/settings/general'
     | '/workspace/settings/roles'
@@ -264,11 +339,15 @@ export interface FileRouteTypes {
     | '/_app'
     | '/_app/inbox'
     | '/_app/instance'
+    | '/_app/'
     | '/login/'
+    | '/onboarding/'
     | '/_app/workspace/settings'
     | '/_app/inbox/$id'
     | '/_app/account/'
     | '/_app/instance/'
+    | '/_app/search/'
+    | '/_app/workspace/projects/new'
     | '/_app/account/agents/'
     | '/_app/account/display/'
     | '/_app/account/notifications/'
@@ -276,7 +355,10 @@ export interface FileRouteTypes {
     | '/_app/instance/members/'
     | '/_app/instance/push-deliveries/'
     | '/_app/instance/system-status/'
+    | '/_app/workspace/members/'
+    | '/_app/workspace/projects/'
     | '/_app/workspace/settings/'
+    | '/print/documents/$documentId/'
     | '/_app/workspace/settings/document-labels/'
     | '/_app/workspace/settings/general/'
     | '/_app/workspace/settings/roles/'
@@ -286,7 +368,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   AppRouteRoute: typeof AppRouteRouteWithChildren
-  LoginIndexRoute: typeof LoginIndexRoute
+  LoginPageRoute: typeof LoginPageRoute
+  OnboardingPageRoute: typeof OnboardingPageRoute
+  PrintDocumentsDocumentIdPageRoute: typeof PrintDocumentsDocumentIdPageRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -297,6 +381,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AppRouteRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_app/': {
+      id: '/_app/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof AppPageRouteImport
+      parentRoute: typeof AppRouteRoute
     }
     '/_app/inbox': {
       id: '/_app/inbox'
@@ -316,14 +407,21 @@ declare module '@tanstack/react-router' {
       id: '/login/'
       path: '/login'
       fullPath: '/login/'
-      preLoaderRoute: typeof LoginIndexRouteImport
+      preLoaderRoute: typeof LoginPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/': {
+      id: '/onboarding/'
+      path: '/onboarding'
+      fullPath: '/onboarding/'
+      preLoaderRoute: typeof OnboardingPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app/account/': {
       id: '/_app/account/'
       path: '/account'
       fullPath: '/account/'
-      preLoaderRoute: typeof AppAccountIndexRouteImport
+      preLoaderRoute: typeof AppAccountPageRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/inbox/$id': {
@@ -337,8 +435,15 @@ declare module '@tanstack/react-router' {
       id: '/_app/instance/'
       path: '/'
       fullPath: '/instance/'
-      preLoaderRoute: typeof AppInstanceIndexRouteImport
+      preLoaderRoute: typeof AppInstancePageRouteImport
       parentRoute: typeof AppInstanceRouteRoute
+    }
+    '/_app/search/': {
+      id: '/_app/search/'
+      path: '/search'
+      fullPath: '/search/'
+      preLoaderRoute: typeof AppSearchPageRouteImport
+      parentRoute: typeof AppRouteRoute
     }
     '/_app/workspace/settings': {
       id: '/_app/workspace/settings'
@@ -351,91 +456,119 @@ declare module '@tanstack/react-router' {
       id: '/_app/account/agents/'
       path: '/account/agents'
       fullPath: '/account/agents/'
-      preLoaderRoute: typeof AppAccountAgentsIndexRouteImport
+      preLoaderRoute: typeof AppAccountAgentsPageRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/account/display/': {
       id: '/_app/account/display/'
       path: '/account/display'
       fullPath: '/account/display/'
-      preLoaderRoute: typeof AppAccountDisplayIndexRouteImport
+      preLoaderRoute: typeof AppAccountDisplayPageRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/account/notifications/': {
       id: '/_app/account/notifications/'
       path: '/account/notifications'
       fullPath: '/account/notifications/'
-      preLoaderRoute: typeof AppAccountNotificationsIndexRouteImport
+      preLoaderRoute: typeof AppAccountNotificationsPageRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/account/profile/': {
       id: '/_app/account/profile/'
       path: '/account/profile'
       fullPath: '/account/profile/'
-      preLoaderRoute: typeof AppAccountProfileIndexRouteImport
+      preLoaderRoute: typeof AppAccountProfilePageRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/instance/members/': {
       id: '/_app/instance/members/'
       path: '/members'
       fullPath: '/instance/members/'
-      preLoaderRoute: typeof AppInstanceMembersIndexRouteImport
+      preLoaderRoute: typeof AppInstanceMembersPageRouteImport
       parentRoute: typeof AppInstanceRouteRoute
     }
     '/_app/instance/push-deliveries/': {
       id: '/_app/instance/push-deliveries/'
       path: '/push-deliveries'
       fullPath: '/instance/push-deliveries/'
-      preLoaderRoute: typeof AppInstancePushDeliveriesIndexRouteImport
+      preLoaderRoute: typeof AppInstancePushDeliveriesPageRouteImport
       parentRoute: typeof AppInstanceRouteRoute
     }
     '/_app/instance/system-status/': {
       id: '/_app/instance/system-status/'
       path: '/system-status'
       fullPath: '/instance/system-status/'
-      preLoaderRoute: typeof AppInstanceSystemStatusIndexRouteImport
+      preLoaderRoute: typeof AppInstanceSystemStatusPageRouteImport
       parentRoute: typeof AppInstanceRouteRoute
+    }
+    '/_app/workspace/members/': {
+      id: '/_app/workspace/members/'
+      path: '/workspace/members'
+      fullPath: '/workspace/members/'
+      preLoaderRoute: typeof AppWorkspaceMembersPageRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/workspace/projects/': {
+      id: '/_app/workspace/projects/'
+      path: '/workspace/projects'
+      fullPath: '/workspace/projects/'
+      preLoaderRoute: typeof AppWorkspaceProjectsPageRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/workspace/projects/new': {
+      id: '/_app/workspace/projects/new'
+      path: '/workspace/projects/new'
+      fullPath: '/workspace/projects/new'
+      preLoaderRoute: typeof AppWorkspaceProjectsNewRouteImport
+      parentRoute: typeof AppRouteRoute
     }
     '/_app/workspace/settings/': {
       id: '/_app/workspace/settings/'
       path: '/'
       fullPath: '/workspace/settings/'
-      preLoaderRoute: typeof AppWorkspaceSettingsIndexRouteImport
+      preLoaderRoute: typeof AppWorkspaceSettingsPageRouteImport
       parentRoute: typeof AppWorkspaceSettingsRouteRoute
+    }
+    '/print/documents/$documentId/': {
+      id: '/print/documents/$documentId/'
+      path: '/print/documents/$documentId'
+      fullPath: '/print/documents/$documentId/'
+      preLoaderRoute: typeof PrintDocumentsDocumentIdPageRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_app/workspace/settings/document-labels/': {
       id: '/_app/workspace/settings/document-labels/'
       path: '/document-labels'
       fullPath: '/workspace/settings/document-labels/'
-      preLoaderRoute: typeof AppWorkspaceSettingsDocumentLabelsIndexRouteImport
+      preLoaderRoute: typeof AppWorkspaceSettingsDocumentLabelsPageRouteImport
       parentRoute: typeof AppWorkspaceSettingsRouteRoute
     }
     '/_app/workspace/settings/general/': {
       id: '/_app/workspace/settings/general/'
       path: '/general'
       fullPath: '/workspace/settings/general/'
-      preLoaderRoute: typeof AppWorkspaceSettingsGeneralIndexRouteImport
+      preLoaderRoute: typeof AppWorkspaceSettingsGeneralPageRouteImport
       parentRoute: typeof AppWorkspaceSettingsRouteRoute
     }
     '/_app/workspace/settings/roles/': {
       id: '/_app/workspace/settings/roles/'
       path: '/roles'
       fullPath: '/workspace/settings/roles/'
-      preLoaderRoute: typeof AppWorkspaceSettingsRolesIndexRouteImport
+      preLoaderRoute: typeof AppWorkspaceSettingsRolesPageRouteImport
       parentRoute: typeof AppWorkspaceSettingsRouteRoute
     }
     '/_app/workspace/settings/work-item-labels/': {
       id: '/_app/workspace/settings/work-item-labels/'
       path: '/work-item-labels'
       fullPath: '/workspace/settings/work-item-labels/'
-      preLoaderRoute: typeof AppWorkspaceSettingsWorkItemLabelsIndexRouteImport
+      preLoaderRoute: typeof AppWorkspaceSettingsWorkItemLabelsPageRouteImport
       parentRoute: typeof AppWorkspaceSettingsRouteRoute
     }
     '/_app/workspace/settings/work-item-types/': {
       id: '/_app/workspace/settings/work-item-types/'
       path: '/work-item-types'
       fullPath: '/workspace/settings/work-item-types/'
-      preLoaderRoute: typeof AppWorkspaceSettingsWorkItemTypesIndexRouteImport
+      preLoaderRoute: typeof AppWorkspaceSettingsWorkItemTypesPageRouteImport
       parentRoute: typeof AppWorkspaceSettingsRouteRoute
     }
   }
@@ -454,43 +587,42 @@ const AppInboxRouteRouteWithChildren = AppInboxRouteRoute._addFileChildren(
 )
 
 interface AppInstanceRouteRouteChildren {
-  AppInstanceIndexRoute: typeof AppInstanceIndexRoute
-  AppInstanceMembersIndexRoute: typeof AppInstanceMembersIndexRoute
-  AppInstancePushDeliveriesIndexRoute: typeof AppInstancePushDeliveriesIndexRoute
-  AppInstanceSystemStatusIndexRoute: typeof AppInstanceSystemStatusIndexRoute
+  AppInstancePageRoute: typeof AppInstancePageRoute
+  AppInstanceMembersPageRoute: typeof AppInstanceMembersPageRoute
+  AppInstancePushDeliveriesPageRoute: typeof AppInstancePushDeliveriesPageRoute
+  AppInstanceSystemStatusPageRoute: typeof AppInstanceSystemStatusPageRoute
 }
 
 const AppInstanceRouteRouteChildren: AppInstanceRouteRouteChildren = {
-  AppInstanceIndexRoute: AppInstanceIndexRoute,
-  AppInstanceMembersIndexRoute: AppInstanceMembersIndexRoute,
-  AppInstancePushDeliveriesIndexRoute: AppInstancePushDeliveriesIndexRoute,
-  AppInstanceSystemStatusIndexRoute: AppInstanceSystemStatusIndexRoute,
+  AppInstancePageRoute: AppInstancePageRoute,
+  AppInstanceMembersPageRoute: AppInstanceMembersPageRoute,
+  AppInstancePushDeliveriesPageRoute: AppInstancePushDeliveriesPageRoute,
+  AppInstanceSystemStatusPageRoute: AppInstanceSystemStatusPageRoute,
 }
 
 const AppInstanceRouteRouteWithChildren =
   AppInstanceRouteRoute._addFileChildren(AppInstanceRouteRouteChildren)
 
 interface AppWorkspaceSettingsRouteRouteChildren {
-  AppWorkspaceSettingsIndexRoute: typeof AppWorkspaceSettingsIndexRoute
-  AppWorkspaceSettingsDocumentLabelsIndexRoute: typeof AppWorkspaceSettingsDocumentLabelsIndexRoute
-  AppWorkspaceSettingsGeneralIndexRoute: typeof AppWorkspaceSettingsGeneralIndexRoute
-  AppWorkspaceSettingsRolesIndexRoute: typeof AppWorkspaceSettingsRolesIndexRoute
-  AppWorkspaceSettingsWorkItemLabelsIndexRoute: typeof AppWorkspaceSettingsWorkItemLabelsIndexRoute
-  AppWorkspaceSettingsWorkItemTypesIndexRoute: typeof AppWorkspaceSettingsWorkItemTypesIndexRoute
+  AppWorkspaceSettingsPageRoute: typeof AppWorkspaceSettingsPageRoute
+  AppWorkspaceSettingsDocumentLabelsPageRoute: typeof AppWorkspaceSettingsDocumentLabelsPageRoute
+  AppWorkspaceSettingsGeneralPageRoute: typeof AppWorkspaceSettingsGeneralPageRoute
+  AppWorkspaceSettingsRolesPageRoute: typeof AppWorkspaceSettingsRolesPageRoute
+  AppWorkspaceSettingsWorkItemLabelsPageRoute: typeof AppWorkspaceSettingsWorkItemLabelsPageRoute
+  AppWorkspaceSettingsWorkItemTypesPageRoute: typeof AppWorkspaceSettingsWorkItemTypesPageRoute
 }
 
 const AppWorkspaceSettingsRouteRouteChildren: AppWorkspaceSettingsRouteRouteChildren =
   {
-    AppWorkspaceSettingsIndexRoute: AppWorkspaceSettingsIndexRoute,
-    AppWorkspaceSettingsDocumentLabelsIndexRoute:
-      AppWorkspaceSettingsDocumentLabelsIndexRoute,
-    AppWorkspaceSettingsGeneralIndexRoute:
-      AppWorkspaceSettingsGeneralIndexRoute,
-    AppWorkspaceSettingsRolesIndexRoute: AppWorkspaceSettingsRolesIndexRoute,
-    AppWorkspaceSettingsWorkItemLabelsIndexRoute:
-      AppWorkspaceSettingsWorkItemLabelsIndexRoute,
-    AppWorkspaceSettingsWorkItemTypesIndexRoute:
-      AppWorkspaceSettingsWorkItemTypesIndexRoute,
+    AppWorkspaceSettingsPageRoute: AppWorkspaceSettingsPageRoute,
+    AppWorkspaceSettingsDocumentLabelsPageRoute:
+      AppWorkspaceSettingsDocumentLabelsPageRoute,
+    AppWorkspaceSettingsGeneralPageRoute: AppWorkspaceSettingsGeneralPageRoute,
+    AppWorkspaceSettingsRolesPageRoute: AppWorkspaceSettingsRolesPageRoute,
+    AppWorkspaceSettingsWorkItemLabelsPageRoute:
+      AppWorkspaceSettingsWorkItemLabelsPageRoute,
+    AppWorkspaceSettingsWorkItemTypesPageRoute:
+      AppWorkspaceSettingsWorkItemTypesPageRoute,
   }
 
 const AppWorkspaceSettingsRouteRouteWithChildren =
@@ -501,23 +633,33 @@ const AppWorkspaceSettingsRouteRouteWithChildren =
 interface AppRouteRouteChildren {
   AppInboxRouteRoute: typeof AppInboxRouteRouteWithChildren
   AppInstanceRouteRoute: typeof AppInstanceRouteRouteWithChildren
+  AppPageRoute: typeof AppPageRoute
   AppWorkspaceSettingsRouteRoute: typeof AppWorkspaceSettingsRouteRouteWithChildren
-  AppAccountIndexRoute: typeof AppAccountIndexRoute
-  AppAccountAgentsIndexRoute: typeof AppAccountAgentsIndexRoute
-  AppAccountDisplayIndexRoute: typeof AppAccountDisplayIndexRoute
-  AppAccountNotificationsIndexRoute: typeof AppAccountNotificationsIndexRoute
-  AppAccountProfileIndexRoute: typeof AppAccountProfileIndexRoute
+  AppAccountPageRoute: typeof AppAccountPageRoute
+  AppSearchPageRoute: typeof AppSearchPageRoute
+  AppWorkspaceProjectsNewRoute: typeof AppWorkspaceProjectsNewRoute
+  AppAccountAgentsPageRoute: typeof AppAccountAgentsPageRoute
+  AppAccountDisplayPageRoute: typeof AppAccountDisplayPageRoute
+  AppAccountNotificationsPageRoute: typeof AppAccountNotificationsPageRoute
+  AppAccountProfilePageRoute: typeof AppAccountProfilePageRoute
+  AppWorkspaceMembersPageRoute: typeof AppWorkspaceMembersPageRoute
+  AppWorkspaceProjectsPageRoute: typeof AppWorkspaceProjectsPageRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppInboxRouteRoute: AppInboxRouteRouteWithChildren,
   AppInstanceRouteRoute: AppInstanceRouteRouteWithChildren,
+  AppPageRoute: AppPageRoute,
   AppWorkspaceSettingsRouteRoute: AppWorkspaceSettingsRouteRouteWithChildren,
-  AppAccountIndexRoute: AppAccountIndexRoute,
-  AppAccountAgentsIndexRoute: AppAccountAgentsIndexRoute,
-  AppAccountDisplayIndexRoute: AppAccountDisplayIndexRoute,
-  AppAccountNotificationsIndexRoute: AppAccountNotificationsIndexRoute,
-  AppAccountProfileIndexRoute: AppAccountProfileIndexRoute,
+  AppAccountPageRoute: AppAccountPageRoute,
+  AppSearchPageRoute: AppSearchPageRoute,
+  AppWorkspaceProjectsNewRoute: AppWorkspaceProjectsNewRoute,
+  AppAccountAgentsPageRoute: AppAccountAgentsPageRoute,
+  AppAccountDisplayPageRoute: AppAccountDisplayPageRoute,
+  AppAccountNotificationsPageRoute: AppAccountNotificationsPageRoute,
+  AppAccountProfilePageRoute: AppAccountProfilePageRoute,
+  AppWorkspaceMembersPageRoute: AppWorkspaceMembersPageRoute,
+  AppWorkspaceProjectsPageRoute: AppWorkspaceProjectsPageRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
@@ -526,7 +668,9 @@ const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   AppRouteRoute: AppRouteRouteWithChildren,
-  LoginIndexRoute: LoginIndexRoute,
+  LoginPageRoute: LoginPageRoute,
+  OnboardingPageRoute: OnboardingPageRoute,
+  PrintDocumentsDocumentIdPageRoute: PrintDocumentsDocumentIdPageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

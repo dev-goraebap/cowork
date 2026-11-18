@@ -10,7 +10,7 @@ import { useIsMobile } from '@/shared/lib/use-mobile';
 import { DialogPanel, swapDialog } from '@/shared/ui/dialog';
 import { workItemHref } from '@/entities/work-item';
 
-import { useSearchSources } from '@/pages/workspace/search';
+import { useSearchSources } from '@/pages/_app/search';
 import { GlobalSearch } from '@/widgets/global-search';
 import { ProfileSurface } from '@/widgets/person-profile';
 import { memberHref } from '@/shared/ui/person';
@@ -22,7 +22,7 @@ const MEMBER = /^\/members\/([^/]+)$/;
 const WorkItemPage = lazyRouteComponent(() => import('@/pages/workspace/work-items'), 'WorkItemPage');
 const DocumentBoxPage = lazyRouteComponent(() => import('@/pages/workspace/documents'), 'DocumentBoxPage');
 const DocumentPagesManager = lazyRouteComponent(() => import('@/pages/workspace/documents'), 'DocumentPagesManager');
-const CreateProjectDialog = lazyRouteComponent(() => import('@/pages/workspace/projects'), 'CreateProjectDialog');
+const CreateProjectDialog = lazyRouteComponent(() => import('@/pages/_app/workspace/projects'), 'CreateProjectDialog');
 
 /** 목록 위 대화상자로 여는 화면의 코드: 한가할 때 미리 받아 둔다(PanelHost). */
 const LAZY_PANELS = [WorkItemPage, DocumentBoxPage, DocumentPagesManager, CreateProjectDialog];
