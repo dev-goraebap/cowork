@@ -59,6 +59,7 @@
   "devDependencies": {
     "@iconify-json/solar": "^1.2.13",
     "@tailwindcss/vite": "4.3.5",
+    "@tanstack/router-plugin": "1.168.48",
     "@types/d3-hierarchy": "3.1.7",
     "@types/node": "^22.20.1",
     "@types/react": "19.2.0",

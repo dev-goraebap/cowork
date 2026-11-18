@@ -52,11 +52,6 @@ async function prepare(client: QueryClient, pathname: string, searchStr: string,
     await Promise.all(reads);
     return;
   }
-  if (pathname === '/inbox' || pathname.startsWith('/inbox/')) {
-    const api = await import('@/entities/notification');
-    await Promise.all([primeInfinite(api.notificationsOptions({})), prime(api.unreadNotificationsOptions())]);
-    return;
-  }
   if (path === '/work-items') {
     const [api, widget, project] = await Promise.all([import('@/entities/work-item'), import('@/widgets/work-item-list'), import('@/entities/project')]);
     // Independent metadata starts alongside the saved-view request, rather than after it.

@@ -1,3 +1,4 @@
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { execSync } from 'node:child_process';
@@ -53,7 +54,18 @@ function initialCover() {
 export default defineConfig({
   define: { __APP_VERSION__: JSON.stringify(releaseTag()) },
   // Tailwind CSS v4 builds the utilities from app/theme/tailwind.css.
-  plugins: [react(), tailwindcss(), solarSet(), initialCover()],
+  plugins: [
+    // 파일 라우팅: src/pages의 폴더가 곧 주소다. 슬라이스 안의 세그먼트(ui · api · model · lib · config)와 옛 공개 진입점
+    // (index.ts)은 라우트로 치지 않는다. 손으로 쓴 라우트와 함께 쓰는 동안 트리는 app/router가 이어 붙인다.
+    tanstackRouter({
+      target: 'react',
+      routesDirectory: './src/pages',
+      generatedRouteTree: './src/app/router/routeTree.gen.ts',
+      routeFileIgnorePattern: '^(ui|api|model|lib|config|index\.ts)$',
+      quoteStyle: 'single',
+    }),
+    react(), tailwindcss(), solarSet(), initialCover(),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
