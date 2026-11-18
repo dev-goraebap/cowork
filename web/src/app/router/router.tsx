@@ -36,8 +36,8 @@ const WorkItemPage = lazyRouteComponent(() => import('@/pages/workspace/work-ite
 const WorkItemEditPage = lazyRouteComponent(() => import('@/pages/workspace/work-items'), 'WorkItemEditPage');
 const DocumentEditPage = lazyRouteComponent(() => import('@/pages/workspace/documents'), 'DocumentEditPage');
 const MyWorkPage = lazyRouteComponent(() => import('@/pages/workspace/work-items'), 'MyWorkPage');
-const LoginGate = lazyRouteComponent(() => import('@/pages/auth/login'), 'LoginGate');
-const WelcomePage = lazyRouteComponent(() => import('@/pages/auth/onboarding'), 'WelcomePage');
+const LoginGate = lazyRouteComponent(() => import('@/pages/login'), 'LoginGate');
+const WelcomePage = lazyRouteComponent(() => import('@/pages/onboarding'), 'WelcomePage');
 const WorkspaceMembersPage = lazyRouteComponent(() => import('@/pages/workspace/workspace-members'), 'WorkspaceMembersPage');
 const NotificationsPage = lazyRouteComponent(() => import('@/pages/workspace/inbox'), 'NotificationsPage');
 const DocumentBoxPage = lazyRouteComponent(() => import('@/pages/workspace/documents'), 'DocumentBoxPage');
