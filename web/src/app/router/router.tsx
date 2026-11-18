@@ -27,10 +27,10 @@ const WorkspaceRolesPage = lazyRouteComponent(() => import('@/pages/workspace-se
 const WorkItemLabelsPage = lazyRouteComponent(() => import('@/pages/workspace-settings/work-item-labels'), 'WorkItemLabelsPage');
 const WorkItemTypesPage = lazyRouteComponent(() => import('@/pages/workspace-settings/work-item-types'), 'WorkItemTypesPage');
 const ComingSoonPage = lazyRouteComponent(() => import('@/pages/workspace/coming-soon'), 'ComingSoonPage');
-const ProjectGeneralPage = lazyRouteComponent(() => import('@/pages/workspace/project-settings'), 'ProjectGeneralPage');
-const ProjectIntegrationsPage = lazyRouteComponent(() => import('@/pages/workspace/project-settings'), 'ProjectIntegrationsPage');
-const ProjectWorkflowPage = lazyRouteComponent(() => import('@/pages/workspace/project-settings'), 'ProjectWorkflowPage');
-const ProjectCycleSettingsPage = lazyRouteComponent(() => import('@/pages/workspace/project-settings'), 'ProjectCycleSettingsPage');
+const ProjectGeneralPage = lazyRouteComponent(() => import('@/pages/project-settings/general'), 'ProjectGeneralPage');
+const ProjectIntegrationsPage = lazyRouteComponent(() => import('@/pages/project-settings/integrations'), 'ProjectIntegrationsPage');
+const ProjectWorkflowPage = lazyRouteComponent(() => import('@/pages/project-settings/workflow'), 'ProjectWorkflowPage');
+const ProjectCycleSettingsPage = lazyRouteComponent(() => import('@/pages/project-settings/cycles'), 'ProjectCycleSettingsPage');
 const NewWorkItemPage = lazyRouteComponent(() => import('@/pages/workspace/work-items'), 'NewWorkItemPage');
 const WorkItemPage = lazyRouteComponent(() => import('@/pages/workspace/work-items'), 'WorkItemPage');
 const WorkItemEditPage = lazyRouteComponent(() => import('@/pages/workspace/work-items'), 'WorkItemEditPage');
@@ -44,7 +44,7 @@ const DocumentBoxPage = lazyRouteComponent(() => import('@/pages/workspace/docum
 const DocumentPagesManager = lazyRouteComponent(() => import('@/pages/workspace/documents'), 'DocumentPagesManager');
 const BodyHistoryPage = lazyRouteComponent(() => import('@/pages/workspace/body-history'), 'BodyHistoryPage');
 const ProjectWorkItemsPage = lazyRouteComponent(() => import('@/pages/workspace/project-work-items'), 'ProjectWorkItemsPage');
-const ProjectMembersPage = lazyRouteComponent(() => import('@/pages/workspace/project-members'), 'ProjectMembersPage');
+const ProjectMembersPage = lazyRouteComponent(() => import('@/pages/project-settings/members'), 'ProjectMembersPage');
 const ProjectCyclesPage = lazyRouteComponent(() => import('@/pages/workspace/project-cycles'), 'ProjectCyclesPage');
 const ProjectSchedulePage = lazyRouteComponent(() => import('@/pages/workspace/project-schedule'), 'ProjectSchedulePage');
 const ProjectsPage = lazyRouteComponent(() => import('@/pages/workspace/projects'), 'ProjectsPage');

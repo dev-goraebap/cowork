@@ -4,7 +4,9 @@ import { PageState } from '@/shared/ui/page-state';
 import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
 import { Switch } from '@/shared/ui/switch';
 import { pageCrumbs } from '@/widgets/app-shell';
-import { ChoiceSelect, type Crumb } from './settings-parts';
+import { ChoiceSelect } from '@/shared/ui/settings';
+
+type Crumb = { label: string; href?: string; icon?: string };
 
 const WEEKDAYS = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
 const weekday = (iso: string) => new Date(`${iso}T00:00:00`).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' });
@@ -18,7 +20,7 @@ const DESCRIPTION = '정한 기간으로 업무를 묶어 리듬을 만듭니다
  * next ones are kept ready, and whether work items that get under way or done join the cycle under way. Each change
  * saves at once; turned on, the cycles due are made then.
  */
-export function ProjectCyclesPage({ crumbs, projectKey }: { crumbs: Crumb[]; projectKey: string }) {
+export function ProjectCycleSettingsPage({ crumbs, projectKey }: { crumbs: Crumb[]; projectKey: string }) {
   const client = useQueryClient();
   const cycles = useQuery(cyclesOptions(projectKey));
   const save = useMutation({

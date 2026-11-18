@@ -16,7 +16,9 @@ import { PageState } from '@/shared/ui/page-state';
 import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
 import { toast } from '@/shared/ui/toast';
 import { pageCrumbs } from '@/widgets/app-shell';
-import { IconAction, TextField, type Crumb } from './settings-parts';
+import { IconAction, TextField } from '@/shared/ui/settings';
+
+type Crumb = { label: string; href?: string; icon?: string };
 
 const when = new Intl.DateTimeFormat('ko-KR', { month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit' });
 

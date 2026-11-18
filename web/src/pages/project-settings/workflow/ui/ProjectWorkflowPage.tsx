@@ -16,7 +16,9 @@ import { CheckIcon, GripIcon, PenSquareIcon, PlusIcon, Trash2Icon } from '@/shar
 import { PageState } from '@/shared/ui/page-state';
 import { SettingsPage, SettingsSection } from '@/shared/ui/settings';
 import { pageCrumbs } from '@/widgets/app-shell';
-import { TextField, type Crumb } from './settings-parts';
+import { TextField } from '@/shared/ui/settings';
+
+type Crumb = { label: string; href?: string; icon?: string };
 
 const NAME_MAX = 32;
 

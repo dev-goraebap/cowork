@@ -5,9 +5,6 @@ import { Input } from '@/shared/ui/input';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
 
-/** 라우터가 넘기는 경로 한 단계: 아이콘은 이름(글자)이다. 키트 Page에는 pageCrumbs로 바꿔 넘긴다. */
-export type Crumb = { label: string; href?: string; icon?: string };
-
 type Choice = { value: string; label: string };
 
 /** 설정 줄의 고르기(사이클 기간 · 분류): 몇 개 안 되는 값에서 하나. */

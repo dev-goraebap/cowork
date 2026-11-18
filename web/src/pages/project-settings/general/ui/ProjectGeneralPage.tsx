@@ -19,7 +19,8 @@ import { useMarkdownDraft } from '@/shared/ui/rich-body/markdown-draft';
 import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
 import { Spinner } from '@/shared/ui/spinner';
 import { pageCrumbs } from '@/widgets/app-shell';
-import type { Crumb } from './settings-parts';
+
+type Crumb = { label: string; href?: string; icon?: string };
 
 const DESCRIPTION_MAX = 20_000;
 
