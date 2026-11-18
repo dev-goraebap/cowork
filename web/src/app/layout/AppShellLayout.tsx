@@ -24,7 +24,7 @@ import { PanelHost } from './PanelHost';
  * its name), 받은 알림's box dotted while notices wait unread, 검색 opened from its box or Ctrl/⌘+K. A choice in a menu or the tabs goes to its address; 로그아웃 ends the session; a session found ended (a 401
  * anywhere) goes to the login.
  */
-export function AuthLayout() {
+export function AppShellLayout() {
   useIntentPreload();
   const panel = usePanel();
   const isMobile = useIsMobile();

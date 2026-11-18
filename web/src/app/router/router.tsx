@@ -1,7 +1,7 @@
 import { Navigate, createRouter } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 import { Route as AppRoute } from '@/pages/_app/route';
-import { AuthLayout } from '../layout/AuthLayout';
+import { AppShellLayout } from '../layout/AppShellLayout';
 import { routeTree } from './routeTree.gen';
 import { isWorkItemViewChange } from './work-item-view-transition';
 
@@ -10,7 +10,7 @@ import { isWorkItemViewChange } from './work-item-view-transition';
  * page.tsx가 그 주소의 화면, route.tsx가 그 아래 전부에 걸리는 틀(권한 확인 · 먼저 읽기), index.ts가 다른 층이 쓰는 공개 진입점이다.
  * 로그인한 사람의 틀 화면(사이드바 · 패널)은 app 층의 것이라 여기서 붙인다. pages는 app을 가져오지 않는다.
  */
-AppRoute.update({ component: AuthLayout });
+AppRoute.update({ component: AppShellLayout });
 
 export const createAppRouter = (queryClient: QueryClient) => createRouter({
   routeTree, context: { queryClient }, defaultPreload: 'intent', defaultPreloadStaleTime: 0,
