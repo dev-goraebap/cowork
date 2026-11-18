@@ -1,5 +1,5 @@
 import { cn } from 'cn';
-import { REORDER_GHOST, reorderRowClass } from '@/shared/ui/reorder';
+import { REORDER_GHOST, reorderRowClass } from '@/shared/ui/kit/reorder';
 
 /**
  * The looks of rows put in order by their grips (useRowReorder), as classes: the kit's reorder parts (@/shared/ui/reorder)

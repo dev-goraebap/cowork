@@ -1,9 +1,9 @@
 import { useId, type ReactNode } from 'react';
-import { Button } from '@/shared/ui/button';
-import { Field, FieldDescription, FieldLabel } from '@/shared/ui/field';
-import { Input } from '@/shared/ui/input';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
+import { Button } from '@/shared/ui/kit/button';
+import { Field, FieldDescription, FieldLabel } from '@/shared/ui/kit/field';
+import { Input } from '@/shared/ui/kit/input';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/kit/select';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/kit/tooltip';
 
 type Choice = { value: string; label: string };
 

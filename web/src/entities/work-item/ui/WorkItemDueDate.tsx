@@ -1,4 +1,4 @@
-import { TriangleAlertIcon } from '@/shared/ui/icon';
+import { TriangleAlertIcon } from '@/shared/ui/kit/icon';
 import { formatWorkItemDate, isLate } from '../model/date';
 import type { ColumnCategory } from '../model/types';
 import { isClosing } from '../model/words';

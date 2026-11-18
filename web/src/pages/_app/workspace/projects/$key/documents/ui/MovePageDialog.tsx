@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { moveDocumentPage, type DocumentRow } from '@/entities/document';
-import { FormDialog } from '@/shared/ui/form-dialog';
-import { OptionList } from '@/shared/ui/option-list';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
+import { OptionList } from '@/shared/ui/kit/option-list';
 
 /** 페이지 하나를 다른 페이지 아래(또는 문서함 맨 위)로 옮긴다. 자기 자신과 그 하위로는 옮길 수 없다. */
 export function MovePageDialog({ projectKey, document, pages, onDone, onClose }: {

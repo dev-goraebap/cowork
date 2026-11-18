@@ -1,12 +1,12 @@
 import { useEffect, useId, useRef, type ReactNode, type RefCallback } from 'react';
-import { Button } from '@/shared/ui/button';
-import { Field, FieldDescription, FieldLabel } from '@/shared/ui/field';
-import { XIcon } from '@/shared/ui/icon';
-import { Input } from '@/shared/ui/input';
-import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupText } from '@/shared/ui/input-group';
-import { SegmentedControl } from '@/shared/ui/segmented-control';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
-import { Switch } from '@/shared/ui/switch';
+import { Button } from '@/shared/ui/kit/button';
+import { Field, FieldDescription, FieldLabel } from '@/shared/ui/kit/field';
+import { XIcon } from '@/shared/ui/kit/icon';
+import { Input } from '@/shared/ui/kit/input';
+import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupText } from '@/shared/ui/kit/input-group';
+import { SegmentedControl } from '@/shared/ui/kit/segmented-control';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/kit/select';
+import { Switch } from '@/shared/ui/kit/switch';
 import { DEFAULT_PAGE_SETUP, PAPERS, type Paper, type PageSetup } from './model';
 import type { PageArea } from './PageCanvas';
 

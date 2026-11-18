@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type PointerEvent, type RefObject } from 'react';
-import { ActionMenu, type MenuAction } from '@/shared/ui/action-menu';
-import { Button } from '@/shared/ui/button';
-import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
-import { CheckIcon, PenSquareIcon, Trash2Icon, XIcon } from '@/shared/ui/icon';
+import { ActionMenu, type MenuAction } from '@/shared/ui/kit/action-menu';
+import { Button } from '@/shared/ui/kit/button';
+import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
+import { CheckIcon, PenSquareIcon, Trash2Icon, XIcon } from '@/shared/ui/kit/icon';
 import { PersonAvatar } from '@/shared/ui/person';
-import { CommentComposer } from '@/shared/ui/reading';
+import { CommentComposer } from '@/shared/ui/kit/reading';
 
 /** 블록 스레드의 댓글 하나: 첫 댓글이나 답글. */
 export type BlockCommentItem = {

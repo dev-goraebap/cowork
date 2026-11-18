@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FilterDef, Filters } from '@/shared/ui/filter';
+import type { FilterDef, Filters } from '@/shared/ui/kit/filter';
 
 /** The values chosen, by filter key; a key with none is not in force. */
 export type FilterState = Record<string, string[]>;

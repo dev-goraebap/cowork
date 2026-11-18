@@ -1,7 +1,7 @@
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { DetailSurface } from '@/shared/ui/detail-surface';
-import { Dialog, DialogBar, DialogBody, DialogContent } from '@/shared/ui/dialog';
-import { Page, type Crumb } from '@/shared/ui/layout/page';
+import { DetailSurface } from '@/shared/ui/kit/detail-surface';
+import { Dialog, DialogBar, DialogBody, DialogContent } from '@/shared/ui/kit/dialog';
+import { Page, type Crumb } from '@/shared/ui/kit/layout/page';
 import { PersonProfile } from './PersonProfile';
 
 /**

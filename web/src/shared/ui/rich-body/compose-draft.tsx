@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/kit/button';
 import { LazyRichDraft as RichDraft } from './LazyRichBody';
 import type { useMarkdownDraft } from './markdown-draft';
-import { Spinner } from '@/shared/ui/spinner';
+import { Spinner } from '@/shared/ui/kit/spinner';
 
 /*
  * A compose form's title and its Markdown body on the paper (the kit's ComposeFields with the body editor in place of its

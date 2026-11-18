@@ -5,7 +5,7 @@
 ## 구성
 
 - `server/`: Spring Boot · jOOQ · Flyway · SQLite API. 기본 패키지는 `xyz.goraebap.cowork`이고, 소스는 기술 기반 `shared`와 모듈 `module`로 나눕니다. 모듈은 `user` · `file` · `notification` · `system` · `seed` · `realtime` · `search` · `mcp`와 `workspace`(`project` · `issue` · `document` · `richbody` · `activity`)입니다.
-- `web/`: React · Vite · TanStack Router/Query · shadcn/ui(Base UI) · Tailwind CSS v4 화면. FSD로 나눕니다. 화면 부품은 Webcraft 키트(레지스트리 `@webcraft`)에서 받아 `web/src/shared/ui`에 우리 코드로 둡니다.
+- `web/`: React · Vite · TanStack Router/Query · shadcn/ui(Base UI) · Tailwind CSS v4 화면. FSD로 나눕니다. 화면 부품은 Webcraft 키트(레지스트리 `@webcraft`, shadcn을 다듬은 부품 포함)에서 받아 `web/src/shared/ui/kit`에 두고, cowork가 만든 공용 부품은 `web/src/shared/ui`에 둡니다. 받은 키트를 고치면 `npm run kit:check -- --write`로 `web/kit.lock.json`에 고친 것으로 적습니다.
 - 에이전트는 `/api/mcp`의 MCP 서버로 붙습니다. 토큰은 각자 내 계정 › 내 AI 에이전트에서 만듭니다.
 
 ## 개발 지침

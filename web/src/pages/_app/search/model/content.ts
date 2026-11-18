@@ -1,5 +1,5 @@
 import { getJson, type components } from '@/shared/api';
-import type { Icon } from '@/shared/ui/icon';
+import type { Icon } from '@/shared/ui/kit/icon';
 import type { SearchHit, SearchSource } from './search';
 
 type Found = { groups?: { kind?: string; hits?: components['schemas']['SearchHit'][] }[] };

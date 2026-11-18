@@ -1,9 +1,9 @@
 import { useState, type ReactNode } from 'react';
 import { cn } from 'cn';
-import { ActionMenu, type MenuAction } from '@/shared/ui/action-menu';
-import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
-import { PenSquareIcon, Trash2Icon } from '@/shared/ui/icon';
-import { CommentComposer as KitCommentComposer, Quote } from '@/shared/ui/reading';
+import { ActionMenu, type MenuAction } from '@/shared/ui/kit/action-menu';
+import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
+import { PenSquareIcon, Trash2Icon } from '@/shared/ui/kit/icon';
+import { CommentComposer as KitCommentComposer, Quote } from '@/shared/ui/kit/reading';
 import { solarIcon } from '../icons';
 import { Mark } from '../mark-picker';
 import { PersonAvatar } from '../person';

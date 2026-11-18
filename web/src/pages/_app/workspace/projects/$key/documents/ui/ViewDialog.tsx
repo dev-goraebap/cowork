@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { saveDocumentView, type DocumentLabel, type DocumentSavedView } from '@/entities/document';
-import { FormDialog } from '@/shared/ui/form-dialog';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
 import { MarkNameField } from '@/shared/ui/mark-picker';
 import { LabelChoices } from './LabelChoices';
 

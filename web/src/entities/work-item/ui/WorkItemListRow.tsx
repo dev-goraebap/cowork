@@ -1,9 +1,9 @@
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { cn } from 'cn';
-import { Button } from '@/shared/ui/button';
-import { DetailLink } from '@/shared/ui/detail-surface';
-import { ChevronDownIcon, ChevronRightIcon, ProjectsIcon } from '@/shared/ui/icon';
+import { Button } from '@/shared/ui/kit/button';
+import { DetailLink } from '@/shared/ui/kit/detail-surface';
+import { ChevronDownIcon, ChevronRightIcon, ProjectsIcon } from '@/shared/ui/kit/icon';
 import { formatWorkItemDate } from '../model/date';
 import type { WorkItemRow } from '../model/types';
 import { WorkItemAssignee } from './WorkItemAssignee';

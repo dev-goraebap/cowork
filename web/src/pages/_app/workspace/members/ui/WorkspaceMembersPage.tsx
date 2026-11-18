@@ -7,17 +7,17 @@ import {
 } from '@/entities/project';
 import { useOpenPanel } from '@/shared/lib/panel';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { Button } from '@/shared/ui/button';
-import { SettingsIcon } from '@/shared/ui/icon';
-import { ListMore } from '@/shared/ui/list-more';
+import { Button } from '@/shared/ui/kit/button';
+import { SettingsIcon } from '@/shared/ui/kit/icon';
+import { ListMore } from '@/shared/ui/kit/list-more';
 import { MarkIcon, markTone } from '@/shared/ui/mark-picker';
-import { Page } from '@/shared/ui/layout/page';
-import { PageState } from '@/shared/ui/page-state';
+import { Page } from '@/shared/ui/kit/layout/page';
+import { PageState } from '@/shared/ui/kit/page-state';
 import { memberHref, PersonAvatar } from '@/shared/ui/person';
-import { SearchTool } from '@/shared/ui/search-tool';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableText } from '@/shared/ui/table';
-import { toast } from '@/shared/ui/toast';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
+import { SearchTool } from '@/shared/ui/kit/search-tool';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableText } from '@/shared/ui/kit/table';
+import { toast } from '@/shared/ui/kit/toast';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/kit/tooltip';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { ParticipationDialog } from './ParticipationDialog';
 

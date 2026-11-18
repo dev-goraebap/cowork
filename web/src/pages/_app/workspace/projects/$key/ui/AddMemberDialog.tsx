@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { PROJECT_ROLE_LABEL, PROJECT_ROLES, type ProjectRole } from '@/entities/project';
 import type { WorkItemPerson } from '@/entities/work-item';
-import { FormDialog } from '@/shared/ui/form-dialog';
-import { OptionList } from '@/shared/ui/option-list';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
+import { OptionList } from '@/shared/ui/kit/option-list';
 import { PersonAvatar } from '@/shared/ui/person';
-import { SegmentedControl } from '@/shared/ui/segmented-control';
+import { SegmentedControl } from '@/shared/ui/kit/segmented-control';
 
 /**
  * 멤버 추가 (a short form): one working member not in the project yet, picked by name, and their role (an editor unless

@@ -1,6 +1,6 @@
 import { PersonAvatar } from '@/shared/ui/person';
-import { ChartNoAxesColumnIcon, NotesIcon, RepeatIcon, TagIcon, UserIcon, WorkflowIcon } from '@/shared/ui/icon';
-import type { Option } from '@/shared/ui/option-list';
+import { ChartNoAxesColumnIcon, NotesIcon, RepeatIcon, TagIcon, UserIcon, WorkflowIcon } from '@/shared/ui/kit/icon';
+import type { Option } from '@/shared/ui/kit/option-list';
 import { PRIORITIES, VIEW_FILTER_KEYS, VIEW_GROUPINGS, VIEW_SORTS, WorkItemLabelDot, WorkItemPriorityIcon, WorkItemStatusIcon,
   WorkItemTypeIcon, cycleDays, type BoardColumn, type Cycle, type WorkItemLabel, type WorkItemTypeRow, type WorkItemListView, type WorkItemListing, type WorkItemPerson,
   type WorkItemViewFilters, type WorkItemViewGrouping, type WorkItemViewSort,

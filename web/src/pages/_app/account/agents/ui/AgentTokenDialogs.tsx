@@ -1,11 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/kit/button';
 import { DEFAULT_MARK_COLOR } from '@/shared/ui/color-palette';
-import { DatePicker } from '@/shared/ui/date-picker';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/shared/ui/dialog';
-import { Field, FieldError, FieldLabel } from '@/shared/ui/field';
-import { FormDialog } from '@/shared/ui/form-dialog';
+import { DatePicker } from '@/shared/ui/kit/date-picker';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/shared/ui/kit/dialog';
+import { Field, FieldError, FieldLabel } from '@/shared/ui/kit/field';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
 import { MarkNameField, type MarkValue } from '@/shared/ui/mark-picker';
 import { createAgentToken, editAgentProfile, type AgentProfile, type AgentTokenCreated } from '../api/agents';
 import { CodeBlock } from './CodeBlock';

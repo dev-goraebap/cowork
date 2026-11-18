@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { cn } from 'cn';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { AdaptivePopover } from '@/shared/ui/adaptive-popover';
+import { AdaptivePopover } from '@/shared/ui/kit/adaptive-popover';
 import { markTone } from './Mark';
 import { MarkIcon } from './MarkIcon';
 import { MarkPanel, type MarkValue } from './MarkPanel';

@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import type { Icon } from '@/shared/ui/icon';
+import type { Icon } from '@/shared/ui/kit/icon';
 import { SOLAR_ICONS } from './solar-icons';
 
 const made = new Map<string, Icon>();

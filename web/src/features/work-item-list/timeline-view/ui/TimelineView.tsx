@@ -2,10 +2,10 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
 import { cn } from 'cn';
 import { draftOf, editWorkItem, refreshWorkItems, WorkItemStatusIcon, type ColumnCategory, type WorkItemRow } from '@/entities/work-item';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/kit/button';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { DetailLink } from '@/shared/ui/detail-surface';
-import { SegmentedControl } from '@/shared/ui/segmented-control';
+import { DetailLink } from '@/shared/ui/kit/detail-surface';
+import { SegmentedControl } from '@/shared/ui/kit/segmented-control';
 
 type Zoom = 'day' | 'week' | 'month';
 const WIDTH: Record<Zoom, number> = { day: 36, week: 14, month: 5 };

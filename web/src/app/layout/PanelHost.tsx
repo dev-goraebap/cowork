@@ -7,7 +7,7 @@ import { useLoadingHold } from '@/shared/ui/page-loading/use-loading-hold';
 import { sessionOptions } from '@/shared/auth';
 import { useOpenPanel, usePanel } from '@/shared/lib/panel';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { DialogPanel, swapDialog } from '@/shared/ui/dialog';
+import { DialogPanel, swapDialog } from '@/shared/ui/kit/dialog';
 import { workItemHref } from '@/entities/work-item';
 
 import { GlobalSearch, useSearchSources } from '@/pages/_app/search';

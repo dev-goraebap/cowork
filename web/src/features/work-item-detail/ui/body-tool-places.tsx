@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import type { MenuAction } from '@/shared/ui/action-menu';
+import type { MenuAction } from '@/shared/ui/kit/action-menu';
 import type { BodyTools } from '@/shared/ui/rich-body';
 
 /**

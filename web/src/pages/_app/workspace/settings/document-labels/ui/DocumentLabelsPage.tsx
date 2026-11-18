@@ -9,16 +9,16 @@ import {
 import { LabelDot as DocumentLabelDot } from '@/shared/ui/label-dot/LabelDot';
 import { rowReorderStyles as rows, useRowReorder } from '@/shared/lib/row-reorder';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
-import { ActionMenu, type MenuAction } from '@/shared/ui/action-menu';
-import { Button } from '@/shared/ui/button';
+import { ActionMenu, type MenuAction } from '@/shared/ui/kit/action-menu';
+import { Button } from '@/shared/ui/kit/button';
 import { ColorPalette, DEFAULT_MARK_COLOR } from '@/shared/ui/color-palette';
-import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
-import { Field, FieldLabel, FieldTitle } from '@/shared/ui/field';
-import { FormDialog } from '@/shared/ui/form-dialog';
-import { GripIcon, PenSquareIcon, PlusIcon, Trash2Icon } from '@/shared/ui/icon';
-import { Input } from '@/shared/ui/input';
-import { PageState } from '@/shared/ui/page-state';
-import { SettingsPage, SettingsSection } from '@/shared/ui/settings';
+import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
+import { Field, FieldLabel, FieldTitle } from '@/shared/ui/kit/field';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
+import { GripIcon, PenSquareIcon, PlusIcon, Trash2Icon } from '@/shared/ui/kit/icon';
+import { Input } from '@/shared/ui/kit/input';
+import { PageState } from '@/shared/ui/kit/page-state';
+import { SettingsPage, SettingsSection } from '@/shared/ui/kit/settings';
 import { ADMIN_ROW, ADMIN_ROW_NAME } from '@/shared/ui/ordered-row';
 
 type Crumb = { label: string; href?: string; icon?: string };

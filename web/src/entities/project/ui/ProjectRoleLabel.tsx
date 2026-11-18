@@ -1,5 +1,5 @@
 import { cn } from 'cn';
-import { EyeIcon, PencilIcon, ShieldCheckIcon, type Icon } from '@/shared/ui/icon';
+import { EyeIcon, PencilIcon, ShieldCheckIcon, type Icon } from '@/shared/ui/kit/icon';
 import { PROJECT_ROLE_LABEL, type ProjectRole } from '../api/projects';
 
 /** Each role's icon: a viewer looks, an editor writes, an administrator keeps the project. */

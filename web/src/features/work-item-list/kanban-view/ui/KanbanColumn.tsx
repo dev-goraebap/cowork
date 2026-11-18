@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { cn } from 'cn';
 import { type WorkItemRow } from '@/entities/work-item';
-import { Button } from '@/shared/ui/button';
-import { PlusIcon } from '@/shared/ui/icon';
+import { Button } from '@/shared/ui/kit/button';
+import { PlusIcon } from '@/shared/ui/kit/icon';
 import type { WorkItemGroup } from '../../model/groups';
 import { KanbanCard } from './KanbanCard';
 

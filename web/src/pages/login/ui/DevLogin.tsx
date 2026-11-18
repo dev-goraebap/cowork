@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { getJson, sendCommand } from '@/shared/api';
-import { AdaptivePopover } from '@/shared/ui/adaptive-popover';
-import { Button } from '@/shared/ui/button';
-import { ChevronDownIcon } from '@/shared/ui/icon';
-import { OptionList } from '@/shared/ui/option-list';
-import { Spinner } from '@/shared/ui/spinner';
+import { AdaptivePopover } from '@/shared/ui/kit/adaptive-popover';
+import { Button } from '@/shared/ui/kit/button';
+import { ChevronDownIcon } from '@/shared/ui/kit/icon';
+import { OptionList } from '@/shared/ui/kit/option-list';
+import { Spinner } from '@/shared/ui/kit/spinner';
 
 /** The development login API, served only locally and on hr-dev (dev or qa profile), so not in the published contract. */
 type DevEmployee = { id: string; name: string; email: string };

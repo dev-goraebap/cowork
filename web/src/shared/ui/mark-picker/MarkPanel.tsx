@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { cn } from 'cn';
 import { ColorPalette } from '../color-palette';
-import { SearchIcon } from '../icon';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '../input-group';
+import { SearchIcon } from '../kit/icon';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '../kit/input-group';
 import { COMMON, loadedSolar, loadSolar, searchIcons } from './catalog';
 import { markTone } from './Mark';
 import { MarkIcon } from './MarkIcon';

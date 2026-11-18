@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { saveDocumentLabels, type DocumentLabel, type DocumentRow } from '@/entities/document';
-import { FormDialog } from '@/shared/ui/form-dialog';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
 import { LabelChoices } from './LabelChoices';
 
 export function LabelsDialog({ projectKey, document, labels, canManageLabels = false, initial, onDone, onClose }: {

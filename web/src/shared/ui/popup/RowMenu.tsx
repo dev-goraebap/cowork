@@ -1,5 +1,5 @@
-import { ActionMenu as KitActionMenu } from '@/shared/ui/action-menu';
-import { EllipsisIcon } from '@/shared/ui/icon';
+import { ActionMenu as KitActionMenu } from '@/shared/ui/kit/action-menu';
+import { EllipsisIcon } from '@/shared/ui/kit/icon';
 import type { MenuAction } from './ActionMenu';
 import { iconOf } from './icon-of';
 

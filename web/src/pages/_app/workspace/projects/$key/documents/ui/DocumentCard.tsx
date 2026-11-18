@@ -1,7 +1,7 @@
 import type { CSSProperties, HTMLAttributes, MouseEvent, ReactNode } from 'react';
 import type { DocumentLabel, DocumentRow } from '@/entities/document';
 import { PALETTE } from '@/shared/ui/color-palette';
-import { CalendarIcon } from '@/shared/ui/icon';
+import { CalendarIcon } from '@/shared/ui/kit/icon';
 import { LabelDot } from '@/shared/ui/label-dot/LabelDot';
 import { MarkIcon } from '@/shared/ui/mark-picker';
 import { PersonAvatar } from '@/shared/ui/person';

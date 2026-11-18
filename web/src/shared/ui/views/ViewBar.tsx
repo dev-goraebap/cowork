@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { ActionMenu, type MenuAction } from '@/shared/ui/action-menu';
-import { Button } from '@/shared/ui/button';
-import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
-import { ArrowUpDownIcon, PenSquareIcon, PlusIcon, Trash2Icon } from '@/shared/ui/icon';
+import { ActionMenu, type MenuAction } from '@/shared/ui/kit/action-menu';
+import { Button } from '@/shared/ui/kit/button';
+import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
+import { ArrowUpDownIcon, PenSquareIcon, PlusIcon, Trash2Icon } from '@/shared/ui/kit/icon';
 import { ViewMark } from './ViewMark';
 import { ViewOrderDialog } from './ViewOrderDialog';
 

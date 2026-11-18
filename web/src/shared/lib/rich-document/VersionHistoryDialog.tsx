@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { cn } from 'cn';
-import { Button } from '@/shared/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/shared/ui/dialog';
-import { ClockIcon, RestoreIcon, SearchIcon, ShieldCheckIcon, SquareArrowOutUpRightIcon } from '@/shared/ui/icon';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/shared/ui/input-group';
-import { PageState } from '@/shared/ui/page-state';
+import { Button } from '@/shared/ui/kit/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/shared/ui/kit/dialog';
+import { ClockIcon, RestoreIcon, SearchIcon, ShieldCheckIcon, SquareArrowOutUpRightIcon } from '@/shared/ui/kit/icon';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/shared/ui/kit/input-group';
+import { PageState } from '@/shared/ui/kit/page-state';
 import type { VersionRecord } from './model';
 
 const iconOf = (reason: VersionRecord['reason']) => reason === 'before-restore' ? ShieldCheckIcon : reason === 'restored' ? RestoreIcon : ClockIcon;

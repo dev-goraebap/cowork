@@ -2,10 +2,10 @@ import { createContext, useContext, useState, type ReactNode } from 'react';
 import type { JSONNode } from '@/shared/lib/rich-document';
 import { useMaskedDialog } from '@/shared/lib/panel';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { AdaptivePopover } from '@/shared/ui/adaptive-popover';
-import { Button } from '@/shared/ui/button';
-import { GripIcon, HistoryIcon } from '@/shared/ui/icon';
-import { PropertyPill, pillVariants } from '@/shared/ui/property-pill';
+import { AdaptivePopover } from '@/shared/ui/kit/adaptive-popover';
+import { Button } from '@/shared/ui/kit/button';
+import { GripIcon, HistoryIcon } from '@/shared/ui/kit/icon';
+import { PropertyPill, pillVariants } from '@/shared/ui/kit/property-pill';
 
 /** 본문의 제목 하나: 블록 id(화면의 data-block-id), 단계, 글. */
 export type BodyHeading = { id: string; level: number; text: string };

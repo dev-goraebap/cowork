@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
-import { Button } from '@/shared/ui/button';
-import { PenSquareIcon } from '@/shared/ui/icon';
+import { Button } from '@/shared/ui/kit/button';
+import { PenSquareIcon } from '@/shared/ui/kit/icon';
 import { MM, fillPageTokens, formatOf, type PageLook, type PageSetup } from './model';
 import type { PageLayout } from './pagination';
 

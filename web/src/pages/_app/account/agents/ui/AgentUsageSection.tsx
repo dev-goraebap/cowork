@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { SegmentedControl } from '@/shared/ui/segmented-control';
-import { SettingsSection } from '@/shared/ui/settings';
+import { SegmentedControl } from '@/shared/ui/kit/segmented-control';
+import { SettingsSection } from '@/shared/ui/kit/settings';
 import { USER_INSTRUCTIONS } from '../model/agent-instructions';
 import { CodeBlock } from './CodeBlock';
 

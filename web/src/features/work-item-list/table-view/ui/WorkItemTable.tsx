@@ -4,10 +4,10 @@ import {
   formatWorkItemDate, WorkItemAssignee, WorkItemPullRequests, WorkItemDueDate, WorkItemLabels, WorkItemPriorityIcon, WorkItemStatusIcon, WorkItemTypeIcon, priorityMark, type WorkItemRow,
 } from '@/entities/work-item';
 import { WorkItemRowMenu } from '../../ui/WorkItemRowMenu';
-import { Checkbox } from '@/shared/ui/checkbox';
-import { DetailLink } from '@/shared/ui/detail-surface';
-import { ProjectsIcon } from '@/shared/ui/icon';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/table';
+import { Checkbox } from '@/shared/ui/kit/checkbox';
+import { DetailLink } from '@/shared/ui/kit/detail-surface';
+import { ProjectsIcon } from '@/shared/ui/kit/icon';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/kit/table';
 
 /** 줄은 자기 바탕을 칠해 페이지의 점 무늬를 가리고, 가리키면 옅게 덮는다. 제목의 줄 링크가 줄 전체를 덮는다. */
 const ROW = 'relative bg-background hover:bg-row-hover';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { cn } from 'cn';
-import { Button } from '@/shared/ui/button';
-import { CheckIcon, CopyIcon } from '@/shared/ui/icon';
+import { Button } from '@/shared/ui/kit/button';
+import { CheckIcon, CopyIcon } from '@/shared/ui/kit/icon';
 
 /**
  * A piece of text to copy as it is (a token, a command, instructions): its name over a quiet box of monospaced, wrapped

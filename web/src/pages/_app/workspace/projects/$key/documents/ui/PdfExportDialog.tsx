@@ -1,8 +1,8 @@
 import { useId, useState } from 'react';
-import { Field, FieldContent, FieldLabel } from '@/shared/ui/field';
-import { FormDialog } from '@/shared/ui/form-dialog';
-import { SegmentedControl } from '@/shared/ui/segmented-control';
-import { Switch } from '@/shared/ui/switch';
+import { Field, FieldContent, FieldLabel } from '@/shared/ui/kit/field';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
+import { SegmentedControl } from '@/shared/ui/kit/segmented-control';
+import { Switch } from '@/shared/ui/kit/switch';
 
 /** 고른 구성을 PDF 미리보기 주소의 쿼리로 만든다(1·0). */
 export const pdfQuery = (choice: { cover: boolean; toc: boolean; headings: boolean }) =>

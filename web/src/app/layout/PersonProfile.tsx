@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { directoryAgentsOptions, orgChartOptions } from '@/entities/organization';
 import { sessionOptions } from '@/shared/auth';
-import { Badge } from '@/shared/ui/badge';
-import { Button } from '@/shared/ui/button';
-import { UserIcon } from '@/shared/ui/icon';
+import { Badge } from '@/shared/ui/kit/badge';
+import { Button } from '@/shared/ui/kit/button';
+import { UserIcon } from '@/shared/ui/kit/icon';
 import { Mark } from '@/shared/ui/mark-picker';
 import { PersonAvatar } from '@/shared/ui/person';
 

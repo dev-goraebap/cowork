@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import type { Icon } from '@/shared/ui/icon';
+import type { Icon } from '@/shared/ui/kit/icon';
 
 /**
  * A place a search finds: what it is, where it stands, its mark (an icon; a person or a project may bring a picture of

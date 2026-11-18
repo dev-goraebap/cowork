@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { FilterBar, FilterChips, FilterMenu } from '@/shared/ui/filter';
+import { FilterBar, FilterChips, FilterMenu } from '@/shared/ui/kit/filter';
 import type { ViewLayout } from '@/shared/ui/views';
 import { WorkItemDisplayMenu } from '../ui/WorkItemDisplayMenu';
 import { kitFiltersOf, type Display, type SortKey, type WorkItemFilterDef, type WorkItemFilters } from './use-work-item-filters';

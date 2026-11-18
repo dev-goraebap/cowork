@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Cropper, { type Area } from 'react-easy-crop';
-import { Button } from '@/shared/ui/button';
-import { MinusIcon, PlusIcon } from '@/shared/ui/icon';
+import { Button } from '@/shared/ui/kit/button';
+import { MinusIcon, PlusIcon } from '@/shared/ui/kit/icon';
 import type { CropArea } from '../model/crop-picture';
 
 const MIN_ZOOM = 1;

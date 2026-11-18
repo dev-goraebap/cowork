@@ -8,12 +8,12 @@ import { useEffect, useRef, useState, type MouseEvent, type ReactElement } from 
 import { useNavigate } from '@tanstack/react-router';
 import type { LinkChoice } from '@/shared/lib/rich-document';
 import { createPortal } from 'react-dom';
-import type { MenuAction } from '@/shared/ui/action-menu';
-import { Button } from '@/shared/ui/button';
-import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
-import { CommentIcon, PenSquareIcon, RestoreIcon } from '@/shared/ui/icon';
-import { Spinner } from '@/shared/ui/spinner';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
+import type { MenuAction } from '@/shared/ui/kit/action-menu';
+import { Button } from '@/shared/ui/kit/button';
+import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
+import { CommentIcon, PenSquareIcon, RestoreIcon } from '@/shared/ui/kit/icon';
+import { Spinner } from '@/shared/ui/kit/spinner';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/kit/tooltip';
 import { useIsMobile } from '@/shared/lib/use-mobile';
 import { useMaskedDialog } from '@/shared/lib/panel';
 import { useBodyEditContext } from './body-edit';

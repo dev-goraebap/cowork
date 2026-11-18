@@ -1,6 +1,6 @@
 import { cn } from 'cn';
 import { formatHours, type Cycle } from '@/entities/work-item';
-import { ActionMenu, type MenuAction } from '@/shared/ui/action-menu';
+import { ActionMenu, type MenuAction } from '@/shared/ui/kit/action-menu';
 
 const shortDay = (value?: string) => (value ? new Date(`${value}T00:00:00`).toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' }) : '');
 

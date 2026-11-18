@@ -9,6 +9,7 @@
     "lint:ui": "node scripts/check-ui.mjs",
     "lint": "eslint .",
     "knip": "knip",
+    "kit:check": "node scripts/kit-check.mjs",
     "test": "node --test scripts/*.test.mjs",
     "check": "npm run lint:ui && npm run lint && npm run knip && npm test && npm run build",
     "icons:generate": "node scripts/generate-icons.mjs",

@@ -1,0 +1,642 @@
+{
+  "registry": "@webcraft",
+  "note": "레지스트리가 아직 옛 경로(src/shared/ui/…)로 내보내는 동안 cowork에서는 src/shared/ui/kit/…에 둔다.",
+  "files": [
+    {
+      "item": "action-menu",
+      "registryPath": "src/shared/ui/action-menu.tsx",
+      "path": "src/shared/ui/kit/action-menu.tsx",
+      "modified": true
+    },
+    {
+      "item": "adaptive-popover",
+      "registryPath": "src/shared/ui/adaptive-popover.tsx",
+      "path": "src/shared/ui/kit/adaptive-popover.tsx",
+      "modified": true
+    },
+    {
+      "item": "alert-dialog",
+      "registryPath": "src/shared/ui/alert-dialog.tsx",
+      "path": "src/shared/ui/kit/alert-dialog.tsx",
+      "modified": false
+    },
+    {
+      "item": "alert",
+      "registryPath": "src/shared/ui/alert.tsx",
+      "path": "src/shared/ui/kit/alert.tsx",
+      "modified": false
+    },
+    {
+      "item": "avatar",
+      "registryPath": "src/shared/ui/avatar.tsx",
+      "path": "src/shared/ui/kit/avatar.tsx",
+      "modified": false
+    },
+    {
+      "item": "badge",
+      "registryPath": "src/shared/ui/badge.tsx",
+      "path": "src/shared/ui/kit/badge.tsx",
+      "modified": true
+    },
+    {
+      "item": "boot-cover",
+      "registryPath": "src/shared/ui/boot-cover/boot-mark.ts",
+      "path": "src/shared/ui/kit/boot-cover/boot-mark.ts",
+      "modified": false
+    },
+    {
+      "item": "boot-cover",
+      "registryPath": "src/shared/ui/boot-cover/BootCover.tsx",
+      "path": "src/shared/ui/kit/boot-cover/BootCover.tsx",
+      "modified": false
+    },
+    {
+      "item": "boot-cover",
+      "registryPath": "src/shared/ui/boot-cover/index.ts",
+      "path": "src/shared/ui/kit/boot-cover/index.ts",
+      "modified": false
+    },
+    {
+      "item": "button",
+      "registryPath": "src/shared/ui/button.tsx",
+      "path": "src/shared/ui/kit/button.tsx",
+      "modified": false
+    },
+    {
+      "item": "calendar",
+      "registryPath": "src/shared/ui/calendar.tsx",
+      "path": "src/shared/ui/kit/calendar.tsx",
+      "modified": false
+    },
+    {
+      "item": "card",
+      "registryPath": "src/shared/ui/card.tsx",
+      "path": "src/shared/ui/kit/card.tsx",
+      "modified": false
+    },
+    {
+      "item": "checkbox",
+      "registryPath": "src/shared/ui/checkbox.tsx",
+      "path": "src/shared/ui/kit/checkbox.tsx",
+      "modified": false
+    },
+    {
+      "item": "command",
+      "registryPath": "src/shared/ui/command.tsx",
+      "path": "src/shared/ui/kit/command.tsx",
+      "modified": false
+    },
+    {
+      "item": "compose",
+      "registryPath": "src/shared/ui/compose/ComposeFields.tsx",
+      "path": "src/shared/ui/kit/compose/ComposeFields.tsx",
+      "modified": true
+    },
+    {
+      "item": "compose",
+      "registryPath": "src/shared/ui/compose/ComposeSurface.tsx",
+      "path": "src/shared/ui/kit/compose/ComposeSurface.tsx",
+      "modified": true
+    },
+    {
+      "item": "compose",
+      "registryPath": "src/shared/ui/compose/FileDropzone.tsx",
+      "path": "src/shared/ui/kit/compose/FileDropzone.tsx",
+      "modified": true
+    },
+    {
+      "item": "compose",
+      "registryPath": "src/shared/ui/compose/FileList.tsx",
+      "path": "src/shared/ui/kit/compose/FileList.tsx",
+      "modified": true
+    },
+    {
+      "item": "compose",
+      "registryPath": "src/shared/ui/compose/files.ts",
+      "path": "src/shared/ui/kit/compose/files.ts",
+      "modified": false
+    },
+    {
+      "item": "compose",
+      "registryPath": "src/shared/ui/compose/index.ts",
+      "path": "src/shared/ui/kit/compose/index.ts",
+      "modified": false
+    },
+    {
+      "item": "confirm-dialog",
+      "registryPath": "src/shared/ui/confirm-dialog.tsx",
+      "path": "src/shared/ui/kit/confirm-dialog.tsx",
+      "modified": true
+    },
+    {
+      "item": "date-picker",
+      "registryPath": "src/shared/ui/date-picker.tsx",
+      "path": "src/shared/ui/kit/date-picker.tsx",
+      "modified": false
+    },
+    {
+      "item": "detail-surface",
+      "registryPath": "src/shared/ui/detail-surface.tsx",
+      "path": "src/shared/ui/kit/detail-surface.tsx",
+      "modified": true
+    },
+    {
+      "item": "dialog",
+      "registryPath": "src/shared/ui/dialog.tsx",
+      "path": "src/shared/ui/kit/dialog.tsx",
+      "modified": true
+    },
+    {
+      "item": "display-menu",
+      "registryPath": "src/shared/ui/display-menu.tsx",
+      "path": "src/shared/ui/kit/display-menu.tsx",
+      "modified": true
+    },
+    {
+      "item": "drawer",
+      "registryPath": "src/shared/ui/drawer.tsx",
+      "path": "src/shared/ui/kit/drawer.tsx",
+      "modified": true
+    },
+    {
+      "item": "dropdown-menu",
+      "registryPath": "src/shared/ui/dropdown-menu.tsx",
+      "path": "src/shared/ui/kit/dropdown-menu.tsx",
+      "modified": false
+    },
+    {
+      "item": "field",
+      "registryPath": "src/shared/ui/field.tsx",
+      "path": "src/shared/ui/kit/field.tsx",
+      "modified": false
+    },
+    {
+      "item": "filter",
+      "registryPath": "src/shared/ui/filter/FilterBar.tsx",
+      "path": "src/shared/ui/kit/filter/FilterBar.tsx",
+      "modified": true
+    },
+    {
+      "item": "filter",
+      "registryPath": "src/shared/ui/filter/FilterMenu.tsx",
+      "path": "src/shared/ui/kit/filter/FilterMenu.tsx",
+      "modified": true
+    },
+    {
+      "item": "filter",
+      "registryPath": "src/shared/ui/filter/index.ts",
+      "path": "src/shared/ui/kit/filter/index.ts",
+      "modified": false
+    },
+    {
+      "item": "filter",
+      "registryPath": "src/shared/ui/filter/use-filters.ts",
+      "path": "src/shared/ui/kit/filter/use-filters.ts",
+      "modified": true
+    },
+    {
+      "item": "form-dialog",
+      "registryPath": "src/shared/ui/form-dialog.tsx",
+      "path": "src/shared/ui/kit/form-dialog.tsx",
+      "modified": true
+    },
+    {
+      "item": "icon",
+      "registryPath": "src/shared/ui/icon/icons.generated.ts",
+      "path": "src/shared/ui/kit/icon/icons.generated.ts",
+      "modified": true
+    },
+    {
+      "item": "icon",
+      "registryPath": "src/shared/ui/icon/index.ts",
+      "path": "src/shared/ui/kit/icon/index.ts",
+      "modified": false
+    },
+    {
+      "item": "icon",
+      "registryPath": "src/shared/ui/icon/solar.ts",
+      "path": "src/shared/ui/kit/icon/solar.ts",
+      "modified": false
+    },
+    {
+      "item": "info-pill",
+      "registryPath": "src/shared/ui/info-pill.tsx",
+      "path": "src/shared/ui/kit/info-pill.tsx",
+      "modified": true
+    },
+    {
+      "item": "input-group",
+      "registryPath": "src/shared/ui/input-group.tsx",
+      "path": "src/shared/ui/kit/input-group.tsx",
+      "modified": true
+    },
+    {
+      "item": "input",
+      "registryPath": "src/shared/ui/input.tsx",
+      "path": "src/shared/ui/kit/input.tsx",
+      "modified": false
+    },
+    {
+      "item": "label",
+      "registryPath": "src/shared/ui/label.tsx",
+      "path": "src/shared/ui/kit/label.tsx",
+      "modified": false
+    },
+    {
+      "item": "app-shell",
+      "registryPath": "src/shared/ui/layout/app-shell/AgentBar.tsx",
+      "path": "src/shared/ui/kit/layout/app-shell/AgentBar.tsx",
+      "modified": false
+    },
+    {
+      "item": "app-shell",
+      "registryPath": "src/shared/ui/layout/app-shell/AppShell.tsx",
+      "path": "src/shared/ui/kit/layout/app-shell/AppShell.tsx",
+      "modified": true
+    },
+    {
+      "item": "app-shell",
+      "registryPath": "src/shared/ui/layout/app-shell/index.ts",
+      "path": "src/shared/ui/kit/layout/app-shell/index.ts",
+      "modified": true
+    },
+    {
+      "item": "app-shell",
+      "registryPath": "src/shared/ui/layout/app-shell/MeMenu.tsx",
+      "path": "src/shared/ui/kit/layout/app-shell/MeMenu.tsx",
+      "modified": true
+    },
+    {
+      "item": "app-shell",
+      "registryPath": "src/shared/ui/layout/app-shell/MobileTabBar.tsx",
+      "path": "src/shared/ui/kit/layout/app-shell/MobileTabBar.tsx",
+      "modified": false
+    },
+    {
+      "item": "app-shell",
+      "registryPath": "src/shared/ui/layout/app-shell/nav.ts",
+      "path": "src/shared/ui/kit/layout/app-shell/nav.ts",
+      "modified": false
+    },
+    {
+      "item": "app-shell",
+      "registryPath": "src/shared/ui/layout/app-shell/PhoneBar.tsx",
+      "path": "src/shared/ui/kit/layout/app-shell/PhoneBar.tsx",
+      "modified": true
+    },
+    {
+      "item": "app-shell",
+      "registryPath": "src/shared/ui/layout/app-shell/ShellSidebar.tsx",
+      "path": "src/shared/ui/kit/layout/app-shell/ShellSidebar.tsx",
+      "modified": true
+    },
+    {
+      "item": "app-shell",
+      "registryPath": "src/shared/ui/layout/app-shell/SidebarResizeHandle.tsx",
+      "path": "src/shared/ui/kit/layout/app-shell/SidebarResizeHandle.tsx",
+      "modified": false
+    },
+    {
+      "item": "page",
+      "registryPath": "src/shared/ui/layout/page/chrome.tsx",
+      "path": "src/shared/ui/kit/layout/page/chrome.tsx",
+      "modified": true
+    },
+    {
+      "item": "page",
+      "registryPath": "src/shared/ui/layout/page/index.ts",
+      "path": "src/shared/ui/kit/layout/page/index.ts",
+      "modified": false
+    },
+    {
+      "item": "page",
+      "registryPath": "src/shared/ui/layout/page/Page.tsx",
+      "path": "src/shared/ui/kit/layout/page/Page.tsx",
+      "modified": true
+    },
+    {
+      "item": "page",
+      "registryPath": "src/shared/ui/layout/page/PageViews.tsx",
+      "path": "src/shared/ui/kit/layout/page/PageViews.tsx",
+      "modified": true
+    },
+    {
+      "item": "pane-frame",
+      "registryPath": "src/shared/ui/layout/pane-frame/index.ts",
+      "path": "src/shared/ui/kit/layout/pane-frame/index.ts",
+      "modified": false
+    },
+    {
+      "item": "pane-frame",
+      "registryPath": "src/shared/ui/layout/pane-frame/PaneFrame.tsx",
+      "path": "src/shared/ui/kit/layout/pane-frame/PaneFrame.tsx",
+      "modified": true
+    },
+    {
+      "item": "phone-tools",
+      "registryPath": "src/shared/ui/layout/phone-tools/index.ts",
+      "path": "src/shared/ui/kit/layout/phone-tools/index.ts",
+      "modified": true
+    },
+    {
+      "item": "phone-tools",
+      "registryPath": "src/shared/ui/layout/phone-tools/phone-tools.tsx",
+      "path": "src/shared/ui/kit/layout/phone-tools/phone-tools.tsx",
+      "modified": true
+    },
+    {
+      "item": "split-view",
+      "registryPath": "src/shared/ui/layout/split-view/index.ts",
+      "path": "src/shared/ui/kit/layout/split-view/index.ts",
+      "modified": false
+    },
+    {
+      "item": "split-view",
+      "registryPath": "src/shared/ui/layout/split-view/SplitRows.tsx",
+      "path": "src/shared/ui/kit/layout/split-view/SplitRows.tsx",
+      "modified": false
+    },
+    {
+      "item": "split-view",
+      "registryPath": "src/shared/ui/layout/split-view/SplitScreen.tsx",
+      "path": "src/shared/ui/kit/layout/split-view/SplitScreen.tsx",
+      "modified": true
+    },
+    {
+      "item": "split-view",
+      "registryPath": "src/shared/ui/layout/split-view/SplitView.tsx",
+      "path": "src/shared/ui/kit/layout/split-view/SplitView.tsx",
+      "modified": true
+    },
+    {
+      "item": "list-group-header",
+      "registryPath": "src/shared/ui/list-group-header.tsx",
+      "path": "src/shared/ui/kit/list-group-header.tsx",
+      "modified": true
+    },
+    {
+      "item": "list-more",
+      "registryPath": "src/shared/ui/list-more.tsx",
+      "path": "src/shared/ui/kit/list-more.tsx",
+      "modified": true
+    },
+    {
+      "item": "menu-item",
+      "registryPath": "src/shared/ui/menu-item.tsx",
+      "path": "src/shared/ui/kit/menu-item.tsx",
+      "modified": true
+    },
+    {
+      "item": "option-list",
+      "registryPath": "src/shared/ui/option-list.tsx",
+      "path": "src/shared/ui/kit/option-list.tsx",
+      "modified": true
+    },
+    {
+      "item": "page-state",
+      "registryPath": "src/shared/ui/page-state/InboxIllustration.tsx",
+      "path": "src/shared/ui/kit/page-state/InboxIllustration.tsx",
+      "modified": true
+    },
+    {
+      "item": "page-state",
+      "registryPath": "src/shared/ui/page-state/index.ts",
+      "path": "src/shared/ui/kit/page-state/index.ts",
+      "modified": false
+    },
+    {
+      "item": "page-state",
+      "registryPath": "src/shared/ui/page-state/PageState.tsx",
+      "path": "src/shared/ui/kit/page-state/PageState.tsx",
+      "modified": true
+    },
+    {
+      "item": "page-state",
+      "registryPath": "src/shared/ui/page-state/StateLandscape.tsx",
+      "path": "src/shared/ui/kit/page-state/StateLandscape.tsx",
+      "modified": true
+    },
+    {
+      "item": "pane-resize-handle",
+      "registryPath": "src/shared/ui/pane-resize-handle.tsx",
+      "path": "src/shared/ui/kit/pane-resize-handle.tsx",
+      "modified": false
+    },
+    {
+      "item": "person-avatar",
+      "registryPath": "src/shared/ui/person-avatar.tsx",
+      "path": "src/shared/ui/kit/person-avatar.tsx",
+      "modified": false
+    },
+    {
+      "item": "popover",
+      "registryPath": "src/shared/ui/popover.tsx",
+      "path": "src/shared/ui/kit/popover.tsx",
+      "modified": true
+    },
+    {
+      "item": "progress",
+      "registryPath": "src/shared/ui/progress.tsx",
+      "path": "src/shared/ui/kit/progress.tsx",
+      "modified": false
+    },
+    {
+      "item": "property-pill",
+      "registryPath": "src/shared/ui/property-pill.tsx",
+      "path": "src/shared/ui/kit/property-pill.tsx",
+      "modified": true
+    },
+    {
+      "item": "reading",
+      "registryPath": "src/shared/ui/reading/index.ts",
+      "path": "src/shared/ui/kit/reading/index.ts",
+      "modified": false
+    },
+    {
+      "item": "reading",
+      "registryPath": "src/shared/ui/reading/model/markdown.ts",
+      "path": "src/shared/ui/kit/reading/model/markdown.ts",
+      "modified": false
+    },
+    {
+      "item": "reading",
+      "registryPath": "src/shared/ui/reading/ui/ActivityFeed.tsx",
+      "path": "src/shared/ui/kit/reading/ui/ActivityFeed.tsx",
+      "modified": true
+    },
+    {
+      "item": "reading",
+      "registryPath": "src/shared/ui/reading/ui/DetailLayout.tsx",
+      "path": "src/shared/ui/kit/reading/ui/DetailLayout.tsx",
+      "modified": true
+    },
+    {
+      "item": "reading",
+      "registryPath": "src/shared/ui/reading/ui/MarkdownBody.tsx",
+      "path": "src/shared/ui/kit/reading/ui/MarkdownBody.tsx",
+      "modified": true
+    },
+    {
+      "item": "reorder",
+      "registryPath": "src/shared/ui/reorder/index.ts",
+      "path": "src/shared/ui/kit/reorder/index.ts",
+      "modified": false
+    },
+    {
+      "item": "reorder",
+      "registryPath": "src/shared/ui/reorder/order.ts",
+      "path": "src/shared/ui/kit/reorder/order.ts",
+      "modified": false
+    },
+    {
+      "item": "reorder",
+      "registryPath": "src/shared/ui/reorder/Reorder.tsx",
+      "path": "src/shared/ui/kit/reorder/Reorder.tsx",
+      "modified": false
+    },
+    {
+      "item": "reorder",
+      "registryPath": "src/shared/ui/reorder/use-row-reorder.ts",
+      "path": "src/shared/ui/kit/reorder/use-row-reorder.ts",
+      "modified": true
+    },
+    {
+      "item": "row-link",
+      "registryPath": "src/shared/ui/row-link.tsx",
+      "path": "src/shared/ui/kit/row-link.tsx",
+      "modified": false
+    },
+    {
+      "item": "search-tool",
+      "registryPath": "src/shared/ui/search-tool.tsx",
+      "path": "src/shared/ui/kit/search-tool.tsx",
+      "modified": true
+    },
+    {
+      "item": "segmented-control",
+      "registryPath": "src/shared/ui/segmented-control.tsx",
+      "path": "src/shared/ui/kit/segmented-control.tsx",
+      "modified": true
+    },
+    {
+      "item": "select",
+      "registryPath": "src/shared/ui/select.tsx",
+      "path": "src/shared/ui/kit/select.tsx",
+      "modified": false
+    },
+    {
+      "item": "separator",
+      "registryPath": "src/shared/ui/separator.tsx",
+      "path": "src/shared/ui/kit/separator.tsx",
+      "modified": false
+    },
+    {
+      "item": "settings",
+      "registryPath": "src/shared/ui/settings/AdminSurface.tsx",
+      "path": "src/shared/ui/kit/settings/AdminSurface.tsx",
+      "modified": true
+    },
+    {
+      "item": "settings",
+      "registryPath": "src/shared/ui/settings/index.ts",
+      "path": "src/shared/ui/kit/settings/index.ts",
+      "modified": true
+    },
+    {
+      "item": "settings",
+      "registryPath": "src/shared/ui/settings/SettingsPage.tsx",
+      "path": "src/shared/ui/kit/settings/SettingsPage.tsx",
+      "modified": true
+    },
+    {
+      "item": "settings",
+      "registryPath": "src/shared/ui/settings/SettingsRow.tsx",
+      "path": "src/shared/ui/kit/settings/SettingsRow.tsx",
+      "modified": false
+    },
+    {
+      "item": "settings",
+      "registryPath": "src/shared/ui/settings/SettingsSection.tsx",
+      "path": "src/shared/ui/kit/settings/SettingsSection.tsx",
+      "modified": false
+    },
+    {
+      "item": "sheet",
+      "registryPath": "src/shared/ui/sheet.tsx",
+      "path": "src/shared/ui/kit/sheet.tsx",
+      "modified": false
+    },
+    {
+      "item": "side-panel",
+      "registryPath": "src/shared/ui/side-panel/index.ts",
+      "path": "src/shared/ui/kit/side-panel/index.ts",
+      "modified": false
+    },
+    {
+      "item": "side-panel",
+      "registryPath": "src/shared/ui/side-panel/WithPanel.tsx",
+      "path": "src/shared/ui/kit/side-panel/WithPanel.tsx",
+      "modified": true
+    },
+    {
+      "item": "sidebar",
+      "registryPath": "src/shared/ui/sidebar.tsx",
+      "path": "src/shared/ui/kit/sidebar.tsx",
+      "modified": true
+    },
+    {
+      "item": "skeleton",
+      "registryPath": "src/shared/ui/skeleton.tsx",
+      "path": "src/shared/ui/kit/skeleton.tsx",
+      "modified": false
+    },
+    {
+      "item": "sortable-head",
+      "registryPath": "src/shared/ui/sortable-head.tsx",
+      "path": "src/shared/ui/kit/sortable-head.tsx",
+      "modified": false
+    },
+    {
+      "item": "spinner",
+      "registryPath": "src/shared/ui/spinner.tsx",
+      "path": "src/shared/ui/kit/spinner.tsx",
+      "modified": true
+    },
+    {
+      "item": "switch",
+      "registryPath": "src/shared/ui/switch.tsx",
+      "path": "src/shared/ui/kit/switch.tsx",
+      "modified": false
+    },
+    {
+      "item": "table",
+      "registryPath": "src/shared/ui/table.tsx",
+      "path": "src/shared/ui/kit/table.tsx",
+      "modified": true
+    },
+    {
+      "item": "textarea",
+      "registryPath": "src/shared/ui/textarea.tsx",
+      "path": "src/shared/ui/kit/textarea.tsx",
+      "modified": false
+    },
+    {
+      "item": "toast",
+      "registryPath": "src/shared/ui/toast.tsx",
+      "path": "src/shared/ui/kit/toast.tsx",
+      "modified": false
+    },
+    {
+      "item": "tool-dot",
+      "registryPath": "src/shared/ui/tool-dot.tsx",
+      "path": "src/shared/ui/kit/tool-dot.tsx",
+      "modified": false
+    },
+    {
+      "item": "tooltip",
+      "registryPath": "src/shared/ui/tooltip.tsx",
+      "path": "src/shared/ui/kit/tooltip.tsx",
+      "modified": false
+    }
+  ]
+}

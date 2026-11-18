@@ -2,8 +2,8 @@ import type { MouseEvent } from 'react';
 import { cn } from 'cn';
 import { avatarSource, derivedAvatar, drawnAvatarSource, useMemberPicture } from '@/shared/lib/avatar';
 import { useOpenPanel } from '@/shared/lib/panel';
-import { PersonAvatar as KitPersonAvatar } from '@/shared/ui/person-avatar';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
+import { PersonAvatar as KitPersonAvatar } from '@/shared/ui/kit/person-avatar';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/kit/tooltip';
 
 /** A member's own page (구성원's profile), which a desktop opens as a dialog over the page in view. */
 export const memberHref = (id: string) => `/workspace/members/${encodeURIComponent(id)}`;

@@ -9,11 +9,11 @@ import {
 import { sessionOptions } from '@/shared/auth';
 import {
   BranchIcon, CalendarIcon, ChartNoAxesColumnIcon, ListChecksIcon, NotesIcon, ProjectsIcon, RepeatIcon, TagIcon, UserIcon, type Icon,
-} from '@/shared/ui/icon';
-import { InfoPill } from '@/shared/ui/info-pill';
+} from '@/shared/ui/kit/icon';
+import { InfoPill } from '@/shared/ui/kit/info-pill';
 import { PersonAvatar } from '@/shared/ui/person';
-import { DatePill, OptionPill, pillVariants } from '@/shared/ui/property-pill';
-import type { DetailSection } from '@/shared/ui/reading';
+import { DatePill, OptionPill, pillVariants } from '@/shared/ui/kit/property-pill';
+import type { DetailSection } from '@/shared/ui/kit/reading';
 import { WorkItemEffort } from './WorkItemEffort';
 
 type Choice = { value: string; label: string; icon?: ReactNode };

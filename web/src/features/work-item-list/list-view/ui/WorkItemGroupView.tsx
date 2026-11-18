@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react';
-import { ListGroupHeader } from '@/shared/ui/list-group-header';
+import { ListGroupHeader } from '@/shared/ui/kit/list-group-header';
 import type { WorkItemGroup } from '../../model/groups';
 
 /** One group of the list: its band (fold chevron, mark, name, count, and a + that makes a work item in it), then its rows. */

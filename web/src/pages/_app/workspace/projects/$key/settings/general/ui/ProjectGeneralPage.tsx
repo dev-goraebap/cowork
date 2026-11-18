@@ -5,19 +5,19 @@ import {
   PROJECT_KEY, PROJECT_NAME_MAX, changeProject, editProject, isProjectError, projectOptions, refreshProjects, useIsWorkspaceAdmin,
   type Project, type ProjectChange, type ProjectDraft,
 } from '@/entities/project';
-import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/alert';
-import { Button } from '@/shared/ui/button';
-import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
-import { Field, FieldContent, FieldLabel, FieldTitle } from '@/shared/ui/field';
-import { FormDialog } from '@/shared/ui/form-dialog';
-import { InfoIcon, TriangleAlertIcon } from '@/shared/ui/icon';
-import { Input } from '@/shared/ui/input';
+import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/kit/alert';
+import { Button } from '@/shared/ui/kit/button';
+import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
+import { Field, FieldContent, FieldLabel, FieldTitle } from '@/shared/ui/kit/field';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
+import { InfoIcon, TriangleAlertIcon } from '@/shared/ui/kit/icon';
+import { Input } from '@/shared/ui/kit/input';
 import { MarkNameField } from '@/shared/ui/mark-picker';
-import { PageState } from '@/shared/ui/page-state';
+import { PageState } from '@/shared/ui/kit/page-state';
 import { MarkdownRead, RichDraft } from '@/shared/ui/rich-body';
 import { useMarkdownDraft } from '@/shared/ui/rich-body/markdown-draft';
-import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
-import { Spinner } from '@/shared/ui/spinner';
+import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/kit/settings';
+import { Spinner } from '@/shared/ui/kit/spinner';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 
 type Crumb = { label: string; href?: string; icon?: string };

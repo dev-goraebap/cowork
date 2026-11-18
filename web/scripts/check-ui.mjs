@@ -14,16 +14,16 @@ const THEME = path.join(SRC, 'app', 'theme');
 // icon and utils checks apply to it.
 const EDITOR = path.join(SRC, 'shared', 'lib', 'rich-document');
 const SHARED_UI = path.join(SRC, 'shared', 'ui');
-// Registry items that land as a folder in shared/ui (npx shadcn add @webcraft/<name>). Add a name when you receive one.
-const KIT_FOLDERS = ['app-shell', 'body-edit', 'boot-cover', 'compose', 'document', 'editor', 'filter', 'icon', 'page', 'page-state',
-  'peek', 'reading', 'reorder', 'settings', 'side-panel'];
+// 키트(Webcraft 레지스트리에서 받은 부품, shadcn을 다듬은 것 포함)는 shared/ui/kit에 둔다. 키트는 원본의 규칙을 따르므로
+// 화면 규칙을 걸지 않는다. 제품이 만든 부품(shared/ui의 나머지)에는 건다.
+const KIT = path.join(SHARED_UI, 'kit');
 
 const files = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
   const file = path.join(dir, entry.name);
   return entry.isDirectory() ? files(file) : /\.(tsx?|css)$/.test(file) ? [file] : [];
 });
 const inside = (file, dir) => file === dir || file.startsWith(dir + path.sep);
-const isKitPart = file => (path.dirname(file) === SHARED_UI && file.endsWith('.tsx')) || KIT_FOLDERS.some(name => inside(file, path.join(SHARED_UI, name)));
+const isKitPart = file => inside(file, KIT);
 // Pictures drawn in code, whose colours are the picture's own rather than the interface's; and the palette members pick
 // marks' colours from, which are data the server keeps (#RRGGBB), not the interface's.
 const PICTURES = [path.join('icons', 'solar-icons.ts'), path.join('avatar', 'model', 'drawn-avatars.ts'), path.join('color-palette', 'palette.ts'),

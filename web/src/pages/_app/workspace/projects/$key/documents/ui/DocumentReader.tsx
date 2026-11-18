@@ -16,16 +16,16 @@ import { sessionOptions } from '@/shared/auth';
 import { stampText } from '@/shared/lib/date-stamp';
 import { useOpenEditor } from '@/shared/lib/panel';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { ActionMenu, type MenuAction } from '@/shared/ui/action-menu';
-import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
+import { ActionMenu, type MenuAction } from '@/shared/ui/kit/action-menu';
+import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
 import {
   CalendarIcon, ClockIcon, DownloadIcon, FolderIcon, GripIcon, LockIcon, PaletteIcon, SettingsIcon, TagIcon, Trash2Icon,
-} from '@/shared/ui/icon';
-import { InfoPill } from '@/shared/ui/info-pill';
-import { DetailSurface } from '@/shared/ui/detail-surface';
-import { PageState } from '@/shared/ui/page-state';
+} from '@/shared/ui/kit/icon';
+import { InfoPill } from '@/shared/ui/kit/info-pill';
+import { DetailSurface } from '@/shared/ui/kit/detail-surface';
+import { PageState } from '@/shared/ui/kit/page-state';
 import { PersonAvatar } from '@/shared/ui/person';
-import { DetailLayout, type DetailSection } from '@/shared/ui/reading';
+import { DetailLayout, type DetailSection } from '@/shared/ui/kit/reading';
 import {
   BodyOutline, BodyOutlineProvider, BodyToolsContext, BodyVersions, RichBody, blockCommentsOf, useBodyHeadings, useRevealQuote, type BlockComments,
 } from '@/shared/ui/rich-body';

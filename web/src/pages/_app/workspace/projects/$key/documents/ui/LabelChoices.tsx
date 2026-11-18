@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { createDocumentLabel, type DocumentLabel } from '@/entities/document';
 import { useIsMobile } from '@/shared/lib/use-mobile';
 import { cn } from 'cn';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/kit/button';
 import { ColorPalette, DEFAULT_MARK_COLOR } from '@/shared/ui/color-palette';
-import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from '@/shared/ui/command';
+import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from '@/shared/ui/kit/command';
 import { LabelDot } from '@/shared/ui/label-dot/LabelDot';
-import { Spinner } from '@/shared/ui/spinner';
+import { Spinner } from '@/shared/ui/kit/spinner';
 
 /**
  * 문서 라벨 고르기: 이름으로 찾고 여러 개를 고른다. 찾는 이름의 라벨이 없고 라벨을 관리할 수 있으면(canCreate) 그 자리에서 색을 골라

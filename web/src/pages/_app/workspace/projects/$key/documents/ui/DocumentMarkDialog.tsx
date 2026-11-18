@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Mark } from '@/entities/document';
-import { Button } from '@/shared/ui/button';
-import { FormDialog } from '@/shared/ui/form-dialog';
+import { Button } from '@/shared/ui/kit/button';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
 import { MarkPicker } from '@/shared/ui/mark-picker';
 
 export function DocumentMarkDialog({ name, value, isPending = false, onSave, onClose }: {

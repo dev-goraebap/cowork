@@ -1,6 +1,6 @@
 import { cn } from 'cn';
-import { Button } from '@/shared/ui/button';
-import { CheckIcon, type Icon } from '@/shared/ui/icon';
+import { Button } from '@/shared/ui/kit/button';
+import { CheckIcon, type Icon } from '@/shared/ui/kit/icon';
 import { iconOf } from './icon-of';
 
 /**

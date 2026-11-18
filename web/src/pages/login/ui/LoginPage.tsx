@@ -2,11 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 import { useState, type FormEvent, type ReactNode } from 'react';
 import { sendCommand } from '@/shared/api';
 import { BrandWordmark } from '@/shared/ui/brand';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
-import { Field, FieldLabel } from '@/shared/ui/field';
-import { Input } from '@/shared/ui/input';
-import { Spinner } from '@/shared/ui/spinner';
+import { Button } from '@/shared/ui/kit/button';
+import { Card } from '@/shared/ui/kit/card';
+import { Field, FieldLabel } from '@/shared/ui/kit/field';
+import { Input } from '@/shared/ui/kit/input';
+import { Spinner } from '@/shared/ui/kit/spinner';
 import { AuthBackground } from './AuthBackground';
 import { DevLogin } from './DevLogin';
 

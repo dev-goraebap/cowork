@@ -1,6 +1,6 @@
 import { useState, type CSSProperties, type ReactElement, type ReactNode } from 'react';
 import { cn } from 'cn';
-import { AdaptivePopover as KitAdaptivePopover } from '@/shared/ui/adaptive-popover';
+import { AdaptivePopover as KitAdaptivePopover } from '@/shared/ui/kit/adaptive-popover';
 
 // The widths the pages ask for, as classes; another width is the caller's measure, set as it is.
 const WIDTHS: Record<string, string> = {

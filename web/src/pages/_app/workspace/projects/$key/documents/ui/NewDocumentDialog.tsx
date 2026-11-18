@@ -2,10 +2,10 @@ import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useCreateBoxDocument, type DocumentLabel } from '@/entities/document';
 import type { JSONNode } from '@/shared/lib/rich-document';
-import { ComposeSurface } from '@/shared/ui/compose';
-import { TagIcon } from '@/shared/ui/icon';
+import { ComposeSurface } from '@/shared/ui/kit/compose';
+import { TagIcon } from '@/shared/ui/kit/icon';
 import { MarkPicker } from '@/shared/ui/mark-picker';
-import { PropertyPill } from '@/shared/ui/property-pill';
+import { PropertyPill } from '@/shared/ui/kit/property-pill';
 import { RichDraft, useDraftFiles } from '@/shared/ui/rich-body';
 import { LabelChoices } from './LabelChoices';
 

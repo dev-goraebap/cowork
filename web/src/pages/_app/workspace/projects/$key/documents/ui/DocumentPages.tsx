@@ -2,8 +2,8 @@ import { useState } from 'react';
 import type { DocumentRow } from '@/entities/document';
 import { rowReorderStyles as rows, useRowReorder } from '@/shared/lib/row-reorder';
 import { cn } from 'cn';
-import { Button } from '@/shared/ui/button';
-import { ChevronDownIcon, ChevronRightIcon, GripIcon } from '@/shared/ui/icon';
+import { Button } from '@/shared/ui/kit/button';
+import { ChevronDownIcon, ChevronRightIcon, GripIcon } from '@/shared/ui/kit/icon';
 import { MarkIcon } from '@/shared/ui/mark-picker';
 
 /** 페이지 트리의 한 줄 링크: 앱 사이드바 메뉴 줄과 같은 모양, 지금 페이지는 진한 바탕. */

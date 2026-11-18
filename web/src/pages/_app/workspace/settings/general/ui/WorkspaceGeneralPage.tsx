@@ -3,8 +3,8 @@ import { Link } from '@tanstack/react-router';
 import { projectsOptions } from '@/entities/project';
 import { labelsOptions, typesOptions, WorkItemTypeIcon } from '@/entities/work-item';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
-import { Button } from '@/shared/ui/button';
-import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
+import { Button } from '@/shared/ui/kit/button';
+import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/kit/settings';
 
 type Crumb = { label: string; href?: string; icon?: string };
 

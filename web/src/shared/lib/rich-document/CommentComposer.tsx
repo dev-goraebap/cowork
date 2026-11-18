@@ -1,8 +1,8 @@
 import {useEffect,useRef,useState} from 'react';
 import type {Editor} from '@tiptap/react';
-import {Button} from '@/shared/ui/button';
-import {Dialog,DialogContent,DialogFooter,DialogHeader,DialogTitle} from '@/shared/ui/dialog';
-import {Textarea} from '@/shared/ui/textarea';
+import {Button} from '@/shared/ui/kit/button';
+import {Dialog,DialogContent,DialogFooter,DialogHeader,DialogTitle} from '@/shared/ui/kit/dialog';
+import {Textarea} from '@/shared/ui/kit/textarea';
 import type {CommentAnchor} from './comments';
 
 /** 문장 · 블록에 댓글을 쓰는 작은 창. 닫으면 연 자리(없으면 본문)로 초점을 돌린다. Ctrl/⌘+Enter로 등록한다. */

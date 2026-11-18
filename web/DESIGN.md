@@ -6,7 +6,7 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 
 1. 키트 부품의 props와 변형(Button의 `view` · `view-active` · `tool` · `create`, Badge의 `label` 등)
 2. 테마 토큰 `src/app/theme/tailwind.css`(`:root` · `:root[data-theme=dark]`, `@theme`). 색 테마(화면 설정)는 기준 색만 `src/app/theme/color-tokens.ts`가 `html`에 덮어쓰고, 회색 · 선 · 초점 색은 tailwind.css가 기준 색에서 섞어 만든다
-3. 키트 부품의 코드(`src/shared/ui`): 받은 뒤로는 우리 코드다. 고친 곳에는 까닭을 주석으로 단다
+3. 키트 부품의 코드(`src/shared/ui/kit`): 받은 뒤로는 우리 코드다. 고친 곳에는 까닭을 주석으로 달고, `npm run kit:check -- --write`로 `kit.lock.json`에 고친 것으로 적는다(`npm run kit:check`가 레지스트리 원본과 비교한다)
 
 어느 단계로도 안 되면 꼼수를 쓰지 않고 사용자에게 묻는다.
 
@@ -14,11 +14,10 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 
 | 범위 | 막는 것 |
 | :--- | :--- |
-| 모든 파일 | FSD 레이어 위반(아래 레이어가 위를, 같은 레이어의 다른 슬라이스를 가져다 씀), `lucide-react` import(아이콘은 `@/shared/ui/icon`), `@/shared/lib/utils` import(`cn`은 `cn` 패키지) |
+| 모든 파일 | FSD 레이어 위반(아래 레이어가 위를, 같은 레이어의 다른 슬라이스를, 페이지가 옆 주소의 것을 가져다 씀), `lucide-react` import(아이콘은 `@/shared/ui/kit/icon`), `@/shared/lib/utils` import(`cn`은 `cn` 패키지) |
 | 화면 파일 | 팔레트 색 클래스(`bg-red-500` …), `space-x/y-*`, `dark:`로 색 덮어쓰기, `style={{}}`(데이터 값이면 같은 줄이나 윗줄에 `// check-ui: allow-style <사유>`), `!important`, 색 값 직접 쓰기, `*.module.css` import |
-| 빠지는 파일 | 키트 부품(`shared/ui` 바로 아래의 `.tsx`와 `KIT_FOLDERS`의 폴더), 본문 편집기(`shared/lib/rich-document`, 자기 전역 스타일시트), 테마(`app/theme`)는 화면 파일 규칙에서 빠진다. 색 값 규칙은 코드로 그린 그림과 표식 팔레트(`color-palette/palette.ts`, 서버가 `#RRGGBB`로 저장하는 데이터 색)도 뺀다 |
+| 빠지는 파일 | 키트 부품(`shared/ui/kit`), 본문 편집기(`shared/lib/rich-document`, 자기 전역 스타일시트), 테마(`app/theme`)는 화면 파일 규칙에서 빠진다. 색 값 규칙은 코드로 그린 그림과 표식 팔레트(`color-palette/palette.ts`, 서버가 `#RRGGBB`로 저장하는 데이터 색)도 뺀다 |
 
-레지스트리에서 폴더로 받은 부품이 늘면 `KIT_FOLDERS`에 이름을 더한다.
 
 ## 면 단계 (2026-11-04 사용자 결정)
 
@@ -48,7 +47,7 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 | 스크롤바 | 앱의 가는 스크롤바(8px, 트랙 없음, 평소 옅고 가리키면 진해짐), 가로 · 세로 모두. `app/styles/scrollbar.css` |
 | 모양 설정 | 화면 설정(`/profile/display`)의 색상 테마(stone과 6종) · 모드 · 레이아웃(inset · split) · 목록 높이 · 글꼴(고딕 · 명조와 명조 적용 범위)은 `shared/lib/appearance`(localStorage `cowork-appearance`)에 둔다: 고르면 바로 바뀌고 이 브라우저에만 남는다. 목록 높이 촘촘하게는 `html[data-density=compact]`이고 화면은 `compact:` 변형으로 줄 높이를 줄인다(업무 리스트 · 테이블, 프로젝트 목록, 알림함 줄) |
 
-## 앱 셸 (`app/layout/AppFrame`, `shared/ui/layout/app-shell`)
+## 앱 셸 (`app/layout/AppFrame`, `shared/ui/kit/layout/app-shell`)
 
 생성 양식 · 공통 다이얼로그 · Split · Inset · 라우트 마스킹은 Webcraft design-system 지침과 [제품 구현 경로](../.agents/skills/cowork-runtime/SKILL.md)에서 사용 기준과 제품 구현을 함께 찾는다. 셸의 공통 구조는 `app-layout.md`를 따른다. 새 화면은 해당 구현을 사용하고 실제 제품 화면에서 검증한다.
 
@@ -71,9 +70,9 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 | 사람 아닌 보낸 이 | 시스템 알림처럼 사람이 아닌 보낸 이는 같은 자리의 둥근 회색 칸에 회사 심볼(`BrandMark`) |
 | 마크 피커 | 뷰 · 프로젝트의 아이콘과 색은 `shared/ui/mark-picker`의 `MarkPicker`(BIT의 피커): 검색(영어 이름 · 한글 단어), 16색 팔레트(`color-palette/palette.ts`의 `PALETTE`), 자주 쓰는 아이콘, Solar 전체(처음 열 때 `virtual:solar-set`로 따로 불러옴). 데스크톱 팝오버, 휴대폰 바텀시트 |
 | 팝오버 · 메뉴 | 곁에 여는 것은 키트 `AdaptivePopover`(`composed-components.md`). `shared/ui/popup`의 `AdaptivePopover`는 옛 API(`label` · `content(close)` · `width`)를 키트 것에 잇는다. … 메뉴는 키트 `ActionMenu`, 줄 끝은 `RowMenu`(`size="row"`). 모든 항목에 아이콘을 둔다. 메뉴 줄은 데스크톱 36px · 16px 아이콘, 휴대폰 48px · 20px 아이콘, 팝오버 안쪽 6px, 시트는 좌우 12px · 아래 20px |
-| 아이콘 | 화면은 `@/shared/ui/icon`의 lucide 식 이름(`SearchIcon` …)과 `chosen`을 쓴다(`icons.md`, `npm run icons:ui`). 서버가 저장하는 의미 이름(프로젝트 · 라벨 · 뷰의 표식, 메뉴 데이터)은 `@/shared/ui/icons`의 `solarIcon(name)`(`npm run icons:generate`) |
+| 아이콘 | 화면은 `@/shared/ui/kit/icon`의 lucide 식 이름(`SearchIcon` …)과 `chosen`을 쓴다(`icons.md`, `npm run icons:ui`). 서버가 저장하는 의미 이름(프로젝트 · 라벨 · 뷰의 표식, 메뉴 데이터)은 `@/shared/ui/icons`의 `solarIcon(name)`(`npm run icons:generate`) |
 
-## 페이지 (`shared/ui/layout/page`)
+## 페이지 (`shared/ui/kit/layout/page`)
 
 머리 줄 · 툴바 · 본문의 배치는 `layout-patterns.md`, 검색 · 필터 · 표시 도구는 `search-filter.md`를 따른다. 키트 `Page`가 머리 줄(데스크톱 52px, 경로 · 동작 · 만들기), 툴바(뷰 · 탭이 있을 때 44px, 휴대폰 60px 이상), `below`(걸린 필터 줄), 점 무늬 본문(`bg-dots`), `footer`를 묶는다. 페이지는 경로 · 뷰 · 도구 · 만들기만 넘긴다.
 
@@ -85,7 +84,7 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 | 만들기 | Button `create` 변형: 10px 초타원, 600 굵기, 강조색의 은은한 발광 그림자. 머리 줄의 만들기와 휴대폰 FAB(56px). 양식의 제출은 둥근 기본 버튼, 취소는 `ghost` |
 | 페이지 안내 | 페이지 전체의 처리 상태 · 오류는 `layout-patterns.md`의 배너 줄 자리에 키트 `Alert`로 둔다(전용 배너 부품은 없다). 입력 항목의 오류와 본문 안내는 해당 내용 곁에 둔다 |
 | 빈 · 오류 화면 | `PageState`(BIT의 상태 화면, `data-states.md`): 펜 선 풍경 그림 넷 종류 × 3장 — 빈 화면(`empty`), 검색 결과 없음(`search`), 찾을 수 없음(`not-found`, 404), 불러오지 못함(`error`, 500). 화면이 뜰 때 3장 중 하나를 무작위로. 메시지는 0.42초 동안 6px 아래에서 떠오르고, 받아야 하는 그림은 도착하면 0.6초에 걸쳐 나타난다(본 그림은 바로). 메시지는 창 높이의 32%에서 시작해 페이지를 옮겨도 같은 높이(방이 좁으면 그 안에서 가장 낮게, 패널 · 대화상자는 `isCompact`로 위에). 그림의 선은 `--icon-muted`, 파란 표시는 `--illustration-accent`. 제목 1.125rem · 500을 그림과 같은 잉크로, 설명은 한 단계 연하게(`text-state-description`, 최대 28rem) — 글자가 그림보다 진하지 않게. 화면 한 칸을 채우는 빈 자리(페이지 · 인박스 오른쪽)에만 쓰고, 설정 카드 안의 한 줄 · 작은 패널 속 안내는 글로 둔다 |
-| List-Detail (목록-상세 분할) | 알림함(전체 · 결재 · 공지 · 일정) · 공지사항 · 회의록은 `shared/ui/layout/split-view`의 `SplitView`. 데스크톱은 페이지의 머리 줄 · 툴바 · 걸린 필터가 왼쪽 목록 칸(따로 스크롤, 구분선을 끌거나 키보드로 560~720px, 처음은 560px이고 바꾼 너비는 이 브라우저에 남음, 최대 58%) 위에만 있고, 오른쪽 고른 항목 줄(`SplitDetail`, 머리 줄과 같은 52px · 같은 선)이 그 머리 줄과 나란하다. 줄 왼쪽에 고른 것을 푸는 꺾쇠(‹)와 무엇인지(결재 · 공지사항 · HOH-12), 오른쪽에 그 메뉴와 "페이지로 열기"(`OpenPageButton`), 내용은 그 아래에서 스크롤. 고르기 전 오른쪽은 점 무늬 위에 편지가 담긴 알림함 그림(`InboxIllustration`)과 선택 안내. 목록이 비거나 오류면 왼쪽에 해당 `PageState`. 고른 항목은 주소에 실린다(`/notifications/{id}`, `/approvals/{id}`; 목록 주소와 한 페이지라 목록 · 필터가 그대로). 신청의 단독 페이지는 `/requests/{id}`. 휴대폰은 목록만, 고르면 그 항목의 페이지(머리 줄에 메뉴와 "페이지로 열기"). 알림의 상세는 알림이 가리키는 것(신청 · 공지 · 일정 · 업무)을 그 자리에 보이고, 그 밖이나 사라진 대상은 알림 자체 |
+| List-Detail (목록-상세 분할) | 알림함(전체 · 결재 · 공지 · 일정) · 공지사항 · 회의록은 `shared/ui/kit/layout/split-view`의 `SplitView`. 데스크톱은 페이지의 머리 줄 · 툴바 · 걸린 필터가 왼쪽 목록 칸(따로 스크롤, 구분선을 끌거나 키보드로 560~720px, 처음은 560px이고 바꾼 너비는 이 브라우저에 남음, 최대 58%) 위에만 있고, 오른쪽 고른 항목 줄(`SplitDetail`, 머리 줄과 같은 52px · 같은 선)이 그 머리 줄과 나란하다. 줄 왼쪽에 고른 것을 푸는 꺾쇠(‹)와 무엇인지(결재 · 공지사항 · HOH-12), 오른쪽에 그 메뉴와 "페이지로 열기"(`OpenPageButton`), 내용은 그 아래에서 스크롤. 고르기 전 오른쪽은 점 무늬 위에 편지가 담긴 알림함 그림(`InboxIllustration`)과 선택 안내. 목록이 비거나 오류면 왼쪽에 해당 `PageState`. 고른 항목은 주소에 실린다(`/notifications/{id}`, `/approvals/{id}`; 목록 주소와 한 페이지라 목록 · 필터가 그대로). 신청의 단독 페이지는 `/requests/{id}`. 휴대폰은 목록만, 고르면 그 항목의 페이지(머리 줄에 메뉴와 "페이지로 열기"). 알림의 상세는 알림이 가리키는 것(신청 · 공지 · 일정 · 업무)을 그 자리에 보이고, 그 밖이나 사라진 대상은 알림 자체 |
 
 ## 관리 페이지 (오피스 관리 · 인스턴스 · 프로젝트 관리)
 
@@ -95,11 +94,11 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 | 상세 | 줄은 `DetailLink`로 연다: 데스크톱은 목록 위 60rem 대화상자, 휴대폰 · 새로고침은 자기 페이지. 상세 · 양식은 설정 열(제목 · 한 줄 · `SettingsSection`)이고 동작은 페이지의 바닥 줄, 대화상자에서는 그 끝에 둔다(각 관리 페이지의 `AdminSurface`) |
 | 사람 고르기 · 강제 취소 | 이름으로 사람을 고르는 칸은 `PersonSearch`(`features/approval-line-editor`), 구성원 신청을 관리자가 닫는 것은 `AdminCancelDialog`(`features/admin-cancel`, 사유 필수) |
 | 행의 동작 | 줄 끝의 …(`RowMenu`): 수정 · 삭제 |
-| 기록 열어 보기 | 줄이 연 기록(활동 · 오류 · 구성원별 알림)은 목록 옆 `WithPanel`(`shared/ui/side-panel`), 사실은 `Facts`(이름과 값). 수치 타일 · 차트는 올린 면, 막대 · 선은 SVG로 그리고 색은 업무 표식 토큰(`fill-mark-*` · `stroke-mark-*`)을 쓴다 |
-| 순서 바꾸기 (2026-11-04 사용자 결정) | 순서가 있는 줄은 모두 BIT의 `useRowReorder`(`shared/lib/row-reorder`, 키트 `shared/ui/reorder`)로만 바꾼다: 줄 앞 손잡이(`GripIcon`)를 끌면 줄이 들리고, 제자리는 점선 빈칸, 다른 줄이 비켜 미끄러지며, 목록 끝에서는 저절로 스크롤, 놓으면 빈칸으로 내려앉는다. Esc는 취소, 손잡이에서 Alt + ↑ / ↓로도 옮기고 단계마다 읽어 준다. 새 순서는 바로 보내고 실패하면 되돌린다. 표 대신 올린 면 위 줄 목록(데스크톱은 열 머리 줄을 위에)으로 그린다. 트리(조직)는 부모마다 목록 하나라 같은 부모 안에서만 옮기고 하위가 함께 들린다. 위로 · 아래로 메뉴는 두지 않는다 |
+| 기록 열어 보기 | 줄이 연 기록(활동 · 오류 · 구성원별 알림)은 목록 옆 `WithPanel`(`shared/ui/kit/side-panel`), 사실은 `Facts`(이름과 값). 수치 타일 · 차트는 올린 면, 막대 · 선은 SVG로 그리고 색은 업무 표식 토큰(`fill-mark-*` · `stroke-mark-*`)을 쓴다 |
+| 순서 바꾸기 (2026-11-04 사용자 결정) | 순서가 있는 줄은 모두 BIT의 `useRowReorder`(`shared/lib/row-reorder`, 키트 `shared/ui/kit/reorder`)로만 바꾼다: 줄 앞 손잡이(`GripIcon`)를 끌면 줄이 들리고, 제자리는 점선 빈칸, 다른 줄이 비켜 미끄러지며, 목록 끝에서는 저절로 스크롤, 놓으면 빈칸으로 내려앉는다. Esc는 취소, 손잡이에서 Alt + ↑ / ↓로도 옮기고 단계마다 읽어 준다. 새 순서는 바로 보내고 실패하면 되돌린다. 표 대신 올린 면 위 줄 목록(데스크톱은 열 머리 줄을 위에)으로 그린다. 트리(조직)는 부모마다 목록 하나라 같은 부모 안에서만 옮기고 하위가 함께 들린다. 위로 · 아래로 메뉴는 두지 않는다 |
 | 짧은 양식 · 확인 | 몇 칸짜리 추가 · 수정 · 변경은 `FormDialog`, 되돌릴 수 없는 일은 `ConfirmDialog`. 쓰는 사람이 있어 삭제를 막을 때는 `ConfirmDialog`를 동작 없이 열어 까닭과 '확인'만 둔다. 제목 · 본문이 있는 것은 `ComposeSurface` |
 
-## 설정 페이지 (`shared/ui/settings`)
+## 설정 페이지 (`shared/ui/kit/settings`)
 
 내 계정 · 관리 구역처럼 값을 보고 정하는 페이지는 목록 페이지가 아니라 설정 페이지 레이아웃(`layout-patterns.md`의 설정)을 쓴다.
 
@@ -108,7 +107,7 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 | 틀 | `SettingsPage`(머리 줄 + `SettingsBody`): 가운데 한 열(최대 720px, 위아래 40px · 휴대폰 24px, 좌우 16px). 맨 위에 제목(24px, 이 페이지의 h1)과 한 줄 설명. `Page`를 따로 그리는 곳(프로젝트 설정)은 `SettingsBody`만 |
 | 묶음 · 줄 | `SettingsSection`: 작은 이름(보조 글자색 · 500, 끝에 묶음의 동작), 아래 `Card` 안 `FieldGroup`(줄 사이에만 선, `divide-y`), 필요하면 카드 아래 메모. `SettingsRow`: 이름과 설명, 끝에 값이나 컨트롤(44px 이상, 안쪽 12px). 값이 없으면 `-`. 넓은 컨트롤은 `wide`로 좁을 때 이름 아래로 내린다 |
 | 대화상자 | 짧은 양식은 `FormDialog`(데스크톱은 화면 가운데 최대 27.5rem 대화상자, 안쪽 16px; 휴대폰은 바텀시트), 확인은 `ConfirmDialog`. 상세(`DetailSurface`) · 작성(`ComposeSurface`) · 전역 검색 대화상자는 화면 위 12dvh(검색은 12%)에서 열고 최대 76dvh, 넘치면 본문만 스크롤한다. 공통 기준은 `dialog.md` |
-| 만들기 양식 | 제목 · 본문이 있는 것의 만들기 · 고치기(업무, 일정, 공지, 회의록, 주간보고, 문서, 프로젝트)는 `shared/ui/compose`의 `ComposeSurface`(`creation-form.md`). 제목은 테두리 없는 큰 글씨(`ComposeTitle`), 본문은 `DraftBody`(`RichDraft`; Markdown으로 저장하는 본문도 같은 편집기를 쓰고 저장할 때 바꾼다), 그 아래 속성 알약(`PropertyPill` · `OptionPill` · `DatePill` · `EventTimePill`; 24px, 휴대폰 44px). 표식이 있는 것(문서 · 프로젝트)은 제목 앞에 `MarkPicker`. 데스크톱 대화상자는 최대 45rem(머리에 놓일 곳 칩 · 이름 · 크게 보기 · 닫기, 바닥에 만들기, Ctrl/⌘+Enter), 데스크톱 페이지는 45rem 열 끝에 취소 · 만들기, 휴대폰은 늘 페이지. 고치기는 '저장', 반복 일정은 저장할 때 적용 범위를 묻는다. 계속 만들기는 지금 어느 양식에도 두지 않는다 |
+| 만들기 양식 | 제목 · 본문이 있는 것의 만들기 · 고치기(업무, 일정, 공지, 회의록, 주간보고, 문서, 프로젝트)는 `shared/ui/kit/compose`의 `ComposeSurface`(`creation-form.md`). 제목은 테두리 없는 큰 글씨(`ComposeTitle`), 본문은 `DraftBody`(`RichDraft`; Markdown으로 저장하는 본문도 같은 편집기를 쓰고 저장할 때 바꾼다), 그 아래 속성 알약(`PropertyPill` · `OptionPill` · `DatePill` · `EventTimePill`; 24px, 휴대폰 44px). 표식이 있는 것(문서 · 프로젝트)은 제목 앞에 `MarkPicker`. 데스크톱 대화상자는 최대 45rem(머리에 놓일 곳 칩 · 이름 · 크게 보기 · 닫기, 바닥에 만들기, Ctrl/⌘+Enter), 데스크톱 페이지는 45rem 열 끝에 취소 · 만들기, 휴대폰은 늘 페이지. 고치기는 '저장', 반복 일정은 저장할 때 적용 범위를 묻는다. 계속 만들기는 지금 어느 양식에도 두지 않는다 |
 | Routed Modal (목록 위 대화상자) | 만들기 · 고치기 양식과 상세는 자기 주소(`/work-items/new`, `/projects/{key}/work-items/new`, `/schedule/events/new`, `/schedule/events/{id}/edit`, `/announcements/new`, `/announcements/{id}/edit`, `/weekly-reports/write/{월요일}` …)의 페이지이면서, 데스크톱에서 목록의 버튼으로 열면 그 목록 위 대화상자다(`shared/lib/panel`의 `useOpenPanel`, `route-masking.md`; 라우터 `unmaskOnReload`). 대화상자는 앱 바탕의 `PanelHost`가 그린다. 자기 페이지가 없는 짧은 양식(새 문서, 새 프로젝트)은 대화상자로만(크게 보기 없음) |
 
 ## 뷰와 탭
@@ -123,14 +122,13 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 | 규칙 | 내용 |
 | :--- | :--- |
 | 선택 목록 | 메뉴 · 알약 · 양식 안의 고르기는 키트 `OptionList`(cmdk `Command`): 데스크톱 32px 줄, 휴대폰 48px 줄 · 15px 글자 · 20px 아이콘. `isSearchable`이면 맨 위 검색 칸에 초점이 가고 입력한 말로 거른다. 선택지는 모두 그린다. 서버에서 찾는 사람 고르기(결재자 추가, `PersonSearch`)만 처음 8명, 입력하면 최대 50명을 보인다 |
-| 날짜 | 기기와 상관없이 키트 `DateCalendar` · `DatePicker`(`shared/ui/date-picker`, react-day-picker, 일요일 시작)를 쓴다. 브라우저 기본 날짜 선택기를 섞지 않는다 |
-| 시간 | 시각은 `shared/ui/time`의 `TimeField` 하나로 받는다: 직접 입력(24시간, 9 · 930 · 9:30을 읽음)과 옆 시계 버튼의 시간 목록(기본 30분 간격, 고른 값이 가운데). 끝 시각(`from`)은 시작 다음부터 길이("1시간 30분")와 함께 보인다 |
+| 날짜 | 기기와 상관없이 키트 `DateCalendar` · `DatePicker`(`shared/ui/kit/date-picker`, react-day-picker, 일요일 시작)를 쓴다. 브라우저 기본 날짜 선택기를 섞지 않는다 |
 
-## 상세 페이지 (`shared/ui/reading`의 `DetailLayout`)
+## 상세 페이지 (`shared/ui/kit/reading`의 `DetailLayout`)
 
 리치 본문을 가진 것(업무 · 일정 · 회의록 · 공지사항 · 주간보고 · 문서)의 상세는 한 모양이다(Linear 이슈, `layout-patterns.md`의 상세). 읽기 단 45rem, 자기 폭 60rem 이상이면 오른쪽 16rem 속성 칸, 좁으면 제목과 본문 사이의 한 줄 알약이다. 제목은 2rem 굵게이고 이 페이지의 h1이다. 읽기만 하는 속성은 `InfoPill`. 본문 도구는 본문 위가 아니라 페이지 머리 줄 끝에 둔다(`BodyToolsContext`의 `slot`에 `RichBody`가 넣는다): 데스크톱은 댓글 추가 · 버전 기록 · 편집(모두 `tool` 아이콘 버튼). 휴대폰은 편집(연필)만 머리에 두고, 버전 기록은 페이지 메뉴(…)로(`setMenuActions`), 고치는 동안의 저장 · 완료는 바닥 줄(`foot`)로. 본문 글꼴은 화면 설정이 정한다.
 
-상세는 읽는 화면이다(2026-11-10). 편집 단추는 본문을 제자리에서 열지 않고 수정 화면(상세 주소 뒤의 `/edit`, `shared/ui/body-edit`의 `BodyEditPage`)으로 간다. 수정 화면은 제목과 본문만 두어 고치는 데 집중하고, 데스크톱은 머리 줄의 저장 상태 · 저장 · 취소 · 완료, 휴대폰은 바닥 줄의 저장 · 완료와 앱 바 ←(취소)로 끝낸다. 제목은 만들기 양식처럼 테두리 없는 큰 글씨로 고치고(`BodyTitle`), 저장 · Ctrl/⌘+S · 완료가 제목과 본문을 함께 저장한다(업무와 문서). 두 화면을 오갈 때 제목은 제자리에서 이어지고(`view-transition-name: cowork-body-title`) 나머지는 교차 페이드한다.
+상세는 읽는 화면이다(2026-11-10). 편집 단추는 본문을 제자리에서 열지 않고 수정 화면(상세 주소 뒤의 `/edit`, 업무 · 문서마다 그 수정 페이지)으로 간다. 수정 화면은 제목과 본문만 두어 고치는 데 집중하고, 데스크톱은 머리 줄의 저장 상태 · 저장 · 취소 · 완료, 휴대폰은 바닥 줄의 저장 · 완료와 앱 바 ←(취소)로 끝낸다. 제목은 만들기 양식처럼 테두리 없는 큰 글씨로 고치고(`BodyTitle`), 저장 · Ctrl/⌘+S · 완료가 제목과 본문을 함께 저장한다(업무와 문서). 두 화면을 오갈 때 제목은 제자리에서 이어지고(`view-transition-name: cowork-body-title`) 나머지는 교차 페이드한다.
 
 활동(2026-11-04 사용자 결정, `shared/ui/activity`의 `ActivityFeed`, `composed-components.md`의 활동 · 댓글 피드): 리치 본문을 가진 것은 본문 아래에 활동을 둔다. 변경 기록과 댓글을 오래된 것부터 세로선 하나에 잇는다: 변경은 선 위의 아이콘과 한 문장, 댓글은 선을 덮는 카드(12px 초타원 테두리). 답글은 한 단계. 댓글 입력은 `CommentComposer`(Enter 보내기, Shift+Enter 줄바꿈), 고치기도 같은 입력칸. 키트의 것과 달리 에이전트 · 자동 실행자(Git 연동)와 해결한 블록 스레드를 다룬다.
 

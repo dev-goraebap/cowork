@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { cyclesOptions, refreshWorkItems, saveCycleSettings, type CycleSettings } from '@/entities/work-item';
-import { PageState } from '@/shared/ui/page-state';
-import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
-import { Switch } from '@/shared/ui/switch';
+import { PageState } from '@/shared/ui/kit/page-state';
+import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/kit/settings';
+import { Switch } from '@/shared/ui/kit/switch';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { ChoiceSelect } from '@/shared/ui/settings';
 

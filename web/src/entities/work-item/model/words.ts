@@ -1,4 +1,4 @@
-import { ChartNoAxesColumnIcon, CircleCheckIcon, CirclePauseIcon, CircleXIcon, ClockIcon, RefreshCwIcon, SirenIcon, type Icon } from '@/shared/ui/icon';
+import { ChartNoAxesColumnIcon, CircleCheckIcon, CirclePauseIcon, CircleXIcon, ClockIcon, RefreshCwIcon, SirenIcon, type Icon } from '@/shared/ui/kit/icon';
 import type { ColumnCategory, WorkItemPriority } from './types';
 
 /**

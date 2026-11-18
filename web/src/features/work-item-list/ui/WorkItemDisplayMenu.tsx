@@ -1,6 +1,6 @@
-import { Button } from '@/shared/ui/button';
-import { DisplayChoice, DisplayMenu } from '@/shared/ui/display-menu';
-import { ChartNoAxesColumnIcon, KanbanSquareIcon, ListIcon, TableIcon, type Icon } from '@/shared/ui/icon';
+import { Button } from '@/shared/ui/kit/button';
+import { DisplayChoice, DisplayMenu } from '@/shared/ui/kit/display-menu';
+import { ChartNoAxesColumnIcon, KanbanSquareIcon, ListIcon, TableIcon, type Icon } from '@/shared/ui/kit/icon';
 import { LAYOUTS, type ViewLayout } from '@/shared/ui/views';
 import type { Display, SortKey } from '../model/use-work-item-filters';
 

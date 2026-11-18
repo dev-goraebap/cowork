@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { cn } from 'cn';
 import { codeLinksOptions, providerName, type CodeLink } from '@/entities/work-item';
 import { Timeline, TimelineItem } from '@/shared/ui/activity';
-import { Badge } from '@/shared/ui/badge';
-import { BranchIcon, CodeIcon, CommitIcon } from '@/shared/ui/icon';
+import { Badge } from '@/shared/ui/kit/badge';
+import { BranchIcon, CodeIcon, CommitIcon } from '@/shared/ui/kit/icon';
 import { visibleCodeLinks } from '../model/visible-code-links';
 
 const KIND = { branch: '브랜치', pull_request: 'PR', commit: '커밋' } as Record<string, string>;

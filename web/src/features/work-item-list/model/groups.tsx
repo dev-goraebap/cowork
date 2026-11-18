@@ -1,5 +1,5 @@
 import { PersonAvatar } from '@/shared/ui/person';
-import { ProjectsIcon, UserIcon } from '@/shared/ui/icon';
+import { ProjectsIcon, UserIcon } from '@/shared/ui/kit/icon';
 import type { ReactNode } from 'react';
 import {
   PRIORITIES, WorkItemPriorityIcon, WorkItemStatusIcon, WorkItemTypeIcon,

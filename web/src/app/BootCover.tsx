@@ -1,6 +1,6 @@
 import type { AnyRouter } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { BootCover as KitBootCover } from '@/shared/ui/boot-cover';
+import { BootCover as KitBootCover } from '@/shared/ui/kit/boot-cover';
 import { LoadingMark } from '@/shared/ui/page-loading/LoadingMark';
 
 /**

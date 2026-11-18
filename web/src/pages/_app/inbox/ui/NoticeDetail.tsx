@@ -2,7 +2,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { useEffect, type ReactNode } from 'react';
 import { inAppLink, kindOf, targetOf, useReadNotification, type NoticeTarget, type NotificationItem } from '@/entities/notification';
 import { workItemHref } from '@/entities/work-item';
-import { SplitColumn, SplitDetail } from '@/shared/ui/layout/split-view';
+import { SplitColumn, SplitDetail } from '@/shared/ui/kit/layout/split-view';
 import { ToneBadge } from '@/shared/ui/tone-badge';
 import { WorkItemDetail } from '@/features/work-item-detail';
 import { momentOf } from '../model/format';

@@ -8,11 +8,11 @@ import {
 } from '@/entities/work-item';
 import { ApiError } from '@/shared/api';
 import { cn } from 'cn';
-import { Button } from '@/shared/ui/button';
-import { ArchiveIcon, CalendarIcon, FileTextIcon, NotesIcon, RepeatIcon, SettingsIcon, type Icon } from '@/shared/ui/icon';
-import { Page } from '@/shared/ui/layout/page';
+import { Button } from '@/shared/ui/kit/button';
+import { ArchiveIcon, CalendarIcon, FileTextIcon, NotesIcon, RepeatIcon, SettingsIcon, type Icon } from '@/shared/ui/kit/icon';
+import { Page } from '@/shared/ui/kit/layout/page';
 import { Mark } from '@/shared/ui/mark-picker';
-import { PageState } from '@/shared/ui/page-state';
+import { PageState } from '@/shared/ui/kit/page-state';
 import { PersonAvatar } from '@/shared/ui/person';
 import { MarkdownRead } from '@/shared/ui/rich-body';
 import { pageCrumbs } from '@/shared/ui/nav-icon';

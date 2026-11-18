@@ -1,4 +1,4 @@
-import { toast } from '@/shared/ui/toast';
+import { toast } from '@/shared/ui/kit/toast';
 import { openBlockThread } from './block-comments';
 
 /**

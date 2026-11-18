@@ -3,8 +3,8 @@ import { useState, type SyntheticEvent } from 'react';
 import { useProjectCan } from '@/entities/project';
 import { canDeleteWorkItem, DeleteWorkItemDialog, workItemOptions, type WorkItemRow } from '@/entities/work-item';
 import { sessionOptions } from '@/shared/auth';
-import { ActionMenu, type MenuAction } from '@/shared/ui/action-menu';
-import { LinkIcon, Trash2Icon } from '@/shared/ui/icon';
+import { ActionMenu, type MenuAction } from '@/shared/ui/kit/action-menu';
+import { LinkIcon, Trash2Icon } from '@/shared/ui/kit/icon';
 
 // 행·카드 자체가 업무를 여는 링크라, 메뉴와 확인 창에서 일어난 클릭이 그 링크까지 올라가지 않게 막는다.
 const hold = (event: SyntheticEvent) => { event.stopPropagation(); if ((event.target as Element).closest('a[href]') === null) return; event.preventDefault(); };

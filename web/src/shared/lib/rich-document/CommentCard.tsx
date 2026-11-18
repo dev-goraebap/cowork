@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {Button} from '@/shared/ui/button';
-import {Textarea} from '@/shared/ui/textarea';
+import {Button} from '@/shared/ui/kit/button';
+import {Textarea} from '@/shared/ui/kit/textarea';
 import {Check,RotateCw} from './icons';
 import {anchorLabels,isResolved,type CommentThread} from './comments';
 export function CommentCard({thread,active,readonly,onSelect,onReply,onResolve}:{thread:CommentThread;active:boolean;readonly:boolean;onSelect:()=>void;onReply:(body:string)=>void;onResolve:(resolved:boolean)=>void}){

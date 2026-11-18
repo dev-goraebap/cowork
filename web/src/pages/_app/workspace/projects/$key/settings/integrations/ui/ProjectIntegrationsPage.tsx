@@ -6,15 +6,15 @@ import {
   refreshCode, reviseIntegration, RULE_EVENTS, setIntegrationRule,
   type BoardColumn, type CodeIntegration, type CodeProvider, type CodeRule,
 } from '@/entities/work-item';
-import { AdaptivePopover } from '@/shared/ui/adaptive-popover';
-import { Button } from '@/shared/ui/button';
-import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
-import { FormDialog } from '@/shared/ui/form-dialog';
-import { ChevronDownIcon, CopyIcon, EyeClosedIcon, EyeIcon, SquareArrowOutUpRightIcon } from '@/shared/ui/icon';
-import { OptionList } from '@/shared/ui/option-list';
-import { PageState } from '@/shared/ui/page-state';
-import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
-import { toast } from '@/shared/ui/toast';
+import { AdaptivePopover } from '@/shared/ui/kit/adaptive-popover';
+import { Button } from '@/shared/ui/kit/button';
+import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
+import { ChevronDownIcon, CopyIcon, EyeClosedIcon, EyeIcon, SquareArrowOutUpRightIcon } from '@/shared/ui/kit/icon';
+import { OptionList } from '@/shared/ui/kit/option-list';
+import { PageState } from '@/shared/ui/kit/page-state';
+import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/kit/settings';
+import { toast } from '@/shared/ui/kit/toast';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { IconAction, TextField } from '@/shared/ui/settings';
 

@@ -1,7 +1,7 @@
 import { cn } from 'cn';
 import { useWorkItemTypes, WorkItemStatusIcon, type BoardColumn, type WorkItemRow, type WorkItemViewGrouping } from '@/entities/work-item';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { NotesIcon } from '@/shared/ui/icon';
+import { NotesIcon } from '@/shared/ui/kit/icon';
 import { groupWorkItems } from '../../model/groups';
 import { statusLanes } from '../../model/status-lanes';
 import { KanbanColumn } from './KanbanColumn';

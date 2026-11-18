@@ -4,10 +4,10 @@ import { documentBodyStore, documentLinks, documentOptions, libraryOptions, useR
 import { sessionOptions } from '@/shared/auth';
 import { useLeaveEditor } from '@/shared/lib/panel';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { Button } from '@/shared/ui/button';
-import { DetailSurface } from '@/shared/ui/detail-surface';
-import { Page, useOwnPageTitle } from '@/shared/ui/layout/page';
-import { PageState } from '@/shared/ui/page-state';
+import { Button } from '@/shared/ui/kit/button';
+import { DetailSurface } from '@/shared/ui/kit/detail-surface';
+import { Page, useOwnPageTitle } from '@/shared/ui/kit/layout/page';
+import { PageState } from '@/shared/ui/kit/page-state';
 import { DocumentEditorHost } from '@/shared/ui/paged-document';
 import { BodyEditContext, BodyTitle, BodyToolsContext, RichBody, useBodyEdit } from '@/shared/ui/rich-body';
 import { pageCrumbs } from '@/shared/ui/nav-icon';

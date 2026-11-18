@@ -1,10 +1,10 @@
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { Suspense, useMemo } from 'react';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/kit/button';
 import { LazyRichBody as RichBody } from './LazyRichBody';
 import type { RichBodySnapshot, RichBodyStore } from './use-rich-body';
 import { readMarkdownDraft, readOfficeNoteDraft, type FileLink } from './markdown-draft';
-import { Spinner } from '@/shared/ui/spinner';
+import { Spinner } from '@/shared/ui/kit/spinner';
 
 const ATTACHMENT = /attachment:([0-9a-fA-F-]{36})/g;
 const frozen = (snapshot: RichBodySnapshot): RichBodyStore => ({

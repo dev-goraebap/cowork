@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { FilterBar, FilterChips, FilterMenu, useFilters as useKitFilters, type FilterDef, type FilterState } from '@/shared/ui/filter';
+import { FilterBar, FilterChips, FilterMenu, useFilters as useKitFilters, type FilterDef, type FilterState } from '@/shared/ui/kit/filter';
 
 /**
  * A page's filters as the kit keeps them (shared/ui/filter): the values by filter, each holding one value at most (the one

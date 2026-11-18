@@ -1,7 +1,7 @@
 import { useId, useState } from 'react';
-import { Field, FieldLabel } from '@/shared/ui/field';
-import { FormDialog } from '@/shared/ui/form-dialog';
-import { Switch } from '@/shared/ui/switch';
+import { Field, FieldLabel } from '@/shared/ui/kit/field';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
+import { Switch } from '@/shared/ui/kit/switch';
 import { MarkNameField } from '../mark-picker';
 import type { ViewDraft } from './types';
 

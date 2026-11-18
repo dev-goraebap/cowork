@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import type { MenuAction } from '@/shared/ui/action-menu';
+import type { MenuAction } from '@/shared/ui/kit/action-menu';
 import type { BodyTools } from '@/shared/ui/rich-body';
 
 /** 라우터가 넘기는 경로 한 단계: 아이콘은 의미 이름이다(키트 Page에는 pageCrumbs로 바꿔 넘긴다). */

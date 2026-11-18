@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { cn } from 'cn';
 import { rowReorderStyles as rows, useRowReorder } from '@/shared/lib/row-reorder';
-import { Button } from '@/shared/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/shared/ui/dialog';
-import { GripIcon } from '@/shared/ui/icon';
-import { ReorderAnnouncer } from '@/shared/ui/reorder';
+import { Button } from '@/shared/ui/kit/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/shared/ui/kit/dialog';
+import { GripIcon } from '@/shared/ui/kit/icon';
+import { ReorderAnnouncer } from '@/shared/ui/kit/reorder';
 import type { ViewPill } from './ViewBar';
 import { ViewMark } from './ViewMark';
 

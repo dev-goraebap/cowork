@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { boardGroupsOptions, CATEGORIES, workspaceWorkItemHref, type WorkItemBoardGroup, newWorkItemHref } from '@/entities/work-item';
 import { useOpenPanel } from '@/shared/lib/panel';
-import { Button } from '@/shared/ui/button';
-import { Page } from '@/shared/ui/layout/page';
-import { PageState } from '@/shared/ui/page-state';
+import { Button } from '@/shared/ui/kit/button';
+import { Page } from '@/shared/ui/kit/layout/page';
+import { PageState } from '@/shared/ui/kit/page-state';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { PagedWorkItemGroups } from '@/features/work-item-list';
 

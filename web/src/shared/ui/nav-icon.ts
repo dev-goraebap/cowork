@@ -3,7 +3,7 @@ import {
   EyeIcon, FileTextIcon, FolderIcon, GamepadIcon, HomeIcon, InboxIcon, InboxInIcon, KanbanSquareIcon, LayoutGridIcon, ListFilterIcon, ListIcon,
   MeetingIcon, MonitorIcon, NotesIcon, PlusIcon, ProjectsIcon, RanksIcon, SearchIcon, SettingsIcon, ShieldCheckIcon, SparklesIcon, StructureIcon,
   TableIcon, TagIcon, TeamIcon, UmbrellaIcon, UserIcon, UsersIcon, WorkflowIcon, MegaphoneIcon, ListChecksIcon, RepeatIcon, type Icon,
-} from '@/shared/ui/icon';
+} from '@/shared/ui/kit/icon';
 
 /**
  * The menus' icons by their meaning name (nav.ts keeps names, as the server's marks do): the generated Solar icons under

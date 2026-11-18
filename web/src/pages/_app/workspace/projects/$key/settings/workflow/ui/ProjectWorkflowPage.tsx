@@ -7,14 +7,14 @@ import {
   type BoardColumn, type ColumnCategory,
 } from '@/entities/work-item';
 import { rowReorderStyles as rows, useRowReorder } from '@/shared/lib/row-reorder';
-import { ActionMenu, type MenuAction } from '@/shared/ui/action-menu';
-import { Button } from '@/shared/ui/button';
-import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
-import { Field, FieldLabel } from '@/shared/ui/field';
-import { FormDialog } from '@/shared/ui/form-dialog';
-import { CheckIcon, GripIcon, PenSquareIcon, PlusIcon, Trash2Icon } from '@/shared/ui/icon';
-import { PageState } from '@/shared/ui/page-state';
-import { SettingsPage, SettingsSection } from '@/shared/ui/settings';
+import { ActionMenu, type MenuAction } from '@/shared/ui/kit/action-menu';
+import { Button } from '@/shared/ui/kit/button';
+import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
+import { Field, FieldLabel } from '@/shared/ui/kit/field';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
+import { CheckIcon, GripIcon, PenSquareIcon, PlusIcon, Trash2Icon } from '@/shared/ui/kit/icon';
+import { PageState } from '@/shared/ui/kit/page-state';
+import { SettingsPage, SettingsSection } from '@/shared/ui/kit/settings';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { TextField } from '@/shared/ui/settings';
 

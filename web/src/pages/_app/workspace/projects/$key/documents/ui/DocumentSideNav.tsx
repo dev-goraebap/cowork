@@ -2,11 +2,11 @@ import { useState, type MouseEvent, type ReactNode } from 'react';
 import type { DocumentRow } from '@/entities/document';
 import { useStoredWidth } from '@/shared/lib/use-stored-width';
 import { cn } from 'cn';
-import { Button } from '@/shared/ui/button';
-import { ChevronDownIcon, ChevronRightIcon, SettingsIcon } from '@/shared/ui/icon';
+import { Button } from '@/shared/ui/kit/button';
+import { ChevronDownIcon, ChevronRightIcon, SettingsIcon } from '@/shared/ui/kit/icon';
 import { MarkIcon } from '@/shared/ui/mark-picker';
-import { PaneResizeHandle } from '@/shared/ui/pane-resize-handle';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
+import { PaneResizeHandle } from '@/shared/ui/kit/pane-resize-handle';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/kit/tooltip';
 import { TREE_LINK } from './DocumentPages';
 
 const NAV_MIN = 220;

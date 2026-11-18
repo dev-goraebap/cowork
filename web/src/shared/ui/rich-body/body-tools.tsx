@@ -1,8 +1,8 @@
 import { createContext, useContext, type ReactNode } from 'react';
 import { cn } from 'cn';
-import type { MenuAction } from '@/shared/ui/action-menu';
-import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/alert';
-import { InfoIcon, OctagonXIcon, TriangleAlertIcon } from '@/shared/ui/icon';
+import type { MenuAction } from '@/shared/ui/kit/action-menu';
+import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/kit/alert';
+import { InfoIcon, OctagonXIcon, TriangleAlertIcon } from '@/shared/ui/kit/icon';
 
 /**
  * 본문(RichBody)을 품은 페이지가 본문에 빌려주는 자리. slot: 페이지 머리 끝, 본문의 도구(댓글 · 버전 기록 · 편집, 고치는 동안 저장 ·

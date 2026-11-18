@@ -1,6 +1,6 @@
 import { WorkItemAssignee, WorkItemDueDate, WorkItemLabels, WorkItemPriorityIcon, WorkItemPullRequests, WorkItemTypeIcon, type WorkItemRow } from '@/entities/work-item';
 import { WorkItemRowMenu } from '../../ui/WorkItemRowMenu';
-import { DetailLink } from '@/shared/ui/detail-surface';
+import { DetailLink } from '@/shared/ui/kit/detail-surface';
 
 /**
  * A work item on the board (Plane's board card): its reference and type over its title (two lines at most), its labels,

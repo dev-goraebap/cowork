@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { cn } from 'cn';
-import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/alert';
-import { Button } from '@/shared/ui/button';
-import { TriangleAlertIcon } from '@/shared/ui/icon';
-import { PageState } from '@/shared/ui/page-state';
-import { Progress } from '@/shared/ui/progress';
-import { SettingsSection } from '@/shared/ui/settings';
+import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/kit/alert';
+import { Button } from '@/shared/ui/kit/button';
+import { TriangleAlertIcon } from '@/shared/ui/kit/icon';
+import { PageState } from '@/shared/ui/kit/page-state';
+import { Progress } from '@/shared/ui/kit/progress';
+import { SettingsSection } from '@/shared/ui/kit/settings';
 import { isLogUnavailable, statusOptions, trafficOptions, type RouteRow, type SystemStatus, type Traffic, type TrafficRange } from '../api/system';
 import { areaOf, bucketLabel, bytesText, countText, durationText, momentText, percentText, shortRoute, uptimeText } from '../model/format';
 import { ChartCard, Lines, StackedBars, SURFACE, type Series } from './Charts';

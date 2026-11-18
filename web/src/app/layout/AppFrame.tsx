@@ -1,13 +1,13 @@
 import { Link, useNavigate } from '@tanstack/react-router';
 import { type ReactNode } from 'react';
 import { cn } from 'cn';
-import { AgentBar, AppShell, MeButton, type NavEntry as ShellEntry, type NavSpace as ShellSpace, type ShellMe } from '@/shared/ui/layout/app-shell';
+import { AgentBar, AppShell, MeButton, type NavEntry as ShellEntry, type NavSpace as ShellSpace, type ShellMe } from '@/shared/ui/kit/layout/app-shell';
 import { Barcode } from './Barcode';
 import { BrandMark } from '@/shared/ui/brand';
-import { Button } from '@/shared/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/shared/ui/dropdown-menu';
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon, InboxIcon, LinkIcon, LogoutIcon, MonitorIcon, PlusIcon, SettingsIcon, SparklesIcon, UserIcon, type Icon } from '@/shared/ui/icon';
-import { toast } from '@/shared/ui/toast';
+import { Button } from '@/shared/ui/kit/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/shared/ui/kit/dropdown-menu';
+import { CheckIcon, ChevronDownIcon, ChevronUpIcon, InboxIcon, LinkIcon, LogoutIcon, MonitorIcon, PlusIcon, SettingsIcon, SparklesIcon, UserIcon, type Icon } from '@/shared/ui/kit/icon';
+import { toast } from '@/shared/ui/kit/toast';
 import { markTone, MarkIcon } from '@/shared/ui/mark-picker';
 import { GLOBAL_TITLE, INSTANCE, projectKeyOf, projectPlaces, spaceOf, TOP_SPACES, topSpaceOf, visibleSections, WORKSPACE, type AdminRole, type NavEntry, type NavSection, type NavSpace } from '@/shared/config';
 import { navIcon } from '@/shared/ui/nav-icon';

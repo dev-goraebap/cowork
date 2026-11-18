@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useId, useState } from 'react';
 import { completeCycle, cycleDays, refreshWorkItems, type Cycle } from '@/entities/work-item';
-import { FormDialog } from '@/shared/ui/form-dialog';
+import { FormDialog } from '@/shared/ui/kit/form-dialog';
 
 const NONE = 'none';
 

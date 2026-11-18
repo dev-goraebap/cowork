@@ -1,9 +1,9 @@
 import { COLOR_THEMES, DIAGRAM_STYLES, setAppearance, useAppearance, type ColorTheme, type Density, type DiagramStyle, type Font, type Layout, type Mode, type SerifScope } from '@/shared/lib/appearance';
 import { cn } from 'cn';
 import { DiagramPreview } from '@/shared/lib/rich-document';
-import { SegmentedControl } from '@/shared/ui/segmented-control';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
-import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
+import { SegmentedControl } from '@/shared/ui/kit/segmented-control';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/kit/select';
+import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/kit/settings';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 
 type Crumb = { label: string; href?: string; icon?: string };

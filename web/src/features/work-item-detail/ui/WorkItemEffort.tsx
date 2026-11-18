@@ -3,15 +3,15 @@ import { useId, useState } from 'react';
 import {
   deleteTimeEntry, formatHours, logTime, refreshWorkItems, STORY_POINTS, timeEntriesOptions, type WorkItemDraft, type WorkItemRow,
 } from '@/entities/work-item';
-import { Button } from '@/shared/ui/button';
-import { DatePicker } from '@/shared/ui/date-picker';
-import { Field, FieldLabel } from '@/shared/ui/field';
-import { ChartNoAxesColumnIcon, ClockIcon, Trash2Icon } from '@/shared/ui/icon';
-import { InfoPill } from '@/shared/ui/info-pill';
-import { Input } from '@/shared/ui/input';
-import { OptionPill, PropertyPill } from '@/shared/ui/property-pill';
-import { Spinner } from '@/shared/ui/spinner';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
+import { Button } from '@/shared/ui/kit/button';
+import { DatePicker } from '@/shared/ui/kit/date-picker';
+import { Field, FieldLabel } from '@/shared/ui/kit/field';
+import { ChartNoAxesColumnIcon, ClockIcon, Trash2Icon } from '@/shared/ui/kit/icon';
+import { InfoPill } from '@/shared/ui/kit/info-pill';
+import { Input } from '@/shared/ui/kit/input';
+import { OptionPill, PropertyPill } from '@/shared/ui/kit/property-pill';
+import { Spinner } from '@/shared/ui/kit/spinner';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/kit/tooltip';
 
 const today = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Seoul' });
 /** 숫자 칸의 값: 0보다 큰 수만 값이고, 비우거나 0 이하면 없음이다. */

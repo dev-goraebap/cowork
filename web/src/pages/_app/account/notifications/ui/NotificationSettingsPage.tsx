@@ -4,14 +4,14 @@ import {
   claimThisDevice, deviceName, pushDevicesOptions, pushKeys, pushPreferencesOptions, removeDevice, savePreferences, sendTestPush, stateTexts,
   thisDeviceId, useThisDevice, type PushDevice, type PushTopic,
 } from '@/features/push-device';
-import { Badge } from '@/shared/ui/badge';
-import { Button } from '@/shared/ui/button';
-import { ConfirmDialog } from '@/shared/ui/confirm-dialog';
-import { BellIcon, MonitorIcon, SentIcon, Trash2Icon } from '@/shared/ui/icon';
-import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
-import { Spinner } from '@/shared/ui/spinner';
-import { Switch } from '@/shared/ui/switch';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
+import { Badge } from '@/shared/ui/kit/badge';
+import { Button } from '@/shared/ui/kit/button';
+import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
+import { BellIcon, MonitorIcon, SentIcon, Trash2Icon } from '@/shared/ui/kit/icon';
+import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/kit/settings';
+import { Spinner } from '@/shared/ui/kit/spinner';
+import { Switch } from '@/shared/ui/kit/switch';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/kit/tooltip';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { momentText, pushStatusLabels, topicLabels } from '../model/push-labels';
 

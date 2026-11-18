@@ -1,5 +1,5 @@
-import { Dialog, DialogBar, DialogContent } from '@/shared/ui/dialog';
-import { Spinner } from '@/shared/ui/spinner';
+import { Dialog, DialogBar, DialogContent } from '@/shared/ui/kit/dialog';
+import { Spinner } from '@/shared/ui/kit/spinner';
 
 /**
  * 목록 위 대화상자의 내용을 준비하는 동안의 자리. 상세 대화상자(shared/ui/detail-surface)와 같은 자리 · 폭 · 머리로 띄워,
