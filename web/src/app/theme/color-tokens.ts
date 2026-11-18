@@ -21,7 +21,7 @@ function shadcnColorTokens(color: ColorTheme, dark: boolean): Partial<Record<(ty
 }
 
 /**
- * Each colour theme's swatch in 화면 설정, a gradient of its own colours (--cowork-theme-<id>-preview, read by pages/instance/account's
+ * Each colour theme's swatch in 화면 설정, a gradient of its own colours (--cowork-theme-<id>-preview, read by pages/account/display's
  * DisplayPage), from the same palettes.
  */
 const previews: [string, string][] = [['--cowork-theme-stone-preview', 'linear-gradient(135deg, #f9f9fa, #a0a0a5)'],

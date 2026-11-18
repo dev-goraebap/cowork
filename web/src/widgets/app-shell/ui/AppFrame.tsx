@@ -1,7 +1,6 @@
 import { Link, useNavigate } from '@tanstack/react-router';
 import { type ReactNode } from 'react';
 import { cn } from 'cn';
-import { useIsMobile } from '@/shared/lib/use-mobile';
 import { AgentBar, AppShell, MeButton, type NavEntry as ShellEntry, type NavSpace as ShellSpace, type ShellMe } from '@/shared/ui/layout/app-shell';
 import { Barcode } from './Barcode';
 import { BrandMark } from '@/shared/ui/brand';
@@ -10,7 +9,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSepara
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon, InboxIcon, LinkIcon, LogoutIcon, MonitorIcon, PlusIcon, SettingsIcon, SparklesIcon, UserIcon, type Icon } from '@/shared/ui/icon';
 import { toast } from '@/shared/ui/toast';
 import { markTone, MarkIcon } from '@/shared/ui/mark-picker';
-import { GLOBAL_TITLE, projectKeyOf, projectPlaces, spaceOf, TOP_SPACES, topSpaceOf, visibleSections, WORKSPACE, type AdminRole, type NavEntry, type NavSection, type NavSpace } from '../model/nav';
+import { GLOBAL_TITLE, INSTANCE, projectKeyOf, projectPlaces, spaceOf, TOP_SPACES, topSpaceOf, visibleSections, WORKSPACE, type AdminRole, type NavEntry, type NavSection, type NavSpace } from '../model/nav';
 import { navIcon } from '../model/nav-icons';
 
 export type ShellLayout = 'inset' | 'split';
@@ -150,19 +149,20 @@ export function AppFrame({ pathname, search = '', myProjects = [], onCreateProje
     { path: '/notifications', label: activityLabel(unread, awaitingApprovals), icon: activityIcon(needsActivity), badge: awaitingApprovals > 0 ? awaitingApprovals : undefined },
     ...core.map(entry => ({ path: entry.path, label: entry.label, icon: navIcon(entry.icon) })),
   ];
-  const phoneSpaces = TOP_SPACES.map(each => ({ id: each.id, label: each.label, icon: navIcon(each.icon), space: toShellSpace(WORKSPACE) }));
 
   const go = (path: string) => void navigate({ href: path });
-  const isPhone = useIsMobile();
   const administration = space.id === 'workspace' ? SPACE_ADMINISTRATIONS[space.id] : undefined;
   const adminEntries: ShellEntry[] = administration && roles.includes(administration.role)
     ? [{ path: administration.path, label: administration.label, icon: navIcon(administration.icon) }] : [];
   const canSetInstance = roles.includes(INSTANCE_SETTINGS.role);
-  // 휴대폰에는 사이드바도 로고 옆 전환도 없어 관리 화면을 내 메뉴에 둔다. 데스크톱은 로고 옆 전환에서 인스턴스 관리를 연다.
-  const administrations = isPhone ? [
-    ...(canSetInstance ? [{ ...INSTANCE_SETTINGS, icon: 'settings' }] : []),
-    ...Object.values(SPACE_ADMINISTRATIONS).filter(each => roles.includes(each.role)),
-  ] : [];
+  // 휴대폰 메뉴 시트: 머리의 코워크 ⇕ 인스턴스 관리(데스크톱의 로고 옆 전환)로 둘을 바꿔 보고, 코워크 메뉴 아래 구분선 뒤에
+  // 워크스페이스 관리(데스크톱의 사이드바 바닥)를 둔다. 관리 화면은 내 메뉴에 두지 않는다.
+  const workspaceAdmin = SPACE_ADMINISTRATIONS.workspace!;
+  const phoneSpaces = [
+    ...TOP_SPACES.map(each => ({ id: each.id, label: each.label, icon: navIcon(each.icon), space: toShellSpace(WORKSPACE),
+      footer: roles.includes(workspaceAdmin.role) ? [{ path: workspaceAdmin.path, label: workspaceAdmin.label, icon: navIcon(workspaceAdmin.icon) }] : undefined })),
+    ...(canSetInstance ? [{ id: 'instance', label: INSTANCE_SETTINGS.label, icon: navIcon('settings'), space: toShellSpace(INSTANCE) }] : []),
+  ];
   const shellMe: ShellMe = {
     name: me.name, detail: me.team, picture: me.picture || me.fallbackPicture,
     groups: [
@@ -171,7 +171,6 @@ export function AppFrame({ pathname, search = '', myProjects = [], onCreateProje
         { label: '화면 설정', icon: MonitorIcon, onSelect: () => go('/profile/display') },
         { label: '내 AI 에이전트', icon: SparklesIcon, onSelect: () => go('/profile/agent-tokens') },
       ],
-      administrations.map(each => ({ label: each.label, icon: SettingsIcon, onSelect: () => go(each.path) })),
       onLogout ? [{ label: '로그아웃', icon: LogoutIcon, onSelect: onLogout }] : [],
     ],
   };
@@ -220,7 +219,7 @@ export function AppFrame({ pathname, search = '', myProjects = [], onCreateProje
       brand={brand} headerTools={headerTools}
       // 데스크톱 화면 아래 줄(2026-11-15 되살림): 왼쪽 끝에 버전, 오른쪽 끝에 에이전트(내 AI 에이전트로)와 그 왼쪽 바코드 장식. 휴대폰에는 없다.
       bottomBar={<AgentBar onOpen={() => go('/profile/agent-tokens')} start={<span className="tabular-nums">{version}</span>}><Barcode /></AgentBar>}
-      phoneBar={{ tabs: phoneTabs, spaces: phoneSpaces, currentSpaceId: topSpaceOf(space), onSearch }}>
+      phoneBar={{ tabs: phoneTabs, spaces: phoneSpaces, currentSpaceId: space.id === 'instance' ? 'instance' : topSpaceOf(space), onSearch }}>
       {children}
     </AppShell>
   );

@@ -7,8 +7,11 @@ import { MeButton, type ShellMe } from "./MeMenu"
 import { MoreRow } from "./MobileTabBar"
 import { badgeText, contains, EXACT_LINK, phoneEntriesOf, type NavEntry, type NavSpace } from "./nav"
 
-/** 휴대폰 메뉴 시트가 머리에서 바꿔 보이는 공간 하나(오피스 · 업무): 이름 · 아이콘과 그 공간의 메뉴. */
-export type PhoneSpace = { id: string; label: string; icon: Icon; space: NavSpace }
+/**
+ * 휴대폰 메뉴 시트가 머리에서 바꿔 보이는 공간 하나: 이름 · 아이콘과 그 공간의 메뉴. footer는 메뉴 아래 구분선 뒤에 서는 줄들이다
+ * (그 공간의 관리처럼 데스크톱에서는 사이드바 바닥에 있는 것).
+ */
+export type PhoneSpace = { id: string; label: string; icon: Icon; space: NavSpace; footer?: NavEntry[] }
 
 export type PhoneBarProps = {
   /** 늘 같은 앞 칸들(Linear의 Inbox · My issues · Pulse). 공간과 관계없이 그대로다. */
@@ -109,6 +112,14 @@ export function PhoneBar({ tabs, spaces, currentSpaceId, current, pathname, onSe
                   <li key={`${entry.path}:${entry.label}`}><MoreRow entry={entry} current={current && contains(entry, current) ? current : undefined} depth={0} onPick={close} /></li>
                 ))}
               </ul>
+              {shown?.footer?.length ? <>
+                <div aria-hidden className="mx-3 my-1 border-t" />
+                <ul className="flex flex-col">
+                  {shown.footer.map(entry => (
+                    <li key={`${entry.path}:${entry.label}`}><MoreRow entry={entry} current={current && contains(entry, current) ? current : undefined} depth={0} onPick={close} /></li>
+                  ))}
+                </ul>
+              </> : null}
             </nav>
           </PopoverContent>
         </Popover>

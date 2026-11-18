@@ -26,4 +26,3 @@ export const agentProfilesOptions = () => queryOptions({
 export const editAgentProfile = (profile: AgentProfile, input: { name: string; icon: string; color: string }) =>
   sendCommand(`/api/v1/me/agents/${profile.id}`, 'PATCH', { ...input, expectedVersion: profile.version });
 
-export const changeMyName = (name: string) => sendCommand('/api/v1/me/name', 'PUT', { name });

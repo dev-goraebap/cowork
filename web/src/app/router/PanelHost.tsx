@@ -10,7 +10,7 @@ import { useIsMobile } from '@/shared/lib/use-mobile';
 import { DialogPanel, swapDialog } from '@/shared/ui/dialog';
 import { workItemHref } from '@/entities/work-item';
 
-import { useSearchSources } from '@/pages/instance/search';
+import { useSearchSources } from '@/pages/workspace/search';
 import { GlobalSearch } from '@/widgets/global-search';
 import { ProfileSurface } from '@/widgets/person-profile';
 import { memberHref } from '@/shared/ui/person';

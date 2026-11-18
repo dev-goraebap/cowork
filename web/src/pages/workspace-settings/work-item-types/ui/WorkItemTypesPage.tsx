@@ -19,7 +19,9 @@ import { MarkPicker } from '@/shared/ui/mark-picker';
 import { PageState } from '@/shared/ui/page-state';
 import { SettingsPage, SettingsSection } from '@/shared/ui/settings';
 import { Switch } from '@/shared/ui/switch';
-import { ADMIN_ROW, ADMIN_ROW_NAME, type Crumb } from './admin-rows';
+import { ADMIN_ROW, ADMIN_ROW_NAME } from '@/shared/ui/ordered-row';
+
+type Crumb = { label: string; href?: string; icon?: string };
 
 const NAME_MAX = 32;
 

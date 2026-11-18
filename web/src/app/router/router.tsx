@@ -13,20 +13,20 @@ import { FIXED_SPACES, crumbsOf, projectKeyOf, roleOfSpace, type AdminRole } fro
 import { AuthLayout } from './AuthLayout';
 import { preparePage } from './prepare-page';
 
-const DocumentLabelsPage = lazyRouteComponent(() => import('@/pages/workspace/admin-projects'), 'DocumentLabelsPage');
-const AgentTokensPage = lazyRouteComponent(() => import('@/pages/instance/account'), 'AgentTokensPage');
-const DisplayPage = lazyRouteComponent(() => import('@/pages/instance/account'), 'DisplayPage');
-const NotificationSettingsPage = lazyRouteComponent(() => import('@/pages/instance/account'), 'NotificationSettingsPage');
-const ProfilePage = lazyRouteComponent(() => import('@/pages/instance/account'), 'ProfilePage');
-const SearchPage = lazyRouteComponent(() => import('@/pages/instance/search'), 'SearchPage');
-const PushDeliveriesPage = lazyRouteComponent(() => import('@/pages/instance/admin-push-deliveries'), 'PushDeliveriesPage');
-const RolesPage = lazyRouteComponent(() => import('@/pages/instance/admin-roles'), 'RolesPage');
-const SystemStatusPage = lazyRouteComponent(() => import('@/pages/instance/admin-system'), 'SystemStatusPage');
-const ProjectsAdminGeneralPage = lazyRouteComponent(() => import('@/pages/workspace/admin-projects'), 'ProjectsAdminGeneralPage');
-const ProjectsAdminRolesPage = lazyRouteComponent(() => import('@/pages/workspace/admin-projects'), 'ProjectsAdminRolesPage');
-const WorkItemLabelsPage = lazyRouteComponent(() => import('@/pages/workspace/admin-projects'), 'WorkItemLabelsPage');
-const WorkItemTypesPage = lazyRouteComponent(() => import('@/pages/workspace/admin-projects'), 'WorkItemTypesPage');
-const ComingSoonPage = lazyRouteComponent(() => import('@/pages/instance/coming-soon'), 'ComingSoonPage');
+const DocumentLabelsPage = lazyRouteComponent(() => import('@/pages/workspace-settings/document-labels'), 'DocumentLabelsPage');
+const AgentTokensPage = lazyRouteComponent(() => import('@/pages/account/agents'), 'AgentTokensPage');
+const DisplayPage = lazyRouteComponent(() => import('@/pages/account/display'), 'DisplayPage');
+const NotificationSettingsPage = lazyRouteComponent(() => import('@/pages/account/notification-settings'), 'NotificationSettingsPage');
+const ProfilePage = lazyRouteComponent(() => import('@/pages/account/profile'), 'ProfilePage');
+const SearchPage = lazyRouteComponent(() => import('@/pages/workspace/search'), 'SearchPage');
+const PushDeliveriesPage = lazyRouteComponent(() => import('@/pages/instance/push-deliveries'), 'PushDeliveriesPage');
+const RolesPage = lazyRouteComponent(() => import('@/pages/instance/members'), 'RolesPage');
+const SystemStatusPage = lazyRouteComponent(() => import('@/pages/instance/system-status'), 'SystemStatusPage');
+const WorkspaceGeneralPage = lazyRouteComponent(() => import('@/pages/workspace-settings/general'), 'WorkspaceGeneralPage');
+const WorkspaceRolesPage = lazyRouteComponent(() => import('@/pages/workspace-settings/roles'), 'WorkspaceRolesPage');
+const WorkItemLabelsPage = lazyRouteComponent(() => import('@/pages/workspace-settings/work-item-labels'), 'WorkItemLabelsPage');
+const WorkItemTypesPage = lazyRouteComponent(() => import('@/pages/workspace-settings/work-item-types'), 'WorkItemTypesPage');
+const ComingSoonPage = lazyRouteComponent(() => import('@/pages/workspace/coming-soon'), 'ComingSoonPage');
 const ProjectGeneralPage = lazyRouteComponent(() => import('@/pages/workspace/project-settings'), 'ProjectGeneralPage');
 const ProjectIntegrationsPage = lazyRouteComponent(() => import('@/pages/workspace/project-settings'), 'ProjectIntegrationsPage');
 const ProjectWorkflowPage = lazyRouteComponent(() => import('@/pages/workspace/project-settings'), 'ProjectWorkflowPage');
@@ -36,10 +36,10 @@ const WorkItemPage = lazyRouteComponent(() => import('@/pages/workspace/work-ite
 const WorkItemEditPage = lazyRouteComponent(() => import('@/pages/workspace/work-items'), 'WorkItemEditPage');
 const DocumentEditPage = lazyRouteComponent(() => import('@/pages/workspace/documents'), 'DocumentEditPage');
 const MyWorkPage = lazyRouteComponent(() => import('@/pages/workspace/work-items'), 'MyWorkPage');
-const LoginGate = lazyRouteComponent(() => import('@/pages/instance/login'), 'LoginGate');
-const WelcomePage = lazyRouteComponent(() => import('@/pages/instance/welcome'), 'WelcomePage');
+const LoginGate = lazyRouteComponent(() => import('@/pages/auth/login'), 'LoginGate');
+const WelcomePage = lazyRouteComponent(() => import('@/pages/auth/onboarding'), 'WelcomePage');
 const WorkspaceMembersPage = lazyRouteComponent(() => import('@/pages/workspace/workspace-members'), 'WorkspaceMembersPage');
-const NotificationsPage = lazyRouteComponent(() => import('@/pages/instance/notifications'), 'NotificationsPage');
+const NotificationsPage = lazyRouteComponent(() => import('@/pages/workspace/inbox'), 'NotificationsPage');
 const DocumentBoxPage = lazyRouteComponent(() => import('@/pages/workspace/documents'), 'DocumentBoxPage');
 const DocumentPagesManager = lazyRouteComponent(() => import('@/pages/workspace/documents'), 'DocumentPagesManager');
 const BodyHistoryPage = lazyRouteComponent(() => import('@/pages/workspace/body-history'), 'BodyHistoryPage');
@@ -135,8 +135,8 @@ const PAGES: Record<string, ComponentType<{ crumbs: Crumb[] }>> = {
   '/instance/roles': RolesPage,
   '/instance/system': SystemStatusPage,
   '/instance/push-deliveries': PushDeliveriesPage,
-  '/workspace/admin/general': ProjectsAdminGeneralPage,
-  '/workspace/admin/roles': ProjectsAdminRolesPage,
+  '/workspace/admin/general': WorkspaceGeneralPage,
+  '/workspace/admin/roles': WorkspaceRolesPage,
   '/workspace/admin/document-labels': DocumentLabelsPage,
   '/workspace/admin/labels': WorkItemLabelsPage,
   '/workspace/admin/types': WorkItemTypesPage,

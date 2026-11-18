@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SegmentedControl } from '@/shared/ui/segmented-control';
 import { SettingsSection } from '@/shared/ui/settings';
-import { USER_INSTRUCTIONS } from '../model/agent-instructions.generated';
+import { USER_INSTRUCTIONS } from '../model/agent-instructions';
 import { CodeBlock } from './CodeBlock';
 
 const AGENTS = [{ value: 'codex', label: 'Codex' }, { value: 'claude', label: 'Claude Code' }] as const;

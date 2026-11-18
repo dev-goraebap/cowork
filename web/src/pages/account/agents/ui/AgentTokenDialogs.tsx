@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Field, FieldError, FieldLabel } from '@/shared/ui/field';
 import { FormDialog } from '@/shared/ui/form-dialog';
 import { MarkNameField, type MarkValue } from '@/shared/ui/mark-picker';
-import { createAgentToken, editAgentProfile, type AgentProfile, type AgentTokenCreated } from '../api/account';
+import { createAgentToken, editAgentProfile, type AgentProfile, type AgentTokenCreated } from '../api/agents';
 import { CodeBlock } from './CodeBlock';
 
 /** A day as YYYY-MM-DD, as the server takes an expiry. */

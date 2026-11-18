@@ -5,7 +5,8 @@ import { labelsOptions, typesOptions, WorkItemTypeIcon } from '@/entities/work-i
 import { pageCrumbs } from '@/widgets/app-shell';
 import { Button } from '@/shared/ui/button';
 import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/settings';
-import type { Crumb } from './admin-rows';
+
+type Crumb = { label: string; href?: string; icon?: string };
 
 /**
  * 프로젝트 관리 › 일반 (BIT's workspace 일반, as far as cowork has one; 결정기록 2026-11-04 프로젝트 관리): cowork is
@@ -13,7 +14,7 @@ import type { Crumb } from './admin-rows';
  * are seen at once: how many projects are going, archived and deleted (managed in the 프로젝트 list), the default work
  * item type, and how many types and labels there are, each with the way to where it changes.
  */
-export function ProjectsAdminGeneralPage({ crumbs }: { crumbs: Crumb[] }) {
+export function WorkspaceGeneralPage({ crumbs }: { crumbs: Crumb[] }) {
   const active = useQuery(projectsOptions('ACTIVE'));
   const archived = useQuery(projectsOptions('ARCHIVED'));
   const deleted = useQuery(projectsOptions('DELETED'));

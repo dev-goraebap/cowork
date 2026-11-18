@@ -5,7 +5,8 @@ import { pageCrumbs } from '@/widgets/app-shell';
 import { Button } from '@/shared/ui/button';
 import { CheckIcon } from '@/shared/ui/icon';
 import { SettingsPage, SettingsSection } from '@/shared/ui/settings';
-import type { Crumb } from './admin-rows';
+
+type Crumb = { label: string; href?: string; icon?: string };
 
 /** The roles, the least first; a role may do all the roles before it may (an editor's 지우기 is their own issues'). */
 type Role = 'viewer' | 'editor' | 'admin' | 'projects';
@@ -41,7 +42,7 @@ const ABILITY_ROW = 'grid min-h-10 grid-cols-[minmax(0,1fr)_repeat(3,4.5rem)_6re
  * then what each may do side by side. A member's role is given on the project's 멤버 page or the area's 멤버 page; who is
  * a 워크스페이스 관리자 is given in 인스턴스 관리 › 권한 (an instance administrator's page), linked here.
  */
-export function ProjectsAdminRolesPage({ crumbs }: { crumbs: Crumb[] }) {
+export function WorkspaceRolesPage({ crumbs }: { crumbs: Crumb[] }) {
   const session = useQuery(sessionOptions()).data;
   const canGive = (session?.roles ?? []).includes('INSTANCE_ADMIN');
   return <SettingsPage crumbs={pageCrumbs(crumbs)} title="역할">

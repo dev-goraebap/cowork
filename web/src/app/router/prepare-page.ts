@@ -188,7 +188,7 @@ async function prepare(client: QueryClient, pathname: string, searchStr: string,
     const issues = await import('@/entities/work-item'); if (pathname.endsWith('/types')) await prime(issues.typesOptions()); else await prime(issues.labelsOptions()); return;
   }
   if (pathname === '/profile/agent-tokens') {
-    const api = await import('@/pages/instance/account'); await Promise.all([prime(api.agentProfilesOptions()), prime(api.agentTokensOptions())]); return;
+    const api = await import('@/pages/account/agents'); await Promise.all([prime(api.agentProfilesOptions()), prime(api.agentTokensOptions())]); return;
   }
   if (pathname === '/workspace/projects' || key) {
     const api = await import('@/entities/project');
