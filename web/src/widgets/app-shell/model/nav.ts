@@ -52,7 +52,7 @@ export const WORKSPACE: NavSpace = {
     // The administrations open from the foot of the menu and one's own menu: their entries stay, hidden, so their
     // addresses keep their routes and 탐색 finds them.
     { title: '관리', entries: [
-      entry('/instance', '인스턴스 설정', 'shield', true),
+      entry('/instance', '인스턴스 관리', 'shield', true),
       entry('/workspace/admin', '워크스페이스 관리', 'projects', true),
     ] },
   ],
@@ -60,7 +60,7 @@ export const WORKSPACE: NavSpace = {
 
 /** The header's tabs: the top space each stands for and where it opens. */
 export const TOP_SPACES = [
-  { id: 'workspace', label: '워크스페이스', path: '/workspace/projects', icon: 'work' },
+  { id: 'workspace', label: '코워크', path: '/workspace/projects', icon: 'work' },
 ] as const;
 
 /** The header tab an address is under: an administration or a project under the space it serves, 내 계정 and 인스턴스 none. */
@@ -93,10 +93,10 @@ export const ACCOUNT: NavSpace = {
 };
 
 /**
- * 인스턴스 설정: 내 메뉴에서 연다. 돌아가기는 워크스페이스로.
+ * 인스턴스 관리: 로고 옆 전환(코워크 ⇕ 인스턴스 관리)에서 연다. 돌아가기 줄 없이 그 전환으로 돌아간다.
  */
 export const INSTANCE: NavSpace = {
-  id: 'instance', title: '인스턴스 설정', back: { label: '돌아가기', path: '/workspace/projects' }, sections: [
+  id: 'instance', title: '인스턴스 관리', sections: [
     { title: '인스턴스', isHeaderHidden: true, entries: [
       entry('/instance/roles', '구성원 · 권한', 'people'),
       entry('/instance/system', '시스템 현황', 'dashboard'),

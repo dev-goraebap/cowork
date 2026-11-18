@@ -5,8 +5,9 @@ import { useIsMobile } from '@/shared/lib/use-mobile';
 import { AgentBar, AppShell, MeButton, type NavEntry as ShellEntry, type NavSpace as ShellSpace, type ShellMe } from '@/shared/ui/layout/app-shell';
 import { Barcode } from './Barcode';
 import { BrandMark } from '@/shared/ui/brand';
-import { DropdownMenuItem } from '@/shared/ui/dropdown-menu';
-import { InboxIcon, LinkIcon, LogoutIcon, MonitorIcon, PlusIcon, SettingsIcon, SparklesIcon, UserIcon, type Icon } from '@/shared/ui/icon';
+import { Button } from '@/shared/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/shared/ui/dropdown-menu';
+import { CheckIcon, ChevronDownIcon, ChevronUpIcon, InboxIcon, LinkIcon, LogoutIcon, MonitorIcon, PlusIcon, SettingsIcon, SparklesIcon, UserIcon, type Icon } from '@/shared/ui/icon';
 import { toast } from '@/shared/ui/toast';
 import { markTone, MarkIcon } from '@/shared/ui/mark-picker';
 import { GLOBAL_TITLE, projectKeyOf, projectPlaces, spaceOf, TOP_SPACES, topSpaceOf, visibleSections, WORKSPACE, type AdminRole, type NavEntry, type NavSection, type NavSpace } from '../model/nav';
@@ -33,7 +34,7 @@ function entryIcon(entry: NavEntry): Pick<ShellEntry, 'icon' | 'media'> {
 const SPACE_ADMINISTRATIONS: Record<string, { path: string; label: string; icon: string; role: AdminRole }> = {
   workspace: { path: '/workspace/admin', label: '워크스페이스 관리', icon: 'settings', role: 'WORKSPACE_ADMIN' },
 };
-const INSTANCE_SETTINGS = { path: '/instance', label: '인스턴스 설정', role: 'INSTANCE_ADMIN' as AdminRole };
+const INSTANCE_SETTINGS = { path: '/instance', label: '인스턴스 관리', role: 'INSTANCE_ADMIN' as AdminRole };
 
 /** 받은 알림's icon: yellow and gently pulsing while something waits (unread notices or approvals for me). */
 const activityIcon = (needsAttention: boolean): Icon => {
@@ -157,11 +158,11 @@ export function AppFrame({ pathname, search = '', myProjects = [], onCreateProje
   const adminEntries: ShellEntry[] = administration && roles.includes(administration.role)
     ? [{ path: administration.path, label: administration.label, icon: navIcon(administration.icon) }] : [];
   const canSetInstance = roles.includes(INSTANCE_SETTINGS.role);
-  // 인스턴스 설정은 내 메뉴에서 연다. 휴대폰에는 사이드바가 없어 워크스페이스 관리도 내 메뉴에 둔다.
-  const administrations = [
+  // 휴대폰에는 사이드바도 로고 옆 전환도 없어 관리 화면을 내 메뉴에 둔다. 데스크톱은 로고 옆 전환에서 인스턴스 관리를 연다.
+  const administrations = isPhone ? [
     ...(canSetInstance ? [{ ...INSTANCE_SETTINGS, icon: 'settings' }] : []),
-    ...(isPhone ? Object.values(SPACE_ADMINISTRATIONS).filter(each => roles.includes(each.role)) : []),
-  ];
+    ...Object.values(SPACE_ADMINISTRATIONS).filter(each => roles.includes(each.role)),
+  ] : [];
   const shellMe: ShellMe = {
     name: me.name, detail: me.team, picture: me.picture || me.fallbackPicture,
     groups: [
@@ -175,8 +176,45 @@ export function AppFrame({ pathname, search = '', myProjects = [], onCreateProje
     ],
   };
   const headerTools = <MeButton me={shellMe} align="end" size="sm" />;
-  // 로고는 펼쳤든 접었든 심벌(정사각형)이다. 공간은 워크스페이스 하나라 공간 바꾸기가 없다.
-  const brand = <Link to="/workspace/projects" aria-label="홈, 프로젝트" className="flex shrink-0 items-center pl-2 group-data-[collapsible=icon]:pl-0"><BrandMark /></Link>;
+  // 로고 옆 전환: 코워크 ⇕ 인스턴스 관리. 지금 있는 곳의 아이콘 · 이름과 위아래 꺾쇠, 누르면 둘을 고르는 메뉴. 인스턴스 관리는
+  // 그 권한이 있을 때만 메뉴에 선다. 접은 사이드바에서는 아이콘만.
+  const top = topSpaceOf(space);
+  const isInstance = space.id === 'instance';
+  const shown = isInstance ? { label: INSTANCE_SETTINGS.label, icon: 'settings' } : TOP_SPACES.find(each => each.id === top) ?? TOP_SPACES[0];
+  const ShownIcon = navIcon(shown.icon);
+  const spaceSwitcher = (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={
+        <Button variant="ghost" size="sm" aria-label={`지금: ${shown.label}, 바꾸기`}
+          className="h-8 gap-1.5 px-2 group-data-[collapsible=icon]:size-8 group-data-[collapsible=icon]:px-0">
+          <ShownIcon chosen className="size-4 shrink-0" />
+          <span className="group-data-[collapsible=icon]:hidden">{shown.label}</span>
+          <span aria-hidden className="flex flex-col text-icon-muted group-data-[collapsible=icon]:hidden [&_svg]:size-2.5">
+            <ChevronUpIcon className="-mb-0.5" /><ChevronDownIcon className="-mt-0.5" />
+          </span>
+        </Button>
+      } />
+      <DropdownMenuContent align="start" className="min-w-40">
+        {TOP_SPACES.map(each => {
+          const SpaceIcon = navIcon(each.icon);
+          const isHere = !isInstance && each.id === top;
+          return <DropdownMenuItem key={each.id} onClick={() => go(each.path)}>
+            <SpaceIcon chosen={isHere} />{each.label}{isHere && <CheckIcon className="ml-auto" />}
+          </DropdownMenuItem>;
+        })}
+        {canSetInstance && <>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={() => go(INSTANCE_SETTINGS.path)}>
+            <SettingsIcon chosen={isInstance} />{INSTANCE_SETTINGS.label}{isInstance && <CheckIcon className="ml-auto" />}
+          </DropdownMenuItem>
+        </>}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+  const brand = <>
+    <Link to="/workspace/projects" aria-label="홈, 프로젝트" className="flex shrink-0 items-center pl-2 group-data-[collapsible=icon]:pl-0"><BrandMark /></Link>
+    {spaceSwitcher}
+  </>;
   return (
     <AppShell space={shellSpace} pathname={pathname} layout={layout} me={shellMe} hasMeBox={false} adminEntries={adminEntries}
       brand={brand} headerTools={headerTools}

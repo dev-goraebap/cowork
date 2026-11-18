@@ -113,7 +113,8 @@ export function ShellSidebar({ space, current, brand, headerTools, me, footer, a
   return (
     <Sidebar collapsible="icon" variant={layout === "inset" ? "inset" : "sidebar"} aria-label="주 메뉴"
       className={isAboveBar ? "h-[calc(100svh-2.5rem)]" : undefined}>
-      {(brand || headerTools || me) && <SidebarHeader className={cn("gap-3 px-3 group-data-[collapsible=icon]:px-2", layout === "inset" ? "pt-3" : "pt-0")}>
+      {/* 메뉴 본문과 같은 스크롤 막대 자리를 오른쪽에 둔다: 머리의 아바타와 메뉴 항목의 오른쪽 끝이 한 선에 선다. */}
+      {(brand || headerTools || me) && <SidebarHeader className={cn("gap-3 overflow-y-hidden px-3 [scrollbar-gutter:stable] [scrollbar-width:thin] group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:[scrollbar-gutter:auto]", layout === "inset" ? "pt-3" : "pt-0")}>
         {/* split은 머리 줄을 페이지 머리 줄(52px)과 같은 선에 둔다. */}
         <div className={cn("flex items-center justify-between gap-2 group-data-[collapsible=icon]:h-auto group-data-[collapsible=icon]:flex-col",
           layout === "inset" ? "h-8" : "h-13 group-data-[collapsible=icon]:pt-3")}>

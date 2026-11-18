@@ -11,7 +11,7 @@ type Step = { icon: typeof UserIcon; title: string; detail: string };
 
 const ADMIN_STEPS: Step[] = [
   { icon: FolderIcon, title: '프로젝트 만들기', detail: '워크스페이스의 프로젝트 목록에서 첫 프로젝트를 만듭니다.' },
-  { icon: UsersIcon, title: '구성원 추가', detail: '인스턴스 설정 › 구성원 · 권한에서 함께 일할 사람을 이메일로 더합니다.' },
+  { icon: UsersIcon, title: '구성원 추가', detail: '로고 옆 전환 › 인스턴스 관리 › 구성원 · 권한에서 함께 일할 사람을 이메일로 더합니다.' },
   { icon: UserIcon, title: '내 정보 다듬기', detail: '내 메뉴 › 내 정보에서 이름과 사진을 고칩니다.' },
 ];
 const MEMBER_STEPS: Step[] = [
