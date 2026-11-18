@@ -188,24 +188,6 @@ export function unmaskDialogHref(pathname: string, searchStr: string, name: stri
   return `${pathname.slice(0, -(name.length + 1))}?${params}`
 }
 
-/*
- * 크게 보기로 넘기는 쓰던 내용. 두 가지 방식이 있다.
- * - carryDraft / useCarriedDraft(키트): 크게 보기를 누를 때 맡기고, 페이지의 양식이 처음 그릴 때 꺼낸다. 메모리에만 둔다.
- * - useComposeTransfer / useComposeExpansion(cowork): 조회 캐시에 맡긴다(로그인 경계에서 캐시와 함께 비워진다).
- *   창이 휴대폰 폭으로 좁아져 PanelHost가 대화상자를 페이지로 바꾸기 전에도 맡긴다.
- * 둘 다 새로고침하면 사라지고, File도 그대로 넘어간다.
- */
-const carried = new Map<string, unknown>()
-
-export const carryDraft = (key: string, draft: unknown) => void carried.set(key, draft)
-
-/** 맡겨 둔 내용. 개발 모드의 두 번 그리기에도 같은 값을 읽도록 그릴 때는 보기만 하고, 그린 뒤에 지운다. */
-export function useCarriedDraft<T>(key: string): T | undefined {
-  const draft = carried.get(key) as T | undefined
-  useEffect(() => { carried.delete(key) }, [key])
-  return draft
-}
-
 /** 대화상자 ↔ 페이지를 건너 한 번 넘기는 내용. initial은 처음 그릴 때 받은 것, keep은 맡기기, clear는 버리기. */
 export function useComposeTransfer<T>(id: string) {
   const client = useQueryClient()

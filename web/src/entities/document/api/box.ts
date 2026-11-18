@@ -1,8 +1,6 @@
-import type { QueryClient } from '@tanstack/react-query';
 import { queryOptions, useMutation, useQueryClient } from '@tanstack/react-query';
 import type { JSONNode } from '@/shared/lib/rich-document';
 import { getJson, sendCommand, sendCreate, type components } from '@/shared/api';
-import { serverBodyStore, type RichBodyStore } from '@/shared/ui/rich-body';
 import { documentKeys, documentPath, type DocumentRow } from './documents';
 
 /*
@@ -14,12 +12,6 @@ import { documentKeys, documentPath, type DocumentRow } from './documents';
 type Schemas = components['schemas'];
 type Required<T, K extends keyof T> = T & { [P in K]-?: NonNullable<T[P]> };
 
-/** A project's folder at 문서함's top: there for every project, with the project's mark and its latest writing. */
-export type BoxProjectFolder = Required<Schemas['DocumentBoxProject'], 'projectId' | 'key' | 'name' | 'archived' | 'itemCount'>;
-/** A chapter of a 매뉴얼: under another chapter (none, the first level), placed among its siblings. */
-export type ManualChapter = Required<Schemas['ManualChapterRow'], 'id' | 'position' | 'title' | 'updatedAt' | 'version'>;
-/** What a document is: a page on its own, or a 매뉴얼 of ordered chapters. */
-export type DocumentKind = 'PAGE' | 'MANUAL';
 /** How far one may go with a folder or document. */
 export type AccessLevel = 'NONE' | 'READ' | 'WRITE' | 'MANAGE';
 /** Who a grant is for: the item's maker, a member, a department (with those under it) or a project's members. */
@@ -32,14 +24,6 @@ export type Access = {
 export type Mark = { icon: string | null; color: string | null };
 /** A system folder's kind: 회의록 (narrowed by project) or 주간보고 (by department), kept by their own pages. */
 export type SystemKind = 'MEETING' | 'WEEKLY_REPORT';
-/** A system folder's row: how many documents the reader sees in it and its latest change. */
-export type SystemFolderRow = Required<Schemas['DocumentBoxSystem'], 'kind' | 'count'>;
-/** One of a system folder's documents: its title, facet (a project, a department), writer and latest change. */
-export type SystemItem = Required<Schemas['DocumentBoxSystemItem'], 'id' | 'title' | 'updatedAt'>;
-export type SystemFacet = Required<Schemas['DocumentBoxSystemFacet'], 'id' | 'name' | 'count'>;
-export type SystemSlice = { items: SystemItem[]; facets: SystemFacet[]; nextOffset?: number | null };
-
-const CHAPTERS = '/api/v1/workspace/manual-chapters';
 const idOf = (location: string) => location.split('/').pop() ?? '';
 
 export const boxKeys = {
@@ -49,47 +33,6 @@ export const boxKeys = {
   systems: (projectId?: string) => ['documents', 'systems', projectId ?? '-'] as const,
   systemItems: (kind: SystemKind, projectId?: string, facet?: string) => ['documents', 'systems', kind, projectId ?? '-', facet ?? '-'] as const,
 };
-
-/** The system folders at 문서함's top, or a project's (its 회의록), with what the reader sees in each. */
-export const systemFoldersOptions = (projectId?: string) => queryOptions({
-  queryKey: boxKeys.systems(projectId),
-  queryFn: ({ signal }) => getJson<SystemFolderRow[]>(`/api/v1/workspace/document-box/systems${projectId ? `?projectId=${projectId}` : ''}`, signal),
-});
-
-/** A system folder's documents, the latest changed first (one page of 100), for a project and a facet when given. */
-export const systemItemsOptions = (kind: SystemKind, { projectId, facet }: { projectId?: string; facet?: string } = {}) => queryOptions({
-  queryKey: boxKeys.systemItems(kind, projectId, facet),
-  queryFn: async ({ signal }) => {
-    const params = new URLSearchParams({ size: '100' });
-    if (projectId) params.set('projectId', projectId);
-    if (facet) params.set('facet', facet);
-    const items: SystemItem[] = [];
-    const offsets = new Set<number>();
-    let facets: SystemFacet[];
-    for (;;) {
-      const page = await getJson<SystemSlice>(`/api/v1/workspace/document-box/systems/${kind}?${params}`, signal);
-      items.push(...page.items);
-      facets = page.facets;
-      if (page.nextOffset == null) break;
-      if (offsets.has(page.nextOffset)) throw new Error('문서 목록을 이어 읽지 못했습니다.');
-      offsets.add(page.nextOffset);
-      params.set('offset', String(page.nextOffset));
-    }
-    return { items, facets } satisfies SystemSlice;
-  },
-});
-
-/** Every project's folder at 문서함's top, in the administrators' order. */
-export const boxProjectsOptions = () => queryOptions({
-  queryKey: boxKeys.projects,
-  queryFn: ({ signal }) => getJson<BoxProjectFolder[]>('/api/v1/workspace/document-box/projects', signal),
-});
-
-/** A 매뉴얼's chapters by place; the tree is built from parents. */
-export const chaptersOptions = (documentId: string) => queryOptions({
-  queryKey: boxKeys.chapters(documentId),
-  queryFn: ({ signal }) => getJson<ManualChapter[]>(`${documentPath(documentId)}/chapters`, signal),
-});
 
 /** A folder's or document's permissions. */
 export const accessOptions = (target: 'documents' | 'document-folders', id: string) => queryOptions({
@@ -114,32 +57,11 @@ export const useMark = (onDone?: () => void) => useBoxCommand((change: { documen
   sendCommand(`${documentPath(change.document.id)}/mark`, 'PUT', { expectedVersion: change.document.version, ...markBody(change.mark) }), onDone);
 const markBody = (mark: Mark) => ({ icon: mark.icon ?? undefined, color: mark.color ?? undefined });
 
-/** A chapter made (last under its parent), renamed, moved (under a parent, at an index) or deleted with those under it. */
-export type ChapterChange =
-  | { kind: 'create'; documentId: string; parentId?: string; title: string }
-  | { kind: 'rename'; chapter: ManualChapter; title: string }
-  | { kind: 'move'; chapter: ManualChapter; parentId?: string; index: number }
-  | { kind: 'delete'; chapter: ManualChapter };
-export const useChangeChapter = (onDone?: (id?: string) => void) => useBoxCommand(async (change: ChapterChange): Promise<string | undefined> => {
-  const at = (chapter: ManualChapter) => `${CHAPTERS}/${encodeURIComponent(chapter.id)}`;
-  switch (change.kind) {
-    case 'create': return idOf(await sendCreate(`${documentPath(change.documentId)}/chapters`, { parentId: change.parentId, title: change.title.trim() }));
-    case 'rename': await sendCommand(at(change.chapter), 'PATCH', { expectedVersion: change.chapter.version, title: change.title.trim() }); return undefined;
-    case 'move': await sendCommand(`${at(change.chapter)}/move`, 'POST', { expectedVersion: change.chapter.version, parentId: change.parentId, index: change.index }); return undefined;
-    case 'delete': await sendCommand(`${at(change.chapter)}?expectedVersion=${change.chapter.version}`, 'DELETE'); return undefined;
-  }
-}, onDone);
-
 /** A folder's or document's grants in place of what it had; none opens it. */
 export const useReplaceAccess = (onDone?: () => void) => useBoxCommand(({ target, id, grants }: { target: 'documents' | 'document-folders'; id: string; grants: Grant[] }) =>
   sendCommand(`/api/v1/workspace/${target}/${encodeURIComponent(id)}/access`, 'PUT', {
     grants: grants.map(grant => ({ subject: grant.subject, subjectId: grant.subjectId, level: grant.level })),
   }), onDone);
-
-/** A chapter's body for RichBody, as a document's: read and saved there, with its kept versions. */
-export function chapterBodyStore({ id, author, canWrite, client, readerId }: { id: string; author: string; canWrite: boolean; client?: QueryClient; readerId?: string }): RichBodyStore {
-  return serverBodyStore({ base: `${CHAPTERS}/${encodeURIComponent(id)}/body`, author, canWrite, client, readerId });
-}
 
 /** What a document's or a chapter's timeline is under: the document's address or the chapter's. */
 export type BodyTarget = 'documents' | 'manual-chapters';

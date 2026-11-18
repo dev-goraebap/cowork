@@ -1,4 +1,3 @@
-import { DEFAULT_MARK_COLOR } from '@/shared/ui/color-palette/palette';
 import { queryOptions } from '@tanstack/react-query';
 import { getJson, sendCommand, sendCreate } from '@/shared/api';
 import type { DocumentRow } from './documents';
@@ -50,8 +49,6 @@ export const documentLabelsOptions = () =>
   });
 export const createDocumentLabel = async (value: { name: string; color: string }) =>
   (await sendCreate('/api/v1/workspace/document-labels', value)).split('/').pop()!;
-export const addDocumentLabel = async (name: string, color = DEFAULT_MARK_COLOR) =>
-  createDocumentLabel({ name, color });
 export const editDocumentLabel = (label: DocumentLabel, value: { name: string; color: string }) =>
   sendCommand(`/api/v1/workspace/document-labels/${label.id}`, 'PATCH', { ...value, expectedVersion: label.version });
 export const deleteDocumentLabel = (label: DocumentLabel) =>

@@ -1,12 +1,11 @@
 import { infiniteQueryOptions, keepPreviousData, queryOptions, useMutation, useQueryClient, type InfiniteData } from '@tanstack/react-query';
 import { getJson, sendCommand, type components } from '@/shared/api';
-import { targetOf } from '../model/target';
 
 type Item = components['schemas']['NotificationItem'];
 export type NotificationItem = Item & Required<Pick<Item, 'id' | 'kind' | 'title' | 'createdAt'>>;
 export type NotificationSlice = { items: NotificationItem[]; nextCursor?: string };
-/** The list's conditions as the API reads them: read state and what it is about. */
-export type NotificationListing = { read?: 'unread' | 'read'; category?: 'approval' | 'announcement' | 'event' };
+/** The list's conditions as the API reads them: read state. */
+export type NotificationListing = { read?: 'unread' | 'read' };
 
 export const notificationKeys = { all: ['notifications'] as const };
 const PAGE_SIZE = 20;
@@ -17,7 +16,6 @@ export const notificationsOptions = (listing: NotificationListing) => infiniteQu
   queryFn: ({ pageParam, signal }) => {
     const params = new URLSearchParams({ size: String(PAGE_SIZE) });
     if (listing.read) params.set('read', listing.read.toUpperCase());
-    if (listing.category) params.set('category', listing.category.toUpperCase());
     if (pageParam) params.set('cursor', pageParam);
     return getJson<NotificationSlice>(`/api/v1/notifications?${params}`, signal);
   },
@@ -55,10 +53,3 @@ export const useReadNotification = () =>
   useNotificationCommand((id: string) => sendCommand(`/api/v1/notifications/${id}/reads`, 'POST'), (row, id) => row.id === id);
 export const useReadAllNotifications = () =>
   useNotificationCommand(() => sendCommand('/api/v1/notifications/reads', 'POST'), () => true);
-export const useReadRequestNotifications = () => useNotificationCommand(
-  (id: string) => sendCommand('/api/v1/notifications/seen', 'POST', { type: 'APPROVAL_REQUEST', id, includeActionable: true }),
-  (row, id) => {
-    const target = targetOf(row.link);
-    return target?.kind === 'request' && target.id === id;
-  },
-);

@@ -1,1 +1,0 @@
-export { ResultMark } from './ResultMark';

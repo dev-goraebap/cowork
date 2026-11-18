@@ -46,10 +46,3 @@ export function treeRows<T extends TreeItem>(items: readonly T[], people: readon
   return rows;
 }
 
-/** The department and every department below it, at any level. */
-export function branchOf<T extends TreeItem>(items: readonly T[], id: string): string[] {
-  const found = [id];
-  for (let index = 0; index < found.length; index++)
-    for (const item of items) if (item.parentId === found[index] && !found.includes(item.id)) found.push(item.id);
-  return found;
-}

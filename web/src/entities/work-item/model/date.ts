@@ -18,6 +18,3 @@ export function formatWorkItemDate(value: string, today = new Date()): string {
 export const isLate = (dueDate: string | undefined, isClosed: boolean, today = new Date()) =>
   !!dueDate && !isClosed && dueDate < seoulDay.format(today);
 
-const moment = new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-/** When something happened to a work item: 11월 3일 오후 2:10. */
-export const momentOf = (value: string) => moment.format(new Date(value));

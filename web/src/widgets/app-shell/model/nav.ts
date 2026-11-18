@@ -69,12 +69,6 @@ export function topSpaceOf(space: NavSpace): HomeSpace | undefined {
   return undefined;
 }
 
-/** The top space an address names by itself (/workspace/…); none for the addresses of no space. */
-export function ownSpaceOf(pathname: string): HomeSpace | undefined {
-  if (pathname === '/workspace' || pathname.startsWith('/workspace/')) return 'workspace';
-  return undefined;
-}
-
 /** The role each of 관리's entries needs. */
 const ADMIN_ROLE: Record<string, AdminRole> = { '/instance': 'INSTANCE_ADMIN', '/workspace/settings': 'WORKSPACE_ADMIN' };
 
@@ -231,12 +225,3 @@ export function crumbsOf(pathname: string, projectName?: string): { label: strin
   return [{ label: space.title }, { label: item.label, icon: item.icon }];
 }
 
-/**
- * A phone's bottom tabs: the workspace's places one goes most (a first choice; how to pick them is not settled), each marked
- * chosen on the addresses under it. 더보기 follows them.
- */
-export const TABS: { path: string; label: string; icon: string }[] = [
-  { path: '/workspace/projects', label: '프로젝트', icon: 'projects' },
-  { path: '/my-work', label: '내 업무', icon: 'user' },
-  { path: '/workspace/members', label: '멤버', icon: 'people' },
-];

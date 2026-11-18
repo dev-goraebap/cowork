@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { useNavigate, useSearch } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
 import { useMemo, useRef } from 'react';
 import {
   kindOf, notificationsOptions, unreadNotificationsOptions, useReadAllNotifications,
@@ -42,7 +42,6 @@ function NotificationsMenu({ unread, onReadAll }: { unread: number; onReadAll: (
   ]} />;
 }
 
-/** A centred button under the rows (내 결재 더 보기, a list read again). */
 /**
  * One notice: who sent it (the system's own notices the company's mark in the same place), its title, what it reports and
  * its words, and when it came; an unread one tinted, the chosen one marked. Pressed anywhere it opens in the detail
@@ -60,8 +59,7 @@ function NotificationRow({ item, now, isChosen, href }: { item: NotificationItem
 }
 
 /**
- * 알림함 (/inbox, /inbox/{id}): the member's notices, newest first, narrowed by read state and what
- * they are about, read a slice at a time, as an inbox (shared/ui/inbox): the list on the left, the chosen notice (id)
+ * 알림함 (/inbox, /inbox/{id}): the member's notices, newest first, narrowed by read state, read a slice at a time, as an inbox (shared/ui/inbox): the list on the left, the chosen notice (id)
  * on the right showing what it points to in place (NoticeDetail). A phone shows the list alone and the chosen notice
  * as a page of its own, its way back the list (the filters kept, this component staying while the address changes).
  * Opening one marks it read; the page menu reads them all and leads to 알림 설정. A notice not among those read so far
@@ -70,14 +68,9 @@ function NotificationRow({ item, now, isChosen, href }: { item: NotificationItem
 export function NotificationsPage({ crumbs, id }: { crumbs: Crumb[]; id?: string }) {
   const navigate = useNavigate();
   const isPhone = useIsMobile();
-  const { view } = useSearch({ strict: false }) as { view?: unknown };
-  const category = view === 'announcement' || view === 'event' ? view : undefined;
-  const search = category ? `?view=${category}` : '';
-  const hrefOf = (noticeId?: string) => `/inbox${noticeId ? `/${noticeId}` : ''}${search}`;
+  const hrefOf = (noticeId?: string) => `/inbox${noticeId ? `/${noticeId}` : ''}`;
   const filters = useFilters(FILTERS);
-  const listing: NotificationListing = {
-    read: filters.one('read') as NotificationListing['read'], category,
-  };
+  const listing: NotificationListing = { read: filters.one('read') as NotificationListing['read'] };
   const list = useInfiniteQuery(notificationsOptions(listing));
   const unread = useQuery(unreadNotificationsOptions()).data?.count ?? 0;
   const readAll = useReadAllNotifications();
@@ -107,7 +100,7 @@ export function NotificationsPage({ crumbs, id }: { crumbs: Crumb[]; id?: string
     return filters.count > 0
       ? { kind: 'search', title: '조건에 맞는 알림이 없습니다',
         action: <Button variant="secondary" onClick={filters.clear}>조건 지우기</Button> }
-      : { kind: 'empty', title: category === 'event' ? '일정 알림이 없습니다' : category === 'announcement' ? '받은 공지가 없습니다' : '새로 확인할 활동이 없습니다' };
+      : { kind: 'empty', title: '새로 확인할 활동이 없습니다' };
   };
   const rows = <>
     {notices.length ? <section aria-label="최근 소식">

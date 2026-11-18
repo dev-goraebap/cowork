@@ -1,1 +1,1 @@
-export { BodyHistoryPage, type HistoryTarget } from './ui/BodyHistoryPage';
+export { BodyHistoryPage,  } from './ui/BodyHistoryPage';

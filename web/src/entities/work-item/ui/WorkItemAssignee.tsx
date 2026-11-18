@@ -1,9 +1,5 @@
 import { cn } from 'cn';
-import { avatarSource } from '@/shared/lib/avatar';
 import { PersonAvatar } from '@/shared/ui/person';
-
-/** Resolves a chosen picture or the member's default drawn avatar from directory data. */
-export const personPicture = avatarSource;
 
 /** Nobody given: a dashed circle round a person's outline, in the same 20px slot as an avatar. */
 function Unassigned() {

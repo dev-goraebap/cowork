@@ -10,9 +10,9 @@ import { PageState } from '@/shared/ui/page-state';
 import { Facts, WithPanel } from '@/shared/ui/side-panel';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/table';
 import { activitiesOptions, errorOptions, errorsOptions, isLogUnavailable, type ActivityListing, type ActivityRow, type ErrorListing, type ErrorRow } from '../api/system';
-import { activityOutcome, activityText, agentText, durationText, momentText, shortRoute } from '../model/format';
+import { activityOutcome, activityText, agentText, durationText, momentText, shortRoute, type OutcomeTone } from '../model/format';
 import { LogStoreNotice } from './Overview';
-import { ToneBadge } from './ToneBadge';
+import { ToneBadge } from '@/shared/ui/tone-badge';
 
 /** A row of a list whose rows open beside it; the chosen one stays lit while its panel is open. */
 const ROW = 'relative bg-background hover:bg-row-hover data-[state=selected]:bg-muted';
@@ -56,7 +56,7 @@ export function Activities({ listing, isNarrowed, onClear, opened, onOpen }: {
               <span className={cn('truncate text-sm text-muted-foreground', row.kind === 'CHANGE' && CODE)}>{text.detail}</span>
             </span>
             <span className="flex shrink-0 flex-col items-end gap-0.5">
-              <ToneBadge {...activityOutcome(row)} />
+              <OutcomeBadge {...activityOutcome(row)} />
               <span className="text-xs text-muted-foreground tabular-nums">{momentText(row.at)}</span>
             </span>
           </li>;
@@ -98,7 +98,7 @@ function ActivityTable({ rows, opened, onOpen }: { rows: ActivityRow[]; opened: 
               {row.departmentName ? <span className="truncate text-xs text-muted-foreground">{row.departmentName}</span> : null}
             </span>
           </TableCell>
-          <TableCell><ToneBadge {...activityOutcome(row)} /></TableCell>
+          <TableCell><OutcomeBadge {...activityOutcome(row)} /></TableCell>
           <TableCell className="tabular-nums">{row.durationMs == null ? '-' : durationText(row.durationMs)}</TableCell>
           <TableCell>
             <span className="flex min-w-0 flex-col">
@@ -132,7 +132,7 @@ function ActivityFacts({ row }: { row: ActivityRow }) {
       ['구성원', who],
       ['한 일', `${activityText(row).title} · ${row.method ?? ''} ${shortRoute(row.route)}`],
       ['대상', row.target ?? '-'],
-      ['결과', <ToneBadge key="outcome" {...activityOutcome(row)} />],
+      ['결과', <OutcomeBadge key="outcome" {...activityOutcome(row)} />],
       ['걸린 시간', row.durationMs == null ? '-' : durationText(row.durationMs)],
     ];
   return <Facts facts={[...facts, ['IP', row.ip], ['브라우저', agentText(row.userAgent) ?? '-'], ['User-Agent', row.userAgent ?? '-'],
@@ -203,3 +203,6 @@ function ErrorFacts({ row }: { row: ErrorRow }) {
     </section>
   </div>;
 }
+
+/** 신청 · 바뀜이 어떻게 끝났는지를 색 알약으로. */
+const OutcomeBadge = ({ label, color }: OutcomeTone) => <ToneBadge label={label} tone={color} />;

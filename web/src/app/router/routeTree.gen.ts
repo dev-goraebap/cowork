@@ -48,7 +48,6 @@ import { Route as AppWorkspaceWorkItemsNewPageRouteImport } from './../../pages/
 import { Route as AppWorkspaceProjectsKeyCyclesPageRouteImport } from './../../pages/_app/workspace/projects/$key/cycles/page'
 import { Route as AppWorkspaceProjectsKeyDocumentsPageRouteImport } from './../../pages/_app/workspace/projects/$key/documents/page'
 import { Route as AppWorkspaceProjectsKeyMembersPageRouteImport } from './../../pages/_app/workspace/projects/$key/members/page'
-import { Route as AppWorkspaceProjectsKeySchedulePageRouteImport } from './../../pages/_app/workspace/projects/$key/schedule/page'
 import { Route as AppWorkspaceProjectsKeySettingsPageRouteImport } from './../../pages/_app/workspace/projects/$key/settings/page'
 import { Route as AppWorkspaceProjectsKeyWorkItemsPageRouteImport } from './../../pages/_app/workspace/projects/$key/work-items/page'
 import { Route as AppWorkspaceProjectsKeyDocumentsDocumentIdPageRouteImport } from './../../pages/_app/workspace/projects/$key/documents/$documentId/page'
@@ -282,12 +281,6 @@ const AppWorkspaceProjectsKeyMembersPageRoute =
     path: '/members/',
     getParentRoute: () => AppWorkspaceProjectsKeyRouteRoute,
   } as any)
-const AppWorkspaceProjectsKeySchedulePageRoute =
-  AppWorkspaceProjectsKeySchedulePageRouteImport.update({
-    id: '/schedule/',
-    path: '/schedule/',
-    getParentRoute: () => AppWorkspaceProjectsKeyRouteRoute,
-  } as any)
 const AppWorkspaceProjectsKeySettingsPageRoute =
   AppWorkspaceProjectsKeySettingsPageRouteImport.update({
     id: '/',
@@ -426,7 +419,6 @@ export interface FileRoutesByFullPath {
   '/workspace/projects/$key/cycles/': typeof AppWorkspaceProjectsKeyCyclesPageRoute
   '/workspace/projects/$key/documents/': typeof AppWorkspaceProjectsKeyDocumentsPageRoute
   '/workspace/projects/$key/members/': typeof AppWorkspaceProjectsKeyMembersPageRoute
-  '/workspace/projects/$key/schedule/': typeof AppWorkspaceProjectsKeySchedulePageRoute
   '/workspace/projects/$key/settings/': typeof AppWorkspaceProjectsKeySettingsPageRoute
   '/workspace/projects/$key/work-items/': typeof AppWorkspaceProjectsKeyWorkItemsPageRoute
   '/workspace/projects/$key/documents/$documentId/': typeof AppWorkspaceProjectsKeyDocumentsDocumentIdPageRoute
@@ -479,7 +471,6 @@ export interface FileRoutesByTo {
   '/workspace/projects/$key/cycles': typeof AppWorkspaceProjectsKeyCyclesPageRoute
   '/workspace/projects/$key/documents': typeof AppWorkspaceProjectsKeyDocumentsPageRoute
   '/workspace/projects/$key/members': typeof AppWorkspaceProjectsKeyMembersPageRoute
-  '/workspace/projects/$key/schedule': typeof AppWorkspaceProjectsKeySchedulePageRoute
   '/workspace/projects/$key/settings': typeof AppWorkspaceProjectsKeySettingsPageRoute
   '/workspace/projects/$key/work-items': typeof AppWorkspaceProjectsKeyWorkItemsPageRoute
   '/workspace/projects/$key/documents/$documentId': typeof AppWorkspaceProjectsKeyDocumentsDocumentIdPageRoute
@@ -538,7 +529,6 @@ export interface FileRoutesById {
   '/_app/workspace/projects/$key/cycles/': typeof AppWorkspaceProjectsKeyCyclesPageRoute
   '/_app/workspace/projects/$key/documents/': typeof AppWorkspaceProjectsKeyDocumentsPageRoute
   '/_app/workspace/projects/$key/members/': typeof AppWorkspaceProjectsKeyMembersPageRoute
-  '/_app/workspace/projects/$key/schedule/': typeof AppWorkspaceProjectsKeySchedulePageRoute
   '/_app/workspace/projects/$key/settings/': typeof AppWorkspaceProjectsKeySettingsPageRoute
   '/_app/workspace/projects/$key/work-items/': typeof AppWorkspaceProjectsKeyWorkItemsPageRoute
   '/_app/workspace/projects/$key/documents/$documentId/': typeof AppWorkspaceProjectsKeyDocumentsDocumentIdPageRoute
@@ -597,7 +587,6 @@ export interface FileRouteTypes {
     | '/workspace/projects/$key/cycles/'
     | '/workspace/projects/$key/documents/'
     | '/workspace/projects/$key/members/'
-    | '/workspace/projects/$key/schedule/'
     | '/workspace/projects/$key/settings/'
     | '/workspace/projects/$key/work-items/'
     | '/workspace/projects/$key/documents/$documentId/'
@@ -650,7 +639,6 @@ export interface FileRouteTypes {
     | '/workspace/projects/$key/cycles'
     | '/workspace/projects/$key/documents'
     | '/workspace/projects/$key/members'
-    | '/workspace/projects/$key/schedule'
     | '/workspace/projects/$key/settings'
     | '/workspace/projects/$key/work-items'
     | '/workspace/projects/$key/documents/$documentId'
@@ -708,7 +696,6 @@ export interface FileRouteTypes {
     | '/_app/workspace/projects/$key/cycles/'
     | '/_app/workspace/projects/$key/documents/'
     | '/_app/workspace/projects/$key/members/'
-    | '/_app/workspace/projects/$key/schedule/'
     | '/_app/workspace/projects/$key/settings/'
     | '/_app/workspace/projects/$key/work-items/'
     | '/_app/workspace/projects/$key/documents/$documentId/'
@@ -1009,13 +996,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppWorkspaceProjectsKeyMembersPageRouteImport
       parentRoute: typeof AppWorkspaceProjectsKeyRouteRoute
     }
-    '/_app/workspace/projects/$key/schedule/': {
-      id: '/_app/workspace/projects/$key/schedule/'
-      path: '/schedule'
-      fullPath: '/workspace/projects/$key/schedule/'
-      preLoaderRoute: typeof AppWorkspaceProjectsKeySchedulePageRouteImport
-      parentRoute: typeof AppWorkspaceProjectsKeyRouteRoute
-    }
     '/_app/workspace/projects/$key/settings/': {
       id: '/_app/workspace/projects/$key/settings/'
       path: '/'
@@ -1223,7 +1203,6 @@ interface AppWorkspaceProjectsKeyRouteRouteChildren {
   AppWorkspaceProjectsKeyCyclesPageRoute: typeof AppWorkspaceProjectsKeyCyclesPageRoute
   AppWorkspaceProjectsKeyDocumentsPageRoute: typeof AppWorkspaceProjectsKeyDocumentsPageRoute
   AppWorkspaceProjectsKeyMembersPageRoute: typeof AppWorkspaceProjectsKeyMembersPageRoute
-  AppWorkspaceProjectsKeySchedulePageRoute: typeof AppWorkspaceProjectsKeySchedulePageRoute
   AppWorkspaceProjectsKeyWorkItemsPageRoute: typeof AppWorkspaceProjectsKeyWorkItemsPageRoute
   AppWorkspaceProjectsKeyDocumentsDocumentIdPageRoute: typeof AppWorkspaceProjectsKeyDocumentsDocumentIdPageRoute
   AppWorkspaceProjectsKeyWorkItemsNumberPageRoute: typeof AppWorkspaceProjectsKeyWorkItemsNumberPageRoute
@@ -1247,8 +1226,6 @@ const AppWorkspaceProjectsKeyRouteRouteChildren: AppWorkspaceProjectsKeyRouteRou
       AppWorkspaceProjectsKeyDocumentsPageRoute,
     AppWorkspaceProjectsKeyMembersPageRoute:
       AppWorkspaceProjectsKeyMembersPageRoute,
-    AppWorkspaceProjectsKeySchedulePageRoute:
-      AppWorkspaceProjectsKeySchedulePageRoute,
     AppWorkspaceProjectsKeyWorkItemsPageRoute:
       AppWorkspaceProjectsKeyWorkItemsPageRoute,
     AppWorkspaceProjectsKeyDocumentsDocumentIdPageRoute:

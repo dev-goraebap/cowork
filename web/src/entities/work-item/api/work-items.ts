@@ -124,10 +124,6 @@ export const draftOf = (workItem: WorkItemRow): WorkItemDraft & { columnId: stri
 export const editWorkItem = (workItem: WorkItemRow, draft: WorkItemDraft & { columnId: string }) =>
   sendCommand(workItemPath(workItem.projectKey, workItem.number), 'PATCH', { expectedVersion: workItem.version, ...body(draft) });
 
-/** Moves a work item on the board: into a column, right after another card there, or first. */
-export const moveWorkItem = (workItem: WorkItemRow, columnId: string, afterId?: string) =>
-  sendCommand(`${workItemPath(workItem.projectKey, workItem.number)}/move`, 'POST', { columnId, afterId });
-
 export const deleteWorkItem = (workItem: WorkItemRow) =>
   sendCommand(`${workItemPath(workItem.projectKey, workItem.number)}?expectedVersion=${workItem.version}`, 'DELETE');
 

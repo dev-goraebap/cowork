@@ -3,7 +3,6 @@ import { getJson, sendCommand, sendCreate, type components } from '@/shared/api'
 import { workItemPath } from './work-items';
 
 export type TimeEntries = components['schemas']['TimeEntries'];
-export type TimeEntry = components['schemas']['TimeEntry'];
 export type TimeEntryInput = components['schemas']['TimeEntryInput'];
 
 /** A work item's time spent (소요시간), the latest day first, with its sum and estimate. Under ['workItems'], read again with them. */

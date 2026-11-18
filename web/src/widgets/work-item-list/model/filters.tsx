@@ -1,8 +1,7 @@
 import { PersonAvatar } from '@/shared/ui/person';
-import { ChartNoAxesColumnIcon, NotesIcon, ProjectsIcon, RepeatIcon, TagIcon, UserIcon, WorkflowIcon } from '@/shared/ui/icon';
+import { ChartNoAxesColumnIcon, NotesIcon, RepeatIcon, TagIcon, UserIcon, WorkflowIcon } from '@/shared/ui/icon';
 import type { Option } from '@/shared/ui/option-list';
-import {
-  CATEGORIES, PRIORITIES, VIEW_FILTER_KEYS, VIEW_GROUPINGS, VIEW_SORTS, WorkItemLabelDot, WorkItemPriorityIcon, WorkItemStatusIcon,
+import { PRIORITIES, VIEW_FILTER_KEYS, VIEW_GROUPINGS, VIEW_SORTS, WorkItemLabelDot, WorkItemPriorityIcon, WorkItemStatusIcon,
   WorkItemTypeIcon, cycleDays, type BoardColumn, type Cycle, type WorkItemLabel, type WorkItemTypeRow, type WorkItemListView, type WorkItemListing, type WorkItemPerson,
   type WorkItemViewFilters, type WorkItemViewGrouping, type WorkItemViewSort,
 } from '@/entities/work-item';
@@ -42,21 +41,6 @@ export function projectFilters({ columns = [], labels = [], types = [], people, 
       { value: 'none', label: '사이클 없음', icon: <RepeatIcon className="text-icon-muted" /> },
       ...[...cycles].reverse().map(cycle => ({ value: cycle.id!, label: `${cycle.name} (${cycleDays(cycle)})`, icon: <RepeatIcon className="text-icon-muted" /> })),
     ] },
-  ];
-}
-
-/** The workspace's filters, as client/'s: 프로젝트, 상태 (what statuses mean), 담당자, 유형, 우선순위. */
-export function workspaceFilters({ projects = [], types = [], people }: {
-  projects?: readonly { key: string; name: string }[]; types?: readonly WorkItemTypeRow[]; people?: readonly WorkItemPerson[];
-}): WorkItemFilterDef[] {
-  return [
-    { key: 'project', label: '프로젝트', icon: ProjectsIcon, isSearchable: true,
-      options: projects.map(project => ({ value: project.key, label: project.name, icon: <ProjectsIcon className="text-icon-muted" /> })) },
-    { key: 'status', label: '상태', icon: WorkflowIcon,
-      options: CATEGORIES.map(category => ({ value: category.value, label: category.label, icon: <WorkItemStatusIcon category={category.value} /> })) },
-    { key: 'assignee', label: '담당자', icon: UserIcon, isSearchable: true, options: peopleChoices(people) },
-    { key: 'type', label: '유형', icon: NotesIcon, options: typeChoices(types) },
-    { key: 'priority', label: '우선순위', icon: ChartNoAxesColumnIcon, options: priorityChoices },
   ];
 }
 

@@ -1,5 +1,5 @@
 import { infiniteQueryOptions, keepPreviousData, queryOptions, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getJson, sendCommand, sendCreate, type components } from '@/shared/api';
+import { getJson, sendCommand, type components } from '@/shared/api';
 
 /*
  * Documents' and their folders' reads and writes against /api/v1/workspace/documents and /api/v1/workspace/document-folders, as client/'s. A
@@ -74,14 +74,6 @@ function useDocumentsCommand<T, R>(send: (input: T) => Promise<R>, onDone?: (res
     onSettled: () => client.invalidateQueries({ queryKey: documentKeys.all }),
   });
 }
-
-const idOf = (location: string) => location.split('/').pop() ?? '';
-
-/** A new, empty document in a space and folder; its id comes back. */
-export const createDocument = async ({ projectKey, folderId, title }: { projectKey?: string; folderId?: string; title: string }) =>
-  idOf(await sendCreate(BASE, { projectKey, folderId, title: title.trim() }));
-
-export const useCreateDocument = (onDone?: (id: string) => void) => useDocumentsCommand(createDocument, onDone);
 
 export const useRenameDocument = (onDone?: () => void) => useDocumentsCommand(({ document, title }: { document: DocumentRow; title: string }) =>
   sendCommand(documentPath(document.id), 'PATCH', { expectedVersion: document.version, title: title.trim() }), onDone);

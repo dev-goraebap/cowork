@@ -37,5 +37,3 @@ export const categoryMark = (category: ColumnCategory) => find(CATEGORIES, categ
 /** Whether a category closes a work item (done or dropped). */
 export const isClosing = (category: ColumnCategory) => category === 'COMPLETED' || category === 'CANCELED';
 
-/** How pressing a priority is, for ordering: urgent 4 down to none 0. */
-export const PRIORITY_RANK: Record<WorkItemPriority, number> = { URGENT: 4, HIGH: 3, MEDIUM: 2, LOW: 1, NONE: 0 };

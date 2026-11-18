@@ -15,7 +15,3 @@ export function stampText(value?: string | Date | null): string {
   return `${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute}`;
 }
 
-/** 2026-11-09 */
-export function dayStamp(value?: string | Date | null): string {
-  return stampText(value).slice(0, 10);
-}

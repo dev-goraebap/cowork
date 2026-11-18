@@ -83,6 +83,6 @@ export function usePreview(kind:RichKind,source:string,target?:RefObject<HTMLEle
  },[kind,source,scheme,style,isNear]);return state;
 }
 
-export {RichView} from './RichView';
+;
 import {RichView} from './RichView';
 export const richNodeViews=(['mathBlock','inlineMath','mermaidBlock','webEmbed'] as RichKind[]).map(kind=>richNode(kind).extend({addNodeView(){return ReactNodeViewRenderer(RichView);}}));

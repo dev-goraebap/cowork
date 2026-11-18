@@ -34,13 +34,6 @@ export async function getJson<T>(url: string, signal?: AbortSignal): Promise<T> 
   return response.json() as Promise<T>;
 }
 
-/** A file the server builds, such as a report, fetched with the member's session to be saved. */
-export async function getBlob(url: string, signal?: AbortSignal): Promise<Blob> {
-  const response = await fetch(url, { signal, credentials: 'same-origin' });
-  if (!response.ok) throw await failure(response);
-  return response.blob();
-}
-
 /** Module business errors (for example ORGANIZATION_IN_USE) carry a safe, user-facing detail. */
 const businessCode = /^(?!COMMON_|AUTH_)[A-Z]+_[A-Z_]+$/;
 /** Account conflicts raised for administrators' employee changes; their detail names the row or the fix. */

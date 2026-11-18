@@ -115,5 +115,3 @@ export const setProjectRole = (key: string, userId: string, role: ProjectRole | 
   return isIn ? sendCommand(member, 'PATCH', { role }) : sendCommand(`${at(key)}/members`, 'POST', { userId, role });
 };
 
-/** The signed-in member's own favourite, on or off. */
-export const setFavorite = (key: string, favorite: boolean) => sendCommand(`${at(key)}/favorite`, 'PUT', { favorite });

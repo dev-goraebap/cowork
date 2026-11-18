@@ -1,1 +1,1 @@
-export { SearchPage, useSearchSources } from './ui/SearchPage';
+export {  useSearchSources } from './ui/SearchPage';

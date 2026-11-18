@@ -66,17 +66,6 @@ export function viewsInOrder(list: WorkItemViewList | undefined, isProject: bool
   return [...pinned, ...listed];
 }
 
-/** The views' keys with one moved by a step, or as they were at an end. */
-export function movedBy(keys: readonly string[], key: string, by: -1 | 1): string[] {
-  const from = keys.indexOf(key);
-  const to = from + by;
-  if (from < 0 || to < 0 || to >= keys.length) return [...keys];
-  const next = [...keys];
-  next.splice(from, 1);
-  next.splice(to, 0, key);
-  return next;
-}
-
 /**
  * The mark colour a view is saved with when none was picked in the view editor (the server wants one): the colour of the
  * view it is made from, or of the scope's first stored view, or the palette's default.

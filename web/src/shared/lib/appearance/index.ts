@@ -63,9 +63,6 @@ window.addEventListener('storage', event => {
 });
 const subscribe = (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; };
 
-/** The look in force now, outside React (a diagram drawn on demand). */
-export const appearanceNow = () => current;
-
 /** The look in force, following every change. */
 export const useAppearance = () => useSyncExternalStore(subscribe, () => current);
 /** Whether a body (a rich body, a Markdown body) is set in the serif: whenever the serif is chosen, whatever its scope. */

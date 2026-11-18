@@ -1,1 +1,1 @@
-export { isAdministrator, sessionOptions, type Role, type Session } from './session';
+export { isAdministrator, sessionOptions,  type Session } from './session';

@@ -3,8 +3,6 @@ import { ApiError, getJson, type components } from '@/shared/api';
 
 /** The member signed in, as the server tells it; null when nobody is. */
 export type Session = components['schemas']['Me'];
-export type Role = NonNullable<Session['roles']>[number];
-
 /** Who is signed in, read again every minute so an ended session takes the screen back to the login. */
 export const sessionOptions = () => queryOptions({
   queryKey: ['session'],

@@ -1,7 +1,7 @@
-export { groupingOf, groupsOf, isNarrowed, listingOf, projectFilters, queryOf, sortsOf, workspaceFilters, peopleChoices } from './model/filters';
-export { useWorkItemFilters, type Display, type FilterState, type SortKey, type WorkItemFilterDef, type WorkItemFilters, type WorkItemQuery } from './model/use-work-item-filters';
+export { groupingOf, groupsOf, isNarrowed, listingOf, projectFilters, queryOf, sortsOf,   } from './model/filters';
+;
 export { useWorkItemTools } from './model/use-work-item-tools';
-export { useWorkItemViews, type WorkItemViewsState } from './model/use-work-item-views';
+export { useWorkItemViews,  } from './model/use-work-item-views';
 export { WorkItemList } from './ui/WorkItemList';
 export { PagedWorkItemGroups } from './list-view/ui/PagedWorkItemGroups';
 export { ViewTweaks } from './ui/ViewTweaks';
