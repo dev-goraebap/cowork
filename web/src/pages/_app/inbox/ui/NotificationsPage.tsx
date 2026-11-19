@@ -2,25 +2,23 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { useMemo, useRef } from 'react';
 import {
-  kindOf, notificationsOptions, unreadNotificationsOptions, useReadAllNotifications,
+  notificationsOptions, unreadNotificationsOptions, useReadAllNotifications,
   type NotificationItem, type NotificationListing,
 } from '@/entities/notification';
 import { activitySplit } from '@/features/activity-navigation';
 import { useIsMobile } from '@/shared/lib/use-mobile';
-import { ActionMenu } from '@/shared/ui/kit/action-menu';
-import { BrandMark } from '@/shared/ui/brand';
 import { Button } from '@/shared/ui/kit/button';
 import { DetailSurface } from '@/shared/ui/kit/detail-surface';
 import type { FilterDef } from '@/shared/ui/kit/filter';
-import { BellIcon, CircleCheckIcon, SettingsIcon } from '@/shared/ui/kit/icon';
+import { BellIcon, CircleCheckIcon } from '@/shared/ui/kit/icon';
+import { OpenPageButton, SplitColumn, SplitList, SplitView, type SplitState } from '@/shared/ui/kit/layout/split-view';
 import { ListMore } from '@/shared/ui/kit/list-more';
-import { SplitColumn, SplitList, SplitView, SplitRow, OpenPageButton, type SplitState } from '@/shared/ui/kit/layout/split-view';
 import { PageState } from '@/shared/ui/kit/page-state';
-import { PersonAvatar } from '@/shared/ui/person';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
-import { momentOf } from '../model/format';
 import { useFilters } from '../model/use-filters';
 import { inboxFrame, NoticeDetail } from './NoticeDetail';
+import { NotificationRow } from './NotificationRow';
+import { NotificationsMenu } from './NotificationsMenu';
 
 /** A step of the page's path as the router hands it (its icon a meaning name). */
 type Crumb = { label: string; href?: string; icon?: string };
@@ -32,31 +30,6 @@ const FILTERS: FilterDef<'read'>[] = [
 /** The crumbs handed to the page, the last made a link back to the list, then the notice. */
 const crumbsUnder = (crumbs: Crumb[], listHref: string, label: string): Crumb[] =>
   [...crumbs.map((crumb, index) => (index === crumbs.length - 1 ? { ...crumb, href: listHref } : crumb)), { label }];
-
-/** The page's own menu: 모두 읽음 while any wait, and 알림 설정. */
-function NotificationsMenu({ unread, onReadAll }: { unread: number; onReadAll: () => void }) {
-  const navigate = useNavigate();
-  return <ActionMenu label="알림함 메뉴" actions={[
-    ...(unread > 0 ? [{ label: `모두 읽음 (${unread})`, icon: CircleCheckIcon, onSelect: onReadAll }] : []),
-    { label: '알림 설정', icon: SettingsIcon, onSelect: () => void navigate({ href: '/account/notifications' }) },
-  ]} />;
-}
-
-/**
- * One notice: who sent it (the system's own notices the company's mark in the same place), its title, what it reports and
- * its words, and when it came; an unread one tinted, the chosen one marked. Pressed anywhere it opens in the detail
- * (/inbox/{id}); the sender's avatar opens their profile.
- */
-function NotificationRow({ item, now, isChosen, href }: { item: NotificationItem; now: number; isChosen: boolean; href: string }) {
-  const navigate = useNavigate();
-  const kind = kindOf(item.kind);
-  return <SplitRow title={item.title} description={item.message ? `${kind.label} · ${item.message}` : kind.label}
-    onOpen={() => void navigate({ href })} isChosen={isChosen} isUnread={!item.readAt}
-    start={<span className="flex size-11 items-center justify-center">{item.actorId
-      ? <PersonAvatar id={item.actorId} name={item.actorName ?? undefined} size={32} />
-      : <span className="flex size-8 items-center justify-center rounded-full bg-muted text-foreground"><BrandMark size="1rem" label="cowork" /></span>}</span>}
-    end={<span className="text-xs text-muted-foreground tabular-nums">{momentOf(item.createdAt, now)}</span>} />;
-}
 
 /**
  * 알림함 (/inbox, /inbox/{id}): the member's notices, newest first, narrowed by read state, read a slice at a time, as an inbox (shared/ui/inbox): the list on the left, the chosen notice (id)

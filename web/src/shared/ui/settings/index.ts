@@ -1,1 +1,3 @@
-export { ChoiceSelect, IconAction, TextField } from './SettingsFields';
+export { ChoiceSelect } from './ChoiceSelect';
+export { IconAction } from './IconAction';
+export { TextField } from './TextField';

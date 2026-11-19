@@ -1,16 +1,17 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useState, type ReactNode } from 'react';
+import { useState } from 'react';
 import { directoryAgentKeys } from '@/entities/organization';
 import { Badge } from '@/shared/ui/kit/badge';
 import { Button } from '@/shared/ui/kit/button';
 import { ConfirmDialog } from '@/shared/ui/kit/confirm-dialog';
 import { PenSquareIcon, PlusIcon, Trash2Icon } from '@/shared/ui/kit/icon';
-import { Mark } from '@/shared/ui/mark-picker';
 import { PageState } from '@/shared/ui/kit/page-state';
 import { SettingsPage, SettingsRow, SettingsSection } from '@/shared/ui/kit/settings';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/kit/tooltip';
+import { Mark } from '@/shared/ui/mark-picker';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
-import { agentTokenKeys, agentProfilesOptions, agentTokensOptions, revokeAgentToken, type AgentProfile, type AgentToken, type AgentTokenCreated } from '../api/agents';
+import { IconAction } from '@/shared/ui/settings';
+import { agentProfilesOptions, agentTokenKeys, agentTokensOptions, revokeAgentToken, type AgentProfile, type AgentToken, type AgentTokenCreated } from '../api/agents';
+import { AgentRow } from './AgentRow';
 import { AgentEditorDialog, AgentTokenSecretDialog } from './AgentTokenDialogs';
 import { AgentUsageSection } from './AgentUsageSection';
 
@@ -25,30 +26,6 @@ function describe(token: AgentToken) {
   const ends = token.expiresAt ? `만료 ${moment.format(new Date(token.expiresAt))}` : '만료 없음';
   const used = token.lastUsedAt ? `마지막 사용 ${moment.format(new Date(token.lastUsedAt))}` : '아직 쓰지 않음';
   return `${token.prefix}… · ${dayText(token.createdAt)} 만듦 · ${ends} · ${used}`;
-}
-
-/** An agent's row in a section: its mark, name and line, and what can be done to it at the end. */
-function AgentRow({ mark, name, description, children }: { mark: ReactNode; name: string; description?: string; children?: ReactNode }) {
-  return (
-    <div className="flex min-h-11 items-center gap-3 p-3">
-      {mark}
-      <span className="flex min-w-0 flex-1 flex-col">
-        <span className="truncate font-medium">{name}</span>
-        {description ? <span className="text-sm text-muted-foreground">{description}</span> : null}
-      </span>
-      {children ? <span className="flex shrink-0 items-center gap-1">{children}</span> : null}
-    </div>
-  );
-}
-
-/** A small icon button with its tooltip (a row's 수정 · 폐기). */
-function RowButton({ label, tooltip, icon, onClick }: { label: string; tooltip: string; icon: ReactNode; onClick: () => void }) {
-  return (
-    <Tooltip>
-      <TooltipTrigger render={<Button variant="ghost" size="icon-sm" aria-label={label} className="max-md:size-11" onClick={onClick}>{icon}</Button>} />
-      <TooltipContent>{tooltip}</TooltipContent>
-    </Tooltip>
-  );
 }
 
 /**
@@ -96,9 +73,9 @@ export function AgentTokensPage({ crumbs }: { crumbs: Crumb[] }) {
                 <AgentRow key={token.id} name={name} description={describe(token)}
                   mark={<Mark isCircular icon={profile?.icon ?? 'agent'} color={profile?.color} letter={name} size="md" />}>
                   {token.expired ? <Badge variant="secondary">만료됨</Badge> : null}
-                  {profile && !token.expired ? <RowButton label={`${name} 프로필 수정`} tooltip="프로필 수정" icon={<PenSquareIcon />}
-                    onClick={() => setEditor({ profile, isEditing: true })} /> : null}
-                  <RowButton label={`${name} 토큰 폐기`} tooltip="토큰 폐기" icon={<Trash2Icon />} onClick={() => { revoke.reset(); setRevoking(token); }} />
+                  {profile && !token.expired ? <IconAction label={`${name} 프로필 수정`} tooltip="프로필 수정"
+                    onClick={() => setEditor({ profile, isEditing: true })}><PenSquareIcon /></IconAction> : null}
+                  <IconAction label={`${name} 토큰 폐기`} tooltip="토큰 폐기" onClick={() => { revoke.reset(); setRevoking(token); }}><Trash2Icon /></IconAction>
                 </AgentRow>
               );
             })}

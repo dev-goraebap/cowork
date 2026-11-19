@@ -5,7 +5,10 @@ export type { PagedPrint } from './paged-body';
 export { BodyEditContext, BodyTitle, useBodyEdit, type BodyEdit } from './body-edit';
 export { useRevealQuote } from './reveal-quote';
 export { blockCommentsOf, blockThreadsOf, openBlockThread, type BlockComments, type BlockThread } from './block-comments';
-export { BodyOutline, BodyOutlineProvider, BodyVersions, leadTitleOf, useBodyHeadings } from './outline';
+export { BodyOutline } from './BodyOutline';
+export { BodyOutlineProvider } from './BodyOutlineProvider';
+export { BodyVersions } from './BodyVersions';
+export { leadTitleOf, useBodyHeadings } from './outline-context';
 
 export { useDraftFiles } from './use-draft-files';
 export { MarkdownRead } from './markdown-read';

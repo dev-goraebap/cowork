@@ -1,44 +1,23 @@
-import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { cn } from 'cn';
 import { Button } from '@/shared/ui/kit/button';
-import { DetailLink } from '@/shared/ui/kit/detail-surface';
-import { ChevronDownIcon, ChevronRightIcon, ProjectsIcon } from '@/shared/ui/kit/icon';
+import { ChevronDownIcon, ChevronRightIcon } from '@/shared/ui/kit/icon';
 import { formatWorkItemDate } from '../model/date';
 import type { WorkItemRow } from '../model/types';
 import { WorkItemAssignee } from './WorkItemAssignee';
 import { WorkItemDueDate } from './WorkItemDueDate';
 import { WorkItemLabels } from './WorkItemLabels';
 import { WorkItemPriorityIcon } from './WorkItemPriorityIcon';
-import { WorkItemStatusIcon } from './WorkItemStatusIcon';
-import { WorkItemTypeIcon } from './WorkItemTypeIcon';
+import { WorkItemProjectLink } from './WorkItemProjectLink';
 import { WorkItemPullRequests } from './WorkItemPullRequests';
+import { WorkItemStatusIcon } from './WorkItemStatusIcon';
+import { WorkItemTitleCell } from './WorkItemTitleCell';
+import { WorkItemTypeIcon } from './WorkItemTypeIcon';
 
 type Tree = { depth: number; children: number; isOpen: boolean; parentLabel?: string; onToggle: () => void };
 
 /** 줄은 자기 바탕을 칠해 페이지의 점 무늬를 가리고, 가리키면 옅게 덮는다. 줄 링크(::after)가 이 줄을 덮는다. */
 const ROW = 'relative border-b bg-background text-sm hover:bg-row-hover';
-
-/** 프로젝트 이름: 그 프로젝트의 업무 목록으로 가는 작은 링크. 줄 링크 위에 떠서 따로 눌린다. */
-function ProjectLink({ workItem, className }: { workItem: WorkItemRow; className?: string }) {
-  return <Link to="/workspace/projects/$key/work-items" params={{ key: workItem.projectKey }}
-    className={cn('relative z-1 flex min-w-0 items-center gap-1 text-xs text-muted-foreground hover:text-foreground', className)}>
-    <ProjectsIcon className="size-3.5 shrink-0 text-icon-muted" />
-    <span className="truncate">{workItem.projectName}</span>
-  </Link>;
-}
-
-/** 제목: 상세를 여는 줄 링크(줄 어디를 눌러도 열린다), 부모가 목록 밖이면 그 아래에 누구의 하위 업무인지. */
-function Title({ workItem, href, parentLabel, className }: { workItem: WorkItemRow; href?: string; parentLabel?: string; className?: string }) {
-  const title = href
-    ? <DetailLink href={href} className="truncate">{workItem.title}</DetailLink>
-    : <span className="truncate">{workItem.title}</span>;
-  if (!parentLabel) return <span className={cn('flex min-w-0', className)}>{title}</span>;
-  return <span className={cn('flex min-w-0 flex-col', className)}>
-    {title}
-    <span className="truncate text-xs text-muted-foreground">{parentLabel}</span>
-  </span>;
-}
 
 /**
  * 업무 번호와 상태는 제목 앞에 모은다. 오른쪽은 유형과 선택 정보, 프로젝트, 담당자, 수정일 순서다.
@@ -74,12 +53,12 @@ export function WorkItemListRow({ workItem, href, isCompact = false, isSelected,
   if (isCompact) return <li aria-current={isSelected || undefined}
     className={cn(ROW, 'grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-2 gap-y-1 px-4 py-3', selected)}>
     {start}
-    <Title workItem={workItem} href={href} parentLabel={tree?.parentLabel} />
+    <WorkItemTitleCell workItem={workItem} href={href} parentLabel={tree?.parentLabel} />
     <span className="col-start-2 flex min-w-0 items-center justify-between gap-2">
       <span className="flex min-w-0 flex-wrap items-center gap-x-2.5 gap-y-1">
         <WorkItemTypeIcon type={workItem.type} showsLabel />
         {due}
-        {showsProject && workItem.projectName ? <ProjectLink workItem={workItem} className="max-w-24" /> : null}
+        {showsProject && workItem.projectName ? <WorkItemProjectLink workItem={workItem} className="max-w-24" /> : null}
       </span>
       <span className="flex shrink-0 items-center gap-1">
         <WorkItemAssignee fitsContent isCompact id={workItem.assigneeId} name={workItem.assigneeName} />
@@ -89,13 +68,13 @@ export function WorkItemListRow({ workItem, href, isCompact = false, isSelected,
   </li>;
   return <li aria-current={isSelected || undefined} className={cn(ROW, 'flex items-center gap-2 px-4 py-3 compact:py-2', selected)}>
     {start}
-    <Title workItem={workItem} href={href} parentLabel={tree?.parentLabel} className="flex-1" />
+    <WorkItemTitleCell workItem={workItem} href={href} parentLabel={tree?.parentLabel} className="flex-1" />
     <span className="flex shrink-0 items-center gap-2.5">
       <WorkItemTypeIcon type={workItem.type} showsLabel className="max-w-18" />
       <WorkItemPullRequests counts={workItem.pullRequests} />
       <WorkItemLabels labels={workItem.labels} className="max-w-60" />
       {due}
-      {showsProject && workItem.projectName ? <ProjectLink workItem={workItem} className="max-w-28" /> : null}
+      {showsProject && workItem.projectName ? <WorkItemProjectLink workItem={workItem} className="max-w-28" /> : null}
       <WorkItemAssignee fitsContent id={workItem.assigneeId} name={workItem.assigneeName} />
       <span aria-label="수정일" className="w-12 text-right text-xs whitespace-nowrap text-muted-foreground tabular-nums">{formatWorkItemDate(workItem.updatedAt)}</span>
       {actions}
