@@ -2,10 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 /*
- * The rules of web/'s screens (shadcn/ui on Base UI + Tailwind CSS v4, Webcraft design-system), checked rather than
+ * The rules of web/'s screens (shadcn/ui on Base UI + Tailwind CSS v4, Webapp ui-ux), checked rather than
  * remembered. Colours come from the theme's tokens (src/app/theme/tailwind.css) through Tailwind utilities; a file paints
  * with semantic tokens only, spaces with flex/grid gaps, never re-colours for dark, and keeps style={{}} for data.
- * The kit parts (shared/ui/kit: shadcn-derived parts and the Webcraft kit) keep their own conventions: only the layer,
+ * The kit parts (shared/ui/kit: shadcn-derived parts and the Webapp kit) keep their own conventions: only the layer,
  * icon and utils checks apply to them.
  */
 const SRC = path.resolve('src');
@@ -14,7 +14,7 @@ const THEME = path.join(SRC, 'app', 'theme');
 // icon and utils checks apply to it.
 const EDITOR = path.join(SRC, 'shared', 'lib', 'rich-document');
 const SHARED_UI = path.join(SRC, 'shared', 'ui');
-// 키트(shadcn을 다듬은 부품과 Webcraft 키트 부품)는 shared/ui/kit에 둔다. 키트는 키트의 규칙을 따르므로
+// 키트(shadcn을 다듬은 컴포넌트와 Webapp 키트 컴포넌트)는 shared/ui/kit에 둔다. 키트는 키트의 규칙을 따르므로
 // 화면 규칙을 걸지 않는다. 제품이 만든 부품(shared/ui의 나머지)에는 건다.
 const KIT = path.join(SHARED_UI, 'kit');
 

@@ -1,6 +1,6 @@
 # web/ 디자인 규칙
 
-v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는 것과 Webcraft 지침과 다른 점을 적는다. 화면은 shadcn/ui(Base UI) + Tailwind CSS v4이고, 부품은 키트(`src/shared/ui/kit`)에 두고 cowork가 만든 공용 부품은 `src/shared/ui`에 둔다. 키트는 이 저장소의 코드이며 Webcraft 지침이 가리키는 키트 원본이다. 공통 규칙은 Webcraft design-system 지침이 소유하며, 여기서는 그 `references/` 파일 이름(예: `surfaces.md`)으로 가리킨다. 지침 자체와 다르게 정한 것(리치 본문 글자, 화면 전환 로딩, 되돌리기 토스트)은 [AGENTS.md](../AGENTS.md)의 프로젝트 규칙 표가 소유한다. 사용자가 지적한 것은 고친 뒤 여기에 규칙으로 남긴다.
+v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는 것과 Webapp 지침과 다른 점을 적는다. 화면은 shadcn/ui(Base UI) + Tailwind CSS v4이고, 컴포넌트는 키트(`src/shared/ui/kit`)에 두고 cowork가 만든 공용 컴포넌트는 `src/shared/ui`에 둔다. 키트는 이 저장소의 코드이며 Webapp 지침이 가리키는 키트 원본이다. 공통 규칙은 Webapp ui-ux 지침이 소유하며, 여기서는 그 `references/` 파일 이름(예: `surfaces.md`)으로 가리킨다. 지침 자체와 다르게 정한 것(리치 본문 글자, 화면 전환 로딩, 되돌리기 토스트)은 [AGENTS.md](../AGENTS.md)의 프로젝트 규칙 표가 소유한다. 사용자가 지적한 것은 고친 뒤 여기에 규칙으로 남긴다.
 
 ## 모양을 바꾸는 순서
 
@@ -49,7 +49,7 @@ v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는
 
 ## 앱 셸 (`app/layout/AppFrame`, `shared/ui/kit/layout/app-shell`)
 
-생성 양식 · 공통 다이얼로그 · Split · Inset · 라우트 마스킹은 Webcraft design-system 지침과 [제품 구현 경로](../.agents/skills/cowork-runtime/SKILL.md)에서 사용 기준과 제품 구현을 함께 찾는다. 셸의 공통 구조는 `app-layout.md`를 따른다. 새 화면은 해당 구현을 사용하고 실제 제품 화면에서 검증한다.
+생성 양식 · 공통 다이얼로그 · Split · Inset · 라우트 마스킹은 Webapp ui-ux 지침과 [제품 구현 경로](../.agents/skills/cowork-runtime/SKILL.md)에서 사용 기준과 제품 구현을 함께 찾는다. 셸의 공통 구조는 `app-layout.md`를 따른다. 새 화면은 해당 구현을 사용하고 실제 제품 화면에서 검증한다.
 
 | 규칙 | 내용 |
 | :--- | :--- |

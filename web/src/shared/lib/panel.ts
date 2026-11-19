@@ -8,7 +8,7 @@ import { useIsMobile } from "@/shared/lib/use-mobile"
  * TanStack Router의 mask로 그 페이지의 주소를 보인다. 라우터가 새로고침에 mask를 푼다(router의 unmaskOnReload): 새로고침 · 복사한
  * 주소 · 링크는 그 페이지로 연다. 휴대폰에는 이런 대화상자가 없어 늘 그 페이지로 간다.
  *
- * cowork의 계약(?panel 주소, 기록 표시, 상세 페이지 예외)을 그대로 두고, Webcraft 키트 panel의 이름(inherit 선택,
+ * cowork의 계약(?panel 주소, 기록 표시, 상세 페이지 예외)을 그대로 두고, Webapp 키트 panel의 이름(inherit 선택,
  * usePanel의 pathname · search, carryDraft)도 함께 받는다. 키트 부품(shared/ui/detail-surface)이 이 모듈을 가져다 쓴다.
  */
 const KEY = "panel"
