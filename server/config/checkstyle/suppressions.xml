@@ -5,7 +5,6 @@
 <suppressions>
   <!--
     테스트 이름은 "무엇을 검증하는가" 를 사람이 읽는 문장이므로 한국어를 허용한다.
-    ArchUnit 규칙 필드(static final ArchRule)도 사실상 테스트 이름이므로 함께 허용한다.
     프로덕션 코드에는 적용하지 않는다.
   -->
   <suppress files="[\\/]src[\\/]test[\\/]" checks="MethodName|ConstantName"/>
