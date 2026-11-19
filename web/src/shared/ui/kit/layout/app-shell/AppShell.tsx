@@ -71,8 +71,8 @@ export function AppShell({ space, pathname, brand, headerTools, me, footer, bott
   // 휴대폰 앱 바에는 내 사진을 두지 않는다(2026-11-14). 내 메뉴는 하단 막대의 메뉴 시트 머리에 있다(PhoneBar).
   const tools = useMemo(() => phoneTools ?? null, [phoneTools])
   // 사이드바 접기는 본문 머리 줄 맨 왼쪽(페이지 머리 · 상세 페이지 머리)에 고정한다(2026-11-15).
-  const sidebarToggle = !isMobile ? <SidebarToggle /> : null
-  const chrome = useMemo(() => ({ tools, setFullScreen, sidebarToggle }), [tools, sidebarToggle !== null])
+  const sidebarToggle = useMemo(() => (!isMobile ? <SidebarToggle /> : null), [isMobile])
+  const chrome = useMemo(() => ({ tools, setFullScreen, sidebarToggle }), [tools, sidebarToggle])
   const open = (next: boolean) => {
     setIsOpen(next)
     if (next) setWidth(sidebarWidth.initial)

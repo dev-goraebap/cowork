@@ -15,7 +15,8 @@ export function RichView({node,editor,updateAttributes,getPos,selected}:NodeView
  const [editing,setEditing]=useState(false),[draft,setDraft]=useState(source),[editable,setEditable]=useState(editor.isEditable);
  const textarea=useRef<HTMLTextAreaElement>(null),address=useRef<HTMLInputElement>(null),previewBox=useRef<HTMLDivElement>(null);const preview=usePreview(kind,editing?draft:source,previewBox);
  useEffect(()=>{const update=()=>setEditable(editor.isEditable);editor.on('transaction',update);editor.on('update',update);update();return()=>{editor.off('transaction',update);editor.off('update',update);};},[editor]);
- useEffect(()=>{setEditing(editor.isEditable&&!source.trim());setDraft(source);},[source]);
+ const editableRef=useRef(editor.isEditable);editableRef.current=editor.isEditable;
+ useEffect(()=>{setEditing(editableRef.current&&!source.trim());setDraft(source);},[source]);
  useEffect(()=>{if(!editable)setEditing(false);},[editable]);
  useEffect(()=>{if(editing)(textarea.current??address.current)?.focus();},[editing]);
  const start=()=>{if(!editable)return;setDraft(source);setEditing(true);};

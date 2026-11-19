@@ -313,6 +313,7 @@ function PrintedBody({ id, store, snapshot, title, depth, setup, numbering, onLa
     const normalized = { ...snapshot, body: { ...body, content: [heading, ...(body.content ?? [])] } };
     return { ...frozenStore(normalized), attachments: store.attachments };
   }, [id, store, snapshot, title, depth, setup]);
-  const print = useMemo(() => ({ setup, numbering, onLayout }), [setup, numbering.offset, numbering.total, onLayout]);
+  const { offset, total } = numbering;
+  const print = useMemo(() => ({ setup, numbering: { offset, total }, onLayout }), [setup, offset, total, onLayout]);
   return <RichBody store={frozen} canEdit={false} title={title} print={print} />;
 }

@@ -71,10 +71,11 @@ export function ProjectLibrary({ crumbs, projectKey, documentId, ...surface }: {
   const view = data?.views.find(each => each.id === search.view);
   const q = typeof search.q === 'string' ? search.q : '';
   const routeLabels = typeof search.label === 'string' ? (search.label === '-' ? [] : search.label.split(',').filter(Boolean)) : view?.labels ?? [];
+  const routeLabelKey = routeLabels.join(',');
   const [pendingLabels, setPendingLabels] = useState<{ view: string; ids: string[] } | null>(null);
   const viewKey = view?.id ?? 'all';
   const chosen = pendingLabels?.view === viewKey ? pendingLabels.ids : routeLabels;
-  useEffect(() => { if (pendingLabels?.view === viewKey && pendingLabels.ids.join(',') === routeLabels.join(',')) setPendingLabels(null); }, [search.label, viewKey, pendingLabels]);
+  useEffect(() => { if (pendingLabels?.view === viewKey && pendingLabels.ids.join(',') === routeLabelKey) setPendingLabels(null); }, [routeLabelKey, viewKey, pendingLabels]);
   useEffect(() => { const reset = () => setPendingLabels(null); window.addEventListener('popstate', reset); return () => window.removeEventListener('popstate', reset); }, []);
   const initial: Display = {
     layout: view?.layout === 'LIST' ? 'LIST' : 'GRID',
@@ -90,7 +91,8 @@ export function ProjectLibrary({ crumbs, projectKey, documentId, ...surface }: {
   const isTweaked = display.layout !== initial.layout || display.sort !== initial.sort || display.direction !== initial.direction;
   const [asc, desc] = DIRECTIONS[SORTS.find(sort => sort.value === display.sort)?.kind ?? 'rank'];
   const matched = useInfiniteQuery({ ...documentsOptions({ project: projectKey, q: q || undefined }), enabled: !!q });
-  useEffect(() => { if (q && matched.hasNextPage && !matched.isFetching && !matched.isError) void matched.fetchNextPage(); }, [q, matched.hasNextPage, matched.isFetching, matched.isError, matched.fetchNextPage]);
+  const { hasNextPage, isFetching, isError, fetchNextPage } = matched;
+  useEffect(() => { if (q && hasNextPage && !isFetching && !isError) void fetchNextPage(); }, [q, hasNextPage, isFetching, isError, fetchNextPage]);
   // Old chapter links now open the same page in its owning tree.
   useEffect(() => { if (typeof search.chapter === 'string') void navigate({ href: `${base}/${search.chapter}`, replace: true }); }, [search.chapter, base, navigate]);
   const matchedIds = new Set(matched.data?.pages.flatMap(page => page.items.map(item => item.id)) ?? []);

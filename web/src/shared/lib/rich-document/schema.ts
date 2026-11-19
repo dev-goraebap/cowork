@@ -13,11 +13,12 @@ import Highlight from '@tiptap/extension-highlight';
 import TextAlign from '@tiptap/extension-text-align';
 import {Plugin} from '@tiptap/pm/state';
 import {richNodeSpecs} from './rich-node-spec';
-import type {AnyExtension} from '@tiptap/core';
+import type {AnyExtension,Editor} from '@tiptap/core';
+import type {JSONNode} from './model';
 import {Toggle,ToggleSummary,ToggleBody,ParagraphHistoryBoundary} from './toggle-spec';
 
 export const blank={type:'doc',content:[{type:'paragraph'}]};
-export function prepareDocument(value:any){const copy=structuredClone(value),seen=new Set<string>();if(copy.attrs?.printStartOnNewPage===true&&copy.content?.[0]){copy.content[0].attrs={...copy.content[0].attrs,printBreakBefore:true};}if(copy.attrs)delete copy.attrs.printStartOnNewPage;const types=new Set(['paragraph','heading','blockquote','bulletList','orderedList','taskList','codeBlock','horizontalRule','table','toggle','callout','columns','media','column','toggleBody','mathBlock','mermaidBlock','webEmbed']);const walk=(node:any)=>{if(types.has(node.type)){node.attrs??={};if(!node.attrs.blockId||seen.has(node.attrs.blockId))node.attrs.blockId=crypto.randomUUID();seen.add(node.attrs.blockId);}node.content?.forEach(walk);};walk(copy);return copy;}
+export function prepareDocument(value:JSONNode):JSONNode{const copy=structuredClone(value),seen=new Set<string>();if(copy.attrs?.printStartOnNewPage===true&&copy.content?.[0]){copy.content[0].attrs={...copy.content[0].attrs,printBreakBefore:true};}if(copy.attrs)delete copy.attrs.printStartOnNewPage;const types=new Set(['paragraph','heading','blockquote','bulletList','orderedList','taskList','codeBlock','horizontalRule','table','toggle','callout','columns','media','column','toggleBody','mathBlock','mermaidBlock','webEmbed']);const walk=(node:JSONNode)=>{if(types.has(node.type)){node.attrs??={};const existing=typeof node.attrs.blockId==='string'?node.attrs.blockId:'';if(!existing||seen.has(existing))node.attrs.blockId=crypto.randomUUID();seen.add(String(node.attrs.blockId));}node.content?.forEach(walk);};walk(copy);return copy;}
 export const Callout=Node.create({name:'callout',group:'block',content:'block+',defining:true,addAttributes(){return {tone:{default:'gray',parseHTML:e=>e.getAttribute('data-tone')}};},parseHTML:()=>[{tag:'aside[data-callout]'}],renderHTML:({HTMLAttributes})=>['aside',mergeAttributes(HTMLAttributes,{'data-callout':'','data-tone':HTMLAttributes.tone}),0]});
 const Columns=Node.create({name:'columns',group:'block',content:'column{2,5}',defining:true,addAttributes(){return {count:{default:2,parseHTML:e=>Number(e.getAttribute('data-count'))||2}};},parseHTML:()=>[{tag:'div[data-columns]'}],renderHTML:({HTMLAttributes})=>['div',mergeAttributes(HTMLAttributes,{'data-columns':'','data-count':HTMLAttributes.count,style:`--columns:${HTMLAttributes.count}`}),0]});
 const Column=Node.create({name:'column',content:'block+',defining:true,isolating:true,parseHTML:()=>[{tag:'div[data-column]'}],renderHTML:({HTMLAttributes})=>['div',mergeAttributes(HTMLAttributes,{'data-column':''}),0]});
@@ -67,12 +68,12 @@ export const commands=[
  {id:'file',label:'이미지 · 동영상 · 오디오 · 파일',group:'미디어',icon:'↥',hint:'최대 10MB, 로컬 서버에 보관'},
  ...[2,3,4,5].map(count=>({id:`columns${count}`,label:`${count}개의 열`,group:'고급 블록',icon:'▥',hint:'내용을 나란히 배치'})),
 ];
-export function insertBlock(editor:any,id:string,range?:{from:number;to:number}){
+export function insertBlock(editor:Editor,id:string,range?:{from:number;to:number}){
  if(range)editor.chain().focus().deleteRange(range).run();
  const chain=editor.chain().focus();
  if(['mathBlock','inlineMath','mermaidBlock','webEmbed'].includes(id))return chain.insertContent({type:id}).run();
  if(id==='paragraph')return chain.setParagraph().run();
- if(id.startsWith('heading'))return chain.setHeading({level:Number(id.slice(-1))}).run();
+ if(id.startsWith('heading'))return chain.setHeading({level:Number(id.slice(-1)) as 2|3|4}).run();
  if(id==='bulletList')return chain.toggleBulletList().run();if(id==='orderedList')return chain.toggleOrderedList().run();if(id==='taskList')return chain.toggleTaskList().run();
  if(id==='blockquote')return chain.toggleBlockquote().run();if(id==='codeBlock')return chain.toggleCodeBlock().run();if(id==='horizontalRule')return chain.setHorizontalRule().run();if(id==='table')return chain.insertTable({rows:3,cols:3,withHeaderRow:true}).run();
  if(id==='toggle')return chain.insertContent({type:'toggle',attrs:{open:true},content:[{type:'toggleSummary',content:[{type:'text',text:'토글 제목'}]},{type:'toggleBody',content:[{type:'paragraph'}]}]}).run();

@@ -6,7 +6,7 @@ import { mapBodySources } from './body-sources';
 import { useDraftFiles, type DraftFilesSnapshot } from './use-draft-files';
 
 /** 파일 하나의 받을 주소를 묻는 쿼리(주인의 파일 API). download면 내려받기 주소다. */
-export type FileLink = (fileId: string, download?: boolean) => UseQueryOptions<{ url: string }, Error, { url: string }, any>;
+export type FileLink = (fileId: string, download?: boolean) => UseQueryOptions<{ url: string }, Error, { url: string }, readonly unknown[]>;
 
 export async function readMarkdownDraft(markdown: string): Promise<JSONNode | undefined> {
   if (!markdown.trim()) return undefined;

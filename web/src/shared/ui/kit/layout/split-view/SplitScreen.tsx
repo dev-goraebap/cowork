@@ -68,9 +68,11 @@ export function SplitScreen({ crumbs, label, create, tools, menu, chips, applied
   close.current = () => void navigate({ href: listHref });
   const render = useRef(renderPane);
   render.current = renderPane;
+  const paneRef = useRef(pane);
+  paneRef.current = pane;
   const key = pane ? `${pane.kind}:${'id' in pane ? pane.id : ''}:${paneKey}` : '';
   // 칸의 내용은 key가 바뀔 때만 만든다(그때의 renderPane으로). 목록 쪽 렌더는 칸을 건드리지 않는다.
-  const detail = useMemo(() => (pane && !isPhone ? render.current(pane, () => close.current()) : undefined), [key, isPhone]);
+  const detail = useMemo(() => (key && paneRef.current && !isPhone ? render.current(paneRef.current, () => close.current()) : undefined), [key, isPhone]);
   if (isPhone) {
     return <Page crumbs={kitCrumbs(crumbs)} create={create} tools={tools} actions={menu} below={chips}>
       {state ? <PageState {...state} /> : list}

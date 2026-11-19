@@ -169,6 +169,7 @@ export function useRichBody(store: RichBodyStore, isOtherChanged: () => boolean 
 
   useEffect(() => {
     let isAlive = true;
+    const ownedBlobs = blobs.current;
     Object.entries(store.attachments ?? {}).forEach(([id, url]) => sources.current.set(attachmentRef(id), url));
     if (!initial.snapshot) store.load().then(snapshot => { if (isAlive) adopt(snapshot); }, (error: unknown) => { if (isAlive) stop(error); });
     // 오래된 캐시로 그렸으면 뒤에서 확인한다. 같은 버전이면 버전 목록·파일만 받고, 달라졌으면 알림만 띄운다.
@@ -176,8 +177,9 @@ export function useRichBody(store: RichBodyStore, isOtherChanged: () => boolean 
       if (!isAlive) return;
       if (snapshot.version === version.current) hear(snapshot); else setNewer(snapshot);
     }, () => undefined);
-    return () => { isAlive = false; window.clearTimeout(settleTimer.current); blobs.current.forEach(url => URL.revokeObjectURL(url)); };
+    return () => { isAlive = false; window.clearTimeout(settleTimer.current); ownedBlobs.forEach(url => URL.revokeObjectURL(url)); };
     // Mounted with the body's key: a draft never crosses to another body.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /** The blocks of a body as saved or read, at the given block versions (a block without one is new to the server). */

@@ -88,20 +88,23 @@ export function printPageRule(setup: PageSetup, isFirstBare = setup.differentFir
 const numberOr = (value: unknown, fallback: number) => typeof value === 'number' && Number.isFinite(value) ? value : fallback;
 const textOr = (value: unknown, fallback: string) => typeof value === 'string' ? value : fallback;
 
+const recordOr = (value: unknown): Record<string, unknown> => (value && typeof value === 'object' ? value as Record<string, unknown> : {});
+
 /**
  * 본문 루트의 attrs.pageSetup에서 페이지 설정을 읽는다(cowork는 페이지 설정을 본문과 함께 저장한다: 버전 기록·PDF가 본문과 같이 가진다).
  * 없거나 모르는 값은 기본값으로 채운다.
  */
 export function pageSetupOf(body: { attrs?: Record<string, unknown> } | null | undefined): PageSetup {
-  const saved = (body?.attrs?.pageSetup ?? {}) as Record<string, any>, base = DEFAULT_PAGE_SETUP;
+  const saved = recordOr(body?.attrs?.pageSetup), base = DEFAULT_PAGE_SETUP;
+  const margins = recordOr(saved.margins), header = recordOr(saved.header), footer = recordOr(saved.footer);
   return {
-    paper: saved.paper in PAPERS ? saved.paper : base.paper,
+    paper: typeof saved.paper === 'string' && saved.paper in PAPERS ? saved.paper as keyof typeof PAPERS : base.paper,
     orientation: saved.orientation === 'landscape' ? 'landscape' : 'portrait',
-    margins: { top: numberOr(saved.margins?.top, base.margins.top), bottom: numberOr(saved.margins?.bottom, base.margins.bottom),
-      left: numberOr(saved.margins?.left, base.margins.left), right: numberOr(saved.margins?.right, base.margins.right) },
+    margins: { top: numberOr(margins.top, base.margins.top), bottom: numberOr(margins.bottom, base.margins.bottom),
+      left: numberOr(margins.left, base.margins.left), right: numberOr(margins.right, base.margins.right) },
     gap: numberOr(saved.gap, base.gap),
-    header: { left: textOr(saved.header?.left, base.header.left), right: textOr(saved.header?.right, base.header.right) },
-    footer: { left: textOr(saved.footer?.left, base.footer.left), center: textOr(saved.footer?.center, base.footer.center), right: textOr(saved.footer?.right, base.footer.right) },
+    header: { left: textOr(header.left, base.header.left), right: textOr(header.right, base.header.right) },
+    footer: { left: textOr(footer.left, base.footer.left), center: textOr(footer.center, base.footer.center), right: textOr(footer.right, base.footer.right) },
     headerDistance: numberOr(saved.headerDistance, base.headerDistance), footerDistance: numberOr(saved.footerDistance, base.footerDistance),
     differentFirstPage: saved.differentFirstPage === true,
   };
