@@ -1,12 +1,12 @@
 # web/ 디자인 규칙
 
-v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는 것과 Webcraft 지침과 다른 점을 적는다. 화면은 shadcn/ui(Base UI) + Tailwind CSS v4이고, 부품은 Webcraft 키트(레지스트리 `@webcraft`)에서 받아 `src/shared/ui`에 우리 코드로 둔다. 공통 규칙은 Webcraft design-system 지침이 소유하며, 여기서는 그 `references/` 파일 이름(예: `surfaces.md`)으로 가리킨다. 지침 자체와 다르게 정한 것(리치 본문 글자, 화면 전환 로딩, 되돌리기 토스트)은 [AGENTS.md](../AGENTS.md)의 프로젝트 규칙 표가 소유한다. 사용자가 지적한 것은 고친 뒤 여기에 규칙으로 남긴다.
+v2 화면(`web/`)의 모양과 배치 규칙 가운데 cowork에만 해당하는 것과 Webcraft 지침과 다른 점을 적는다. 화면은 shadcn/ui(Base UI) + Tailwind CSS v4이고, 부품은 키트(`src/shared/ui/kit`)에 두고 cowork가 만든 공용 부품은 `src/shared/ui`에 둔다. 키트는 이 저장소의 코드이며 Webcraft 지침이 가리키는 키트 원본이다. 공통 규칙은 Webcraft design-system 지침이 소유하며, 여기서는 그 `references/` 파일 이름(예: `surfaces.md`)으로 가리킨다. 지침 자체와 다르게 정한 것(리치 본문 글자, 화면 전환 로딩, 되돌리기 토스트)은 [AGENTS.md](../AGENTS.md)의 프로젝트 규칙 표가 소유한다. 사용자가 지적한 것은 고친 뒤 여기에 규칙으로 남긴다.
 
 ## 모양을 바꾸는 순서
 
 1. 키트 부품의 props와 변형(Button의 `view` · `view-active` · `tool` · `create`, Badge의 `label` 등)
 2. 테마 토큰 `src/app/theme/tailwind.css`(`:root` · `:root[data-theme=dark]`, `@theme`). 색 테마(화면 설정)는 기준 색만 `src/app/theme/color-tokens.ts`가 `html`에 덮어쓰고, 회색 · 선 · 초점 색은 tailwind.css가 기준 색에서 섞어 만든다
-3. 키트 부품의 코드(`src/shared/ui/kit`): 받은 뒤로는 우리 코드다. 고친 곳에는 까닭을 주석으로 달고, `npm run kit:check -- --write`로 `kit.lock.json`에 고친 것으로 적는다(`npm run kit:check`가 레지스트리 원본과 비교한다)
+3. 키트 부품의 코드(`src/shared/ui/kit`): 키트의 원본이 이 저장소이므로 고친 곳에는 까닭을 주석으로 달고, 그 부품을 쓰는 다른 화면도 함께 확인한다
 
 어느 단계로도 안 되면 꼼수를 쓰지 않고 사용자에게 묻는다.
 

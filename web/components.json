@@ -20,8 +20,5 @@
     "hooks": "@/shared/lib"
   },
   "menuColor": "default",
-  "menuAccent": "subtle",
-  "registries": {
-    "@webcraft": "https://goraebap.xyz/r/{name}.json"
-  }
+  "menuAccent": "subtle"
 }

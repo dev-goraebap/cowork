@@ -1,6 +1,5 @@
 /*
- * shadcn/ui(Base UI) + Tailwind CSS v4의 토큰과 유틸리티. Webcraft 키트의 토큰 CSS(
- * 레지스트리 @webcraft/theme)에서 받았다. 색 테마(화면 설정)는 기준 색만 app/theme/color-tokens.ts가 html에 덮어쓴다.
+ * shadcn/ui(Base UI) + Tailwind CSS v4의 토큰과 유틸리티(Webcraft 키트의 토큰). 색 테마(화면 설정)는 기준 색만 app/theme/color-tokens.ts가 html에 덮어쓴다.
  */
 @import "tailwindcss";
 @import "tw-animate-css";

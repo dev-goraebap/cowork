@@ -5,8 +5,8 @@ import path from 'node:path';
  * The rules of web/'s screens (shadcn/ui on Base UI + Tailwind CSS v4, Webcraft design-system), checked rather than
  * remembered. Colours come from the theme's tokens (src/app/theme/tailwind.css) through Tailwind utilities; a file paints
  * with semantic tokens only, spaces with flex/grid gaps, never re-colours for dark, and keeps style={{}} for data.
- * The parts received from the Webcraft registry (a flat file in shared/ui, and the folders below) keep the generated
- * code's own conventions: only the layer, icon and utils checks apply to them.
+ * The kit parts (shared/ui/kit: shadcn-derived parts and the Webcraft kit) keep their own conventions: only the layer,
+ * icon and utils checks apply to them.
  */
 const SRC = path.resolve('src');
 const THEME = path.join(SRC, 'app', 'theme');
@@ -14,7 +14,7 @@ const THEME = path.join(SRC, 'app', 'theme');
 // icon and utils checks apply to it.
 const EDITOR = path.join(SRC, 'shared', 'lib', 'rich-document');
 const SHARED_UI = path.join(SRC, 'shared', 'ui');
-// 키트(Webcraft 레지스트리에서 받은 부품, shadcn을 다듬은 것 포함)는 shared/ui/kit에 둔다. 키트는 원본의 규칙을 따르므로
+// 키트(shadcn을 다듬은 부품과 Webcraft 키트 부품)는 shared/ui/kit에 둔다. 키트는 키트의 규칙을 따르므로
 // 화면 규칙을 걸지 않는다. 제품이 만든 부품(shared/ui의 나머지)에는 건다.
 const KIT = path.join(SHARED_UI, 'kit');
 
@@ -45,7 +45,7 @@ const SCREEN_RULES = [
 /** Rules for every file, the kit's and the editor's too. */
 const ALWAYS = [
   // Icons are Solar, called by lucide's names from the generated module (npm run icons:ui).
-  { why: 'lucide-react: @/shared/ui/icon(Solar)으로', test: /from\s+['"]lucide-react['"]/ },
+  { why: 'lucide-react: @/shared/ui/kit/icon(Solar)으로', test: /from\s+['"]lucide-react['"]/ },
   // FSD names files by what they hold, so there is no shared/lib/utils: cn comes from the cn package (components.json's
   // utils alias is "cn", so shadcn add writes that too).
   { why: '@/shared/lib/utils: cn은 cn 패키지에서 가져온다(import { cn } from "cn")', test: /from\s+['"]@\/shared\/lib\/utils['"]/ },

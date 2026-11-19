@@ -1,7 +1,7 @@
 import fs from "node:fs/promises"
 
-// Webcraft 키트의 아이콘 생성기에서 가져왔다(레지스트리 @webcraft/icon은 생성 결과만 담는다). 키트 가이드 사이트 전용 이름은 뺐다.
-// shadcn 키트(src/shared/ui/icon)가 부르는 아이콘 이름(lucide와 같은 이름)과 그 이름이 그리는 Solar 아이콘. 기본은 Linear,
+// 키트 아이콘(src/shared/ui/kit/icon)을 만드는 생성기.
+// shadcn 키트(src/shared/ui/kit/icon)가 부르는 아이콘 이름(lucide와 같은 이름)과 그 이름이 그리는 Solar 아이콘. 기본은 Linear,
 // chosen(고름 · 열림 · 지금 자리)이면 같은 아이콘의 Bold Duotone이다. 이름을 더하면 npm run icons:ui로 다시 만든다.
 // 이름이 lucide와 같은 것은 shadcn add가 만든 부품의 lucide-react import를 @/shared/ui/icon으로 바꾸기만 하면 되게 하려는 것이다.
 const SOLAR = {
@@ -78,5 +78,5 @@ const lines = Object.entries(SOLAR).map(([name, key]) => {
   return `export const ${name} = /* @__PURE__ */ solar(${JSON.stringify(name)}, ${JSON.stringify(linear)}${chosen ? `, ${JSON.stringify(chosen)}` : ""})`
 })
 // 머리 주석은 import 뒤에 둔다. shadcn add가 첫 문장 앞의 주석을 지우므로 앞에 두면 받은 프로젝트에서 저작자 표시가 사라진다.
-await fs.writeFile(new URL("../src/shared/ui/icon/icons.generated.ts", import.meta.url),
+await fs.writeFile(new URL("../src/shared/ui/kit/icon/icons.generated.ts", import.meta.url),
   `import { solar } from "./solar"\n\n// npm run icons:ui로 생성한다. 직접 고치지 않는다.\n// Solar icons by 480 Design, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).\n${lines.join("\n")}\n`)
