@@ -9,26 +9,23 @@ import { useAddressChoices, useAddressWords } from '@/shared/lib/list-address';
 import { rowReorderStyles as rows, useRowReorder } from '@/shared/lib/row-reorder';
 import { useIsMobile } from '@/shared/lib/use-mobile';
 import { cn } from 'cn';
-import { ActionMenu, type MenuAction } from '@/shared/ui/kit/action-menu';
 import { Alert, AlertTitle } from '@/shared/ui/kit/alert';
 import { Button } from '@/shared/ui/kit/button';
-import { DisplayChoice, DisplayMenu } from '@/shared/ui/kit/display-menu';
-import {
-  ArchiveIcon, ArchiveUpIcon, GripIcon, ProjectsIcon, RestoreIcon, SettingsIcon, Trash2Icon, TriangleAlertIcon,
-} from '@/shared/ui/kit/icon';
-import { ListMore } from '@/shared/ui/kit/list-more';
-import { Mark } from '@/shared/ui/mark-picker';
+import { ArchiveIcon, GripIcon, ProjectsIcon, TriangleAlertIcon } from '@/shared/ui/kit/icon';
 import { Page, PageViews, type PageView } from '@/shared/ui/kit/layout/page';
+import { ListMore } from '@/shared/ui/kit/list-more';
 import { PageState } from '@/shared/ui/kit/page-state';
 import { RowLink } from '@/shared/ui/kit/row-link';
 import { SearchTool } from '@/shared/ui/kit/search-tool';
-import { PersonAvatar } from '@/shared/ui/person';
-import { Popover, PopoverContent, PopoverHeader, PopoverTitle, PopoverTrigger } from '@/shared/ui/kit/popover';
 import { SortableHead } from '@/shared/ui/kit/sortable-head';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableText } from '@/shared/ui/kit/table';
+import { Mark } from '@/shared/ui/mark-picker';
 import { pageCrumbs } from '@/shared/ui/nav-icon';
 import { CreateProjectDialog } from './CreateProjectDialog';
 import { ProjectChangeDialog } from './ProjectChangeDialog';
+import { INITIAL_PROJECT_DISPLAY, ProjectDisplayMenu, type ProjectDisplay } from './ProjectDisplayMenu';
+import { ProjectMemberFaces } from './ProjectMemberFaces';
+import { ProjectRowMenu } from './ProjectRowMenu';
 
 type Crumb = { label: string; href?: string; icon?: string };
 
@@ -37,81 +34,9 @@ const firstLine = (text?: string | null) => text?.split('\n').find(line => line.
 
 const day = new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: 'short', day: 'numeric' });
 
-/** 한 칸에 겹쳐 그리는 멤버 사진 수. 넘치면 '외 N명'. */
-const FACES = 3;
-
-/**
- * 프로젝트의 멤버들(Linear 팀 표의 Members): 사진을 셋까지 겹쳐 그리고 나머지는 '외 N명'. 누르면 모든 멤버의 목록이 뜬다
- * (2026-11-15). 표는 데스크톱에만 있어 목록은 팝오버다.
- */
-function MemberFaces({ project, people }: { project: Project; people: { id: string; name: string }[] }) {
-  if (people.length === 0) return <span className="text-muted-foreground">-</span>;
-  const rest = people.length - FACES;
-  return (
-    <Popover>
-      <PopoverTrigger render={
-        <button type="button" aria-label={`${project.name} 멤버 ${people.length}명 보기`}
-          className="relative z-1 inline-flex h-7 items-center rounded-md px-1 outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring">
-          {people.slice(0, FACES).map((person, index) => (
-            <span key={person.id} className={cn('rounded-full ring-2 ring-background', index > 0 && '-ml-1.5')}><PersonAvatar id={person.id} name={person.name} size={20} isStatic /></span>
-          ))}
-          {rest > 0 ? <span className="ml-1.5 text-xs text-muted-foreground tabular-nums">외 {rest}명</span> : null}
-        </button>
-      } />
-      <PopoverContent align="start" className="w-64 gap-1.5">
-        <PopoverHeader><PopoverTitle>{`${project.name} 멤버 ${people.length}명`}</PopoverTitle></PopoverHeader>
-        <ul aria-label="멤버" className="flex max-h-72 flex-col overflow-y-auto">
-          {people.map(person => (
-            <li key={person.id} className="flex min-h-9 items-center gap-2">
-              <PersonAvatar id={person.id} name={person.name} size={20} isStatic />
-              <span className="truncate">{person.name}</span>
-            </li>
-          ))}
-        </ul>
-      </PopoverContent>
-    </Popover>
-  );
-}
-
 const TABS: PageView<ProjectStatus>[] = [
   { value: 'ACTIVE', label: '진행 중', icon: ProjectsIcon }, { value: 'ARCHIVED', label: '보관함', icon: ArchiveIcon },
 ];
-
-/* 표시: 정렬 기준과 기준에 맞는 말로 쓴 방향. 사용자 지정은 관리자가 정한 순서다. */
-type SortKey = 'custom' | 'name' | 'members';
-type Display = { sort: SortKey; direction: 'asc' | 'desc' };
-const INITIAL_DISPLAY: Display = { sort: 'custom', direction: 'asc' };
-const SORTS: { value: SortKey; label: string; kind: 'rank' | 'text' }[] = [
-  { value: 'custom', label: '사용자 지정', kind: 'rank' }, { value: 'name', label: '이름', kind: 'text' }, { value: 'members', label: '멤버 수', kind: 'rank' },
-];
-const DIRECTIONS = { rank: ['앞 → 뒤', '뒤 → 앞'], text: ['가 → 하', '하 → 가'] } as const;
-
-function ProjectDisplayMenu({ value, onChange }: { value: Display; onChange: (value: Display) => void }) {
-  const [asc, desc] = DIRECTIONS[SORTS.find(sort => sort.value === value.sort)?.kind ?? 'rank'];
-  return (
-    <DisplayMenu isTweaked={value.sort !== INITIAL_DISPLAY.sort || value.direction !== INITIAL_DISPLAY.direction} onReset={() => onChange(INITIAL_DISPLAY)}>
-      <DisplayChoice title="정렬 기준" items={SORTS} value={value.sort} onChange={sort => onChange({ ...value, sort })} />
-      <DisplayChoice title="방향" items={[{ value: 'asc', label: asc }, { value: 'desc', label: desc }] as const} value={value.direction}
-        onChange={direction => onChange({ ...value, direction })} />
-    </DisplayMenu>
-  );
-}
-
-/** A row's … for Workspace administrators: what the tab allows (설정, 보관 or 보관 해제, 삭제; 되살리기 in 삭제됨). */
-function ProjectMenu({ project, status, onChange }: { project: Project; status: ProjectStatus; onChange: (change: ProjectChange) => void }) {
-  const navigate = useNavigate();
-  const actions: MenuAction[] = status === 'DELETED'
-    ? [{ label: '되살리기', icon: RestoreIcon, onSelect: () => onChange('restore') }]
-    : [
-      { label: '설정', icon: SettingsIcon, onSelect: () => void navigate({ href: `/workspace/projects/${project.key}/settings/general` }) },
-      status === 'ARCHIVED'
-        ? { label: '보관 해제', icon: ArchiveUpIcon, onSelect: () => onChange('unarchive') }
-        : { label: '보관', icon: ArchiveIcon, onSelect: () => onChange('archive') },
-      { label: '삭제', icon: Trash2Icon, onSelect: () => onChange('delete') },
-    ];
-  // The row is a link (RowLink covers it); the menu is raised over that cover so it opens on its own.
-  return <span className="relative z-1 flex"><ActionMenu label={`${project.name} 관리`} title={project.name} size="row" actions={actions} /></span>;
-}
 
 /**
  * 프로젝트 (client/'s ProjectsPage, BIT's 모든 프로젝트): the company's projects in rows under tabs, 진행 중 in the
@@ -129,7 +54,7 @@ export function ProjectsPage({ crumbs }: { crumbs: Crumb[] }) {
   const [tab, setTab] = useState<ProjectStatus>('ACTIVE');
   const status: ProjectStatus = tab === 'ARCHIVED' ? 'ARCHIVED' : 'ACTIVE';
   const [q, setQ] = useAddressWords();
-  const [display, setDisplay] = useAddressChoices<Display>(INITIAL_DISPLAY, { sort: ['custom', 'name', 'members'], direction: ['asc', 'desc'] });
+  const [display, setDisplay] = useAddressChoices<ProjectDisplay>(INITIAL_PROJECT_DISPLAY, { sort: ['custom', 'name', 'members'], direction: ['asc', 'desc'] });
   const [failure, setFailure] = useState<string>();
   const projects = useQuery(projectsOptions(status));
   // 표의 멤버 칸(Linear 팀 표의 Members): 누가 어느 프로젝트에 속하는지와 사람의 이름.
@@ -160,7 +85,7 @@ export function ProjectsPage({ crumbs }: { crumbs: Crumb[] }) {
       .filter(p => `${p.name} ${p.key} ${p.description ?? ''}`.toLocaleLowerCase().includes(q.trim().toLocaleLowerCase()));
     if (display.sort !== 'custom') visible.sort((a, b) => (display.sort === 'members' ? a.memberCount - b.memberCount : a.name.localeCompare(b.name, 'ko')) * (display.direction === 'asc' ? 1 : -1));
     if (!visible.length) return <PageState kind="search" title="조건에 맞는 프로젝트가 없습니다" />;
-    const menu = (project: Project) => (isAdmin ? <ProjectMenu project={project} status={status} onChange={next => ask(project, next)} /> : null);
+    const menu = (project: Project) => (isAdmin ? <ProjectRowMenu project={project} status={status} onChange={next => ask(project, next)} /> : null);
     // 휴대폰은 줄 목록(표가 좁아 들어가지 않는다).
     if (isMobile) return (
       <div ref={reorder.list} role="list" aria-label="프로젝트" className={cn(rows.list, 'border-b')}>
@@ -187,7 +112,7 @@ export function ProjectsPage({ crumbs }: { crumbs: Crumb[] }) {
     // 머리 칸으로 정렬한다(이름은 가나다부터, 멤버는 많은 쪽부터). 같은 칸을 세 번째 누르면 관리자가 정한 순서로 돌아간다.
     const FIRST: Record<'name' | 'members', 'asc' | 'desc'> = { name: 'asc', members: 'desc' };
     const sortBy = (sort: 'name' | 'members', direction: 'asc' | 'desc') => setDisplay(
-      display.sort === sort && display.direction !== FIRST[sort] ? INITIAL_DISPLAY : { sort, direction });
+      display.sort === sort && display.direction !== FIRST[sort] ? INITIAL_PROJECT_DISPLAY : { sort, direction });
     const sortHead = (label: string, key: 'name' | 'members', className: string) => (
       <SortableHead label={label} sortKey={key} sort={display.sort === 'custom' ? ('' as 'name') : display.sort} direction={display.direction}
         firstDirection={FIRST[key]} onSort={sortBy} className={className} />
@@ -228,7 +153,7 @@ export function ProjectsPage({ crumbs }: { crumbs: Crumb[] }) {
                   </span>
                 </TableCell>
                 <TableCell className="text-muted-foreground"><TableText>{firstLine(project.description) || ''}</TableText></TableCell>
-                <TableCell><MemberFaces project={project} people={members} /></TableCell>
+                <TableCell><ProjectMemberFaces project={project} people={members} /></TableCell>
                 <TableCell className="text-muted-foreground tabular-nums">{day.format(new Date(project.createdAt))}</TableCell>
                 <TableCell className="text-muted-foreground tabular-nums">{day.format(new Date(project.updatedAt))}</TableCell>
                 <TableCell>
