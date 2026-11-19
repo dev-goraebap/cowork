@@ -9,7 +9,9 @@ import type { WorkItemRow } from '../model/types';
 import { WorkItemAssignee } from './WorkItemAssignee';
 import { WorkItemDueDate } from './WorkItemDueDate';
 import { WorkItemLabels } from './WorkItemLabels';
-import { WorkItemPriorityIcon, WorkItemStatusIcon, WorkItemTypeIcon } from './WorkItemMarks';
+import { WorkItemPriorityIcon } from './WorkItemPriorityIcon';
+import { WorkItemStatusIcon } from './WorkItemStatusIcon';
+import { WorkItemTypeIcon } from './WorkItemTypeIcon';
 import { WorkItemPullRequests } from './WorkItemPullRequests';
 
 type Tree = { depth: number; children: number; isOpen: boolean; parentLabel?: string; onToggle: () => void };

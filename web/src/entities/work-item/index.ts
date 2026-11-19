@@ -25,7 +25,10 @@ export { CATEGORIES, PRIORITIES,  categoryMark,  priorityMark,  } from './model/
 export { useWorkItemTypes } from './api/types';
 export { WorkItemAssignee,  } from './ui/WorkItemAssignee';
 export { WorkItemLabels } from './ui/WorkItemLabels';
-export { WorkItemLabelDot, WorkItemPriorityIcon, WorkItemStatusIcon, WorkItemTypeIcon } from './ui/WorkItemMarks';
+export { WorkItemLabelDot } from './ui/WorkItemLabelDot';
+export { WorkItemPriorityIcon } from './ui/WorkItemPriorityIcon';
+export { WorkItemStatusIcon } from './ui/WorkItemStatusIcon';
+export { WorkItemTypeIcon } from './ui/WorkItemTypeIcon';
 export { WorkItemDueDate } from './ui/WorkItemDueDate';
 export { WorkItemListRow } from './ui/WorkItemListRow';
 export {
