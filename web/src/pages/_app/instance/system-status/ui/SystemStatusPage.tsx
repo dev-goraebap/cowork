@@ -13,7 +13,8 @@ import { SegmentedControl } from '@/shared/ui/kit/segmented-control';
 import type { ActivityRow, ErrorRow, TrafficRange } from '../api/system';
 import { DAY_SPANS, spanRange } from '../model/format';
 import { Overview } from './Overview';
-import { Activities, Errors } from './Records';
+import { Activities } from './Activities';
+import { Errors } from './Errors';
 
 type Crumb = { label: string; href?: string; icon?: string };
 type Tab = 'overview' | 'activities' | 'errors';
