@@ -1,7 +1,7 @@
 import type { FormEvent, ReactNode } from "react"
 import { useIsMobile } from "@/shared/lib/use-mobile"
 import { Button } from "@/shared/ui/kit/button"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/shared/ui/kit/dialog"
+import { Dialog, DialogBody, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/shared/ui/kit/dialog"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/shared/ui/kit/drawer"
 import { Spinner } from "@/shared/ui/kit/spinner"
 
@@ -58,16 +58,16 @@ export function FormDialog({ open, onOpenChange, title, description, submitLabel
   return (
     <Dialog open={open} onOpenChange={change}>
       <DialogContent>
-        <form onSubmit={submit} className="flex min-w-0 flex-col gap-4">
-          <DialogHeader>
+        <form onSubmit={submit} className="flex min-h-0 min-w-0 flex-1 flex-col gap-6">
+          <DialogHeader className="shrink-0">
             <DialogTitle>{title}</DialogTitle>
             {description && <DialogDescription>{description}</DialogDescription>}
           </DialogHeader>
-          {children}
-          <div className="flex justify-end gap-2">
+          {children && <DialogBody className="gap-4">{children}</DialogBody>}
+          <DialogFooter>
             <Button type="button" variant="ghost" onClick={() => change(false)}>취소</Button>
             {save}
-          </div>
+          </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
