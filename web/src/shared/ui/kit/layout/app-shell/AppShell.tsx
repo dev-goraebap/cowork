@@ -107,7 +107,7 @@ export function AppShell({ space, pathname, brand, headerTools, me, footer, bott
               !isMobile && isInset && cn("mt-2 mr-2 squircle rounded-[calc(var(--radius-surface)*1.5)] shadow-surface", !hasBottomBar && "mb-2"))}>
               {children}
             </main>
-            {hasBottomBar && <div data-slot="shell-bottom-bar" className="fixed inset-x-0 bottom-0 z-10">{bottomBar}</div>}
+            {hasBottomBar && <div data-slot="shell-bottom-bar" className={cn("fixed inset-x-0 bottom-0 z-10", !isInset && "border-t bg-background")}>{bottomBar}</div>}
             {hasPhoneBar && <PhoneBar {...phoneBar} me={me} current={current} pathname={pathname} />}
             {isMobile && !isFullScreen && !phoneBar && <MobileTabBar space={space} current={current} tabs={tabs} pathname={pathname} />}
           </div>
