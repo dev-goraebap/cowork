@@ -113,18 +113,17 @@ export function ShellSidebar({ space, current, brand, headerTools, me, footer, a
   return (
     <Sidebar collapsible="icon" variant={layout === "inset" ? "inset" : "sidebar"} aria-label="주 메뉴"
       className={isAboveBar ? "h-[calc(100svh-2.5rem)]" : undefined}>
-      {/* 메뉴 본문과 같은 스크롤 막대 자리를 오른쪽에 둔다: 머리의 아바타와 메뉴 항목의 오른쪽 끝이 한 선에 선다. */}
-      {(brand || headerTools || me) && <SidebarHeader className={cn("gap-3 overflow-y-hidden px-3 [scrollbar-gutter:stable] [scrollbar-width:thin] group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:[scrollbar-gutter:auto]", layout === "inset" ? "pt-3" : "pt-0")}>
-        {/* split은 머리 줄을 페이지 머리 줄(52px)과 같은 선에 둔다. */}
-        <div className={cn("flex items-center justify-between gap-2 group-data-[collapsible=icon]:h-auto group-data-[collapsible=icon]:flex-col",
-          layout === "inset" ? "h-8" : "h-13 group-data-[collapsible=icon]:pt-3")}>
+      {/* 머리와 메뉴 본문의 좌우 패딩을 같은 선(호버 박스 12px · 아이콘 20px)에 맞춘다. */}
+      {(brand || headerTools || me) && <SidebarHeader className="gap-3 overflow-y-hidden px-3 py-0 group-data-[collapsible=icon]:px-2">
+        {/* inset·split 모두 머리 줄을 페이지 머리 줄(52px)과 같은 높이와 중심선에 둔다. */}
+        <div className="flex h-13 items-center justify-between gap-2 group-data-[collapsible=icon]:h-auto group-data-[collapsible=icon]:flex-col group-data-[collapsible=icon]:py-2.5">
           <div className="flex min-w-0 flex-1 items-center gap-1.5 group-data-[collapsible=icon]:flex-none group-data-[collapsible=icon]:flex-col">{slot(brand, isFolded)}</div>
-          {headerTools && <div className="flex shrink-0 items-center gap-1 group-data-[collapsible=icon]:flex-col">{headerTools}</div>}
+          {headerTools && <div className="flex shrink-0 items-center gap-1 pr-1.5 group-data-[collapsible=icon]:flex-col group-data-[collapsible=icon]:pr-0">{headerTools}</div>}
         </div>
         {me && (isFolded ? <MeButton me={me} className="mx-auto" /> : <MeBox me={me} />)}
       </SidebarHeader>}
-      {/* 스크롤 막대 자리를 늘 비워 둔다(2026-11-15): 메뉴가 길어져 막대가 생겼다 사라질 때 항목이 좌우로 흔들리지 않게(본문처럼). 막대는 가늘게. */}
-      <SidebarContent className="px-1 [scrollbar-gutter:stable] [scrollbar-width:thin] group-data-[collapsible=icon]:[scrollbar-gutter:auto]">
+      {/* 스크롤바 트랙을 숨겨 Windows에서도 좌우 여백이 대칭을 유지하고, 스크롤 유무에 따라 메뉴가 좌우로 흔들리지 않게 한다. */}
+      <SidebarContent className="px-1 [scrollbar-width:none]">
         {space.back && (
           <SidebarGroup className="py-1">
             <SidebarMenu>
