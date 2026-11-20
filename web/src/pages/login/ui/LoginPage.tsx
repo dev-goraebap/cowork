@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { useState, type FormEvent, type ReactNode } from 'react';
 import { sendCommand } from '@/shared/api';
-import { BrandWordmark } from '@/shared/ui/brand';
+import { useIsMobile } from '@/shared/lib/use-mobile';
+import { BrandMark } from '@/shared/ui/brand';
 import { Button } from '@/shared/ui/kit/button';
 import { Card } from '@/shared/ui/kit/card';
 import { Field, FieldLabel } from '@/shared/ui/kit/field';
@@ -19,6 +20,7 @@ export function LoginPage({ onSignedIn, codeSentTo }: {
   /** 코드를 이미 보낸 이메일(첫 관리자를 막 만들었을 때): 코드 적기부터 시작한다. */
   codeSentTo?: string;
 }) {
+  const isMobile = useIsMobile();
   const [email, setEmail] = useState(codeSentTo ?? '');
   const [sentTo, setSentTo] = useState<string | undefined>(codeSentTo);
   const [code, setCode] = useState('');
@@ -31,11 +33,11 @@ export function LoginPage({ onSignedIn, codeSentTo }: {
     else if (email.trim() && !request.isPending) request.mutate();
   };
   return (
-    <main className="relative isolate flex min-h-dvh items-center justify-center overflow-hidden p-4">
-      <AuthBackground />
-      <Card className="w-95 max-w-full gap-5 rounded-(--radius-surface) px-6 shadow-xs">
+    <main className="relative isolate flex min-h-dvh items-center justify-center overflow-hidden p-4 max-md:items-stretch max-md:bg-background max-md:p-0">
+      {!isMobile ? <AuthBackground /> : null}
+      <Card className="w-95 max-w-full gap-5 rounded-(--radius-surface) px-6 shadow-xs max-md:w-full max-md:flex-1 max-md:justify-center max-md:rounded-none max-md:bg-background max-md:px-6 max-md:py-8 max-md:shadow-none max-md:ring-0">
         <div className="flex flex-col items-start gap-3">
-          <BrandWordmark />
+          <BrandMark size="2.5rem" />
           <h1 className="text-2xl font-semibold">로그인</h1>
           <p className="text-muted-foreground">{sentTo ? `${sentTo}로 보낸 인증 코드를 적어 주세요.` : '이메일로 인증 코드를 보내 드립니다.'}</p>
         </div>
