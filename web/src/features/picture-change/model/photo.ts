@@ -1,7 +1,7 @@
 /** The formats a canvas can draw, which is all the cropper takes. */
 export const PHOTO_ACCEPT = 'image/jpeg,image/png,image/webp,image/gif';
 /** The original stays in the browser and only the 512px crop is sent, so it may be large. */
-export const PHOTO_MAX_BYTES = 20 * 1024 * 1024;
+const PHOTO_MAX_BYTES = 20 * 1024 * 1024;
 /** Past this on either side decoding takes too much memory. */
 const MAX_SIDE = 20000;
 const TOO_LARGE = '사진 크기가 너무 큽니다.';

@@ -1,3 +1,10 @@
-export { DRAWN_AVATARS, derivedAvatar, drawnAvatarSource } from './model/drawn-avatars';
+export {
+  DRAWN_AVATAR_BACKGROUNDS,
+  DRAWN_AVATAR_FACES,
+  derivedAvatar,
+  drawnAvatarIndex,
+  drawnAvatarParts,
+  drawnAvatarSource,
+} from './model/drawn-avatars';
 
-export { avatarKeys,  avatarSource, useMemberPicture } from './api';
+export { avatarKeys, avatarSource, useMemberAvatar, useMemberPicture } from './api';

@@ -21,3 +21,17 @@ export function useMemberPicture(id?: string) {
   const avatars = useQuery({ ...avatarsOptions(), enabled: !!id });
   return avatarSource(id ?? '', avatars.data);
 }
+
+/** Current avatar state for editing: resolved image source plus whether a custom photo or preset is saved. */
+export function useMemberAvatar(id: string) {
+  const avatars = useQuery({ ...avatarsOptions(), enabled: !!id });
+  const avatar = avatars.data?.find(item => item.employeeId === id);
+  const hasPhoto = Boolean(avatar?.pictureId);
+  const savedPreset = hasPhoto ? undefined : avatar?.preset;
+  return {
+    picture: avatarSource(id, avatars.data),
+    hasPhoto,
+    savedPreset,
+    isDefault: !hasPhoto && savedPreset == null,
+  };
+}
